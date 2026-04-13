@@ -1,0 +1,173 @@
+---
+import Shell from "../layouts/Shell.astro";
+---
+
+<Shell>
+  <main class="main">
+    <section class="intro">
+      <h1>Component gallery</h1>
+      <p>
+        Visual regression and manual QA targets for Prism on the web. Pair this app with the docs site for
+        specifications and usage guidance.
+      </p>
+    </section>
+
+    <section class="panel" aria-labelledby="buttons-heading">
+      <h2 id="buttons-heading">Buttons</h2>
+      <div class="row">
+        <button type="button" class="btn primary">Primary</button>
+        <button type="button" class="btn secondary">Secondary</button>
+        <button type="button" class="btn quiet">Quiet</button>
+        <button type="button" class="btn danger">Destructive</button>
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="inputs-heading">
+      <h2 id="inputs-heading">Fields</h2>
+      <div class="field">
+        <label for="q">Search</label>
+        <input id="q" type="search" placeholder="Workspace, channel, or people" />
+      </div>
+    </section>
+
+    <section class="panel" aria-labelledby="states-heading">
+      <h2 id="states-heading">Semantic states</h2>
+      <div class="badges">
+        <span class="badge success">Success</span>
+        <span class="badge warning">Warning</span>
+        <span class="badge error">Error</span>
+      </div>
+    </section>
+  </main>
+</Shell>
+
+<style>
+  .main {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: var(--prism-space-2xl) var(--prism-space-xl) var(--prism-space-3xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--prism-space-2xl);
+  }
+
+  .intro h1 {
+    margin: 0 0 var(--prism-space-sm);
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .intro p {
+    margin: 0;
+    max-width: 40rem;
+    color: var(--prism-color-text-secondary);
+  }
+
+  .panel {
+    padding: var(--prism-space-xl);
+    border-radius: var(--prism-radius-lg);
+    border: 1px solid var(--prism-color-border-subtle);
+    background: var(--prism-color-surface);
+    box-shadow: var(--prism-shadow-md);
+  }
+
+  .panel h2 {
+    margin: 0 0 var(--prism-space-lg);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--prism-space-md);
+    align-items: center;
+  }
+
+  .btn {
+    font: inherit;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    padding: 0.55rem 1rem;
+    border-radius: var(--prism-radius-md);
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+
+  .btn.primary {
+    background: var(--prism-color-accent-strong);
+    color: var(--prism-color-text-inverse);
+  }
+
+  .btn.secondary {
+    background: var(--prism-color-surface);
+    border-color: var(--prism-color-border-strong);
+    color: var(--prism-color-text-primary);
+  }
+
+  .btn.quiet {
+    background: transparent;
+    color: var(--prism-color-accent-strong);
+  }
+
+  .btn.danger {
+    background: color-mix(in srgb, var(--prism-color-error) 12%, transparent);
+    color: var(--prism-color-error);
+    border-color: color-mix(in srgb, var(--prism-color-error) 35%, transparent);
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--prism-space-sm);
+    max-width: 22rem;
+  }
+
+  .field label {
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .field input {
+    font: inherit;
+    padding: 0.55rem 0.75rem;
+    border-radius: var(--prism-radius-md);
+    border: 1px solid var(--prism-color-border-strong);
+    background: var(--prism-color-canvas);
+    color: inherit;
+  }
+
+  .field input:focus {
+    outline: 2px solid color-mix(in srgb, var(--prism-color-accent) 55%, transparent);
+    outline-offset: 1px;
+  }
+
+  .badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--prism-space-md);
+  }
+
+  .badge {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+  }
+
+  .badge.success {
+    background: color-mix(in srgb, var(--prism-color-success) 14%, transparent);
+    color: var(--prism-color-success);
+  }
+
+  .badge.warning {
+    background: color-mix(in srgb, var(--prism-color-warning) 18%, transparent);
+    color: color-mix(in srgb, var(--prism-color-warning) 85%, #000);
+  }
+
+  .badge.error {
+    background: color-mix(in srgb, var(--prism-color-error) 14%, transparent);
+    color: var(--prism-color-error);
+  }
+</style>

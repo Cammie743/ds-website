@@ -1,0 +1,133 @@
+@import "@prism/tokens";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--prism-font-sans);
+  background: var(--prism-color-canvas);
+  color: var(--prism-color-text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+  /* Keeps layout width stable when modals use overflow: hidden (e.g. search) — avoids pill/main jumping */
+  scrollbar-gutter: stable;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--prism-color-accent-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--prism-color-accent);
+}
+
+code {
+  font-family: var(--prism-font-mono);
+  font-size: 0.9em;
+  background: color-mix(in srgb, var(--prism-color-border-subtle) 55%, transparent);
+  padding: 0.12em 0.35em;
+  border-radius: var(--prism-radius-sm);
+}
+
+.prism-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(1200px 620px at 10% -18%, color-mix(in srgb, var(--prism-color-accent) 14%, transparent), transparent 65%),
+    radial-gradient(920px 500px at 90% 4%, color-mix(in srgb, #b794f6 11%, transparent), transparent 58%),
+    radial-gradient(780px 520px at 50% 108%, color-mix(in srgb, var(--prism-color-accent-strong) 7%, transparent), transparent 56%),
+    var(--prism-color-canvas);
+}
+
+[data-theme="dark"] .prism-bg {
+  background:
+    radial-gradient(1200px 620px at 10% -18%, color-mix(in srgb, var(--prism-color-accent) 16%, transparent), transparent 65%),
+    radial-gradient(920px 500px at 90% 4%, color-mix(in srgb, #b794f6 12%, transparent), transparent 58%),
+    var(--prism-color-canvas);
+}
+
+[data-theme="bloom"] .prism-bg {
+  background:
+    radial-gradient(1200px 620px at 10% -18%, color-mix(in srgb, var(--prism-color-accent) 12%, transparent), transparent 65%),
+    radial-gradient(920px 500px at 90% 4%, color-mix(in srgb, #e8a8d8 14%, transparent), transparent 58%),
+    radial-gradient(780px 520px at 50% 108%, color-mix(in srgb, var(--prism-color-accent-strong) 8%, transparent), transparent 56%),
+    var(--prism-color-canvas);
+}
+
+[data-theme="agave"] .prism-bg {
+  background:
+    radial-gradient(1200px 620px at 10% -18%, color-mix(in srgb, var(--prism-color-accent) 11%, transparent), transparent 65%),
+    radial-gradient(920px 500px at 90% 4%, color-mix(in srgb, #7dd3c0 12%, transparent), transparent 58%),
+    radial-gradient(780px 520px at 50% 108%, color-mix(in srgb, var(--prism-color-accent-strong) 7%, transparent), transparent 56%),
+    var(--prism-color-canvas);
+}
+
+[data-theme="rose"] .prism-bg {
+  background:
+    radial-gradient(1200px 620px at 10% -18%, color-mix(in srgb, var(--prism-color-accent) 11%, transparent), transparent 65%),
+    radial-gradient(920px 500px at 90% 4%, color-mix(in srgb, #f0a0a0 12%, transparent), transparent 58%),
+    radial-gradient(780px 520px at 50% 108%, color-mix(in srgb, var(--prism-color-accent-strong) 7%, transparent), transparent 56%),
+    var(--prism-color-canvas);
+}
+
+/*
+ * Viewport-aligned canvas + gradients (same paints as .prism-bg) for UI that sits in normal flow
+ * but must look continuous with the page — e.g. sticky doc tab rows. Fixed attachment ties
+ * gradient positions to the viewport like the fixed .prism-bg layer.
+ */
+.prism-chrome-bg {
+  background-color: var(--prism-color-canvas);
+  background-image:
+    radial-gradient(1200px 620px at 10% -18%, color-mix(in srgb, var(--prism-color-accent) 14%, transparent), transparent 65%),
+    radial-gradient(920px 500px at 90% 4%, color-mix(in srgb, #b794f6 11%, transparent), transparent 58%),
+    radial-gradient(780px 520px at 50% 108%, color-mix(in srgb, var(--prism-color-accent-strong) 7%, transparent), transparent 56%);
+  background-attachment: fixed, fixed, fixed;
+}
+
+[data-theme="dark"] .prism-chrome-bg {
+  background-image:
+    radial-gradient(1200px 620px at 10% -18%, color-mix(in srgb, var(--prism-color-accent) 16%, transparent), transparent 65%),
+    radial-gradient(920px 500px at 90% 4%, color-mix(in srgb, #b794f6 12%, transparent), transparent 58%);
+  background-attachment: fixed, fixed;
+}
+
+[data-theme="bloom"] .prism-chrome-bg {
+  background-image:
+    radial-gradient(1200px 620px at 10% -18%, color-mix(in srgb, var(--prism-color-accent) 12%, transparent), transparent 65%),
+    radial-gradient(920px 500px at 90% 4%, color-mix(in srgb, #e8a8d8 14%, transparent), transparent 58%),
+    radial-gradient(780px 520px at 50% 108%, color-mix(in srgb, var(--prism-color-accent-strong) 8%, transparent), transparent 56%);
+}
+
+[data-theme="agave"] .prism-chrome-bg {
+  background-image:
+    radial-gradient(1200px 620px at 10% -18%, color-mix(in srgb, var(--prism-color-accent) 11%, transparent), transparent 65%),
+    radial-gradient(920px 500px at 90% 4%, color-mix(in srgb, #7dd3c0 12%, transparent), transparent 58%),
+    radial-gradient(780px 520px at 50% 108%, color-mix(in srgb, var(--prism-color-accent-strong) 7%, transparent), transparent 56%);
+}
+
+[data-theme="rose"] .prism-chrome-bg {
+  background-image:
+    radial-gradient(1200px 620px at 10% -18%, color-mix(in srgb, var(--prism-color-accent) 11%, transparent), transparent 65%),
+    radial-gradient(920px 500px at 90% 4%, color-mix(in srgb, #f0a0a0 12%, transparent), transparent 58%),
+    radial-gradient(780px 520px at 50% 108%, color-mix(in srgb, var(--prism-color-accent-strong) 7%, transparent), transparent 56%);
+}

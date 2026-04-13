@@ -1,0 +1,1162 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Prism">
+  <div class="home-root">
+    <section class="h-hero" aria-labelledby="home-title">
+      <h1 id="home-title" class="h-hero__title home-rise" data-i18n="home.title">Prism Design</h1>
+      <p class="h-hero__lede home-rise home-rise--2" data-i18n="home.lede">
+        Prism Design 3 is Zoom's design system that helps teams build better product experiences, faster.
+      </p>
+      <div class="h-hero__actions home-rise home-rise--3">
+        <a class="h-btn h-btn--primary" href="/get-started/overview">
+          <span data-i18n="home.ctaFoundations">Get started</span>
+          <span class="h-btn__arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="h-btn h-btn--quiet" href="/foundations/overview">
+          <span data-i18n="home.ctaComponents">Explore the system</span>
+          <span class="h-btn__arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="h-updates" aria-labelledby="updates-heading">
+      <div class="h-updates__head">
+        <div class="h-updates__head-main">
+          <h2 id="updates-heading" class="h-updates__h" data-i18n="home.updates.sectionTitle">Latest and greatest from Prism</h2>
+          <a class="h-btn h-btn--tertiary h-updates__all" href="/blog/latest" data-i18n="home.updates.viewAll">Explore all blogs</a>
+        </div>
+      </div>
+      <div
+        class="h-updates-carousel home-rise home-rise--6"
+        data-updates-carousel
+        data-carousel-real-total="6"
+        role="region"
+        aria-roledescription="carousel"
+        aria-labelledby="updates-heading"
+      >
+        <div class="h-updates-carousel__toolbar">
+          <p class="h-updates-carousel__count" data-carousel-count aria-live="polite">1 of 6</p>
+          <div class="h-updates-carousel__btn-row">
+            <button
+              type="button"
+              class="icon-btn h-updates-carousel__btn"
+              data-carousel-prev
+              aria-controls="updates-carousel-viewport"
+              data-i18n-aria="home.updates.carouselPrev"
+              data-i18n-tooltip="home.updates.carouselPrevTip"
+              data-tooltip="Previous"
+              aria-label="Previous updates"
+            >
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M19 12H5"></path>
+                <path d="m12 19-7-7 7-7"></path>
+              </svg>
+            </button>
+            <button
+              type="button"
+              class="icon-btn h-updates-carousel__btn"
+              data-carousel-next
+              aria-controls="updates-carousel-viewport"
+              data-i18n-aria="home.updates.carouselNext"
+              data-i18n-tooltip="home.updates.carouselNextTip"
+              data-tooltip="Next"
+              aria-label="Next updates"
+            >
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div id="updates-carousel-viewport" class="h-updates-carousel__viewport" data-carousel-viewport>
+          <ol class="h-updates-carousel__list">
+            <li class="h-updates-carousel__slide">
+              <a class="h-updates-card" href="/blog/featured#update-home-navigation">
+                <div class="h-updates-card__media">
+                  <img
+                    class="h-updates-card__img"
+                    src="/images/updates/update-1.svg"
+                    width="640"
+                    height="360"
+                    loading="lazy"
+                    decoding="async"
+                    alt=""
+                    data-i18n-alt="home.updates.1.alt"
+                  />
+                </div>
+                <div class="h-updates-card__meta">
+                  <span class="h-updates-card__tag" data-i18n="home.updates.1.tag">Feature</span>
+                  <time class="h-updates-card__date" datetime="2026-04-01" data-i18n="home.updates.1.date">Apr 2026</time>
+                </div>
+                <span class="h-updates-card__title" data-i18n="home.updates.1.title">Home and navigation refresh</span>
+                <p class="h-updates-card__desc" data-i18n="home.updates.1.body">
+                  Clearer paths into foundations, components, and bilingual documentation.
+                </p>
+              </a>
+            </li>
+            <li class="h-updates-carousel__slide">
+              <a class="h-updates-card" href="/blog/latest#update-theme-previews">
+                <div class="h-updates-card__media">
+                  <img
+                    class="h-updates-card__img"
+                    src="/images/updates/update-2.svg"
+                    width="640"
+                    height="360"
+                    loading="lazy"
+                    decoding="async"
+                    alt=""
+                    data-i18n-alt="home.updates.2.alt"
+                  />
+                </div>
+                <div class="h-updates-card__meta">
+                  <span class="h-updates-card__tag" data-i18n="home.updates.2.tag">Enhancement</span>
+                  <time class="h-updates-card__date" datetime="2026-03-01" data-i18n="home.updates.2.date">Mar 2026</time>
+                </div>
+                <span class="h-updates-card__title" data-i18n="home.updates.2.title">Theme previews across the site</span>
+                <p class="h-updates-card__desc" data-i18n="home.updates.2.body">
+                  Bloom, Agave, and Rose palettes help stress-test semantic color tokens in context.
+                </p>
+              </a>
+            </li>
+            <li class="h-updates-carousel__slide">
+              <a class="h-updates-card" href="/blog/latest#update-foundations-ia">
+                <div class="h-updates-card__media">
+                  <img
+                    class="h-updates-card__img"
+                    src="/images/updates/update-3.svg"
+                    width="640"
+                    height="360"
+                    loading="lazy"
+                    decoding="async"
+                    alt=""
+                    data-i18n-alt="home.updates.3.alt"
+                  />
+                </div>
+                <div class="h-updates-card__meta">
+                  <span class="h-updates-card__tag" data-i18n="home.updates.3.tag">Documentation</span>
+                  <time class="h-updates-card__date" datetime="2026-02-01" data-i18n="home.updates.3.date">Feb 2026</time>
+                </div>
+                <span class="h-updates-card__title" data-i18n="home.updates.3.title">Foundations and components IA</span>
+                <p class="h-updates-card__desc" data-i18n="home.updates.3.body">
+                  Structured foundations pages and a public checklist as the library grows.
+                </p>
+              </a>
+            </li>
+            <li class="h-updates-carousel__slide">
+              <a class="h-updates-card" href="/blog/latest#update-search-docs">
+                <div class="h-updates-card__media">
+                  <img
+                    class="h-updates-card__img"
+                    src="/images/updates/update-4.svg"
+                    width="640"
+                    height="360"
+                    loading="lazy"
+                    decoding="async"
+                    alt=""
+                    data-i18n-alt="home.updates.4.alt"
+                  />
+                </div>
+                <div class="h-updates-card__meta">
+                  <span class="h-updates-card__tag" data-i18n="home.updates.4.tag">Enhancement</span>
+                  <time class="h-updates-card__date" datetime="2026-01-15" data-i18n="home.updates.4.date">Jan 2026</time>
+                </div>
+                <span class="h-updates-card__title" data-i18n="home.updates.4.title">Search across documentation</span>
+                <p class="h-updates-card__desc" data-i18n="home.updates.4.body">
+                  The global search drawer now indexes foundations, components, and get-started pages with bilingual
+                  snippets and clearer result grouping.
+                </p>
+              </a>
+            </li>
+            <li class="h-updates-carousel__slide">
+              <a class="h-updates-card" href="/blog/2025#update-usage-metrics">
+                <div class="h-updates-card__media">
+                  <img
+                    class="h-updates-card__img"
+                    src="/images/updates/update-5.svg"
+                    width="640"
+                    height="360"
+                    loading="lazy"
+                    decoding="async"
+                    alt=""
+                    data-i18n-alt="home.updates.5.alt"
+                  />
+                </div>
+                <div class="h-updates-card__meta">
+                  <span class="h-updates-card__tag" data-i18n="home.updates.5.tag">Announcement</span>
+                  <time class="h-updates-card__date" datetime="2025-12-08" data-i18n="home.updates.5.date">Dec 2025</time>
+                </div>
+                <span class="h-updates-card__title" data-i18n="home.updates.5.title">Component usage metrics</span>
+                <p class="h-updates-card__desc" data-i18n="home.updates.5.body">
+                  We published an opt-in specification for measuring Prism adoption in host apps without collecting
+                  end-user PII.
+                </p>
+              </a>
+            </li>
+            <li class="h-updates-carousel__slide">
+              <a class="h-updates-card" href="/blog/2025#update-a11y-checklist">
+                <div class="h-updates-card__media">
+                  <img
+                    class="h-updates-card__img"
+                    src="/images/updates/update-6.svg"
+                    width="640"
+                    height="360"
+                    loading="lazy"
+                    decoding="async"
+                    alt=""
+                    data-i18n-alt="home.updates.6.alt"
+                  />
+                </div>
+                <div class="h-updates-card__meta">
+                  <span class="h-updates-card__tag" data-i18n="home.updates.6.tag">Documentation</span>
+                  <time class="h-updates-card__date" datetime="2025-11-20" data-i18n="home.updates.6.date">Nov 2025</time>
+                </div>
+                <span class="h-updates-card__title" data-i18n="home.updates.6.title">Accessibility audit checklist</span>
+                <p class="h-updates-card__desc" data-i18n="home.updates.6.body">
+                  A WCAG 2.2 AA-oriented checklist maps Prism components to keyboard, contrast, and assistive-tech
+                  expectations for audits.
+                </p>
+              </a>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="h-inside" aria-labelledby="inside-heading">
+      <header class="h-inside__head home-rise home-rise--6">
+        <h2 id="inside-heading" class="h-inside__h" data-i18n="home.inside.heading">What's inside</h2>
+        <p class="h-inside__intro" data-i18n="home.inside.intro">
+          Tokens, components, and guidance—everything documented here is built to move in sync from design to production.
+        </p>
+      </header>
+      <ul class="h-inside__list">
+        <li class="home-rise home-rise--7">
+          <a class="h-inside__link" href="/foundations/overview">
+            <span class="h-inside__name" data-i18n="home.card.tokens.title">Tokens</span>
+            <span class="h-inside__desc" data-i18n="home.card.tokens.body">
+              Semantic color, space, radius, elevation, and typography values shared across teams and tools.
+            </span>
+            <span class="h-inside__arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="home-rise home-rise--8">
+          <a class="h-inside__link" href="/components/overview">
+            <span class="h-inside__name" data-i18n="home.card.components.title">Components</span>
+            <span class="h-inside__desc" data-i18n="home.card.components.body">
+              Tested UI primitives and patterns aligned with product standards.
+            </span>
+            <span class="h-inside__arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+        <li class="home-rise home-rise--9">
+          <a class="h-inside__link" href="/get-started/mission">
+            <span class="h-inside__name" data-i18n="home.card.guidance.title">Guidance</span>
+            <span class="h-inside__desc" data-i18n="home.card.guidance.body">
+              Principles for clarity, density, and motion so new work stays on-brand without guesswork.
+            </span>
+            <span class="h-inside__arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  @keyframes home-rise {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .home-root {
+    --home-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --home-dur: 0.85s;
+    width: 100%;
+    max-width: 52rem;
+    margin: 0 auto;
+  }
+
+  .home-rise {
+    opacity: 0;
+    animation: home-rise var(--home-dur) var(--home-ease) both;
+  }
+
+  .home-rise--2 {
+    animation-delay: 0.06s;
+  }
+  .home-rise--3 {
+    animation-delay: 0.12s;
+  }
+  .home-rise--6 {
+    animation-delay: 0.08s;
+  }
+  .home-rise--7 {
+    animation-delay: 0.14s;
+  }
+  .home-rise--8 {
+    animation-delay: 0.2s;
+  }
+  .home-rise--9 {
+    animation-delay: 0.26s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-rise {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Hero: fill first screen so mesh runs to viewport bottom; white sections start below fold */
+  .h-hero {
+    --home-hero-viewport-offset: calc(72px + clamp(1.25rem, 4vw, 2.5rem));
+    position: relative;
+    isolation: isolate;
+    box-sizing: border-box;
+    min-height: calc(100dvh - var(--home-hero-viewport-offset));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    padding: clamp(2rem, 6vh, 4rem) 0;
+    text-align: center;
+  }
+
+  /* Full-bleed mesh behind hero only (default light theme) */
+  :global(html:not([data-theme])) .h-hero::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    /* Bleed behind sticky header + main top padding (matches .h-hero --home-hero-viewport-offset) */
+    top: calc(-1 * var(--home-hero-viewport-offset));
+    bottom: 0;
+    inset-inline: 50%;
+    width: 100vw;
+    margin-inline: -50vw;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 120% 90% at 8% 96%, color-mix(in srgb, #c4b5fd 38%, transparent), transparent 58%),
+      radial-gradient(ellipse 100% 85% at 96% 4%, color-mix(in srgb, #93c5fd 42%, transparent), transparent 52%),
+      radial-gradient(ellipse 70% 60% at 88% 42%, color-mix(in srgb, #bfdbfe 28%, transparent), transparent 50%),
+      radial-gradient(ellipse 55% 45% at 18% 22%, color-mix(in srgb, #e0e7ff 22%, transparent), transparent 55%),
+      #ffffff;
+  }
+
+  /* Updates + What's inside: solid white (full width), over global canvas */
+  .h-updates,
+  .h-inside {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .h-updates::before,
+  .h-inside::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    inset-block: 0;
+    inset-inline: 50%;
+    width: 100vw;
+    margin-inline: -50vw;
+    pointer-events: none;
+    background: var(--prism-color-surface);
+  }
+
+  .h-hero__title {
+    margin: 0 0 clamp(0.625rem, 1.75vw, 1rem);
+    font-size: clamp(2.75rem, 9.5vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: -0.045em;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  .h-hero__lede {
+    margin: 0 auto clamp(1rem, 2.5vw, 1.5rem);
+    max-width: 34rem;
+    font-size: clamp(1.0625rem, 2.1vw, 1.3125rem);
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--prism-color-text-secondary);
+  }
+
+  .h-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.5rem, 1.5vw, 0.875rem);
+    margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  }
+
+  .h-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45em;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+    border-radius: 9999px;
+    transition:
+      background 0.35s var(--home-ease),
+      color 0.35s var(--home-ease),
+      border-color 0.35s var(--home-ease),
+      transform 0.35s var(--home-ease);
+  }
+
+  .h-btn__arrow {
+    font-weight: 500;
+    line-height: 1;
+    transition: transform 0.35s var(--home-ease);
+  }
+
+  .h-btn:hover .h-btn__arrow {
+    transform: translateX(0.15em);
+  }
+
+  .h-btn--primary {
+    background: var(--prism-color-accent-strong);
+    color: var(--prism-color-text-inverse);
+    border: 1px solid var(--prism-color-accent-strong);
+  }
+
+  .h-btn--primary:hover {
+    transform: translateY(-1px);
+    background: var(--prism-color-accent);
+    border-color: var(--prism-color-accent);
+  }
+
+  .h-btn--quiet {
+    background: color-mix(in srgb, var(--prism-color-accent) 12%, transparent);
+    color: var(--prism-color-accent-strong);
+    border: 1px solid color-mix(in srgb, var(--prism-color-accent-strong) 42%, transparent);
+  }
+
+  .h-btn--quiet:hover {
+    background: color-mix(in srgb, var(--prism-color-accent) 22%, transparent);
+    border-color: var(--prism-color-accent-strong);
+    transform: translateY(-1px);
+  }
+
+  .h-btn--tertiary {
+    background: transparent;
+    color: var(--prism-color-accent-strong);
+    border: 1px solid color-mix(in srgb, var(--prism-color-accent-strong) 42%, transparent);
+  }
+
+  .h-btn--tertiary:hover {
+    background: color-mix(in srgb, var(--prism-color-accent) 14%, transparent);
+    color: var(--prism-color-accent-strong);
+    border-color: var(--prism-color-accent-strong);
+  }
+
+  .h-btn:focus-visible {
+    outline: 2px solid var(--prism-color-accent-strong);
+    outline-offset: 3px;
+  }
+
+  /* Updates */
+  .h-updates {
+    padding: clamp(3rem, 8vw, 5rem) 0;
+    border-top: 1px solid color-mix(in srgb, var(--prism-color-border-subtle) 85%, transparent);
+  }
+
+  .h-updates__head {
+    margin-bottom: clamp(1.25rem, 4vw, 2.5rem);
+  }
+
+  .h-updates__head-main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(0.85rem, 2vw, 1.25rem);
+  }
+
+  .h-updates__h {
+    margin: 0;
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+  }
+
+  .h-updates__all.h-btn--tertiary {
+    padding: 0.45rem 1rem;
+    font-size: 0.875rem;
+    letter-spacing: -0.01em;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .h-updates-carousel {
+    position: relative;
+  }
+
+  .h-updates-carousel__toolbar {
+    position: relative;
+    z-index: 2;
+    overflow: visible;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 1rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .h-updates-carousel__count {
+    margin: 0;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--prism-color-text-secondary);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .h-updates-carousel__btn-row {
+    display: flex;
+    align-items: center;
+    gap: var(--prism-space-sm);
+    flex-shrink: 0;
+  }
+
+  /*
+    BaseLayout’s .icon-btn rules are scoped to the layout component, so slotted home markup
+    never receives them. Carousel uses a slightly smaller circle than the header icon-btn.
+  */
+  .h-updates-carousel .icon-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    flex: 0 0 2rem;
+    width: 2rem;
+    min-width: 2rem;
+    max-width: 2rem;
+    height: 2rem;
+    min-height: 2rem;
+    max-height: 2rem;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid var(--prism-color-border-subtle);
+    background: var(--prism-color-surface);
+    color: var(--prism-color-text-primary);
+    cursor: pointer;
+    box-shadow: var(--prism-shadow-sm);
+  }
+
+  .h-updates-carousel .icon-btn:hover:not(:disabled) {
+    border-color: var(--prism-color-border-strong);
+    color: var(--prism-color-text-primary);
+  }
+
+  .h-updates-carousel .icon-btn .icon {
+    display: block;
+    flex-shrink: 0;
+    width: 0.9375rem;
+    height: 0.9375rem;
+  }
+
+  .h-updates-carousel__btn:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--prism-color-accent-strong) 45%, transparent);
+    outline-offset: 2px;
+  }
+
+  .h-updates-carousel__btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+  }
+
+  /* Tooltips: BaseLayout’s .icon-btn tooltip rules are layout-scoped; mirror them here for slotted home. */
+  .h-updates-carousel .icon-btn[data-tooltip]:not([data-tooltip=""])::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 10px);
+    z-index: 100;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: 0.01em;
+    color: var(--prism-color-text-inverse);
+    background: var(--prism-color-text-primary);
+    border-radius: 6px;
+    box-shadow: var(--prism-shadow-md);
+    white-space: nowrap;
+    max-width: min(16rem, 70vw);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate3d(-50%, -6px, 0);
+    transition:
+      opacity 0.15s ease,
+      visibility 0.15s ease,
+      transform 0.15s ease;
+  }
+
+  [data-theme="dark"] .h-updates-carousel .icon-btn[data-tooltip]:not([data-tooltip=""])::after {
+    background: var(--prism-color-surface-raised);
+    color: var(--prism-color-text-primary);
+    border: 1px solid var(--prism-color-border-subtle);
+    box-shadow: var(--prism-shadow-sm);
+  }
+
+  .h-updates-carousel .icon-btn[data-tooltip]:not([data-tooltip=""]):hover::after,
+  .h-updates-carousel .icon-btn[data-tooltip]:not([data-tooltip=""]):focus-visible::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  .h-updates-carousel__viewport {
+    overflow-x: hidden;
+    overscroll-behavior-x: contain;
+    touch-action: pan-y;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: auto;
+    scrollbar-width: none;
+    /* Flush with toolbar so cards align with “1 of 6” and the trailing nav control. */
+    padding-block: clamp(0.35rem, 1.5vw, 0.75rem) clamp(1rem, 3vw, 1.75rem);
+    margin: 0;
+    padding-inline: 0;
+  }
+
+  .h-updates-carousel__viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .h-updates-carousel__list {
+    display: flex;
+    gap: var(--prism-space-sm);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: max-content;
+  }
+
+  .h-updates-carousel__slide {
+    flex: 0 0 var(--updates-slide-basis, 100%);
+    width: var(--updates-slide-basis, 100%);
+    max-width: var(--updates-slide-basis, 100%);
+    min-width: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    min-height: 100%;
+    box-sizing: border-box;
+  }
+
+  @media (max-width: 719px) {
+    .h-updates-carousel__slide--clone {
+      display: none;
+    }
+  }
+
+  .h-updates-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    height: 100%;
+    min-height: 100%;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 1rem;
+    border: 1px solid color-mix(in srgb, var(--prism-color-border-subtle) 82%, transparent);
+    background: var(--prism-color-surface);
+    overflow: visible;
+    box-shadow: 0 1px 0 color-mix(in srgb, var(--prism-color-text-primary) 4%, transparent);
+    transition:
+      border-color 0.35s var(--home-ease),
+      box-shadow 0.35s var(--home-ease),
+      transform 0.35s var(--home-ease);
+  }
+
+  .h-updates-card:hover {
+    border-color: color-mix(in srgb, var(--prism-color-accent-strong) 35%, var(--prism-color-border-subtle));
+    box-shadow:
+      0 12px 40px color-mix(in srgb, var(--prism-color-text-primary) 6%, transparent),
+      0 1px 0 color-mix(in srgb, var(--prism-color-text-primary) 5%, transparent);
+    transform: translateY(-2px);
+  }
+
+  .h-updates-card:focus-visible {
+    outline: 2px solid var(--prism-color-accent-strong);
+    outline-offset: 3px;
+  }
+
+  .h-updates-card__media {
+    aspect-ratio: 16 / 9;
+    background: color-mix(in srgb, var(--prism-color-border-subtle) 35%, var(--prism-color-surface));
+    overflow: hidden;
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  .h-updates-card__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .h-updates-card__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+    padding: 0.85rem 1rem 0;
+  }
+
+  .h-updates-card__tag {
+    display: inline-block;
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border-radius: 9999px;
+    background: color-mix(in srgb, var(--prism-color-accent) 16%, transparent);
+    color: var(--prism-color-accent-strong);
+  }
+
+  .h-updates-card__date {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--prism-color-text-secondary);
+  }
+
+  .h-updates-card__title {
+    display: block;
+    padding: 0.5rem 1rem 0;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.25;
+    transition: color 0.3s var(--home-ease);
+  }
+
+  .h-updates-card:hover .h-updates-card__title {
+    color: var(--prism-color-accent-strong);
+  }
+
+  .h-updates-card__desc {
+    margin: 0;
+    padding: 0.45rem 1rem 1.1rem;
+    flex: 1;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--prism-color-text-secondary);
+  }
+
+  /* What's inside */
+  .h-inside {
+    padding: clamp(3.5rem, 10vw, 6rem) 0 clamp(2rem, 6vw, 4rem);
+    border-top: 1px solid color-mix(in srgb, var(--prism-color-border-subtle) 85%, transparent);
+  }
+
+  .h-inside__head {
+    margin-bottom: clamp(2.5rem, 6vw, 4rem);
+  }
+
+  .h-inside__h {
+    margin: 0 0 clamp(1rem, 2vw, 1.25rem);
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+  }
+
+  .h-inside__intro {
+    margin: 0;
+    max-width: 36rem;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--prism-color-text-secondary);
+  }
+
+  .h-inside__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .h-inside__link {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    column-gap: clamp(1rem, 3vw, 2rem);
+    row-gap: 0.5rem;
+    padding: clamp(1.75rem, 4vw, 2.5rem) 0;
+    text-decoration: none;
+    color: inherit;
+    border-top: 1px solid color-mix(in srgb, var(--prism-color-border-subtle) 75%, transparent);
+    transition:
+      border-color 0.4s var(--home-ease),
+      padding-left 0.45s var(--home-ease);
+  }
+
+  .h-inside__list li:last-child .h-inside__link {
+    border-bottom: 1px solid color-mix(in srgb, var(--prism-color-border-subtle) 75%, transparent);
+  }
+
+  .h-inside__link:hover {
+    padding-left: 0.5rem;
+    border-color: color-mix(in srgb, var(--prism-color-text-primary) 14%, var(--prism-color-border-subtle));
+  }
+
+  .h-inside__link:focus-visible {
+    outline: 2px solid var(--prism-color-accent-strong);
+    outline-offset: 6px;
+  }
+
+  .h-inside__name {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: clamp(1.35rem, 3vw, 1.85rem);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    line-height: 1.15;
+    transition: color 0.35s var(--home-ease);
+  }
+
+  .h-inside__link:hover .h-inside__name {
+    color: var(--prism-color-accent-strong);
+  }
+
+  .h-inside__desc {
+    grid-column: 1;
+    grid-row: 2;
+    max-width: 38rem;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    color: var(--prism-color-text-secondary);
+  }
+
+  .h-inside__arrow {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+    font-size: 1.35rem;
+    font-weight: 300;
+    color: var(--prism-color-text-secondary);
+    opacity: 0.35;
+    transition:
+      opacity 0.35s var(--home-ease),
+      transform 0.45s var(--home-ease);
+  }
+
+  .h-inside__link:hover .h-inside__arrow {
+    opacity: 1;
+    transform: translateX(0.35rem);
+  }
+
+  @media (max-width: 32rem) {
+    .h-inside__arrow {
+      align-self: start;
+      padding-top: 0.2rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .h-btn--primary:hover,
+    .h-btn--quiet:hover,
+    .h-btn--tertiary:hover {
+      transform: none;
+    }
+
+    .h-btn:hover .h-btn__arrow {
+      transform: none;
+    }
+
+    .h-updates-carousel__viewport {
+      scroll-behavior: auto;
+    }
+
+    .h-updates-card:hover {
+      transform: none;
+    }
+
+    .h-inside__link:hover {
+      padding-left: 0;
+    }
+
+    .h-inside__link:hover .h-inside__arrow {
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  function initUpdatesCarousel() {
+    var root = document.querySelector("[data-updates-carousel]");
+    if (!root) return;
+    var viewport = root.querySelector("[data-carousel-viewport]");
+    var list = viewport && viewport.querySelector(".h-updates-carousel__list");
+    var prev = root.querySelector("[data-carousel-prev]");
+    var next = root.querySelector("[data-carousel-next]");
+    var countEl = root.querySelector("[data-carousel-count]");
+    if (!viewport || !list || !prev || !next) return;
+
+    var realTotal = parseInt(String(root.getAttribute("data-carousel-real-total") || "6"), 10) || 6;
+
+    function appendLoopClones() {
+      if (list.querySelector(".h-updates-carousel__slide--clone")) return;
+      var originals = Array.prototype.slice.call(
+        list.querySelectorAll(":scope > .h-updates-carousel__slide:not(.h-updates-carousel__slide--clone)")
+      );
+      originals.forEach(function (slide) {
+        var c = slide.cloneNode(true);
+        c.classList.add("h-updates-carousel__slide--clone");
+        c.setAttribute("aria-hidden", "true");
+        var link = c.querySelector("a");
+        if (link) link.setAttribute("tabindex", "-1");
+        list.appendChild(c);
+      });
+    }
+
+    appendLoopClones();
+
+    var allSlides = Array.prototype.slice.call(list.querySelectorAll(".h-updates-carousel__slide"));
+    if (allSlides.length === 0) return;
+
+    var wideMq = typeof window.matchMedia === "function" ? window.matchMedia("(min-width: 720px)") : null;
+
+    function gapPx() {
+      var g = getComputedStyle(list).columnGap || getComputedStyle(list).gap || "0";
+      var n = parseFloat(g, 10);
+      return Number.isFinite(n) ? n : 16;
+    }
+
+    function activeSlides() {
+      return allSlides.filter(function (s) {
+        return getComputedStyle(s).display !== "none";
+      });
+    }
+
+    function visibleCount() {
+      var n = activeSlides().length;
+      var vis = wideMq && wideMq.matches ? 3 : 1;
+      return Math.min(vis, n);
+    }
+
+    function viewportInnerWidthPx() {
+      var cs = getComputedStyle(viewport);
+      var pl = parseFloat(cs.paddingLeft);
+      var pr = parseFloat(cs.paddingRight);
+      if (!Number.isFinite(pl)) pl = 0;
+      if (!Number.isFinite(pr)) pr = 0;
+      var cw = viewport.clientWidth;
+      if (Number.isFinite(cw) && cw > 0) return Math.max(0, cw - pl - pr);
+      var bl = parseFloat(cs.borderLeftWidth);
+      var br = parseFloat(cs.borderRightWidth);
+      if (!Number.isFinite(bl)) bl = 0;
+      if (!Number.isFinite(br)) br = 0;
+      var outer = viewport.getBoundingClientRect().width;
+      return Math.max(0, outer - pl - pr - bl - br);
+    }
+
+    function slideWidthPx() {
+      var inner = viewportInnerWidthPx();
+      if (inner <= 0) return 0;
+      var vis = visibleCount();
+      var g = gapPx();
+      var gutters = (vis - 1) * g;
+      var share = inner - gutters;
+      if (share <= 0) return 0;
+      /* Fractional width so vis slides + (vis−1) gaps exactly span the toolbar width. */
+      return share / vis;
+    }
+
+    function stepPx() {
+      var sw = slideWidthPx();
+      if (sw <= 0) return gapPx() || 1;
+      return sw + gapPx();
+    }
+
+    function maxLeftIndex() {
+      var n = activeSlides().length;
+      var vis = visibleCount();
+      return Math.max(0, n - vis);
+    }
+
+    /** Largest L <= maxLeftIndex() where the counter shows cardOneBased (same formula as updateCounterOnly). */
+    function largestLeftIndexForCounterCard(cardOneBased) {
+      var r = realTotal;
+      var maxL = maxLeftIndex();
+      if (r <= 0 || maxL <= 0) return 0;
+      var want = (((cardOneBased - 1) % r) + r) % r;
+      var k = Math.floor(maxL / r) * r + want;
+      if (k > maxL) k -= r;
+      return Math.max(0, k);
+    }
+
+    function firstSetWidthPx() {
+      var c = list.querySelector(".h-updates-carousel__slide--clone");
+      if (!c || getComputedStyle(c).display === "none") return 0;
+      return c.offsetLeft;
+    }
+
+    function formatPosition(cardOneBased, tot) {
+      var zh = document.documentElement.dataset.uiLang === "zh";
+      if (zh) return String(cardOneBased) + " / " + String(tot);
+      return String(cardOneBased) + " of " + String(tot);
+    }
+
+    function setSlideWidths() {
+      if (viewportInnerWidthPx() <= 0) return;
+      var sw = slideWidthPx();
+      viewport.style.setProperty("--updates-slide-basis", (Number.isFinite(sw) ? sw : 0) + "px");
+    }
+
+    function nearestLeftIndex() {
+      var step = stepPx();
+      if (step <= 0) return 0;
+      var maxL = maxLeftIndex();
+      var raw = Math.round(viewport.scrollLeft / step);
+      return Math.max(0, Math.min(maxL, raw));
+    }
+
+    function scrollToLeftIndex(L, smooth) {
+      var step = stepPx();
+      var maxL = maxLeftIndex();
+      var clamped = Math.max(0, Math.min(maxL, L));
+      var target = clamped * step;
+      if (smooth === false) {
+        viewport.scrollLeft = target;
+      } else {
+        viewport.scrollTo({ left: target, behavior: "smooth" });
+      }
+    }
+
+    function normalizeLoopPosition() {
+      var w = firstSetWidthPx();
+      if (w <= 0) return;
+      while (viewport.scrollLeft >= w - 1) {
+        viewport.scrollLeft -= w;
+      }
+    }
+
+    function updateCounterOnly() {
+      var L = nearestLeftIndex();
+      var cardNum = (L % realTotal) + 1;
+      if (countEl) countEl.textContent = formatPosition(cardNum, realTotal);
+    }
+
+    function sync() {
+      setSlideWidths();
+      updateCounterOnly();
+      prev.disabled = false;
+      next.disabled = false;
+    }
+
+    function applyNavScroll(targetL) {
+      scrollToLeftIndex(targetL, false);
+      normalizeLoopPosition();
+      updateCounterOnly();
+    }
+
+    var scrollIdleTimer;
+    function onScrollIdle() {
+      normalizeLoopPosition();
+      updateCounterOnly();
+    }
+
+    prev.addEventListener("click", function () {
+      var maxL = maxLeftIndex();
+      if (maxL <= 0) return;
+      var L = nearestLeftIndex();
+      var prevL = L <= 0 ? largestLeftIndexForCounterCard(realTotal) : L - 1;
+      applyNavScroll(prevL);
+    });
+    next.addEventListener("click", function () {
+      var maxL = maxLeftIndex();
+      if (maxL <= 0) return;
+      var L = nearestLeftIndex();
+      if (L < maxL) {
+        applyNavScroll(L + 1);
+      } else {
+        applyNavScroll(0);
+      }
+    });
+    viewport.addEventListener(
+      "wheel",
+      function (ev) {
+        if (Math.abs(ev.deltaX) <= Math.abs(ev.deltaY)) return;
+        ev.preventDefault();
+      },
+      { passive: false }
+    );
+    viewport.addEventListener(
+      "scroll",
+      function () {
+        updateCounterOnly();
+        clearTimeout(scrollIdleTimer);
+        scrollIdleTimer = setTimeout(onScrollIdle, 130);
+      },
+      { passive: true }
+    );
+    viewport.addEventListener("scrollend", function () {
+      clearTimeout(scrollIdleTimer);
+      onScrollIdle();
+    });
+
+    function preserveScrollAfterLayout() {
+      var maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+      var ratio = maxScroll > 0 ? viewport.scrollLeft / maxScroll : 0;
+      setSlideWidths();
+      requestAnimationFrame(function () {
+        var newMax = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+        viewport.scrollTo({ left: newMax * ratio, behavior: "auto" });
+        normalizeLoopPosition();
+        sync();
+      });
+    }
+
+    window.addEventListener("resize", preserveScrollAfterLayout);
+    if (wideMq && typeof wideMq.addEventListener === "function") {
+      wideMq.addEventListener("change", preserveScrollAfterLayout);
+    } else if (wideMq && typeof wideMq.addListener === "function") {
+      wideMq.addListener(preserveScrollAfterLayout);
+    }
+    setSlideWidths();
+    sync();
+  }
+
+  initUpdatesCarousel();
+</script>

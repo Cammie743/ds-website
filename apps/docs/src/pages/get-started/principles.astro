@@ -1,0 +1,54 @@
+---
+import GetStartedLayout from "../../layouts/GetStartedLayout.astro";
+---
+
+<GetStartedLayout
+  title="Design principles"
+  current="principles"
+  description="How Prism resolves trade-offs: clarity, systems, accessibility, and resilient layouts."
+>
+  <header class="page-head">
+    <h1 data-i18n="getStarted.principles.h2">Design principles</h1>
+    <p class="intro" data-i18n="getStarted.principles.intro">
+      When two patterns both seem reasonable, principles describe what we protect first.
+    </p>
+  </header>
+
+  <section class="block">
+    <ol class="principles">
+      <li>
+        <h3 data-i18n="getStarted.principles.items.clarity.title">Clarity over cleverness</h3>
+        <p data-i18n="getStarted.principles.items.clarity.body">
+          Interfaces should explain themselves. Favor obvious paths, predictable controls, and copy that
+          states outcomes in plain language—especially for errors, permissions, and empty states.
+        </p>
+      </li>
+      <li>
+        <h3 data-i18n="getStarted.principles.items.systems.title">Systems, not souvenirs</h3>
+        <p data-i18n="getStarted.principles.items.systems.body">
+          If a pattern will ship more than once, it belongs in the system. Local experiments are welcome;
+          successful ones graduate into tokens and components so everyone benefits.
+        </p>
+      </li>
+      <li>
+        <h3 data-i18n="getStarted.principles.items.accessible.title">Accessibility is a product feature</h3>
+        <p data-i18n="getStarted.principles.items.accessible.body">
+          Contrast, keyboard flows, focus order, and assistive labels are part of the user story—not a
+          late audit. We design and build for real settings: bright rooms, small screens, and motor
+          variance.
+        </p>
+      </li>
+      <li>
+        <h3 data-i18n="getStarted.principles.items.calm.title">Calm craft under pressure</h3>
+        <p data-i18n="getStarted.principles.items.calm.body">
+          Density should flex without breaking rhythm. Long labels, partial data, and narrow viewports are
+          normal conditions, not edge cases—layouts and components need to hold up gracefully.
+        </p>
+      </li>
+    </ol>
+  </section>
+
+  <p class="next">
+    <a class="next-link" href="/get-started/language" data-i18n="getStarted.nextLanguage">Design language</a>
+  </p>
+</GetStartedLayout>

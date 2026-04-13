@@ -1,0 +1,60 @@
+---
+import GetStartedLayout from "../../layouts/GetStartedLayout.astro";
+---
+
+<GetStartedLayout
+  title="Design language"
+  current="language"
+  description="Voice, form, typography, color, and motion—the vocabulary of Prism interfaces."
+>
+  <header class="page-head">
+    <h1 data-i18n="getStarted.language.h2">Design language</h1>
+    <p class="intro" data-i18n="getStarted.language.lede">
+      The design language is the personality of the system: how Prism looks, reads, and moves together.
+    </p>
+  </header>
+
+  <section class="block">
+    <div class="lang-grid">
+      <section class="lang-card" aria-labelledby="lang-voice">
+        <h2 id="lang-voice" data-i18n="getStarted.language.voice.h3">Voice and tone</h2>
+        <p data-i18n="getStarted.language.voice.body">
+          Confident and human, never loud. Prefer verbs that describe action, nouns that name real things,
+          and sentences short enough to scan. Celebrate progress without sounding like marketing fluff.
+        </p>
+      </section>
+      <section class="lang-card" aria-labelledby="lang-form">
+        <h2 id="lang-form" data-i18n="getStarted.language.form.h3">Form and material</h2>
+        <p data-i18n="getStarted.language.form.body">
+          Surfaces stack in a clear order: canvas, elevated panels, then interactive controls. Corners,
+          borders, and shadow describe hierarchy—each layer should earn its depth.
+        </p>
+      </section>
+      <section class="lang-card" aria-labelledby="lang-type">
+        <h2 id="lang-type" data-i18n="getStarted.language.type.h3">Typography and rhythm</h2>
+        <p data-i18n="getStarted.language.type.body">
+          Type roles (display through caption) keep pages scannable. Vertical spacing uses a constrained
+          scale so lists, forms, and dashboards share the same cadence even when content length varies.
+        </p>
+      </section>
+      <section class="lang-card" aria-labelledby="lang-color">
+        <h2 id="lang-color" data-i18n="getStarted.language.color.h3">Color as information</h2>
+        <p data-i18n="getStarted.language.color.body">
+          Color signals state before it expresses brand. Semantic roles—text, surface, border, accent, and
+          feedback—stay stable across themes so meaning does not get lost when palettes change.
+        </p>
+      </section>
+      <section class="lang-card" aria-labelledby="lang-motion">
+        <h2 id="lang-motion" data-i18n="getStarted.language.motion.h3">Motion with restraint</h2>
+        <p data-i18n="getStarted.language.motion.body">
+          Animation confirms what happened and where attention should go. It avoids gratuitous loops,
+          respects reduced-motion preferences, and keeps durations tight enough to feel instant on repeat.
+        </p>
+      </section>
+    </div>
+  </section>
+
+  <p class="next">
+    <a class="next-link" href="/get-started/faq" data-i18n="getStarted.nextFaq">FAQs</a>
+  </p>
+</GetStartedLayout>

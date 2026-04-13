@@ -1,0 +1,44 @@
+---
+interface Props {
+  id: string;
+  updateN: 1 | 2 | 3 | 4 | 5 | 6;
+  isFirstInPage?: boolean;
+}
+
+const { id, updateN, isFirstInPage = false } = Astro.props;
+const n = updateN;
+
+const datetimeByN: Record<1 | 2 | 3 | 4 | 5 | 6, string> = {
+  1: "2026-04-01",
+  2: "2026-03-01",
+  3: "2026-02-01",
+  4: "2026-01-15",
+  5: "2025-12-08",
+  6: "2025-11-20",
+};
+---
+
+<article id={id} class:list={["blog-article", { "blog-article--first": isFirstInPage }]}>
+  <header class="blog-article__head">
+    <p class="blog-article__meta">
+      <span class="blog-article__tag" data-i18n={`home.updates.${n}.tag`}>Tag</span>
+      <time datetime={datetimeByN[n]} data-i18n={`home.updates.${n}.date`}>Date</time>
+    </p>
+    <h2 class="blog-article__title" data-i18n={`home.updates.${n}.title`}>Title</h2>
+  </header>
+  <figure class="blog-article__figure">
+    <img
+      class="blog-article__img"
+      src={`/images/updates/update-${n}.svg`}
+      width="640"
+      height="360"
+      loading="lazy"
+      decoding="async"
+      alt=""
+      data-i18n-alt={`home.updates.${n}.alt`}
+    />
+  </figure>
+  <div class="blog-article__body">
+    <p data-i18n={`blog.update.${n}.body`}>Body</p>
+  </div>
+</article>

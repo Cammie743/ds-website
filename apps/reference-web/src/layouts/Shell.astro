@@ -1,0 +1,56 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+}
+
+const { title = "Prism · Web reference" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header class="bar">
+      <div class="inner">
+        <span class="product">Prism</span>
+      </div>
+    </header>
+    <slot />
+  </body>
+</html>
+
+<style>
+  .bar {
+    border-bottom: 1px solid var(--prism-color-border-subtle);
+    background: color-mix(in srgb, var(--prism-color-surface) 92%, transparent);
+    backdrop-filter: blur(12px);
+  }
+
+  .inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: var(--prism-space-md) var(--prism-space-xl);
+    display: flex;
+    align-items: center;
+    gap: var(--prism-space-md);
+  }
+
+  .product {
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+</style>

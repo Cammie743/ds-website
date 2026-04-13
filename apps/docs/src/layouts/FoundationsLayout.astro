@@ -1,0 +1,196 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+export type FoundationsSection =
+  "colors" | "typography" | "iconography" | "space" | "size" | "effects" | "motion" | "gestures" | "haptics-sounds";
+
+/** Current page in the foundations section nav (includes top-level Overview). */
+export type FoundationsNavCurrent = "overview" | FoundationsSection;
+
+interface Props {
+  title: string;
+  description?: string;
+  current: FoundationsNavCurrent;
+}
+
+const {
+  title,
+  description = "Color, type, space, and other foundation guidance for Prism.",
+  current,
+} = Astro.props;
+
+const navItems: { id: FoundationsNavCurrent; href: string; i18n: string; fallback: string }[] = [
+  { id: "overview", href: "/foundations/overview", i18n: "foundations.toc.overview", fallback: "Overview" },
+  { id: "colors", href: "/foundations/color", i18n: "foundations.toc.color", fallback: "Color" },
+  { id: "typography", href: "/foundations/typography", i18n: "foundations.toc.typography", fallback: "Typography" },
+  {
+    id: "iconography",
+    href: "/foundations/iconography",
+    i18n: "foundations.toc.iconography",
+    fallback: "Iconography",
+  },
+  { id: "space", href: "/foundations/space", i18n: "foundations.toc.space", fallback: "Space" },
+  { id: "size", href: "/foundations/size", i18n: "foundations.toc.size", fallback: "Size" },
+  { id: "effects", href: "/foundations/effects", i18n: "foundations.toc.effects", fallback: "Effects" },
+  { id: "motion", href: "/foundations/motion", i18n: "foundations.toc.motion", fallback: "Motion" },
+  {
+    id: "gestures",
+    href: "/foundations/gestures",
+    i18n: "foundations.toc.gestures",
+    fallback: "Gestures",
+  },
+  {
+    id: "haptics-sounds",
+    href: "/foundations/haptics-sounds",
+    i18n: "foundations.toc.hapticsSounds",
+    fallback: "Haptics & sounds",
+  },
+];
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="foundations-layout">
+    <nav
+      class="section-nav section-nav--page"
+      data-i18n-aria="foundations.sectionNav.aria"
+      aria-label="Foundations pages"
+    >
+      <ul class="section-nav-list">
+        {
+          navItems.map((item) => (
+            <li>
+              <a
+                class:list={["section-nav-link", { "is-current": current === item.id }]}
+                href={item.href}
+                aria-current={current === item.id ? "page" : undefined}
+                data-i18n={item.i18n}
+              >
+                {item.fallback}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <article class="page">
+      <slot />
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  .foundations-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--prism-space-xl);
+    width: 100%;
+    max-width: none;
+    align-items: start;
+  }
+
+  .section-nav {
+    width: 100%;
+    min-width: 0;
+  }
+
+  @media (max-width: 55.99rem) {
+    .section-nav--page {
+      display: none;
+    }
+  }
+
+  @media (min-width: 56rem) {
+    .foundations-layout {
+      grid-template-columns: 12.5rem minmax(0, 1fr);
+      column-gap: clamp(var(--prism-space-xl), 4vw, var(--prism-space-3xl));
+    }
+
+    .section-nav {
+      position: sticky;
+      top: calc(var(--site-header-sticky-anchor, 72px) + var(--prism-space-md));
+      max-height: calc(100vh - var(--site-header-sticky-anchor, 72px) - var(--prism-space-xl));
+      overflow-y: auto;
+      padding-top: calc(var(--docs-page-content-padding-top) + var(--prism-space-sm) + 4px);
+      padding-bottom: calc(var(--prism-space-md) + 4px);
+      padding-inline: 6px;
+    }
+  }
+
+  .section-nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: var(--prism-space-xs);
+  }
+
+  .section-nav-list li {
+    margin: 0;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .section-nav-link {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: var(--prism-space-md) var(--prism-space-lg);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.4;
+    text-decoration: none;
+    color: var(--prism-color-text-primary);
+    border-radius: 12px;
+    background-color: transparent;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .section-nav-link.is-current {
+    background-color: var(--nav-drawer-item-active-bg);
+  }
+
+  .section-nav-link:hover,
+  .section-nav-link:focus-visible {
+    background-color: var(--nav-drawer-item-active-bg);
+    color: var(--prism-color-accent-strong);
+  }
+
+  .section-nav-link:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--prism-color-accent-strong) 45%, transparent);
+    outline-offset: 2px;
+  }
+
+  .page {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    padding-top: var(--docs-page-content-padding-top);
+    padding-bottom: var(--prism-space-3xl);
+  }
+
+  .page-head {
+    margin-bottom: var(--prism-space-xl);
+  }
+
+  /* Slotted page markup lives in child .astro files, so headings need :global() to escape layout scope. */
+  .page :global(h1) {
+    margin: 0 0 var(--prism-space-md);
+    font-size: clamp(3rem, 8.5vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+  }
+
+  .page :global(.intro) {
+    margin: 0;
+    color: var(--prism-color-text-secondary);
+    line-height: 1.65;
+    font-size: 1.0625rem;
+  }
+</style>

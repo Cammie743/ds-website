@@ -1,0 +1,91 @@
+---
+import FoundationsLayout from "../../layouts/FoundationsLayout.astro";
+
+const swatches = [
+  { name: "Canvas", var: "--prism-color-canvas" },
+  { name: "Surface", var: "--prism-color-surface" },
+  { name: "Text primary", var: "--prism-color-text-primary" },
+  { name: "Text secondary", var: "--prism-color-text-secondary" },
+  { name: "Border subtle", var: "--prism-color-border-subtle" },
+  { name: "Accent", var: "--prism-color-accent" },
+  { name: "Accent strong", var: "--prism-color-accent-strong" },
+  { name: "Success", var: "--prism-color-success" },
+  { name: "Warning", var: "--prism-color-warning" },
+  { name: "Error", var: "--prism-color-error" },
+];
+---
+
+<FoundationsLayout title="Color" description="Semantic color tokens for Prism." current="colors">
+  <header class="page-head">
+    <h1 data-i18n="colors.h1">Color</h1>
+    <p class="intro" data-i18n="colors.intro">
+      Prism maps Figma variables to CSS custom properties. Start from semantic roles (text, fill, border)
+      rather than raw hex in product code.
+    </p>
+  </header>
+
+  <ul class="swatches">
+    {
+      swatches.map((s) => (
+        <li class="swatch">
+          <div class="chip" style={`background: var(${s.var});`} />
+          <div class="meta">
+            <span class="label">{s.name}</span>
+            <code>{s.var}</code>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</FoundationsLayout>
+
+<style>
+  .page-head {
+    margin-bottom: var(--prism-space-2xl);
+  }
+
+  .swatches {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--prism-space-md);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
+  }
+
+  .swatch {
+    display: flex;
+    align-items: center;
+    gap: var(--prism-space-md);
+    padding: var(--prism-space-md);
+    border-radius: var(--prism-radius-md);
+    border: 1px solid var(--prism-color-border-subtle);
+    background: var(--prism-color-surface);
+    box-shadow: var(--prism-shadow-sm);
+  }
+
+  .chip {
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: var(--prism-radius-sm);
+    border: 1px solid var(--prism-color-border-subtle);
+    flex-shrink: 0;
+  }
+
+  .meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+  }
+
+  .label {
+    font-weight: 600;
+    font-size: 0.9375rem;
+  }
+
+  .meta code {
+    font-size: 0.75rem;
+    word-break: break-all;
+  }
+</style>

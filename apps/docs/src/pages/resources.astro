@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Resources" description="Guides, tools, and links for Prism.">
+  <section class="page">
+    <h1 data-i18n="resources.title">Resources</h1>
+    <p class="lede" data-i18n="resources.lede">Additional guides and references will live here.</p>
+  </section>
+</BaseLayout>
+
+<style>
+  .page {
+    width: 100%;
+    max-width: none;
+    padding-top: var(--docs-page-content-padding-top);
+  }
+
+  h1 {
+    margin: 0 0 var(--prism-space-md);
+    font-size: clamp(3rem, 8.5vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+  }
+
+  .lede {
+    margin: 0;
+    font-size: 1.0625rem;
+    color: var(--prism-color-text-secondary);
+    line-height: 1.65;
+  }
+</style>

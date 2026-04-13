@@ -1,0 +1,20 @@
+@import "@prism/tokens";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--prism-font-sans);
+  background: var(--prism-color-canvas);
+  color: var(--prism-color-text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}

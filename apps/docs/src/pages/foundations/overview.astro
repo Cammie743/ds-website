@@ -1,0 +1,1242 @@
+---
+import fs from "node:fs";
+import path from "node:path";
+import FoundationsLayout from "../../layouts/FoundationsLayout.astro";
+import { uiStrings } from "../../i18n/ui";
+
+const foundationsImgDir = path.join(process.cwd(), "public", "images", "foundations");
+
+/** Optional `data-i18n-alt` keys for known exports (match filename case-insensitively). */
+const ALT_KEY_BY_FILE = new Map<string, string>([
+  ["color.png", "foundations.overview.diagramAlt"],
+]);
+
+const en = uiStrings.en as Record<string, string>;
+const zh = uiStrings.zh as Record<string, string>;
+
+/** Same sequence as Foundations section nav (overview images are excluded from this list). */
+const FIGURE_ORDER_SLUGS = [
+  ["color", "colors"],
+  ["typography", "type"],
+  ["iconography", "icons"],
+  ["space", "spacing"],
+  ["size"],
+  ["effects"],
+  ["motion", "animation"],
+  ["gestures"],
+  ["hapticssounds", "hapticsandsounds"],
+] as const;
+
+const figureOrderIndex = new Map<string, number>();
+for (let i = 0; i < FIGURE_ORDER_SLUGS.length; i++) {
+  for (const slug of FIGURE_ORDER_SLUGS[i]) {
+    figureOrderIndex.set(slug, i);
+  }
+}
+
+/** Sub-page link, label, and list-view description i18n key (stems match `compactFigureStem` aliases). */
+type OverviewSubpage = {
+  href: string;
+  i18n: string;
+  fallback: string;
+  listDescI18n: string;
+};
+
+const SUBPAGE_BY_STEM = new Map<string, OverviewSubpage>([
+  [
+    "color",
+    {
+      href: "/foundations/color",
+      i18n: "foundations.toc.color",
+      fallback: "Color",
+      listDescI18n: "foundations.overview.listDesc.color",
+    },
+  ],
+  [
+    "colors",
+    {
+      href: "/foundations/color",
+      i18n: "foundations.toc.color",
+      fallback: "Color",
+      listDescI18n: "foundations.overview.listDesc.color",
+    },
+  ],
+  [
+    "typography",
+    {
+      href: "/foundations/typography",
+      i18n: "foundations.toc.typography",
+      fallback: "Typography",
+      listDescI18n: "foundations.overview.listDesc.typography",
+    },
+  ],
+  [
+    "type",
+    {
+      href: "/foundations/typography",
+      i18n: "foundations.toc.typography",
+      fallback: "Typography",
+      listDescI18n: "foundations.overview.listDesc.typography",
+    },
+  ],
+  [
+    "iconography",
+    {
+      href: "/foundations/iconography",
+      i18n: "foundations.toc.iconography",
+      fallback: "Iconography",
+      listDescI18n: "foundations.overview.listDesc.iconography",
+    },
+  ],
+  [
+    "icons",
+    {
+      href: "/foundations/iconography",
+      i18n: "foundations.toc.iconography",
+      fallback: "Iconography",
+      listDescI18n: "foundations.overview.listDesc.iconography",
+    },
+  ],
+  [
+    "space",
+    {
+      href: "/foundations/space",
+      i18n: "foundations.toc.space",
+      fallback: "Space",
+      listDescI18n: "foundations.overview.listDesc.space",
+    },
+  ],
+  [
+    "spacing",
+    {
+      href: "/foundations/space",
+      i18n: "foundations.toc.space",
+      fallback: "Space",
+      listDescI18n: "foundations.overview.listDesc.space",
+    },
+  ],
+  [
+    "size",
+    {
+      href: "/foundations/size",
+      i18n: "foundations.toc.size",
+      fallback: "Size",
+      listDescI18n: "foundations.overview.listDesc.size",
+    },
+  ],
+  [
+    "effects",
+    {
+      href: "/foundations/effects",
+      i18n: "foundations.toc.effects",
+      fallback: "Effects",
+      listDescI18n: "foundations.overview.listDesc.effects",
+    },
+  ],
+  [
+    "motion",
+    {
+      href: "/foundations/motion",
+      i18n: "foundations.toc.motion",
+      fallback: "Motion",
+      listDescI18n: "foundations.overview.listDesc.motion",
+    },
+  ],
+  [
+    "animation",
+    {
+      href: "/foundations/motion",
+      i18n: "foundations.toc.motion",
+      fallback: "Motion",
+      listDescI18n: "foundations.overview.listDesc.motion",
+    },
+  ],
+  [
+    "gestures",
+    {
+      href: "/foundations/gestures",
+      i18n: "foundations.toc.gestures",
+      fallback: "Gestures",
+      listDescI18n: "foundations.overview.listDesc.gestures",
+    },
+  ],
+  [
+    "hapticssounds",
+    {
+      href: "/foundations/haptics-sounds",
+      i18n: "foundations.toc.hapticsSounds",
+      fallback: "Haptics & sounds",
+      listDescI18n: "foundations.overview.listDesc.hapticsSounds",
+    },
+  ],
+  [
+    "hapticsandsounds",
+    {
+      href: "/foundations/haptics-sounds",
+      i18n: "foundations.toc.hapticsSounds",
+      fallback: "Haptics & sounds",
+      listDescI18n: "foundations.overview.listDesc.hapticsSounds",
+    },
+  ],
+]);
+
+function compactFigureStem(file: string): string {
+  return file
+    .replace(/\.[^.]+$/i, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, "");
+}
+
+function figureNavSortIndex(file: string): number {
+  return figureOrderIndex.get(compactFigureStem(file)) ?? 999;
+}
+
+function altForFile(file: string): { htmlAlt: string; i18nKey: string | null } {
+  const key = ALT_KEY_BY_FILE.get(file.toLowerCase()) ?? null;
+  if (key && en[key]) {
+    return { htmlAlt: en[key], i18nKey: key };
+  }
+  const stem = file.replace(/\.[^.]+$/i, "").replace(/[-_]+/g, " ").trim() || file;
+  const tpl = en["foundations.overview.figureAltFallback"] ?? "Foundations overview illustration: {name}";
+  return { htmlAlt: tpl.replace("{name}", stem), i18nKey: null };
+}
+
+function subpageForFile(file: string): OverviewSubpage | null {
+  return SUBPAGE_BY_STEM.get(compactFigureStem(file)) ?? null;
+}
+
+let overviewImages: {
+  src: string;
+  file: string;
+  htmlAlt: string;
+  i18nKey: string | null;
+  subpage: OverviewSubpage | null;
+}[] = [];
+
+try {
+  const names = fs
+    .readdirSync(foundationsImgDir)
+    .filter((f) => !f.startsWith(".") && /\.(png|jpe?g|webp|gif|svg)$/i.test(f))
+    .sort((a, b) => {
+      const d = figureNavSortIndex(a) - figureNavSortIndex(b);
+      if (d !== 0) return d;
+      return a.localeCompare(b, undefined, { sensitivity: "base" });
+    });
+
+  overviewImages = names.map((file) => {
+    const { htmlAlt, i18nKey } = altForFile(file);
+    return {
+      src: `/images/foundations/${encodeURIComponent(file)}`,
+      file,
+      htmlAlt,
+      i18nKey,
+      subpage: subpageForFile(file),
+    };
+  });
+} catch {
+  overviewImages = [];
+}
+
+const overviewRows = overviewImages.map((row, sourceIndex) => ({
+  ...row,
+  sourceIndex,
+}));
+
+const sortAria = {
+  nav: {
+    en: en["foundations.overview.sortTitle.ariaNav"],
+    zh: zh["foundations.overview.sortTitle.ariaNav"],
+  },
+  asc: {
+    en: en["foundations.overview.sortTitle.ariaAsc"],
+    zh: zh["foundations.overview.sortTitle.ariaAsc"],
+  },
+  desc: {
+    en: en["foundations.overview.sortTitle.ariaDesc"],
+    zh: zh["foundations.overview.sortTitle.ariaDesc"],
+  },
+};
+---
+
+<FoundationsLayout
+  title="Foundations"
+  current="overview"
+  description="How Prism foundations are organized: color, type, space, motion, and more."
+>
+  <div id="foundations-overview-root">
+    <header class="page-head">
+      <h1 data-i18n="foundations.overview.h1">Foundations</h1>
+      <div class="overview-head-row">
+        <p class="intro" data-i18n="foundations.overview.intro">
+          Foundations document the tokens and rules every surface shares—semantic color, typography, spacing,
+          sizing, effects, and platform-specific guidance—so product work stays consistent from design to code.
+        </p>
+        {
+          overviewImages.length > 0 ? (
+            <fieldset class="view-segmented">
+              <legend class="view-segmented__legend">
+                <span data-i18n="foundations.overview.viewLayout">Foundations overview layout</span>
+              </legend>
+              <div class="view-segmented__inner">
+                <input
+                  class="view-segmented__input"
+                  type="radio"
+                  name="foundations-overview-view"
+                  id="foundations-overview-view-grid"
+                  value="grid"
+                  checked
+                />
+                <label class="view-segmented__label" for="foundations-overview-view-grid">
+                  <svg class="view-segmented__icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="3" y="3" width="7" height="7" rx="1.5" fill="currentColor"></rect>
+                    <rect x="14" y="3" width="7" height="7" rx="1.5" fill="currentColor"></rect>
+                    <rect x="3" y="14" width="7" height="7" rx="1.5" fill="currentColor"></rect>
+                    <rect x="14" y="14" width="7" height="7" rx="1.5" fill="currentColor"></rect>
+                  </svg>
+                  <span data-i18n="foundations.overview.viewGrid">Grid</span>
+                </label>
+                <input
+                  class="view-segmented__input"
+                  type="radio"
+                  name="foundations-overview-view"
+                  id="foundations-overview-view-list"
+                  value="list"
+                />
+                <label class="view-segmented__label" for="foundations-overview-view-list">
+                  <svg
+                    class="view-segmented__icon view-segmented__icon--stroke"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M9 6h12M9 12h12M9 18h12M4 6h.01M4 12h.01M4 18h.01"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                  </svg>
+                  <span data-i18n="foundations.overview.viewList">List</span>
+                </label>
+              </div>
+            </fieldset>
+          ) : null
+        }
+      </div>
+    </header>
+
+    {
+      overviewImages.length > 0 ? (
+        <div class="overview-figures">
+          <div class="overview-list-header">
+            <div class="overview-list-header__row">
+              <span class="overview-list-header__thumb" aria-hidden="true"></span>
+              <button
+                type="button"
+                id="foundations-overview-sort-title"
+                class="overview-list-header__title-cell overview-list-header__sort"
+                data-sort-mode="nav"
+                role="columnheader"
+                aria-sort="none"
+                aria-labelledby="foundations-overview-sort-heading"
+                data-tooltip={en["foundations.overview.sortTitle.ariaNav"]}
+              >
+                <span
+                  id="foundations-overview-sort-heading"
+                  class="overview-list-header__title"
+                  data-i18n="foundations.overview.listColTitle"
+                >
+                  Title
+                </span>
+                <svg
+                  class="overview-list-header__sort-svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <g class="overview-list-header__sort-i overview-list-header__sort-i--nav">
+                    <path d="M6 5v14M2 9l4-4 4 4"></path>
+                    <path d="M18 19V5M14 15l4 4 4-4"></path>
+                  </g>
+                  <g class="overview-list-header__sort-i overview-list-header__sort-i--asc">
+                    <path d="M12 5v14M8 9l4-4 4 4"></path>
+                  </g>
+                  <g class="overview-list-header__sort-i overview-list-header__sort-i--desc">
+                    <path d="M12 19V5M8 15l4 4 4-4"></path>
+                  </g>
+                </svg>
+              </button>
+              <span class="overview-list-header__desc" data-i18n="foundations.overview.listColDescription">
+                Description
+              </span>
+              <span class="overview-list-header__trail" aria-hidden="true"></span>
+            </div>
+            <div class="overview-list-header__rule" aria-hidden="true"></div>
+          </div>
+          {overviewRows.map(({ src, file, htmlAlt, i18nKey, subpage, sourceIndex }, rowIndex) => (
+            <>
+              {subpage ? (
+                <a class="overview-card" href={subpage.href} data-overview-source-index={String(sourceIndex)}>
+                  <figure class="overview-figure">
+                    <div class="overview-figure__media">
+                      <img
+                        class="overview-figure__img"
+                        src={src}
+                        loading="lazy"
+                        decoding="async"
+                        alt={htmlAlt}
+                        {...(i18nKey ? { "data-i18n-alt": i18nKey } : {})}
+                      />
+                    </div>
+                    <figcaption class="overview-figure__caption">
+                      <div class="overview-figure__body">
+                        <span class="overview-figure__title" data-i18n={subpage.i18n}>
+                          {subpage.fallback}
+                        </span>
+                        <p class="overview-figure__desc" data-i18n={subpage.listDescI18n}>
+                          {en[subpage.listDescI18n] ?? ""}
+                        </p>
+                      </div>
+                    </figcaption>
+                    <span class="overview-card__arrow" aria-hidden="true">→</span>
+                  </figure>
+                </a>
+              ) : (
+                <figure class="overview-figure overview-figure--static">
+                  <div class="overview-figure__media">
+                    <img
+                      class="overview-figure__img"
+                      src={src}
+                      loading="lazy"
+                      decoding="async"
+                      alt={htmlAlt}
+                      {...(i18nKey ? { "data-i18n-alt": i18nKey } : {})}
+                    />
+                  </div>
+                </figure>
+              )}
+              {rowIndex < overviewRows.length - 1 ? (
+                <div class="overview-list-divider" aria-hidden="true"></div>
+              ) : null}
+            </>
+          ))}
+        </div>
+      ) : null
+    }
+  </div>
+</FoundationsLayout>
+
+<script is:inline define:vars={{ sortAria }}>
+  document.addEventListener("DOMContentLoaded", function () {
+    var viewKey = "prism-foundations-overview-view";
+    var sortKey = "prism-foundations-overview-sort";
+    var grid = document.getElementById("foundations-overview-view-grid");
+    var list = document.getElementById("foundations-overview-view-list");
+    var root = document.getElementById("foundations-overview-root");
+    var wrap = root && root.querySelector(".overview-figures");
+    if (!grid || !list || !root || !wrap) return;
+
+    try {
+      var v = localStorage.getItem(viewKey);
+      if (v === "list") list.checked = true;
+      else if (v === "grid") grid.checked = true;
+    } catch (e) {}
+
+    root.addEventListener("change", function (e) {
+      var t = e.target;
+      if (!t || t.name !== "foundations-overview-view") return;
+      try {
+        localStorage.setItem(viewKey, t.value);
+      } catch (e2) {}
+      applyOverviewSortLayout();
+    });
+
+    function getSortMode() {
+      try {
+        var s = localStorage.getItem(sortKey);
+        if (s === "asc" || s === "desc" || s === "nav") return s;
+      } catch (err) {}
+      return "nav";
+    }
+
+    function setSortMode(m) {
+      try {
+        localStorage.setItem(sortKey, m);
+      } catch (err) {}
+    }
+
+    function sortAriaLabel(mode) {
+      var lang = document.documentElement.dataset.uiLang === "zh" ? "zh" : "en";
+      var pack = sortAria[mode];
+      if (!pack) return "";
+      return (lang === "zh" ? pack.zh : pack.en) || pack.en;
+    }
+
+    function cardTitleText(card) {
+      var span = card.querySelector(".overview-figure__title");
+      return span ? span.textContent.trim().toLowerCase() : "";
+    }
+
+    function compareCardsNav(a, b) {
+      return (
+        Number(a.getAttribute("data-overview-source-index")) -
+        Number(b.getAttribute("data-overview-source-index"))
+      );
+    }
+
+    function compareCardsAlpha(a, b) {
+      return cardTitleText(a).localeCompare(cardTitleText(b), undefined, { sensitivity: "base" });
+    }
+
+    function reorderOverviewChildren(mode) {
+      var header = wrap.querySelector(".overview-list-header");
+      if (!header) return;
+      var seqItems = [];
+      var seq = 0;
+      Array.prototype.forEach.call(wrap.children, function (el) {
+        if (el === header) return;
+        var isCard = el.classList && el.classList.contains("overview-card");
+        seqItems.push({ el: el, seq: seq++, isCard: isCard });
+      });
+      var cards = seqItems.filter(function (x) {
+        return x.isCard;
+      });
+      var sortedEls = cards.map(function (x) {
+        return x.el;
+      });
+      if (mode === "asc") {
+        sortedEls.sort(compareCardsAlpha);
+      } else if (mode === "desc") {
+        sortedEls.sort(function (a, b) {
+          return compareCardsAlpha(b, a);
+        });
+      } else {
+        sortedEls.sort(compareCardsNav);
+      }
+      var q = sortedEls.slice();
+      var newOrder = seqItems.map(function (item) {
+        if (item.isCard) return q.shift();
+        return item.el;
+      });
+      var order = [header].concat(newOrder);
+      order.forEach(function (el) {
+        wrap.appendChild(el);
+      });
+    }
+
+    function updateSortButtonUI(mode) {
+      var btn = document.getElementById("foundations-overview-sort-title");
+      if (btn) {
+        btn.setAttribute("data-sort-mode", mode);
+        btn.setAttribute("data-tooltip", sortAriaLabel(mode));
+        btn.setAttribute(
+          "aria-sort",
+          mode === "asc" ? "ascending" : mode === "desc" ? "descending" : "none"
+        );
+      }
+    }
+
+    function applyOverviewSortLayout() {
+      var mode = getSortMode();
+      reorderOverviewChildren(mode);
+      updateSortButtonUI(mode);
+    }
+
+    var sortBtn = document.getElementById("foundations-overview-sort-title");
+    if (sortBtn) {
+      sortBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        var cur = getSortMode();
+        var next = cur === "nav" ? "asc" : cur === "asc" ? "desc" : "nav";
+        setSortMode(next);
+        reorderOverviewChildren(next);
+        updateSortButtonUI(next);
+      });
+    }
+
+    document.addEventListener("prism-locale-applied", function () {
+      var mode = getSortMode();
+      if (mode !== "nav") reorderOverviewChildren(mode);
+      updateSortButtonUI(mode);
+    });
+
+    applyOverviewSortLayout();
+  });
+</script>
+
+<style>
+  .page-head {
+    margin-bottom: var(--prism-space-2xl);
+  }
+
+  .overview-head-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--prism-space-md) var(--prism-space-xl);
+  }
+
+  .overview-head-row .intro {
+    flex: 1 1 min(16rem, 100%);
+    min-width: 0;
+  }
+
+  .view-segmented {
+    margin: 0;
+    padding: 0;
+    border: none;
+    min-width: 0;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-inline-start: auto;
+    margin-top: calc(var(--prism-space-xs) * 1.5);
+  }
+
+  /* Stack intro + view switcher vertically on narrow viewports (matches BaseLayout .main @ 46.875rem) */
+  @media (max-width: 46.875rem) {
+    .overview-head-row {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--prism-space-md);
+    }
+
+    .overview-head-row .intro {
+      flex: none;
+    }
+
+    .view-segmented {
+      margin-inline-start: 0;
+      margin-top: 0;
+      align-self: stretch;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .view-segmented__inner {
+      display: flex;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .view-segmented__label {
+      flex: 1 1 0;
+      justify-content: center;
+    }
+  }
+
+  .view-segmented__legend {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .view-segmented__inner {
+    display: inline-flex;
+    align-items: stretch;
+    box-sizing: border-box;
+    height: 2.375rem;
+    min-height: 2.375rem;
+    padding: 2px;
+    gap: 2px;
+    border-radius: 9999px;
+    background: color-mix(in srgb, var(--prism-color-text-primary) 5%, transparent);
+    border: 1px solid var(--prism-color-border-subtle);
+  }
+
+  .view-segmented__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .view-segmented__label {
+    display: inline-flex;
+    align-items: center;
+    align-self: stretch;
+    gap: 0.35rem;
+    padding: 0 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    color: var(--prism-color-text-secondary);
+    border-radius: 9999px;
+    cursor: pointer;
+    user-select: none;
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+
+  .view-segmented__input:checked + .view-segmented__label {
+    background: var(--prism-color-surface);
+    color: var(--prism-color-text-primary);
+    box-shadow: var(--prism-shadow-sm);
+  }
+
+  .view-segmented__label:hover {
+    color: var(--prism-color-text-primary);
+  }
+
+  .view-segmented__input:focus-visible + .view-segmented__label {
+    outline: 2px solid color-mix(in srgb, var(--prism-color-accent-strong) 45%, transparent);
+    outline-offset: 2px;
+  }
+
+  .view-segmented__icon {
+    flex-shrink: 0;
+    opacity: 0.88;
+  }
+
+  .view-segmented__icon--stroke {
+    display: block;
+  }
+
+  .view-segmented__input:checked + .view-segmented__label .view-segmented__icon {
+    opacity: 1;
+  }
+
+  .overview-figures {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--prism-space-xl);
+    margin: var(--prism-space-3xl) 0 var(--prism-space-xl);
+    align-items: start;
+  }
+
+  @media (max-width: 46.875rem) {
+    .overview-figures {
+      gap: var(--prism-space-lg);
+    }
+  }
+
+  @media (min-width: 52rem) {
+    .overview-figures {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-grid:checked) .overview-card {
+    border-radius: var(--prism-radius-md);
+  }
+
+  .overview-list-header {
+    display: none;
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-figures {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin: var(--prism-space-2xl) 0 var(--prism-space-xl);
+    width: 100%;
+    min-width: 0;
+  }
+
+  .overview-list-divider {
+    display: none;
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-divider {
+    display: block;
+    flex: 0 0 auto;
+    width: 100%;
+    height: 1px;
+    margin: 0;
+    border: 0;
+    background-color: var(--prism-color-border-subtle);
+  }
+
+  /* Row separators next to a hovered or focused card: match hover fill so the seam disappears without collapsing layout (height: 0 caused a 1px jump). */
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-card:hover + .overview-list-divider,
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-card:focus-visible + .overview-list-divider,
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-divider:has(+ .overview-card:hover),
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-divider:has(+ .overview-card:focus-visible),
+  #foundations-overview-root:has(#foundations-overview-view-list:checked)
+    .overview-list-header:has(+ .overview-card:hover)
+    .overview-list-header__rule,
+  #foundations-overview-root:has(#foundations-overview-view-list:checked)
+    .overview-list-header:has(+ .overview-card:focus-visible)
+    .overview-list-header__rule {
+    background-color: var(--nav-drawer-item-active-bg);
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-header {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    min-width: 0;
+    margin-bottom: 0;
+    gap: var(--prism-space-sm);
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-header__row {
+    display: grid;
+    grid-template-columns: minmax(0, 15rem) minmax(0, 14rem) minmax(0, 1fr) 1.5rem;
+    column-gap: var(--prism-space-lg);
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    /* Match .overview-card horizontal padding so labels line up with row text */
+    padding-inline: var(--prism-space-lg);
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-header__rule {
+    flex: 0 0 auto;
+    width: 100%;
+    height: 1px;
+    margin: 0;
+    border: 0;
+    background-color: var(--prism-color-border-subtle);
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-header__title-cell.overview-list-header__sort {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    justify-self: start;
+    width: fit-content;
+    max-width: 100%;
+    gap: var(--prism-space-sm);
+    min-width: 0;
+    margin: 0;
+    padding: var(--prism-space-xs) var(--prism-space-sm);
+    border: none;
+    border-radius: 9999px;
+    background: transparent;
+    font: inherit;
+    text-align: left;
+    color: var(--prism-color-text-secondary);
+    cursor: pointer;
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease;
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-header__sort:hover {
+    background: color-mix(in srgb, var(--prism-color-text-primary) 6%, transparent);
+    color: var(--prism-color-text-primary);
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-header__sort:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--prism-color-accent-strong) 45%, transparent);
+    outline-offset: 2px;
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked)
+    .overview-list-header__sort[data-tooltip]:not([data-tooltip=""])::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 10px);
+    z-index: 100;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: 0.01em;
+    color: var(--prism-color-text-inverse);
+    background: var(--prism-color-text-primary);
+    border-radius: 6px;
+    box-shadow: var(--prism-shadow-md);
+    white-space: nowrap;
+    max-width: min(16rem, 70vw);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate3d(-50%, -6px, 0);
+    transition:
+      opacity 0.15s ease,
+      visibility 0.15s ease,
+      transform 0.15s ease;
+  }
+
+  [data-theme="dark"]
+    #foundations-overview-root:has(#foundations-overview-view-list:checked)
+    .overview-list-header__sort[data-tooltip]:not([data-tooltip=""])::after {
+    background: var(--prism-color-surface-raised);
+    color: var(--prism-color-text-primary);
+    border: 1px solid var(--prism-color-border-subtle);
+    box-shadow: var(--prism-shadow-sm);
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked)
+    .overview-list-header__sort[data-tooltip]:not([data-tooltip=""]):hover::after,
+  #foundations-overview-root:has(#foundations-overview-view-list:checked)
+    .overview-list-header__sort[data-tooltip]:not([data-tooltip=""]):focus-visible::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #foundations-overview-root:has(#foundations-overview-view-list:checked)
+      .overview-list-header__sort[data-tooltip]:not([data-tooltip=""])::after {
+      transition: none;
+    }
+  }
+
+  .overview-list-header__sort-svg {
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .overview-list-header__sort-i {
+    display: none;
+  }
+
+  .overview-list-header__sort[data-sort-mode="nav"] .overview-list-header__sort-i--nav,
+  .overview-list-header__sort[data-sort-mode="asc"] .overview-list-header__sort-i--asc,
+  .overview-list-header__sort[data-sort-mode="desc"] .overview-list-header__sort-i--desc {
+    display: block;
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-header__desc,
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-header__sort .overview-list-header__title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-header__desc {
+    color: var(--prism-color-text-secondary);
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-header__sort .overview-list-header__title {
+    color: currentColor;
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-card {
+    box-sizing: border-box;
+    border-radius: var(--prism-radius-md);
+    padding: 16px var(--prism-space-lg);
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-card:hover,
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-card:focus-visible {
+    background-color: var(--nav-drawer-item-active-bg);
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-card .overview-figure {
+    display: grid;
+    grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) 1.5rem;
+    column-gap: var(--prism-space-lg);
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-figure__caption {
+    display: contents;
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-figure__body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--prism-space-lg);
+    min-width: 0;
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-figure__title {
+    flex: 0 0 14rem;
+    min-width: 0;
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-figure__desc {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .overview-card__arrow {
+    display: none;
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-card__arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--prism-color-text-secondary);
+    opacity: 0.35;
+    transition:
+      opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked)
+    .overview-card:hover
+    .overview-card__arrow,
+  #foundations-overview-root:has(#foundations-overview-view-list:checked)
+    .overview-card:focus-visible
+    .overview-card__arrow {
+    opacity: 1;
+    transform: translateX(0.35rem);
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-figure__media {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    min-width: 0;
+    min-height: 7.25rem;
+    align-self: center;
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-figure--static {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--prism-space-lg);
+    padding: var(--prism-space-sm) 0;
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-figure--static .overview-figure__media {
+    flex-shrink: 0;
+    width: auto;
+    max-width: 15rem;
+    min-height: 7.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    align-self: center;
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-figure--static .overview-figure__img {
+    max-width: 15rem;
+  }
+
+  .overview-figure__desc {
+    display: none;
+    margin: 0;
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-figure__desc {
+    display: block;
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    font-weight: 400;
+    color: var(--prism-color-text-secondary);
+  }
+
+  /* List view: stack description under title when primary nav is drawer + menu icon (matches BaseLayout @ 68rem) */
+  @media (max-width: 68rem) {
+    #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-header__row {
+      grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) 1.5rem;
+      grid-template-rows: auto;
+      column-gap: var(--prism-space-lg);
+      align-items: center;
+    }
+
+    #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-header__thumb {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-header__title-cell {
+      grid-column: 2;
+      grid-row: 1;
+      min-width: 0;
+      justify-self: start;
+    }
+
+    #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-header__desc {
+      display: none;
+    }
+
+    #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-header__trail {
+      grid-column: 3;
+      grid-row: 1;
+      align-self: center;
+    }
+
+    #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-card .overview-figure {
+      grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) auto;
+      column-gap: var(--prism-space-lg);
+      align-items: center;
+    }
+
+    #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-figure__body {
+      flex-direction: column;
+      align-items: stretch;
+      align-self: center;
+      gap: var(--prism-space-xs);
+    }
+
+    #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-figure__title {
+      flex: 0 0 auto;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-figure__desc {
+      flex: 0 1 auto;
+      margin: 0;
+      padding: 0;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      overflow-wrap: anywhere;
+    }
+
+    #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-card__arrow {
+      align-self: center;
+    }
+  }
+
+  /* Smaller list thumbs only when page uses 16px horizontal insets (matches BaseLayout .main @ 46.875rem) */
+  @media (max-width: 46.875rem) {
+    #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-header__row {
+      grid-template-columns: minmax(0, 9rem) minmax(0, 1fr) 1.5rem;
+      column-gap: var(--prism-space-md);
+    }
+
+    #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-card .overview-figure {
+      grid-template-columns: minmax(0, 9rem) minmax(0, 1fr) auto;
+      column-gap: var(--prism-space-md);
+    }
+
+    #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-figure__media {
+      min-height: 5.5rem;
+    }
+
+    #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-figure--static .overview-figure__media {
+      max-width: 9rem;
+      min-height: 5.5rem;
+    }
+
+    #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-figure--static .overview-figure__img {
+      max-width: 9rem;
+    }
+  }
+
+  .overview-card {
+    display: block;
+    min-width: 0;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    border: none;
+    background: transparent;
+  }
+
+  .overview-card:focus-visible {
+    outline: 2px solid var(--prism-color-accent-strong);
+    outline-offset: 2px;
+  }
+
+  .overview-figure {
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--prism-space-sm);
+  }
+
+  .overview-card .overview-figure {
+    padding: 0 0 var(--prism-space-sm);
+  }
+
+  .overview-figure__media {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+
+  .overview-figure__media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: color-mix(in srgb, var(--prism-color-text-primary) 8%, transparent);
+    opacity: 0;
+    transition: opacity 0.18s ease;
+    pointer-events: none;
+  }
+
+  .overview-card:hover .overview-figure__media::after,
+  .overview-card:focus-visible .overview-figure__media::after {
+    opacity: 1;
+  }
+
+  .overview-figure__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+    border-radius: 12px;
+  }
+
+  .overview-figure__caption {
+    margin: 0;
+    padding: 0 var(--prism-space-sm);
+    text-align: left;
+  }
+
+  .overview-figure__body {
+    min-width: 0;
+  }
+
+  .overview-figure__title {
+    font-weight: 600;
+    font-size: clamp(1rem, 0.35vw + 0.92rem, 1.1875rem);
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    color: var(--prism-color-text-primary);
+    transition: color 0.2s ease;
+  }
+
+  .overview-card:hover .overview-figure__title,
+  .overview-card:focus-visible .overview-figure__title {
+    color: var(--prism-color-accent-strong);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #foundations-overview-root:has(#foundations-overview-view-list:checked)
+      .overview-card:hover
+      .overview-card__arrow,
+    #foundations-overview-root:has(#foundations-overview-view-list:checked)
+      .overview-card:focus-visible
+      .overview-card__arrow {
+      transform: none;
+    }
+  }
+</style>

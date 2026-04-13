@@ -1,0 +1,282 @@
+---
+import fs from "node:fs";
+import path from "node:path";
+import ComponentsLayout from "../../layouts/ComponentsLayout.astro";
+import { uiStrings } from "../../i18n/ui";
+
+const componentsImgDir = path.join(process.cwd(), "public", "images", "components");
+
+const en = uiStrings.en as Record<string, string>;
+
+/** Normalized stem (alphanumeric only) → docs route when a page exists. */
+const HREF_BY_STEM = new Map<string, string>([
+  ["accordion", "/components/accordion"],
+  ["anchor", "/components/anchor"],
+  ["avatar", "/components/avatars"],
+  ["buttons", "/components/buttons"],
+  ["dialog", "/components/dialog"],
+  ["inputfields", "/components/input-fields"],
+]);
+
+function compactStem(file: string): string {
+  return file
+    .replace(/\.[^.]+$/i, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, "");
+}
+
+function toSentenceCase(phrase: string): string {
+  const t = phrase.trim().replace(/\s+/g, " ");
+  if (!t) return t;
+  const lower = t.toLowerCase();
+  return lower.charAt(0).toUpperCase() + lower.slice(1);
+}
+
+function displayTitle(file: string): string {
+  const stem = file.replace(/\.[^.]+$/i, "").trim() || file;
+  const spaced = stem.replace(/[-_]+/g, " ").replace(/\s+/g, " ").trim();
+  return toSentenceCase(spaced);
+}
+
+function altForFile(file: string): string {
+  const name = displayTitle(file);
+  const tpl = en["components.overview.figureAltFallback"] ?? "Component preview: {name}";
+  return tpl.replace("{name}", name);
+}
+
+type OverviewItem = {
+  src: string;
+  file: string;
+  title: string;
+  htmlAlt: string;
+  href: string | null;
+};
+
+let items: OverviewItem[] = [];
+
+try {
+  const names = fs
+    .readdirSync(componentsImgDir)
+    .filter((f) => !f.startsWith(".") && /\.(png|jpe?g|webp|gif|svg)$/i.test(f))
+    .sort((a, b) =>
+      displayTitle(a).localeCompare(displayTitle(b), undefined, { sensitivity: "base" })
+    );
+
+  items = names.map((file) => {
+    const stem = compactStem(file);
+    return {
+      src: `/images/components/${encodeURIComponent(file)}`,
+      file,
+      title: displayTitle(file),
+      htmlAlt: altForFile(file),
+      href: HREF_BY_STEM.get(stem) ?? null,
+    };
+  });
+} catch {
+  items = [];
+}
+---
+
+<ComponentsLayout
+  title="Components"
+  description="Prism UI components for web experiences."
+  current="overview"
+>
+  <header class="page-head">
+    <h1 data-i18n="components.overview.h1">Components</h1>
+    <p class="intro" data-i18n="components.intro">
+      Reference implementations and usage notes live in the web reference app. This section tracks what is
+      documented as the library grows.
+    </p>
+  </header>
+
+  {
+    items.length > 0 ? (
+      <div
+        class="comp-overview-grid"
+        data-i18n-aria="components.overview.galleryAria"
+        aria-label={en["components.overview.galleryAria"]}
+      >
+        {items.map(({ src, title, htmlAlt, href }) =>
+          href ? (
+            <a class="comp-card comp-card--link" href={href}>
+              <figure class="comp-card__figure">
+                <div class="comp-card__media">
+                  <img
+                    class="comp-card__img"
+                    src={src}
+                    loading="lazy"
+                    decoding="async"
+                    alt={htmlAlt}
+                  />
+                </div>
+                <figcaption class="comp-card__caption">
+                  <span class="comp-card__title">{title}</span>
+                </figcaption>
+              </figure>
+            </a>
+          ) : (
+            <figure class="comp-card comp-card--static">
+              <div class="comp-card__media">
+                <img class="comp-card__img" src={src} loading="lazy" decoding="async" alt={htmlAlt} />
+              </div>
+              <figcaption class="comp-card__caption">
+                <span class="comp-card__title">{title}</span>
+              </figcaption>
+            </figure>
+          )
+        )}
+      </div>
+    ) : null
+  }
+
+  <p class="note">
+    <span data-i18n="components.notePrefix">Run</span>
+    <code>npm run dev -w @prism/reference-web</code>
+    <span data-i18n="components.noteSuffix">to open the interactive gallery locally (default port 4322).</span>
+  </p>
+</ComponentsLayout>
+
+<style>
+  .page-head {
+    width: 100%;
+    max-width: none;
+    margin-bottom: var(--prism-space-2xl);
+  }
+
+  h1 {
+    margin: 0 0 var(--prism-space-md);
+    font-size: clamp(3rem, 8.5vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+  }
+
+  .intro {
+    margin: 0;
+    color: var(--prism-color-text-secondary);
+    line-height: 1.65;
+    font-size: 1.0625rem;
+  }
+
+  .comp-overview-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--prism-space-xl);
+    margin: var(--prism-space-3xl) 0 var(--prism-space-2xl);
+    align-items: start;
+  }
+
+  @media (max-width: 46.875rem) {
+    .comp-overview-grid {
+      gap: var(--prism-space-lg);
+    }
+  }
+
+  @media (min-width: 52rem) {
+    .comp-overview-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .comp-card {
+    margin: 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--prism-space-sm);
+  }
+
+  .comp-card--link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    padding: 0 0 var(--prism-space-sm);
+  }
+
+  .comp-card--link:focus-visible {
+    outline: 2px solid var(--prism-color-accent-strong);
+    outline-offset: 2px;
+  }
+
+  .comp-card__figure {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--prism-space-sm);
+    min-width: 0;
+  }
+
+  .comp-card__media {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+
+  .comp-card--link .comp-card__media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: color-mix(in srgb, var(--prism-color-text-primary) 8%, transparent);
+    opacity: 0;
+    transition: opacity 0.18s ease;
+    pointer-events: none;
+  }
+
+  .comp-card--link:hover .comp-card__media::after,
+  .comp-card--link:focus-visible .comp-card__media::after {
+    opacity: 1;
+  }
+
+  .comp-card__img {
+    display: block;
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+    border-radius: 12px;
+  }
+
+  .comp-card__caption {
+    margin: 0;
+    padding: 0 var(--prism-space-sm);
+    text-align: left;
+  }
+
+  .comp-card__title {
+    font-weight: 600;
+    font-size: clamp(1rem, 0.35vw + 0.92rem, 1.1875rem);
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    color: var(--prism-color-text-primary);
+    transition: color 0.2s ease;
+  }
+
+  .comp-card--link:hover .comp-card__title,
+  .comp-card--link:focus-visible .comp-card__title {
+    color: var(--prism-color-accent-strong);
+  }
+
+  .comp-card--static .comp-card__title {
+    color: var(--prism-color-text-secondary);
+  }
+
+  .note {
+    margin: 0;
+    font-size: 0.9375rem;
+    color: var(--prism-color-text-secondary);
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .note code {
+    display: inline-block;
+    max-width: 100%;
+    overflow-x: auto;
+    vertical-align: bottom;
+  }
+</style>

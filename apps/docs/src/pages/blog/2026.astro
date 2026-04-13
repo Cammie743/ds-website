@@ -1,0 +1,19 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import BlogUpdateArticle from "../../components/blog/BlogUpdateArticle.astro";
+---
+
+<BlogLayout title="2026" current="y2026" description="Blog posts from 2026 by the Prism team.">
+  <header class="page-head">
+    <h1 data-i18n="blog.nav.y2026">2026</h1>
+    <p class="intro" data-i18n="blog.lede">
+      Release notes, deep dives, and product updates from the Prism team.
+    </p>
+  </header>
+  <div class="blog-posts">
+    <BlogUpdateArticle id="update-home-navigation" updateN={1} isFirstInPage />
+    <BlogUpdateArticle id="update-theme-previews" updateN={2} />
+    <BlogUpdateArticle id="update-foundations-ia" updateN={3} />
+    <BlogUpdateArticle id="update-search-docs" updateN={4} />
+  </div>
+</BlogLayout>

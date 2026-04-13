@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.astro/
+.output/
+tmp/
+*.log
+.DS_Store
+.env
+.env.local
+coverage/
+.turbo/
+*.tsbuildinfo
+apps/reference-web/dist/
+apps/reference-desktop/out/
+apps/reference-mobile/www/

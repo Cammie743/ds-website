@@ -1,0 +1,2806 @@
+---
+import "../styles/global.css";
+import { uiStrings } from "../i18n/ui";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Prism is the design system for product experiences." } = Astro.props;
+const fullTitle = title === "Prism" ? title : `${title} · Prism`;
+
+const pathname = Astro.url.pathname.replace(/\/+$/, "") || "/";
+
+function isNavActive(href: string): boolean {
+  if (href === "/") return pathname === "/";
+  if (href === "/get-started") return pathname.startsWith("/get-started");
+  if (href === "/foundations") return pathname.startsWith("/foundations");
+  if (href === "/components") return pathname.startsWith("/components");
+  if (href === "/resources") return pathname.startsWith("/resources");
+  if (href === "/blog") return pathname.startsWith("/blog");
+  return false;
+}
+
+function pathNorm(p: string): string {
+  return p.replace(/\/+$/, "") || "/";
+}
+
+const normPath = pathNorm(pathname);
+
+const componentsAvatarsDrawerOpen =
+  normPath === "/components/avatars" || normPath.startsWith("/components/avatars/");
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{fullTitle}</title>
+    <script is:inline>
+      (function () {
+        var allowed = { dark: 1, bloom: 1, agave: 1, rose: 1 };
+        var t = localStorage.getItem("prism-theme");
+        if (t && !allowed[t] && t !== "light") {
+          try {
+            localStorage.removeItem("prism-theme");
+          } catch (e) {}
+          t = null;
+        }
+        if (t && allowed[t]) document.documentElement.setAttribute("data-theme", t);
+        else document.documentElement.removeAttribute("data-theme");
+      })();
+    </script>
+  </head>
+  <body class="site">
+    <div class="prism-bg" aria-hidden="true"></div>
+    <header class="top">
+        <a class="brand" href="/"><span class="brand-name">Prism</span></a>
+        <div class="nav-drawer-backdrop" id="nav-drawer-backdrop" aria-hidden="true"></div>
+        <nav class="nav" id="site-nav" aria-label="Primary">
+          <div class="nav-drawer-header" id="nav-drawer-header" aria-hidden="true">
+            <button
+              type="button"
+              class="nav-drawer-parent"
+              id="nav-drawer-back"
+              hidden
+              aria-label="Back"
+              data-i18n-aria="nav.back"
+            >
+              <span class="nav-drawer-parent-chevron" aria-hidden="true">
+                <svg
+                  class="nav-drawer-parent-chevron-svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M19 12H5M12 5l-7 7 7 7"></path>
+                </svg>
+              </span>
+              <span class="nav-drawer-section-title" id="nav-drawer-section-title"></span>
+            </button>
+          </div>
+          <div class="nav-drawer-viewport" id="nav-drawer-viewport">
+            <div class="nav-drawer-track" id="nav-drawer-track">
+              <div class="nav-drawer-panel nav-drawer-panel--root" id="nav-drawer-panel-root">
+                <a
+                  class="nav-link--drawer"
+                  href="/"
+                  aria-current={isNavActive("/") ? "page" : undefined}
+                  data-i18n="nav.home">Home</a>
+                <a
+                  class="nav-link--has-nested"
+                  href="/get-started/overview"
+                  data-nav-drill="get-started"
+                  data-nav-drill-route-prefix="/get-started"
+                  aria-current={isNavActive("/get-started") ? "page" : undefined}
+                >
+                  <span data-i18n="nav.getStarted">Get started</span>
+                  <span class="nav-link-chevron" aria-hidden="true">
+                    <svg
+                      class="nav-link-chevron-svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="m9 18 6-6-6-6"></path>
+                    </svg>
+                  </span>
+                </a>
+                <a
+                  class="nav-link--has-nested"
+                  href="/foundations/overview"
+                  data-nav-drill="foundations"
+                  data-nav-drill-route-prefix="/foundations"
+                  aria-current={isNavActive("/foundations") ? "page" : undefined}
+                >
+                  <span data-i18n="nav.foundations">Foundations</span>
+                  <span class="nav-link-chevron" aria-hidden="true">
+                    <svg
+                      class="nav-link-chevron-svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="m9 18 6-6-6-6"></path>
+                    </svg>
+                  </span>
+                </a>
+                <a
+                  class="nav-link--has-nested"
+                  href="/components/overview"
+                  data-nav-drill="components"
+                  data-nav-drill-route-prefix="/components"
+                  aria-current={isNavActive("/components") ? "page" : undefined}
+                >
+                  <span data-i18n="nav.components">Components</span>
+                  <span class="nav-link-chevron" aria-hidden="true">
+                    <svg
+                      class="nav-link-chevron-svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="m9 18 6-6-6-6"></path>
+                    </svg>
+                  </span>
+                </a>
+                <a href="/resources" aria-current={isNavActive("/resources") ? "page" : undefined} data-i18n="nav.resources">Resources</a>
+                <a
+                  class="nav-link--has-nested"
+                  href="/blog/featured"
+                  data-nav-drill="blog"
+                  data-nav-drill-route-prefix="/blog"
+                  aria-current={isNavActive("/blog") ? "page" : undefined}
+                >
+                  <span data-i18n="nav.blog">Blog</span>
+                  <span class="nav-link-chevron" aria-hidden="true">
+                    <svg
+                      class="nav-link-chevron-svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="m9 18 6-6-6-6"></path>
+                    </svg>
+                  </span>
+                </a>
+              </div>
+              <div class="nav-drawer-panel nav-drawer-panel--sub" id="nav-drawer-panel-sub" aria-hidden="true" role="group">
+                <ul
+                  id="nav-drawer-sub-get-started"
+                  class="nav-drawer-subnav-list"
+                  data-i18n-aria="getStarted.sectionNav.aria"
+                  aria-label="Get started pages"
+                >
+                  <li>
+                    <a
+                      href="/get-started/overview"
+                      aria-current={normPath === "/get-started/overview" ? "page" : undefined}
+                      data-i18n="getStarted.toc.overview">Overview</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/get-started/mission"
+                      aria-current={normPath === "/get-started/mission" ? "page" : undefined}
+                      data-i18n="getStarted.toc.mission">Mission</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/get-started/principles"
+                      aria-current={normPath === "/get-started/principles" ? "page" : undefined}
+                      data-i18n="getStarted.toc.principles">Design principles</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/get-started/language"
+                      aria-current={normPath === "/get-started/language" ? "page" : undefined}
+                      data-i18n="getStarted.toc.language">Design language</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/get-started/faq"
+                      aria-current={normPath === "/get-started/faq" ? "page" : undefined}
+                      data-i18n="getStarted.toc.faq">FAQs</a>
+                  </li>
+                </ul>
+                <ul
+                  id="nav-drawer-sub-foundations"
+                  class="nav-drawer-subnav-list"
+                  hidden
+                  data-i18n-aria="foundations.sectionNav.aria"
+                  aria-label="Foundations pages"
+                >
+                  <li>
+                    <a
+                      href="/foundations/overview"
+                      aria-current={normPath === "/foundations/overview" ? "page" : undefined}
+                      data-i18n="foundations.toc.overview">Overview</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/foundations/color"
+                      aria-current={
+                        normPath === "/foundations/color" || normPath === "/foundations/colors"
+                          ? "page"
+                          : undefined
+                      }
+                      data-i18n="foundations.toc.color">Color</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/foundations/typography"
+                      aria-current={normPath === "/foundations/typography" ? "page" : undefined}
+                      data-i18n="foundations.toc.typography">Typography</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/foundations/iconography"
+                      aria-current={normPath === "/foundations/iconography" ? "page" : undefined}
+                      data-i18n="foundations.toc.iconography">Iconography</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/foundations/space"
+                      aria-current={normPath === "/foundations/space" ? "page" : undefined}
+                      data-i18n="foundations.toc.space">Space</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/foundations/size"
+                      aria-current={normPath === "/foundations/size" ? "page" : undefined}
+                      data-i18n="foundations.toc.size">Size</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/foundations/effects"
+                      aria-current={normPath === "/foundations/effects" ? "page" : undefined}
+                      data-i18n="foundations.toc.effects">Effects</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/foundations/motion"
+                      aria-current={normPath === "/foundations/motion" ? "page" : undefined}
+                      data-i18n="foundations.toc.motion">Motion</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/foundations/gestures"
+                      aria-current={normPath === "/foundations/gestures" ? "page" : undefined}
+                      data-i18n="foundations.toc.gestures">Gestures</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/foundations/haptics-sounds"
+                      aria-current={normPath === "/foundations/haptics-sounds" ? "page" : undefined}
+                      data-i18n="foundations.toc.hapticsSounds">Haptics & sounds</a>
+                  </li>
+                </ul>
+                <ul
+                  id="nav-drawer-sub-components"
+                  class="nav-drawer-subnav-list"
+                  hidden
+                  data-i18n-aria="components.sectionNav.aria"
+                  aria-label="Components pages"
+                >
+                  <li>
+                    <a
+                      href="/components/overview"
+                      aria-current={normPath === "/components/overview" ? "page" : undefined}
+                      data-i18n="components.toc.overview">Overview</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/components/accordion"
+                      aria-current={normPath === "/components/accordion" ? "page" : undefined}
+                      data-i18n="components.toc.accordion">Accordion</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/components/anchor"
+                      aria-current={normPath === "/components/anchor" ? "page" : undefined}
+                      data-i18n="components.toc.anchor">Anchor</a>
+                  </li>
+                  <li class="nav-drawer-subnav-item--disclosure">
+                    <details class="nav-drawer-subnav-details" open={componentsAvatarsDrawerOpen}>
+                      <summary class="nav-drawer-subnav-details-summary">
+                        <span class="nav-drawer-subnav-details-inner">
+                          <a
+                            href="/components/avatars"
+                            aria-current={normPath === "/components/avatars" ? "page" : undefined}
+                            data-i18n="components.toc.avatars">Avatars</a>
+                          <span class="nav-drawer-subnav-details-chevron" aria-hidden="true">
+                            <svg
+                              class="nav-drawer-subnav-details-chevron-svg"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            >
+                              <path d="m9 18 6-6-6-6"></path>
+                            </svg>
+                          </span>
+                        </span>
+                      </summary>
+                      <ul class="nav-drawer-subnav-details-list">
+                        <li class="nav-drawer-subnav-nested">
+                          <a
+                            href="/components/avatars/avatar"
+                            aria-current={normPath === "/components/avatars/avatar" ? "page" : undefined}
+                            data-i18n="components.toc.avatar">Avatar</a>
+                        </li>
+                        <li class="nav-drawer-subnav-nested">
+                          <a
+                            href="/components/avatars/avatar-group"
+                            aria-current={normPath === "/components/avatars/avatar-group" ? "page" : undefined}
+                            data-i18n="components.toc.avatarGroup">Avatar group</a>
+                        </li>
+                      </ul>
+                    </details>
+                  </li>
+                  <li>
+                    <a
+                      href="/components/buttons"
+                      aria-current={normPath === "/components/buttons" ? "page" : undefined}
+                      data-i18n="components.toc.buttons">Buttons</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/components/dialog"
+                      aria-current={normPath === "/components/dialog" ? "page" : undefined}
+                      data-i18n="components.toc.dialog">Dialog</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/components/input-fields"
+                      aria-current={normPath === "/components/input-fields" ? "page" : undefined}
+                      data-i18n="components.toc.inputFields">Input fields</a>
+                  </li>
+                </ul>
+                <ul
+                  id="nav-drawer-sub-blog"
+                  class="nav-drawer-subnav-list"
+                  hidden
+                  data-i18n-aria="blog.sectionNav.aria"
+                  aria-label="Blog sections"
+                >
+                  <li>
+                    <a
+                      href="/blog/featured"
+                      aria-current={normPath === "/blog/featured" ? "page" : undefined}
+                      data-i18n="blog.nav.featured">Featured</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/blog/latest"
+                      aria-current={normPath === "/blog/latest" ? "page" : undefined}
+                      data-i18n="blog.nav.latest">Latest updates</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/blog/2026"
+                      aria-current={normPath === "/blog/2026" ? "page" : undefined}
+                      data-i18n="blog.nav.y2026">2026</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/blog/2025"
+                      aria-current={normPath === "/blog/2025" ? "page" : undefined}
+                      data-i18n="blog.nav.y2025">2025</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <button
+            type="button"
+            class="icon-btn nav-drawer-close"
+            id="nav-drawer-close"
+            aria-label="Close menu"
+            data-tooltip="Close menu"
+          >
+            <span class="icon nav-toggle-bars nav-toggle-bars--x" aria-hidden="true">
+              <span class="nav-toggle-bar"></span>
+              <span class="nav-toggle-bar"></span>
+              <span class="nav-toggle-bar"></span>
+            </span>
+          </button>
+        </nav>
+        <div class="top-tools">
+          <div class="search-wrap" id="search-wrap">
+            <button
+              type="button"
+              class="icon-btn"
+              id="search-toggle"
+              aria-expanded="false"
+              aria-controls="search-drawer"
+              aria-haspopup="dialog"
+              aria-label="Open search"
+              data-tooltip="Open search (Ctrl+K)"
+            >
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"></circle>
+                <path d="M20 20l-4.35-4.35" stroke-linecap="round"></path>
+              </svg>
+            </button>
+          </div>
+          <div class="top-tools-drawer-util" id="top-tools-drawer-util" role="group" aria-label="Language and theme">
+            <button type="button" class="icon-btn" id="lang-toggle" aria-label="Language: English" data-tooltip="Translate">
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="m5 8 6 6"></path>
+                <path d="m4 14 6-6 2-3"></path>
+                <path d="M2 5h12"></path>
+                <path d="M7 2h1"></path>
+                <path d="m22 22-5-10-5 10"></path>
+                <path d="M14 18h6"></path>
+              </svg>
+            </button>
+            <div class="theme-select-wrap">
+              <label class="theme-select-label">
+                <span class="theme-select-label-text" data-i18n="theme.aria">Color theme</span>
+                <select id="theme-select" class="theme-select" autocomplete="off">
+                  <option value="light" data-i18n="theme.light">Light</option>
+                  <option value="dark" data-i18n="theme.dark">Dark</option>
+                  <option value="bloom" data-i18n="theme.bloom">Bloom</option>
+                  <option value="agave" data-i18n="theme.agave">Agave</option>
+                  <option value="rose" data-i18n="theme.rose">Rose</option>
+                </select>
+              </label>
+            </div>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="nav-toggle"
+          id="nav-toggle"
+          aria-expanded="false"
+          aria-controls="site-nav"
+          aria-label="Open menu"
+          data-tooltip="Open menu"
+        >
+          <span class="nav-toggle-icons" aria-hidden="true">
+            <span class="nav-toggle-bars">
+              <span class="nav-toggle-bar"></span>
+              <span class="nav-toggle-bar"></span>
+              <span class="nav-toggle-bar"></span>
+            </span>
+          </span>
+        </button>
+    </header>
+    <div class="search-drawer-backdrop" id="search-drawer-backdrop" aria-hidden="true"></div>
+    <div
+      class="search-drawer"
+      id="search-drawer"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="search-drawer-title"
+      aria-hidden="true"
+    >
+      <div class="search-drawer-inner">
+        <span class="search-drawer-title" id="search-drawer-title" data-i18n="search.drawerTitle">Search</span>
+        <div class="search-drawer-field-wrap">
+          <div class="site-search-field">
+            <span class="site-search-icon" aria-hidden="true">
+              <svg class="site-search-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <circle cx="11" cy="11" r="7"></circle>
+                <path d="M20 20l-4.35-4.35" stroke-linecap="round"></path>
+              </svg>
+            </span>
+            <input
+              class="site-search"
+              type="text"
+              role="searchbox"
+              inputmode="search"
+              id="site-search"
+              name="q"
+              placeholder="Search Prism"
+              data-i18n-placeholder="search.placeholder"
+              autocomplete="off"
+              aria-label="Search documentation"
+              data-i18n-aria="search.ariaStatic"
+            />
+            <button
+              type="button"
+              class="search-clear"
+              id="search-clear"
+              aria-hidden="true"
+              aria-label="Clear search"
+              data-i18n-aria="search.clear"
+              data-tooltip="Clear search"
+            >
+              <svg class="search-clear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M18 6 6 18M6 6l12 12" stroke-linecap="round"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="icon-btn search-drawer-close"
+          id="search-drawer-close"
+          aria-label="Close search"
+          data-tooltip="Close search"
+        >
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M18 6 6 18M6 6l12 12" stroke-linecap="round"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <main class="main">
+      <slot />
+    </main>
+    <footer class="foot">
+      <p data-i18n="footer.tagline">Prism · Design system documentation.</p>
+    </footer>
+    <script define:vars={{ uiStrings }}>
+      (function () {
+        var root = document.documentElement;
+        var locales = ["en", "zh"];
+        function getLang() {
+          return root.dataset.uiLang === "zh" ? "zh" : "en";
+        }
+        function t(key) {
+          var lang = getLang();
+          var row = uiStrings[lang];
+          if (row && key in row) return row[key];
+          return uiStrings.en[key] || key;
+        }
+        function isMacOSClient() {
+          if (typeof navigator === "undefined") return false;
+          var ua = navigator.userAgent || "";
+          var p = navigator.platform || "";
+          if (/Macintosh|Mac OS X|MacIntel|iPhone|iPad|iPod/i.test(ua)) return true;
+          if (/^Mac/i.test(p)) return true;
+          return false;
+        }
+        function searchOpenTooltipKey() {
+          return isMacOSClient() ? "search.openTooltipMac" : "search.openTooltipWin";
+        }
+        function applyTranslations() {
+          var lang = getLang();
+          root.lang = lang === "zh" ? "zh-Hans" : "en";
+          document.querySelectorAll("[data-i18n]").forEach(function (el) {
+            var key = el.getAttribute("data-i18n");
+            if (!key) return;
+            el.textContent = t(key);
+          });
+          document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
+            var key = el.getAttribute("data-i18n-placeholder");
+            if (!key || !("placeholder" in el)) return;
+            el.placeholder = t(key);
+          });
+          document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
+            var key = el.getAttribute("data-i18n-aria");
+            if (!key) return;
+            el.setAttribute("aria-label", t(key));
+          });
+          document.querySelectorAll("[data-i18n-tooltip]").forEach(function (el) {
+            var key = el.getAttribute("data-i18n-tooltip");
+            if (!key) return;
+            el.setAttribute("data-tooltip", t(key));
+          });
+          document.querySelectorAll("[data-i18n-alt]").forEach(function (el) {
+            var key = el.getAttribute("data-i18n-alt");
+            if (!key || el.tagName !== "IMG") return;
+            el.setAttribute("alt", t(key));
+          });
+          syncLangToggle();
+          syncThemeSelect();
+          syncNavToggle();
+          var siteNav = document.getElementById("site-nav");
+          var drillTitle = document.getElementById("nav-drawer-section-title");
+          if (siteNav && drillTitle && siteNav.classList.contains("is-nav-drill-sub")) {
+            var activeDrill = siteNav.getAttribute("data-nav-drill-active");
+            if (activeDrill) {
+              var drillAnchor = document.querySelector(
+                '#nav-drawer-panel-root a[data-nav-drill="' + activeDrill + '"]'
+              );
+              var labelSpan =
+                drillAnchor &&
+                drillAnchor.querySelector("span[data-i18n]");
+              if (labelSpan && labelSpan.textContent) drillTitle.textContent = labelSpan.textContent.trim();
+            }
+          }
+          var drawerClose = document.getElementById("nav-drawer-close");
+          if (drawerClose) {
+            drawerClose.setAttribute("aria-label", t("nav.menuClose"));
+            drawerClose.setAttribute("data-tooltip", t("nav.menuClose"));
+          }
+          var searchClearBtn = document.getElementById("search-clear");
+          if (searchClearBtn) searchClearBtn.setAttribute("data-tooltip", t("search.clear"));
+          var wrap = document.getElementById("search-wrap");
+          var toggle = document.getElementById("search-toggle");
+          var drawer = document.getElementById("search-drawer");
+          var drawerClose = document.getElementById("search-drawer-close");
+          if (drawerClose) {
+            drawerClose.setAttribute("aria-label", t("search.close"));
+            drawerClose.setAttribute("data-tooltip", t("search.close"));
+          }
+          if (wrap && toggle && drawer && drawer.classList.contains("is-open")) {
+            toggle.setAttribute("aria-label", t("search.close"));
+            toggle.setAttribute("data-tooltip", t("search.close"));
+          } else if (toggle) {
+            toggle.setAttribute("aria-label", t("search.open"));
+            toggle.setAttribute("data-tooltip", t(searchOpenTooltipKey()));
+          }
+          syncSearchClearVisibility();
+          document.dispatchEvent(new CustomEvent("prism-locale-applied", { bubbles: true }));
+        }
+        function resetNavDrill() {
+          var siteNav = document.getElementById("site-nav");
+          var subPanel = document.getElementById("nav-drawer-panel-sub");
+          var header = document.getElementById("nav-drawer-header");
+          var backBtn = document.getElementById("nav-drawer-back");
+          var titleEl = document.getElementById("nav-drawer-section-title");
+          var gsUl = document.getElementById("nav-drawer-sub-get-started");
+          var fdUl = document.getElementById("nav-drawer-sub-foundations");
+          var compUl = document.getElementById("nav-drawer-sub-components");
+          var blogUl = document.getElementById("nav-drawer-sub-blog");
+          if (!siteNav) return;
+          siteNav.classList.remove("is-nav-drill-sub");
+          siteNav.removeAttribute("data-nav-drill-active");
+          if (subPanel) subPanel.setAttribute("aria-hidden", "true");
+          if (header) header.setAttribute("aria-hidden", "true");
+          if (backBtn) backBtn.hidden = true;
+          if (titleEl) titleEl.textContent = "";
+          if (gsUl) gsUl.hidden = true;
+          if (fdUl) fdUl.hidden = true;
+          if (compUl) compUl.hidden = true;
+          if (blogUl) blogUl.hidden = true;
+        }
+        function isNavMobileDrawer() {
+          return window.matchMedia("(max-width: 68rem)").matches;
+        }
+        function normPathDrawer(p) {
+          if (!p || p === "/") return "/";
+          return String(p).replace(/\/+$/, "") || "/";
+        }
+        function pathMatchesDrillPrefix(path, prefix) {
+          var pre = normPathDrawer(prefix);
+          var pt = normPathDrawer(path);
+          return pt === pre || pt.indexOf(pre + "/") === 0;
+        }
+        function isNavDrillId(drillId) {
+          return (
+            drillId === "get-started" ||
+            drillId === "foundations" ||
+            drillId === "components" ||
+            drillId === "blog"
+          );
+        }
+        function syncNavDrillToCurrentRoute() {
+          if (!isNavMobileDrawer()) return;
+          var topEl = document.querySelector(".top");
+          if (!topEl || !topEl.classList.contains("is-nav-open")) return;
+          var path = normPathDrawer(window.location.pathname);
+          var rootPanel = document.getElementById("nav-drawer-panel-root");
+          if (!rootPanel) return;
+          var anchors = rootPanel.querySelectorAll("a[data-nav-drill][data-nav-drill-route-prefix]");
+          for (var i = 0; i < anchors.length; i++) {
+            var anchorEl = anchors[i];
+            var prefix = anchorEl.getAttribute("data-nav-drill-route-prefix");
+            if (!prefix || !pathMatchesDrillPrefix(path, prefix)) continue;
+            (function (anchor) {
+              function run() {
+                if (!topEl.classList.contains("is-nav-open")) return;
+                openNavDrill(anchor, true);
+              }
+              if (typeof requestAnimationFrame === "function") {
+                requestAnimationFrame(function () {
+                  requestAnimationFrame(run);
+                });
+              } else {
+                setTimeout(run, 0);
+              }
+            })(anchorEl);
+            return;
+          }
+        }
+        function openNavDrill(anchor, skipFocus) {
+          var siteNav = document.getElementById("site-nav");
+          var subPanel = document.getElementById("nav-drawer-panel-sub");
+          var header = document.getElementById("nav-drawer-header");
+          var backBtn = document.getElementById("nav-drawer-back");
+          var titleEl = document.getElementById("nav-drawer-section-title");
+          var drillId = anchor && anchor.getAttribute("data-nav-drill");
+          if (!siteNav || !anchor || !isNavDrillId(drillId)) return false;
+          if (!isNavMobileDrawer()) return false;
+          var gsUl = document.getElementById("nav-drawer-sub-get-started");
+          var fdUl = document.getElementById("nav-drawer-sub-foundations");
+          var compUl = document.getElementById("nav-drawer-sub-components");
+          var blogUl = document.getElementById("nav-drawer-sub-blog");
+          if (gsUl) gsUl.hidden = drillId !== "get-started";
+          if (fdUl) fdUl.hidden = drillId !== "foundations";
+          if (compUl) compUl.hidden = drillId !== "components";
+          if (blogUl) blogUl.hidden = drillId !== "blog";
+          var labelSpan = anchor.querySelector("span[data-i18n]");
+          var titleText = (labelSpan && labelSpan.textContent && labelSpan.textContent.trim()) || "";
+          siteNav.classList.add("is-nav-drill-sub");
+          siteNav.setAttribute("data-nav-drill-active", drillId);
+          if (subPanel) subPanel.setAttribute("aria-hidden", "false");
+          if (header) header.setAttribute("aria-hidden", "false");
+          if (backBtn) backBtn.hidden = false;
+          if (titleEl) titleEl.textContent = titleText;
+          if (!skipFocus && backBtn && typeof backBtn.focus === "function") {
+            try {
+              backBtn.focus({ preventScroll: true });
+            } catch (_) {
+              backBtn.focus();
+            }
+          }
+          return true;
+        }
+        function syncDrawerUtilSlot() {
+          var util = document.getElementById("top-tools-drawer-util");
+          var nav = document.getElementById("site-nav");
+          var topTools = document.querySelector(".top-tools");
+          var topEl = document.querySelector(".top");
+          if (!util || !nav || !topTools || !topEl) return;
+          var narrow = window.matchMedia("(max-width: 68rem)").matches;
+          if (!narrow) {
+            if (util.parentElement !== topTools) topTools.appendChild(util);
+            return;
+          }
+          if (topEl.classList.contains("is-nav-open")) {
+            nav.appendChild(util);
+          } else if (util.parentElement !== topTools) {
+            topTools.appendChild(util);
+          }
+        }
+        function syncHeaderScrollState() {
+          var bar = document.querySelector(".top");
+          if (!bar) return;
+          var scrolled = window.scrollY > 0;
+          bar.classList.toggle("is-scrolled", scrolled);
+          var anchor =
+            scrolled ? "calc(72px + var(--site-header-pill-top-gap, 1rem))" : "72px";
+          root.style.setProperty("--site-header-sticky-anchor", anchor);
+        }
+        function syncNavToggle() {
+          var topEl = document.querySelector(".top");
+          var navT = document.getElementById("nav-toggle");
+          var drawerClose = document.getElementById("nav-drawer-close");
+          if (!topEl || !navT) return;
+          var open = topEl.classList.contains("is-nav-open");
+          if (!open) resetNavDrill();
+          var narrow = window.matchMedia("(max-width: 68rem)").matches;
+          navT.setAttribute("aria-expanded", open ? "true" : "false");
+          navT.setAttribute("aria-label", open ? t("nav.menuClose") : t("nav.menuOpen"));
+          navT.setAttribute("data-tooltip", open ? t("nav.menuClose") : t("nav.menuOpen"));
+          if (drawerClose && narrow) {
+            if (open) {
+              drawerClose.setAttribute("aria-hidden", "true");
+              drawerClose.setAttribute("tabindex", "-1");
+            } else {
+              drawerClose.removeAttribute("aria-hidden");
+              drawerClose.removeAttribute("tabindex");
+            }
+          } else if (drawerClose) {
+            drawerClose.removeAttribute("aria-hidden");
+            drawerClose.removeAttribute("tabindex");
+          }
+          syncDrawerUtilSlot();
+          syncHeaderScrollState();
+        }
+        function getThemeId() {
+          var a = root.getAttribute("data-theme");
+          return a || "light";
+        }
+        function syncThemeSelect() {
+          var sel = document.getElementById("theme-select");
+          if (!sel) return;
+          sel.value = getThemeId();
+        }
+        function applyStoredLocale() {
+          var stored = localStorage.getItem("prism-locale");
+          var lang = stored && locales.indexOf(stored) !== -1 ? stored : "en";
+          root.dataset.uiLang = lang;
+        }
+        function syncLangToggle() {
+          var btn = document.getElementById("lang-toggle");
+          if (!btn) return;
+          var lang = getLang();
+          btn.setAttribute("aria-label", lang === "zh" ? t("lang.ariaZh") : t("lang.ariaEn"));
+          btn.setAttribute("data-tooltip", t("lang.title"));
+        }
+        var wrap = document.getElementById("search-wrap");
+        var toggle = document.getElementById("search-toggle");
+        var drawer = document.getElementById("search-drawer");
+        var searchBackdrop = document.getElementById("search-drawer-backdrop");
+        var input = document.getElementById("site-search");
+        var searchClear = document.getElementById("search-clear");
+        function syncSearchClearVisibility() {
+          if (!drawer || !input || !searchClear) return;
+          var show = drawer.classList.contains("is-open") && input.value.length > 0;
+          searchClear.classList.toggle("is-visible", show);
+          if (show) searchClear.removeAttribute("aria-hidden");
+          else searchClear.setAttribute("aria-hidden", "true");
+        }
+        function setSearchOpen(open) {
+          if (!drawer || !toggle || !input) return;
+          var preserveX = 0;
+          var preserveY = 0;
+          if (open) {
+            preserveX = window.scrollX;
+            preserveY = window.scrollY;
+          }
+          drawer.classList.toggle("is-open", open);
+          drawer.setAttribute("aria-hidden", open ? "false" : "true");
+          if (searchBackdrop) searchBackdrop.setAttribute("aria-hidden", open ? "false" : "true");
+          root.classList.toggle("is-search-open", open);
+          toggle.setAttribute("aria-expanded", open ? "true" : "false");
+          toggle.setAttribute("aria-label", open ? t("search.close") : t("search.open"));
+          toggle.setAttribute("data-tooltip", open ? t("search.close") : t(searchOpenTooltipKey()));
+          if (open) {
+            function focusSearchInput() {
+              if (!input) return;
+              try {
+                input.focus({ preventScroll: true });
+              } catch (err) {
+                input.focus();
+              }
+              input.select();
+              window.scrollTo(preserveX, preserveY);
+              requestAnimationFrame(function () {
+                window.scrollTo(preserveX, preserveY);
+                syncHeaderScrollState();
+              });
+            }
+            if (typeof requestAnimationFrame === "function") {
+              requestAnimationFrame(function () {
+                requestAnimationFrame(focusSearchInput);
+              });
+            } else {
+              setTimeout(focusSearchInput, 0);
+            }
+          }
+          syncSearchClearVisibility();
+        }
+        input?.addEventListener("input", syncSearchClearVisibility);
+        searchClear?.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (!input) return;
+          input.value = "";
+          syncSearchClearVisibility();
+          input.focus();
+        });
+        toggle?.addEventListener("click", function (e) {
+          e.stopPropagation();
+          setSearchOpen(!drawer?.classList?.contains("is-open"));
+        });
+        applyStoredLocale();
+        applyTranslations();
+        document.getElementById("theme-select")?.addEventListener("change", function (e) {
+          var sel = e.target;
+          if (!sel || sel.id !== "theme-select") return;
+          var v = sel.value;
+          if (v === "light") root.removeAttribute("data-theme");
+          else root.setAttribute("data-theme", v);
+          try {
+            localStorage.setItem("prism-theme", v);
+          } catch (err) {}
+        });
+        document.getElementById("lang-toggle")?.addEventListener("click", function () {
+          var cur = root.dataset.uiLang || "en";
+          var i = locales.indexOf(cur);
+          if (i === -1) i = 0;
+          var next = locales[(i + 1) % locales.length];
+          root.dataset.uiLang = next;
+          localStorage.setItem("prism-locale", next);
+          applyTranslations();
+        });
+        function shouldIgnoreSearchShortcutKey(active) {
+          if (!active || active.nodeType !== 1) return false;
+          if (active.id === "site-search") return false;
+          var tag = active.tagName;
+          if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return true;
+          if (active.isContentEditable) return true;
+          if (active.closest && active.closest("[contenteditable='true']")) return true;
+          return false;
+        }
+        document.addEventListener("keydown", function (e) {
+          var isK = e.key === "k" || e.key === "K";
+          if (isK && (e.metaKey || e.ctrlKey)) {
+            if (shouldIgnoreSearchShortcutKey(document.activeElement)) return;
+            e.preventDefault();
+            if (drawer?.classList.contains("is-open")) {
+              setSearchOpen(false);
+              toggle?.focus();
+            } else {
+              setSearchOpen(true);
+            }
+            return;
+          }
+          if (e.key !== "Escape") return;
+          if (drawer?.classList.contains("is-open")) {
+            setSearchOpen(false);
+            toggle?.focus();
+            return;
+          }
+          var topEl = document.querySelector(".top");
+          if (topEl && topEl.classList.contains("is-nav-open")) {
+            topEl.classList.remove("is-nav-open");
+            syncNavToggle();
+            document.getElementById("nav-toggle")?.focus();
+          }
+        });
+        document.addEventListener("click", function (e) {
+          var topEl = document.querySelector(".top");
+          if (topEl && topEl.classList.contains("is-nav-open") && !topEl.contains(e.target)) {
+            topEl.classList.remove("is-nav-open");
+            syncNavToggle();
+          }
+          if (!drawer || !drawer.classList.contains("is-open")) return;
+          var clickTarget = e.target;
+          var inHeaderSearch = wrap && wrap.contains(clickTarget);
+          var inDrawer = drawer.contains(clickTarget);
+          if (!inHeaderSearch && !inDrawer) setSearchOpen(false);
+        });
+        document.getElementById("search-drawer-backdrop")?.addEventListener("click", function () {
+          setSearchOpen(false);
+          toggle?.focus();
+        });
+        document.getElementById("search-drawer-close")?.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          setSearchOpen(false);
+          toggle?.focus();
+        });
+        function closeNavMenu() {
+          var topEl = document.querySelector(".top");
+          if (!topEl || !topEl.classList.contains("is-nav-open")) return;
+          topEl.classList.remove("is-nav-open");
+          syncNavToggle();
+        }
+        document.getElementById("nav-toggle")?.addEventListener("click", function (e) {
+          e.stopPropagation();
+          var topEl = document.querySelector(".top");
+          if (!topEl) return;
+          var wasOpen = topEl.classList.contains("is-nav-open");
+          topEl.classList.toggle("is-nav-open");
+          syncNavToggle();
+          if (!wasOpen && topEl.classList.contains("is-nav-open") && isNavMobileDrawer()) {
+            syncNavDrillToCurrentRoute();
+          }
+        });
+        document.getElementById("nav-drawer-close")?.addEventListener("click", function (e) {
+          e.stopPropagation();
+          closeNavMenu();
+          document.getElementById("nav-toggle")?.focus();
+        });
+        document.getElementById("nav-drawer-backdrop")?.addEventListener("click", function () {
+          closeNavMenu();
+          document.getElementById("nav-toggle")?.focus();
+        });
+        window.addEventListener(
+          "resize",
+          function () {
+            if (window.matchMedia("(min-width: calc(68rem + 1px))").matches) {
+              closeNavMenu();
+              resetNavDrill();
+            }
+            syncDrawerUtilSlot();
+            syncHeaderScrollState();
+          },
+          { passive: true }
+        );
+        syncDrawerUtilSlot();
+
+        var nav = document.querySelector(".nav");
+        var navExitMs = 320;
+        document.getElementById("site-nav")?.addEventListener(
+          "click",
+          function (e) {
+            if (!isNavMobileDrawer()) return;
+            var drillA = e.target && e.target.closest && e.target.closest("a[data-nav-drill]");
+            var drillId = drillA && drillA.getAttribute("data-nav-drill");
+            if (!drillA || !isNavDrillId(drillId)) return;
+            var rootPanel = document.getElementById("nav-drawer-panel-root");
+            if (!rootPanel || !rootPanel.contains(drillA)) return;
+            if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+            e.preventDefault();
+            e.stopPropagation();
+            openNavDrill(drillA);
+          },
+          true
+        );
+        document.getElementById("nav-drawer-back")?.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          resetNavDrill();
+        });
+        nav?.addEventListener("click", function (e) {
+          var anchor = e.target && e.target.closest && e.target.closest("a");
+          if (!anchor || !nav.contains(anchor)) return;
+          closeNavMenu();
+          if (e.defaultPrevented) return;
+          if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+          var href = anchor.getAttribute("href");
+          if (!href || href.charAt(0) === "#") return;
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+          if (!anchor.closest("#nav-drawer-panel-root")) return;
+
+          var current = document.querySelector("#nav-drawer-panel-root > a[aria-current='page']");
+          if (!current || current === anchor) return;
+
+          var nextUrl;
+          try {
+            nextUrl = new URL(anchor.href, window.location.href);
+          } catch (_) {
+            return;
+          }
+          if (nextUrl.origin !== window.location.origin) return;
+          var norm = function (p) {
+            if (!p || p === "/") return "/";
+            return p.replace(/\/+$/, "") || "/";
+          };
+          if (norm(nextUrl.pathname) === norm(window.location.pathname)) return;
+
+          e.preventDefault();
+          current.classList.add("nav-underline-exit");
+
+          var done = false;
+          function go() {
+            if (done) return;
+            done = true;
+            window.location.href = anchor.href;
+          }
+
+          function onAnimEnd(ev) {
+            if (ev.target !== current) return;
+            if (ev.animationName !== "nav-current-exit") return;
+            current.removeEventListener("animationend", onAnimEnd);
+            go();
+          }
+          current.addEventListener("animationend", onAnimEnd);
+          window.setTimeout(go, navExitMs);
+        });
+
+        syncHeaderScrollState();
+        window.addEventListener("scroll", syncHeaderScrollState, { passive: true });
+      })();
+    </script>
+  </body>
+</html>
+
+<style>
+  /* Shared: drawer nav + Get started sidebar — semi-transparent fill (tuned for legibility on canvas) */
+  html {
+    --nav-drawer-item-active-bg: color-mix(in srgb, var(--prism-color-border-subtle) 44%, transparent);
+  }
+
+  html[data-ui-lang="zh"] {
+    font-family: "Noto Sans SC", var(--prism-font-sans), "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+      sans-serif;
+  }
+
+  body.site {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    gap: 0;
+  }
+
+  :root {
+    --site-header-sticky-anchor: 72px;
+    --site-header-pill-top-gap: 1rem;
+    --site-header-pill-inset: max(1rem, min(5vw, 5rem));
+    --site-page-pad-x: 24px;
+    /* Nudges the logo off the pill’s inner left curve (header only; body copy unchanged) */
+    --site-header-pad-start-extra: 6px;
+    /* Outer width of the scrolled pill header — also caps main/footer so columns align with the bar */
+    --site-pill-shell-width: min(
+      1800px,
+      calc(100% - 2 * var(--site-header-pill-inset)),
+      calc(100vw - 2 * var(--site-header-pill-inset))
+    );
+  }
+
+  .top {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 72px;
+    height: 72px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: var(--prism-space-xl);
+    row-gap: 0;
+    padding-block: 0;
+    padding-inline-end: var(--site-page-pad-x);
+    padding-inline-start: calc(var(--site-page-pad-x) + var(--site-header-pad-start-extra));
+    background-color: transparent;
+    /* Match pill state: same sides + style so border-color animates cleanly (no top-edge flash from shorthand reset) */
+    border-style: solid;
+    border-color: transparent;
+    border-width: 0 0 1px 0;
+    transition:
+      background-color 0.25s ease,
+      border-color 0.25s ease,
+      border-width 0.3s ease,
+      box-shadow 0.3s ease,
+      border-radius 0.3s ease,
+      padding-inline 0.3s ease,
+      top 0.25s ease,
+      width 0.3s ease,
+      margin-inline 0.3s ease,
+      -webkit-backdrop-filter 0.3s ease,
+      backdrop-filter 0.3s ease;
+  }
+
+  /*
+   * Scrolled pill: glass / translucent bar. Fill uses a high-opacity surface mix so
+   * --prism-color-text-primary on the bar stays WCAG AA even over saturated canvases;
+   * blur is enhancement only (stronger fill when blur is disabled — reduced motion).
+   */
+  .top.is-scrolled {
+    top: var(--site-header-pill-top-gap);
+    width: var(--site-pill-shell-width);
+    max-width: var(--site-pill-shell-width);
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 9999px;
+    border-width: 1px;
+    border-color: color-mix(in srgb, var(--prism-color-border-subtle) 52%, transparent);
+    /*
+      Blur + translucent fill live on ::before so this element never sets backdrop-filter.
+      backdrop-filter here made position:fixed #site-nav / .nav-drawer-backdrop use the header as
+      their containing block (wrong sheet geometry + snap when toggling blur workarounds).
+    */
+    background-color: transparent;
+    box-shadow:
+      0 6px 28px color-mix(in srgb, var(--prism-color-text-primary) 9%, transparent),
+      0 1px 3px color-mix(in srgb, var(--prism-color-text-primary) 5%, transparent);
+    padding-inline-end: var(--site-page-pad-x);
+    padding-inline-start: calc(var(--site-page-pad-x) + var(--site-header-pad-start-extra));
+  }
+
+  .top.is-scrolled::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    z-index: 0;
+    pointer-events: none;
+    background-color: color-mix(in srgb, var(--prism-color-surface) 76%, transparent);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    backdrop-filter: blur(18px) saturate(160%);
+  }
+
+  .top.is-scrolled > .brand,
+  .top.is-scrolled > .top-tools,
+  .top.is-scrolled > .nav-toggle {
+    position: relative;
+    z-index: 1;
+  }
+
+  @media (min-width: calc(68rem + 1px)) {
+    .top.is-scrolled > .nav {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  [data-theme="dark"] .top.is-scrolled {
+    box-shadow:
+      0 8px 32px color-mix(in srgb, #000 42%, transparent),
+      0 1px 2px color-mix(in srgb, #000 55%, transparent);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .top {
+      transition: none;
+    }
+
+    .top.is-scrolled::before {
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      /* Without blur, lean more opaque so contrast does not depend on content behind the bar */
+      background-color: color-mix(in srgb, var(--prism-color-surface) 93%, transparent);
+    }
+  }
+
+  .brand {
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--prism-space-md);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .brand:hover {
+    color: inherit;
+  }
+
+  .brand-name,
+  .search-drawer-title {
+    font-weight: 700;
+    font-size: clamp(1.125rem, 3.2vw, 1.5rem);
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  .nav-toggle {
+    display: none;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 2.375rem;
+    height: 2.375rem;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid var(--prism-color-border-subtle);
+    background: var(--prism-color-surface);
+    color: var(--prism-color-text-primary);
+    cursor: pointer;
+    box-shadow: var(--prism-shadow-sm);
+  }
+
+  .nav-toggle:hover {
+    border-color: var(--prism-color-border-strong);
+  }
+
+  /*
+    Scrolled pill sets .top.is-scrolled > .nav-toggle { z-index: 1 } above the glass ::before.
+    Without that, the hamburger’s bottom bar often picks up extra antialiasing / shadow blend
+    against the full-width bar — match stacking at rest so it matches the scroll header icon.
+  */
+  .top > .nav-toggle {
+    z-index: 1;
+  }
+
+  .nav-toggle-icons {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 1.125rem;
+    height: 1.125rem;
+    flex-shrink: 0;
+    pointer-events: none;
+    isolation: isolate;
+  }
+
+  /* Three bars: hover stagger (closed), morph to X when open — matches drawer close geometry */
+  .nav-toggle-bars {
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  .icon.nav-toggle-bars {
+    display: block;
+  }
+
+  .nav-toggle-bar {
+    --nav-icon-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    border-radius: 9999px;
+    background: currentColor;
+    transform-origin: 50% 50%;
+    transition:
+      top 0.34s var(--nav-icon-ease),
+      bottom 0.34s var(--nav-icon-ease),
+      margin-top 0.34s var(--nav-icon-ease),
+      transform 0.36s var(--nav-icon-ease),
+      opacity 0.2s ease-out;
+  }
+
+  /*
+    Closed hamburger uses the same absolute stack as the open morph (top / 50% / bottom).
+    A flex column stack was rounding differently vs the pill header and could inflate the last bar.
+  */
+
+  /* Open + drawer “X”: absolute layout (morph) */
+  .nav-toggle-bars .nav-toggle-bar:nth-child(1) {
+    top: 3px;
+    bottom: auto;
+    margin-top: 0;
+  }
+
+  .nav-toggle-bars .nav-toggle-bar:nth-child(2) {
+    top: 50%;
+    bottom: auto;
+    margin-top: -1px;
+  }
+
+  .nav-toggle-bars .nav-toggle-bar:nth-child(3) {
+    /* Use top only (no bottom:auto ↔ bottom:3px) so open morph can interpolate; auto is not interpolable */
+    top: calc(100% - 2px - 3px);
+    bottom: auto;
+    margin-top: 0;
+  }
+
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bars {
+    display: block;
+  }
+
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bars .nav-toggle-bar {
+    position: absolute;
+  }
+
+  .nav-toggle[aria-expanded="false"] .nav-toggle-bar:nth-child(1) {
+    transform: rotate(0deg) translateX(0) scaleX(1);
+    transition-delay: 0ms, 0ms, 0ms, 0ms, 0ms;
+  }
+
+  .nav-toggle[aria-expanded="false"] .nav-toggle-bar:nth-child(2) {
+    transform: scaleX(1);
+    transition-delay: 0ms, 0ms, 0ms, 0.03s, 0ms;
+  }
+
+  .nav-toggle[aria-expanded="false"] .nav-toggle-bar:nth-child(3) {
+    transform: rotate(0deg) translateX(0) scaleX(1);
+    transition-delay: 0ms, 0ms, 0ms, 0.06s, 0ms;
+  }
+
+  /* Hover-only: same transform stack as closed/open so morph never cross-interpolates mismatched lists */
+  .nav-toggle[aria-expanded="false"]:hover .nav-toggle-bar:nth-child(1) {
+    transform: rotate(0deg) translateX(0.14rem) scaleX(0.72);
+    transition-delay: 0ms, 0ms, 0ms, 0ms, 0ms;
+  }
+
+  .nav-toggle[aria-expanded="false"]:hover .nav-toggle-bar:nth-child(2) {
+    transform: scaleX(1);
+    transition-delay: 0ms, 0ms, 0ms, 0.04s, 0ms;
+  }
+
+  .nav-toggle[aria-expanded="false"]:hover .nav-toggle-bar:nth-child(3) {
+    transform: rotate(0deg) translateX(0.14rem) scaleX(0.72);
+    transition-delay: 0ms, 0ms, 0ms, 0.08s, 0ms;
+  }
+
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1),
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3),
+  .nav-toggle-bars--x .nav-toggle-bar:nth-child(1),
+  .nav-toggle-bars--x .nav-toggle-bar:nth-child(3) {
+    top: 50%;
+    bottom: auto;
+    margin-top: -1px;
+  }
+
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1),
+  .nav-toggle-bars--x .nav-toggle-bar:nth-child(1) {
+    transform: rotate(45deg) translateX(0) scaleX(1);
+  }
+
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2),
+  .nav-toggle-bars--x .nav-toggle-bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0.08);
+    transition:
+      top 0.34s var(--nav-icon-ease),
+      bottom 0.34s var(--nav-icon-ease),
+      margin-top 0.34s var(--nav-icon-ease),
+      transform 0.22s ease-out,
+      opacity 0.18s ease-out;
+  }
+
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3),
+  .nav-toggle-bars--x .nav-toggle-bar:nth-child(3) {
+    transform: rotate(-45deg) translateX(0) scaleX(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav-toggle-bar {
+      transition-duration: 0.01ms;
+      transition-delay: 0ms !important;
+    }
+
+    .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2),
+    .nav-toggle-bars--x .nav-toggle-bar:nth-child(2) {
+      transition-duration: 0.01ms;
+      transition-delay: 0ms !important;
+    }
+
+    .nav-toggle[aria-expanded="false"]:hover .nav-toggle-bar {
+      transform: none;
+    }
+  }
+
+  .nav {
+    justify-self: center;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--prism-space-2xl);
+  }
+
+  @media (max-width: 68rem) {
+    .nav {
+      gap: var(--prism-space-xl);
+    }
+
+    .top {
+      column-gap: var(--prism-space-lg);
+    }
+  }
+
+  .nav-link-chevron {
+    display: none;
+  }
+
+  .nav a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    line-height: 1.2;
+    color: var(--prism-color-text-primary);
+    text-decoration: none;
+  }
+
+  .nav a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    bottom: auto;
+    margin-top: 0.35em;
+    width: calc(100% + 0.85rem);
+    height: 2px;
+    border-radius: 999px;
+    background-color: currentColor;
+    pointer-events: none;
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center;
+    opacity: 0;
+    transition:
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.25s ease;
+  }
+
+  .nav a:hover:not([aria-current="page"])::after {
+    transform: translateX(-50%) scaleX(1);
+    opacity: 1;
+  }
+
+  @keyframes nav-current-exit {
+    from {
+      transform: translateX(-50%) scaleX(1);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(-50%) scaleX(0);
+      opacity: 0;
+    }
+  }
+
+  .nav a[aria-current="page"] {
+    color: var(--prism-color-text-primary);
+  }
+
+  .nav a[aria-current="page"]::after {
+    transform: translateX(-50%) scaleX(1);
+    opacity: 1;
+    transition: none;
+  }
+
+  .nav a[aria-current="page"].nav-underline-exit::after {
+    animation: nav-current-exit 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    transition: none;
+  }
+
+  .nav a:hover:not([aria-current="page"]) {
+    color: var(--prism-color-accent-strong);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nav a::after {
+      transition: none;
+    }
+
+    .nav a[aria-current="page"]::after {
+      transform: translateX(-50%) scaleX(1);
+      opacity: 1;
+    }
+
+    .nav a[aria-current="page"].nav-underline-exit::after {
+      animation: none;
+      transform: translateX(-50%) scaleX(0);
+      opacity: 0;
+    }
+  }
+
+  .top-tools {
+    justify-self: end;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: var(--prism-space-sm);
+    min-width: 0;
+  }
+
+  #top-tools-drawer-util {
+    display: flex;
+    align-items: center;
+    gap: var(--prism-space-sm);
+  }
+
+  .nav-drawer-backdrop {
+    display: none;
+  }
+
+  @media (max-width: 68rem) {
+    html:has(.top.is-nav-open) {
+      overflow: hidden;
+    }
+
+    .nav-drawer-backdrop {
+      display: block;
+      position: fixed;
+      inset: 0;
+      /* Inside .top with isolation: dims pill + brand; below #site-nav and #nav-toggle */
+      z-index: 104;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: color-mix(in srgb, var(--prism-color-text-primary) 32%, transparent);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition:
+        opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+        visibility 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    [data-theme="dark"] .nav-drawer-backdrop {
+      background: color-mix(in srgb, #000 55%, transparent);
+    }
+
+    .top.is-nav-open .nav-drawer-backdrop {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .top {
+      position: sticky;
+      z-index: 110;
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      gap: var(--prism-space-xs);
+      /* Match desktop bar height so logo + tools do not shift when nav moves to the drawer */
+      box-sizing: border-box;
+      height: 72px;
+      min-height: 72px;
+      padding-block: 0;
+      padding-inline-end: var(--site-page-pad-x);
+      padding-inline-start: calc(var(--site-page-pad-x) + var(--site-header-pad-start-extra));
+      --top-pad-x: var(--site-page-pad-x);
+      --top-pad-y: 0px;
+    }
+
+    /*
+      Stacking: the fixed drawer must paint above the scrolled pill (brand + tools). Without
+      explicit order, some UAs paint in-flow header chrome over the panel. Keep #nav-toggle last.
+    */
+    .top.is-nav-open {
+      isolation: isolate;
+    }
+
+    .top.is-nav-open .brand,
+    .top.is-nav-open .top-tools {
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand {
+      flex: 1 1 auto;
+      min-width: 0;
+      justify-self: unset;
+    }
+
+    .nav-toggle {
+      display: inline-flex;
+      flex: 0 0 auto;
+    }
+
+    /* One control: morphing toggle stays visible above the drawer; duplicate close is inert */
+    .top.is-nav-open .nav-toggle {
+      position: relative;
+      z-index: 120;
+    }
+
+    .top-tools {
+      flex: 0 0 auto;
+      justify-self: unset;
+      flex-wrap: nowrap;
+    }
+
+    /* Lang + theme live in the drawer only; hide the header copy while the drawer is closed */
+    .top-tools #top-tools-drawer-util {
+      display: none;
+    }
+
+    /* Reparented into #site-nav when drawer opens — rides the panel transform */
+    .nav > .top-tools-drawer-util {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: var(--prism-space-sm);
+      margin-top: auto;
+      align-self: flex-start;
+      padding: var(--nav-drawer-inline) 0 0;
+      margin-bottom: 0;
+      background: none;
+      box-shadow: none;
+      border: 0;
+    }
+
+    .nav > .top-tools-drawer-util :global(.icon-btn) {
+      width: 3.25rem;
+      height: 3.25rem;
+    }
+
+    .nav > .top-tools-drawer-util :global(.icon-btn) :global(.icon) {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    /* Near drawer bottom: show tooltips above */
+    .nav > .top-tools-drawer-util :global(.icon-btn[data-tooltip]:not([data-tooltip=""])::after) {
+      top: auto;
+      bottom: calc(100% + 10px);
+      transform: translate3d(-50%, 6px, 0);
+      z-index: 200;
+    }
+
+    .nav > .top-tools-drawer-util :global(.icon-btn[data-tooltip]:not([data-tooltip=""]):hover::after),
+    .nav > .top-tools-drawer-util :global(.icon-btn[data-tooltip]:not([data-tooltip=""]):focus-visible::after) {
+      transform: translate3d(-50%, 0, 0);
+    }
+
+    .nav {
+      display: flex;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: auto;
+      z-index: 105;
+      box-sizing: border-box;
+      width: min(24rem, calc(100vw - 2.5rem));
+      max-width: 100%;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: stretch;
+      justify-content: flex-start;
+      gap: var(--prism-space-xs);
+      margin: 0;
+      overflow: visible;
+      --nav-drawer-inline: var(--site-page-pad-x);
+      /* Right inset of drawer panel; can narrow with header --top-pad-x on small widths */
+      --nav-drawer-inline-end: var(--nav-drawer-inline);
+      /* Root list: tighter left gutter; right matches --site-page-pad-x; bottom inset for lang + theme row */
+      --nav-drawer-inline-start: 16px;
+      --nav-drawer-pad-bottom: 16px;
+      padding: calc(env(safe-area-inset-top, 0px) + 4.75rem) var(--nav-drawer-inline-end)
+        calc(env(safe-area-inset-bottom, 0px) + var(--nav-drawer-pad-bottom)) var(--nav-drawer-inline-start);
+      justify-self: unset;
+      background-color: var(--prism-color-canvas);
+      border-left: 1px solid color-mix(in srgb, var(--prism-color-border-subtle) 70%, transparent);
+      box-shadow: -12px 0 40px color-mix(in srgb, var(--prism-color-text-primary) 12%, transparent);
+      transform: translate3d(100%, 0, 0);
+      visibility: hidden;
+      pointer-events: none;
+      transition:
+        transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+        visibility 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.3s ease;
+    }
+
+    [data-theme="dark"] .nav {
+      background-color: var(--prism-color-canvas);
+      box-shadow: -12px 0 48px color-mix(in srgb, #000 45%, transparent);
+    }
+
+    .top.is-nav-open .nav {
+      z-index: 108;
+      transform: translate3d(0, 0, 0);
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    /*
+      Drill view: vertically center the parent row (taller than the toggle) with the header
+      close / menu control in the 72px bar — same as toggle center: safe + 36px − half row height.
+    */
+    .nav.is-nav-drill-sub {
+      padding-top: calc(
+        env(safe-area-inset-top, 0px) + 72px / 2 -
+          (2 * var(--prism-space-md) + 1.25rem * 1.4) / 2
+      );
+    }
+
+    .nav :global(.icon-btn.nav-drawer-close) {
+      display: inline-flex;
+      position: absolute;
+      top: calc(env(safe-area-inset-top, 0px) + var(--prism-space-md));
+      right: var(--prism-space-md);
+      z-index: 2;
+    }
+
+    /* Same slot as #nav-toggle (kept for layout / fallback); interaction uses morphing toggle */
+    .top.is-nav-open .nav :global(.icon-btn.nav-drawer-close) {
+      position: fixed;
+      z-index: 115;
+      top: calc(
+        env(safe-area-inset-top, 0px) + var(--top-pad-y) + (72px - 2 * var(--top-pad-y) - 2.375rem) / 2
+      );
+      right: var(--top-pad-x);
+      width: 2.375rem;
+      height: 2.375rem;
+      min-width: 2.375rem;
+      min-height: 2.375rem;
+      box-sizing: border-box;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .top.is-nav-open .nav :global(.icon-btn.nav-drawer-close) :global(.icon) {
+      width: 1.125rem;
+      height: 1.125rem;
+    }
+
+    .nav :global(.icon-btn.nav-drawer-close[data-tooltip]:not([data-tooltip=""])::after) {
+      left: auto;
+      right: 0;
+      transform: translate3d(0, -6px, 0);
+    }
+
+    .nav :global(.icon-btn.nav-drawer-close[data-tooltip]:not([data-tooltip=""]):hover::after),
+    .nav :global(.icon-btn.nav-drawer-close[data-tooltip]:not([data-tooltip=""]):focus-visible::after) {
+      transform: translate3d(0, 0, 0);
+    }
+
+    .nav a {
+      padding: var(--prism-space-md) var(--prism-space-lg);
+      font-size: 1.25rem;
+      line-height: 1.4;
+      border-radius: var(--prism-radius-md);
+      background-color: transparent;
+      transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+    }
+
+    .nav a::after {
+      display: none;
+    }
+
+    .nav a:hover,
+    .nav a:focus-visible {
+      background-color: var(--nav-drawer-item-active-bg);
+      color: var(--prism-color-accent-strong);
+    }
+
+    .nav a:hover .nav-link-chevron,
+    .nav a:focus-visible .nav-link-chevron {
+      color: var(--prism-color-accent-strong);
+      opacity: 1;
+    }
+
+    .nav a:focus-visible {
+      outline: 2px solid color-mix(in srgb, var(--prism-color-accent-strong) 45%, transparent);
+      outline-offset: 2px;
+    }
+
+    .nav a[aria-current="page"] {
+      background-color: var(--nav-drawer-item-active-bg);
+    }
+
+    .nav-drawer-panel--root > a,
+    .nav-drawer-subnav-list a {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .nav-drawer-subnav-list a {
+      font-size: 1rem;
+      line-height: 1.45;
+    }
+
+    .nav a.nav-link--has-nested {
+      justify-content: space-between;
+      gap: var(--prism-space-md);
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .nav a.nav-link--has-nested > span:first-child {
+      min-width: 0;
+    }
+
+    .nav .nav-link-chevron {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--prism-color-text-secondary);
+      opacity: 0.88;
+    }
+
+    .nav-link-chevron-svg {
+      display: block;
+      width: 1.125rem;
+      height: 1.125rem;
+    }
+
+    .nav-drawer-header {
+      display: none;
+      width: 100%;
+      margin-bottom: var(--prism-space-sm);
+      box-sizing: border-box;
+    }
+
+    .nav-drawer-header:not([aria-hidden="true"]) {
+      display: block;
+    }
+
+    /* Match sub panel: page-pad total inset from drawer when nav left uses --nav-drawer-inline-start */
+    .nav.is-nav-drill-sub .nav-drawer-header {
+      padding-inline-start: calc(var(--nav-drawer-inline) - var(--nav-drawer-inline-start));
+      box-sizing: border-box;
+    }
+
+    .nav button.nav-drawer-parent {
+      display: grid;
+      grid-template-columns: var(--prism-space-lg) minmax(0, 1fr);
+      column-gap: 0;
+      align-items: center;
+      width: 100%;
+      box-sizing: border-box;
+      margin: 0;
+      /*
+        Col 1 = same width as .nav a horizontal padding: chevron aligns with subnav pill left edge.
+        Col 2 = title starts where Mission / other sub link text starts (after that padding).
+      */
+      padding: var(--prism-space-md) var(--prism-space-lg) var(--prism-space-md) 0;
+      border: 0;
+      border-radius: var(--prism-radius-md);
+      background-color: transparent;
+      color: var(--prism-color-text-primary);
+      font: inherit;
+      font-size: 1.25rem;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
+      cursor: pointer;
+      text-align: start;
+      transition: color 0.2s ease;
+    }
+
+    .nav button.nav-drawer-parent:hover,
+    .nav button.nav-drawer-parent:focus-visible {
+      color: var(--prism-color-accent-strong);
+    }
+
+    .nav button.nav-drawer-parent:hover .nav-drawer-parent-chevron,
+    .nav button.nav-drawer-parent:focus-visible .nav-drawer-parent-chevron {
+      color: var(--prism-color-accent-strong);
+      opacity: 1;
+    }
+
+    .nav button.nav-drawer-parent:focus-visible {
+      outline: 2px solid color-mix(in srgb, var(--prism-color-accent-strong) 45%, transparent);
+      outline-offset: 2px;
+    }
+
+    .nav-drawer-parent-chevron {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      justify-self: start;
+      width: 1.3125rem;
+      margin-inline-start: calc(-1 * var(--prism-space-sm));
+      color: var(--prism-color-text-secondary);
+      opacity: 0.88;
+    }
+
+    .nav-drawer-parent-chevron-svg {
+      display: block;
+      width: 1.3125rem;
+      height: 1.3125rem;
+    }
+
+    .nav-drawer-section-title {
+      grid-column: 2;
+      min-width: 0;
+      font-weight: 600;
+      text-align: start;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav-drawer-viewport {
+      flex: 1 1 auto;
+      min-height: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .nav-drawer-track {
+      display: flex;
+      width: 200%;
+      height: 100%;
+      transform: translate3d(0, 0, 0);
+      transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
+    .nav.is-nav-drill-sub .nav-drawer-track {
+      transform: translate3d(-50%, 0, 0);
+    }
+
+    .nav-drawer-panel {
+      flex: 0 0 50%;
+      width: 50%;
+      max-width: 50%;
+      box-sizing: border-box;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-drawer-panel--root {
+      display: flex;
+      flex-direction: column;
+      gap: var(--prism-space-xs);
+      align-items: stretch;
+    }
+
+    /*
+      Root list starts below env(safe-area) + 4.75rem nav padding.
+      Drill nav padding centers the parent row on the header control; offset sub list so the first
+      sub link still lines up with where “Home” sits in the root panel.
+    */
+    .nav.is-nav-drill-sub .nav-drawer-panel--sub {
+      /* Nav uses --nav-drawer-inline-start (16px); add gap so sub list matches page-pad drawer inset */
+      padding-inline-start: calc(var(--nav-drawer-inline) - var(--nav-drawer-inline-start));
+      padding-top: calc(
+        4.75rem - 72px / 2 - (2 * var(--prism-space-md) + 1.25rem * 1.4) / 2 - var(--prism-space-sm) -
+          var(--prism-space-xs)
+      );
+    }
+
+    .nav-drawer-subnav-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--prism-space-xs);
+      width: 100%;
+    }
+
+    /* `display: flex` above beats the UA `[hidden]` rule; keep drill sublists mutually exclusive */
+    .nav-drawer-subnav-list[hidden] {
+      display: none !important;
+    }
+
+    .nav-drawer-subnav-list li {
+      margin: 0;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .nav-drawer-subnav-list li.nav-drawer-subnav-nested {
+      padding-inline-start: var(--prism-space-md);
+    }
+
+    .nav-drawer-subnav-item--disclosure {
+      width: 100%;
+      min-width: 0;
+    }
+
+    .nav-drawer-subnav-details {
+      display: flex;
+      flex-direction: column;
+      gap: var(--prism-space-xs);
+      width: 100%;
+      min-width: 0;
+    }
+
+    .nav-drawer-subnav-details-summary {
+      list-style: none;
+      cursor: pointer;
+    }
+
+    .nav-drawer-subnav-details-summary:focus-within {
+      outline: 2px solid color-mix(in srgb, var(--prism-color-accent-strong) 45%, transparent);
+      outline-offset: 2px;
+      border-radius: 12px;
+    }
+
+    .nav-drawer-subnav-details-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .nav-drawer-subnav-details-summary::marker {
+      content: none;
+    }
+
+    .nav-drawer-subnav-details-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      min-width: 0;
+      gap: var(--prism-space-xs);
+      box-sizing: border-box;
+      padding-block: var(--prism-space-md);
+      padding-inline-start: var(--prism-space-lg);
+      padding-inline-end: var(--prism-space-xs);
+      border-radius: var(--prism-radius-md);
+      background-color: transparent;
+      transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+    }
+
+    .nav-drawer-subnav-details-inner:hover,
+    .nav-drawer-subnav-details-inner:focus-within,
+    .nav-drawer-subnav-details-inner:has(a[aria-current="page"]) {
+      background-color: var(--nav-drawer-item-active-bg);
+    }
+
+    .nav-drawer-subnav-details-inner:hover > a,
+    .nav-drawer-subnav-details-inner:focus-within > a {
+      color: var(--prism-color-accent-strong);
+    }
+
+    .nav-drawer-subnav-details-inner > a {
+      flex: 1 1 auto;
+      min-width: 0;
+      padding: 0;
+      margin: 0;
+      background-color: transparent !important;
+      border-radius: 0;
+    }
+
+    .nav-drawer-subnav-details-inner > a:hover,
+    .nav-drawer-subnav-details-inner > a:focus-visible {
+      background-color: transparent !important;
+    }
+
+    .nav-drawer-subnav-details-inner > a:focus-visible {
+      outline: none;
+    }
+
+    .nav-drawer-subnav-details-inner:hover .nav-drawer-subnav-details-chevron,
+    .nav-drawer-subnav-details-inner:focus-within .nav-drawer-subnav-details-chevron {
+      color: var(--prism-color-accent-strong);
+    }
+
+    .nav-drawer-subnav-details-chevron {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 2.25rem;
+      flex-shrink: 0;
+      width: 2.25rem;
+      color: var(--prism-color-text-secondary);
+      transition: color 0.2s ease;
+    }
+
+    .nav-drawer-subnav-details-chevron-svg {
+      width: 1.125rem;
+      height: 1.125rem;
+      transform: rotate(90deg);
+      transition: transform 0.2s ease;
+    }
+
+    .nav-drawer-subnav-details-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--prism-space-xs);
+      width: 100%;
+    }
+
+    .nav-drawer-subnav-details-list .nav-drawer-subnav-nested {
+      padding-inline-start: var(--prism-space-md);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .nav-drawer-backdrop {
+        transition: none;
+      }
+
+      .top.is-nav-open .nav-drawer-backdrop {
+        transition: none;
+      }
+
+      .nav,
+      .top.is-nav-open .nav {
+        transition: none;
+      }
+
+      .nav-drawer-track {
+        transition: none;
+      }
+    }
+  }
+
+  @media (min-width: calc(68rem + 1px)) {
+    .nav-drawer-header {
+      display: none !important;
+    }
+
+    .nav-drawer-viewport {
+      display: contents;
+    }
+
+    .nav-drawer-track {
+      display: contents;
+      width: auto;
+      height: auto;
+      transform: none !important;
+      transition: none;
+      will-change: auto;
+    }
+
+    .nav.is-nav-drill-sub .nav-drawer-track {
+      transform: none !important;
+    }
+
+    .nav-drawer-panel--root {
+      display: contents;
+      flex: unset;
+      width: auto;
+      max-width: none;
+      overflow: visible;
+    }
+
+    .nav-drawer-panel--sub {
+      display: none !important;
+    }
+  }
+
+  html.is-search-open {
+    overflow: hidden;
+  }
+
+  .search-drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 124;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: color-mix(in srgb, var(--prism-color-text-primary) 28%, transparent);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.24s ease,
+      visibility 0.24s ease;
+  }
+
+  [data-theme="dark"] .search-drawer-backdrop {
+    background: color-mix(in srgb, #000 48%, transparent);
+  }
+
+  html.is-search-open .search-drawer-backdrop {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .search-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 125;
+    box-sizing: border-box;
+    height: 72px;
+    min-height: 72px;
+    max-height: 72px;
+    margin: 0;
+    padding: 0;
+    /* visible so data-tooltip ::after on .search-clear / drawer controls is not clipped */
+    overflow: visible;
+    container-type: inline-size;
+    container-name: search-drawer;
+    background-color: var(--prism-color-canvas);
+    border-bottom: 1px solid color-mix(in srgb, var(--prism-color-border-subtle) 70%, transparent);
+    box-shadow: 0 12px 40px color-mix(in srgb, var(--prism-color-text-primary) 10%, transparent);
+    transform: translate3d(0, -100%, 0);
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  [data-theme="dark"] .search-drawer {
+    box-shadow: 0 12px 48px color-mix(in srgb, #000 40%, transparent);
+  }
+
+  .search-drawer.is-open {
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* Pill header: no slide-in from the viewport top — match the sticky bar without motion */
+  .top.is-scrolled:not(.is-nav-open) ~ .search-drawer {
+    transition: none;
+  }
+
+  .top.is-scrolled:not(.is-nav-open) ~ .search-drawer:not(.is-open) {
+    left: 50%;
+    right: auto;
+    width: var(--site-pill-shell-width);
+    max-width: var(--site-pill-shell-width);
+    transform: translate3d(-50%, -100%, 0);
+  }
+
+  .top.is-scrolled:not(.is-nav-open) ~ .search-drawer.is-open {
+    top: var(--site-header-pill-top-gap);
+    left: 50%;
+    right: auto;
+    width: var(--site-pill-shell-width);
+    max-width: var(--site-pill-shell-width);
+    transform: translate3d(-50%, 0, 0);
+    border-radius: 9999px;
+    border-bottom: none;
+    background-color: var(--prism-color-surface);
+    box-shadow:
+      0 6px 28px color-mix(in srgb, var(--prism-color-text-primary) 9%, transparent),
+      0 1px 3px color-mix(in srgb, var(--prism-color-text-primary) 5%, transparent);
+  }
+
+  [data-theme="dark"] .top.is-scrolled:not(.is-nav-open) ~ .search-drawer.is-open {
+    background-color: var(--prism-color-surface);
+    box-shadow:
+      0 8px 32px color-mix(in srgb, #000 42%, transparent),
+      0 1px 2px color-mix(in srgb, #000 55%, transparent);
+  }
+
+  /* Align “Search” / field start with the scrolled pill header (same as .top.is-scrolled padding-inline-start) */
+  .top.is-scrolled:not(.is-nav-open) ~ .search-drawer .search-drawer-inner {
+    padding-left: calc(var(--site-page-pad-x) + var(--site-header-pad-start-extra) + env(safe-area-inset-left, 0px));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .search-drawer,
+    .search-drawer-backdrop {
+      transition: none;
+    }
+  }
+
+  .search-drawer-inner {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: var(--prism-space-md);
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    padding-top: 0;
+    padding-right: calc(var(--site-page-pad-x) + env(safe-area-inset-right, 0px));
+    padding-bottom: 0;
+    padding-left: calc(var(--site-page-pad-x) + env(safe-area-inset-left, 0px));
+  }
+
+  .search-drawer-field-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    justify-self: stretch;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .site-search-field {
+    position: relative;
+    width: min(40rem, 100%);
+    min-width: 0;
+  }
+
+  .site-search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.125rem;
+    height: 1.125rem;
+    margin: 0;
+    padding: 0;
+    transform: translateY(-50%);
+    color: var(--prism-color-text-secondary);
+    pointer-events: none;
+  }
+
+  .site-search-icon-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+  }
+
+  .search-drawer-title {
+    margin: 0;
+    justify-self: start;
+    text-align: left;
+    color: var(--prism-color-text-primary);
+    white-space: nowrap;
+    min-width: 0;
+  }
+
+  .search-drawer-close {
+    justify-self: end;
+  }
+
+  /* Same width band as 16px page insets: hide drawer title, kill the stray gap after a 0-width track, and space the close button explicitly. */
+  @supports (container-type: inline-size) {
+    @container search-drawer (max-width: 46.875rem) {
+      .search-drawer-inner {
+        grid-template-columns: 0 minmax(0, 1fr) auto;
+        column-gap: 0;
+      }
+
+      .search-drawer-close {
+        margin-inline-start: var(--prism-space-md);
+      }
+
+      .search-drawer-title {
+        margin: 0;
+        padding: 0;
+        width: 0;
+        min-width: 0;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        border: 0;
+        /* Kept in DOM for aria-labelledby on #search-drawer */
+      }
+    }
+  }
+
+  .search-wrap {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    position: relative;
+    flex: 0 0 auto;
+  }
+
+  .site-search {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    height: 2.375rem;
+    min-height: 2.375rem;
+    margin: 0;
+    padding: 0 2.5rem 0 2.375rem;
+    border: 1px solid var(--prism-color-border-subtle);
+    border-radius: 9999px;
+    font: inherit;
+    font-size: 0.875rem;
+    line-height: 1.2;
+    background: var(--prism-color-surface);
+    color: var(--prism-color-text-primary);
+    box-shadow: var(--prism-shadow-sm);
+  }
+
+  .site-search::placeholder {
+    color: var(--prism-color-text-secondary);
+  }
+
+  .site-search:focus {
+    outline: 2px solid color-mix(in srgb, var(--prism-color-accent-strong) 45%, transparent);
+    outline-offset: 2px;
+  }
+
+  /* Chevron’s right edge is 0.75rem from the field edge; icon is centered in the hit circle so the focus ring matches the glyph. */
+  .search-clear {
+    position: absolute;
+    right: calc(0.75rem - (1.5rem - 0.875rem) / 2);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    box-sizing: border-box;
+    display: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0;
+    margin: 0;
+    border: none;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    /* Same stroke as .theme-select chevron (embedded SVG uses #556070 = --prism-color-text-secondary). */
+    color: var(--prism-color-text-secondary);
+    cursor: pointer;
+    line-height: 0;
+  }
+
+  .search-clear:hover {
+    color: var(--prism-color-text-primary);
+  }
+
+  .search-clear:focus-visible {
+    /* Match .theme-select:focus and header control focus rings. */
+    outline: 2px solid color-mix(in srgb, var(--prism-color-accent-strong) 45%, transparent);
+    outline-offset: 2px;
+  }
+
+  .search-drawer.is-open .search-clear.is-visible {
+    display: inline-flex;
+  }
+
+  .search-clear-icon {
+    display: block;
+    width: 0.875rem;
+    height: 0.875rem;
+    flex-shrink: 0;
+  }
+
+  :global(.icon-btn) {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.375rem;
+    height: 2.375rem;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid var(--prism-color-border-subtle);
+    background: var(--prism-color-surface);
+    color: var(--prism-color-text-primary);
+    cursor: pointer;
+    box-shadow: var(--prism-shadow-sm);
+  }
+
+  :global(.icon-btn:hover) {
+    border-color: var(--prism-color-border-strong);
+    color: var(--prism-color-text-primary);
+  }
+
+  :global(.icon-btn .icon) {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  @media (min-width: calc(68rem + 1px)) {
+    .nav :global(.icon-btn.nav-drawer-close) {
+      display: none;
+    }
+
+    .nav .nav-link--drawer {
+      display: none;
+    }
+  }
+
+  .theme-select-wrap {
+    display: flex;
+    align-items: center;
+    align-self: center;
+    flex: 0 0 auto;
+  }
+
+  .theme-select-label {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .theme-select-label-text {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .theme-select {
+    box-sizing: border-box;
+    min-width: 6.5rem;
+    max-width: 10rem;
+    height: 2.375rem;
+    padding: 0 2.5rem 0 var(--prism-space-lg);
+    margin: 0;
+    font: inherit;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--prism-color-text-primary);
+    background-color: var(--prism-color-surface);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23556070' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 0.875rem;
+    border: 1px solid var(--prism-color-border-subtle);
+    border-radius: 9999px;
+    box-shadow: var(--prism-shadow-sm);
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .theme-select:hover {
+    border-color: var(--prism-color-border-strong);
+  }
+
+  .theme-select:focus {
+    outline: 2px solid color-mix(in srgb, var(--prism-color-accent-strong) 45%, transparent);
+    outline-offset: 2px;
+  }
+
+  [data-theme="dark"] .theme-select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23b4bac8' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  @media (max-width: 68rem) {
+    .nav > .top-tools-drawer-util .theme-select {
+      min-width: 0;
+      width: 100%;
+      max-width: none;
+      height: 3.25rem;
+      padding: 0 3rem 0 var(--prism-space-lg);
+      font-size: 0.9375rem;
+      background-position: right 1rem center;
+      background-size: 1rem;
+    }
+  }
+
+  :global(.icon-btn[data-tooltip]:not([data-tooltip=""])::after),
+  .nav-toggle[data-tooltip]:not([data-tooltip=""])::after,
+  .search-clear[data-tooltip]:not([data-tooltip=""])::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 10px);
+    z-index: 100;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: 0.01em;
+    color: var(--prism-color-text-inverse);
+    background: var(--prism-color-text-primary);
+    border-radius: 6px;
+    box-shadow: var(--prism-shadow-md);
+    white-space: nowrap;
+    max-width: min(16rem, 70vw);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate3d(-50%, -6px, 0);
+    transition:
+      opacity 0.15s ease,
+      visibility 0.15s ease,
+      transform 0.15s ease;
+  }
+
+  /* #nav-toggle only: right-aligned tooltip so it isn’t clipped by html/body overflow-x: clip. */
+  .nav-toggle[data-tooltip]:not([data-tooltip=""])::after {
+    left: auto;
+    right: 0;
+    transform: translate3d(0, -6px, 0);
+  }
+
+  /* Drawer close sits on the viewport edge; centering clips the tooltip on the right. */
+  .search-drawer-close[data-tooltip]:not([data-tooltip=""])::after {
+    left: auto;
+    right: 0;
+    transform: translate3d(0, -6px, 0);
+  }
+
+  :global([data-theme="dark"] .icon-btn[data-tooltip]:not([data-tooltip=""])::after),
+  [data-theme="dark"] .nav-toggle[data-tooltip]:not([data-tooltip=""])::after,
+  [data-theme="dark"] .search-clear[data-tooltip]:not([data-tooltip=""])::after,
+  [data-theme="dark"] .search-drawer-close[data-tooltip]:not([data-tooltip=""])::after {
+    background: var(--prism-color-surface-raised);
+    color: var(--prism-color-text-primary);
+    border: 1px solid var(--prism-color-border-subtle);
+    box-shadow: var(--prism-shadow-sm);
+  }
+
+  :global(.icon-btn[data-tooltip]:not([data-tooltip=""]):hover::after),
+  :global(.icon-btn[data-tooltip]:not([data-tooltip=""]):focus-visible::after),
+  .nav-toggle[data-tooltip]:not([data-tooltip=""]):hover::after,
+  .nav-toggle[data-tooltip]:not([data-tooltip=""]):focus-visible::after,
+  .search-clear[data-tooltip]:not([data-tooltip=""]):hover::after,
+  .search-clear[data-tooltip]:not([data-tooltip=""]):focus-visible::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  .nav-toggle[data-tooltip]:not([data-tooltip=""]):hover::after,
+  .nav-toggle[data-tooltip]:not([data-tooltip=""]):focus-visible::after {
+    transform: translate3d(0, 0, 0);
+  }
+
+  .search-drawer-close[data-tooltip]:not([data-tooltip=""]):hover::after,
+  .search-drawer-close[data-tooltip]:not([data-tooltip=""]):focus-visible::after {
+    transform: translate3d(0, 0, 0);
+  }
+
+  /* Same band as --site-page-pad-x: enough room to center the drawer close tooltip under the control. */
+  @media (min-width: calc(46.875rem + 1px)) {
+    .search-drawer-close[data-tooltip]:not([data-tooltip=""])::after {
+      left: 50%;
+      right: auto;
+      transform: translate3d(-50%, -6px, 0);
+    }
+
+    .search-drawer-close[data-tooltip]:not([data-tooltip=""]):hover::after,
+    .search-drawer-close[data-tooltip]:not([data-tooltip=""]):focus-visible::after {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.icon-btn[data-tooltip]:not([data-tooltip=""])::after),
+    .nav-toggle[data-tooltip]:not([data-tooltip=""])::after,
+    .search-clear[data-tooltip]:not([data-tooltip=""])::after,
+    .search-drawer-close[data-tooltip]:not([data-tooltip=""])::after {
+      transition: none;
+    }
+  }
+
+  /* Inside the pill (not at the viewport edge): always center under the clear control when space allows. */
+  .search-clear[data-tooltip]:not([data-tooltip=""])::after {
+    left: 50%;
+    right: auto;
+    transform: translate3d(-50%, -6px, 0);
+  }
+
+  .search-clear[data-tooltip]:not([data-tooltip=""]):hover::after,
+  .search-clear[data-tooltip]:not([data-tooltip=""]):focus-visible::after {
+    transform: translate3d(-50%, 0, 0);
+  }
+
+  .main {
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    --docs-page-content-padding-top: calc(4px + clamp(var(--prism-space-xs), 1.5vw, var(--prism-space-md)));
+    padding: clamp(1.25rem, 4vw, 2.5rem) var(--site-page-pad-x) var(--prism-space-3xl);
+  }
+
+  .foot {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: var(--prism-space-2xl) var(--site-page-pad-x) var(--prism-space-3xl);
+    border-top: 1px solid color-mix(in srgb, var(--prism-color-border-subtle) 85%, transparent);
+    font-size: 0.875rem;
+    color: var(--prism-color-text-secondary);
+  }
+
+  .foot p {
+    margin: 0;
+  }
+
+  /* Match docs sidebar breakpoint: same outer width as scrolled pill header */
+  @media (min-width: 56rem) {
+    .top,
+    .main,
+    .foot {
+      width: var(--site-pill-shell-width);
+      max-width: var(--site-pill-shell-width);
+      margin-inline: auto;
+    }
+  }
+
+  /* ~16px insets when logo leaves max size: 3.2vw < 1.5rem → width < 1.5/0.032 ≈ 46.875rem (see .brand-name clamp); header start adds --site-header-pad-start-extra */
+  @media (max-width: 46.875rem) {
+    :root {
+      --site-header-pill-inset: max(0.625rem, min(3.5vw, 1.75rem));
+    }
+
+    .top {
+      padding-inline-end: 16px;
+      padding-inline-start: calc(16px + var(--site-header-pad-start-extra));
+      --top-pad-x: 16px;
+    }
+
+    .top.is-scrolled {
+      padding-inline-end: max(14px, 3.5vw);
+      padding-inline-start: calc(max(14px, 3.5vw) + var(--site-header-pad-start-extra));
+    }
+
+    .top.is-scrolled:not(.is-nav-open) ~ .search-drawer .search-drawer-inner {
+      padding-left: calc(max(14px, 3.5vw) + var(--site-header-pad-start-extra) + env(safe-area-inset-left, 0px));
+    }
+
+    /* Match morphing close / header inset so link rows align with the control edge */
+    .nav {
+      --nav-drawer-inline-end: 16px;
+    }
+
+    .main {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .foot {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .search-drawer-inner {
+      padding-right: calc(16px + env(safe-area-inset-right, 0px));
+      padding-left: calc(16px + env(safe-area-inset-left, 0px));
+    }
+  }
+</style>

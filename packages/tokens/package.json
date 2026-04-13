@@ -1,0 +1,15 @@
+{
+  "name": "@prism/tokens",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./dist/tokens.css",
+    "./tokens.css": "./dist/tokens.css",
+    "./tokens.json": "./dist/tokens.json"
+  },
+  "scripts": {
+    "build": "node ./scripts/build.mjs",
+    "check": "node ./scripts/check.mjs"
+  }
+}
