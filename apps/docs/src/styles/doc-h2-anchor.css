@@ -1,0 +1,103 @@
+/* Shared: section H2 + deep-link copy control (see DocH2WithAnchor.astro; wired in BaseLayout.astro). */
+
+.doc-h2-anchor-row {
+  position: relative;
+  display: block;
+  margin: 0;
+}
+
+.doc-h2-anchor-row--tabs {
+  margin: 0 0 var(--prism-space-md);
+}
+
+.doc-h2-anchor-row .doc-h2-anchor-heading {
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.doc-h2-anchor-row--tabs .doc-h2-anchor-heading {
+  margin: 0;
+}
+
+.doc-h2-anchor-row__actions {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  transform: translate(calc(-100% - var(--prism-space-sm)), -50%);
+}
+
+@media (hover: hover) {
+  .doc-h2-anchor-row__actions {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  .doc-h2-anchor-row:hover .doc-h2-anchor-row__actions,
+  .doc-h2-anchor-row:focus-within .doc-h2-anchor-row__actions,
+  .doc-h2-anchor-row:has(.doc-h2-anchor-btn.is-copied) .doc-h2-anchor-row__actions {
+    opacity: 1;
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: reduce) {
+  .doc-h2-anchor-row__actions {
+    transition: none;
+  }
+}
+
+.doc-h2-anchor-btn {
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.doc-h2-anchor-btn__idle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.doc-h2-anchor-btn__done {
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.doc-h2-anchor-btn.is-copied {
+  width: 2.375rem;
+  min-width: 2.375rem;
+  height: 2.375rem;
+  padding: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  cursor: default;
+  user-select: none;
+  background: color-mix(in srgb, var(--prism-color-success) 12%, var(--prism-color-surface));
+  border: none;
+  box-shadow: none;
+  color: color-mix(in srgb, var(--prism-color-success) 30%, var(--prism-color-text-primary));
+}
+
+/* BaseLayout only reveals icon-btn tooltips on hover; keep “Link copied” bubble 1px tighter than default gap. */
+.doc-h2-anchor-btn.icon-btn.is-copied[data-tooltip]:not([data-tooltip=""])::after {
+  top: calc(100% + var(--docs-tooltip-gap) - 1px);
+  opacity: 1;
+  visibility: visible;
+  transform: translate3d(-50%, 0, 0);
+}
+
+.doc-h2-anchor-btn.is-copied:focus,
+.doc-h2-anchor-btn.is-copied:focus-visible {
+  outline: none;
+}
+
+.doc-h2-anchor-btn.is-copied .doc-h2-anchor-btn__idle {
+  display: none !important;
+}
+
+.doc-h2-anchor-btn.is-copied .doc-h2-anchor-btn__done {
+  display: inline-flex;
+}

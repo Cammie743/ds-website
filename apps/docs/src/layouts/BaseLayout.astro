@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import "../styles/doc-h2-anchor.css";
 import { uiStrings } from "../i18n/ui";
 
 interface Props {
@@ -907,6 +908,118 @@ const componentsAvatarsDrawerOpen =
         });
         applyStoredLocale();
         applyTranslations();
+
+        (function initSectionAnchorCopyButtons() {
+          var copyTimerKey = "__prismSectionAnchorCopyTimer";
+
+          function copyTextToClipboard(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+              return navigator.clipboard.writeText(text).then(
+                function () {
+                  return true;
+                },
+                function () {
+                  return copyTextToClipboardFallback(text);
+                }
+              );
+            }
+            return Promise.resolve(copyTextToClipboardFallback(text));
+          }
+
+          function copyTextToClipboardFallback(text) {
+            try {
+              var ta = document.createElement("textarea");
+              ta.value = text;
+              ta.setAttribute("readonly", "");
+              ta.style.position = "fixed";
+              ta.style.left = "-9999px";
+              document.body.appendChild(ta);
+              ta.select();
+              var ok = document.execCommand("copy");
+              document.body.removeChild(ta);
+              return ok;
+            } catch (e) {
+              return false;
+            }
+          }
+
+          function wireSectionAnchorCopyButtons() {
+            document.querySelectorAll("[data-copy-section-anchor]").forEach(function (btn) {
+              var raw = btn.getAttribute("data-copy-section-anchor") || "";
+              var hash = raw.indexOf("#") === 0 ? raw : "#" + raw;
+              var idle = btn.querySelector(".doc-h2-anchor-btn__idle");
+              var done = btn.querySelector(".doc-h2-anchor-btn__done");
+
+              function showCopiedFeedback() {
+                var prev = btn[copyTimerKey];
+                if (prev) window.clearTimeout(prev);
+                btn.classList.add("is-copied");
+                if (idle) idle.setAttribute("hidden", "");
+                if (done) {
+                  done.removeAttribute("hidden");
+                  done.setAttribute("aria-hidden", "false");
+                }
+                var ariaKey = btn.getAttribute("data-i18n-aria");
+                if (ariaKey) {
+                  btn.setAttribute("data-restore-i18n-aria", ariaKey);
+                  btn.removeAttribute("data-i18n-aria");
+                }
+                var tipKey = btn.getAttribute("data-i18n-tooltip");
+                if (tipKey) {
+                  btn.setAttribute("data-restore-i18n-tooltip", tipKey);
+                  btn.removeAttribute("data-i18n-tooltip");
+                }
+                btn.setAttribute("aria-disabled", "true");
+                btn.setAttribute("tabindex", "-1");
+                btn.setAttribute("aria-label", t("docs.copySectionLinkCopiedAria"));
+                btn.setAttribute("data-tooltip", t("docs.copySectionLinkCopiedAria"));
+                btn[copyTimerKey] = window.setTimeout(function () {
+                  btn.classList.remove("is-copied");
+                  if (idle) idle.removeAttribute("hidden");
+                  if (done) {
+                    done.setAttribute("hidden", "");
+                    done.setAttribute("aria-hidden", "true");
+                  }
+                  var rk = btn.getAttribute("data-restore-i18n-aria");
+                  if (rk) {
+                    btn.setAttribute("data-i18n-aria", rk);
+                    btn.removeAttribute("data-restore-i18n-aria");
+                  }
+                  var rtk = btn.getAttribute("data-restore-i18n-tooltip");
+                  if (rtk) {
+                    btn.setAttribute("data-i18n-tooltip", rtk);
+                    btn.removeAttribute("data-restore-i18n-tooltip");
+                  }
+                  btn.removeAttribute("aria-disabled");
+                  btn.removeAttribute("tabindex");
+                  btn.setAttribute("aria-label", t("docs.copySectionLinkAria"));
+                  btn.setAttribute("data-tooltip", t("docs.copySectionLinkTooltip"));
+                  btn[copyTimerKey] = undefined;
+                }, 2200);
+              }
+
+              btn.addEventListener("click", function () {
+                if (btn.classList.contains("is-copied")) return;
+                var url = new URL(window.location.href);
+                url.hash = hash;
+                copyTextToClipboard(url.toString()).then(function (ok) {
+                  if (!ok) return;
+                  showCopiedFeedback();
+                });
+              });
+            });
+          }
+
+          wireSectionAnchorCopyButtons();
+
+          document.addEventListener("prism-locale-applied", function () {
+            document.querySelectorAll("[data-copy-section-anchor].is-copied").forEach(function (b) {
+              b.setAttribute("aria-label", t("docs.copySectionLinkCopiedAria"));
+              b.setAttribute("data-tooltip", t("docs.copySectionLinkCopiedAria"));
+            });
+          });
+        })();
+
         document.getElementById("theme-select")?.addEventListener("change", function (e) {
           var sel = e.target;
           if (!sel || sel.id !== "theme-select") return;
@@ -1124,6 +1237,8 @@ const componentsAvatarsDrawerOpen =
   }
 
   :root {
+    /* Gap between tooltip bubble and trigger (below-trigger: top 100% + gap; above-trigger: bottom 100% + gap) */
+    --docs-tooltip-gap: 11px;
     --site-header-sticky-anchor: 72px;
     --site-header-pill-top-gap: 1rem;
     --site-header-pill-inset: max(1rem, min(5vw, 5rem));
@@ -1696,7 +1811,7 @@ const componentsAvatarsDrawerOpen =
     /* Near drawer bottom: show tooltips above */
     .nav > .top-tools-drawer-util :global(.icon-btn[data-tooltip]:not([data-tooltip=""])::after) {
       top: auto;
-      bottom: calc(100% + 10px);
+      bottom: calc(100% + var(--docs-tooltip-gap));
       transform: translate3d(-50%, 6px, 0);
       z-index: 200;
     }
@@ -2623,7 +2738,7 @@ const componentsAvatarsDrawerOpen =
     content: attr(data-tooltip);
     position: absolute;
     left: 50%;
-    top: calc(100% + 10px);
+    top: calc(100% + var(--docs-tooltip-gap));
     z-index: 100;
     padding: 0.35rem 0.65rem;
     font-size: 0.6875rem;

@@ -1,6 +1,6 @@
 ---
 import ComponentsLayout from "../../layouts/ComponentsLayout.astro";
-import { uiStrings } from "../../i18n/ui";
+import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
 ---
 
 <ComponentsLayout title="Accordion" description="Expand and collapse patterns in Prism." current="accordion">
@@ -81,9 +81,14 @@ import { uiStrings } from "../../i18n/ui";
         tabindex="0"
       >
         <div class="doc-overview-resources">
-          <h2 class="doc-tabs__h2 doc-overview-resources__h2" id="accordion-overview-resources-h2" data-i18n="components.accordion.overview.resourcesH2">
+          <DocH2WithAnchor
+            id="accordion-overview-resources-h2"
+            rowClass="doc-h2-anchor-row--tabs"
+            class="doc-tabs__h2 doc-overview-resources__h2"
+            data-i18n="components.accordion.overview.resourcesH2"
+          >
             Resources and availability
-          </h2>
+          </DocH2WithAnchor>
           <div class="doc-overview-matrix-shell">
             <table class="doc-tabs__table doc-overview-matrix" aria-labelledby="accordion-overview-resources-h2">
               <thead>
@@ -300,54 +305,14 @@ import { uiStrings } from "../../i18n/ui";
         tabindex="0"
         hidden
       >
-        <div class="doc-tabs__h2-row">
-          <h2 class="doc-tabs__h2" id="accordion-design-variants" data-i18n="components.accordion.design.variantsH2">
-            Variants
-          </h2>
-          <div class="doc-tabs__h2-row__actions">
-            <button
-              type="button"
-              class="icon-btn doc-tabs__h2-anchor-btn"
-              data-copy-section-anchor="#accordion-design-variants"
-              data-i18n-aria="components.accordion.design.copySectionLinkAria"
-              data-i18n-tooltip="components.accordion.design.copySectionLinkTooltip"
-              aria-label="Copy link to this section"
-              data-tooltip="Copy link to this section"
-            >
-              <span class="doc-tabs__h2-anchor-btn__idle" aria-hidden="true">
-                <svg
-                  class="icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-                </svg>
-              </span>
-              <span class="doc-tabs__h2-anchor-btn__done" hidden aria-hidden="true">
-                <svg
-                  class="icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M20 6 9 17l-5-5"></path>
-                </svg>
-                <span
-                  class="doc-tabs__h2-anchor-btn__label"
-                  data-i18n="components.accordion.design.copySectionLinkCopiedLabel"
-                  >Copied</span>
-              </span>
-            </button>
-          </div>
-        </div>
+        <DocH2WithAnchor
+          id="accordion-design-variants"
+          rowClass="doc-h2-anchor-row--tabs"
+          class="doc-tabs__h2"
+          data-i18n="components.accordion.design.variantsH2"
+        >
+          Variants
+        </DocH2WithAnchor>
         <p class="doc-tabs__panel-copy" data-i18n="components.accordion.design.variantsBody">
           There are 2 variants available for accordion - Leading and trailing chevron.
         </p>
@@ -619,117 +584,8 @@ import { uiStrings } from "../../i18n/ui";
       </section>
     </div>
   </div>
-  <script define:vars={{ uiStrings }}>
+  <script>
     (function () {
-      function t(key) {
-        var lang = document.documentElement.dataset.uiLang === "zh" ? "zh" : "en";
-        var row = uiStrings[lang];
-        var en = uiStrings.en;
-        if (row && Object.prototype.hasOwnProperty.call(row, key) && row[key]) return row[key];
-        if (en && Object.prototype.hasOwnProperty.call(en, key) && en[key]) return en[key];
-        return key;
-      }
-
-      function copyTextToClipboard(text) {
-        if (navigator.clipboard && window.isSecureContext) {
-          return navigator.clipboard.writeText(text).then(
-            function () {
-              return true;
-            },
-            function () {
-              return copyTextToClipboardFallback(text);
-            }
-          );
-        }
-        return Promise.resolve(copyTextToClipboardFallback(text));
-      }
-
-      function copyTextToClipboardFallback(text) {
-        try {
-          var ta = document.createElement("textarea");
-          ta.value = text;
-          ta.setAttribute("readonly", "");
-          ta.style.position = "fixed";
-          ta.style.left = "-9999px";
-          document.body.appendChild(ta);
-          ta.select();
-          var ok = document.execCommand("copy");
-          document.body.removeChild(ta);
-          return ok;
-        } catch (e) {
-          return false;
-        }
-      }
-
-      var copyTimerKey = "__prismAccordionCopyTimer";
-
-      function wireSectionAnchorCopyButtons() {
-        document.querySelectorAll("[data-copy-section-anchor]").forEach(function (btn) {
-          var raw = btn.getAttribute("data-copy-section-anchor") || "";
-          var hash = raw.indexOf("#") === 0 ? raw : "#" + raw;
-          var idle = btn.querySelector(".doc-tabs__h2-anchor-btn__idle");
-          var done = btn.querySelector(".doc-tabs__h2-anchor-btn__done");
-
-          function showCopiedFeedback() {
-            var prev = btn[copyTimerKey];
-            if (prev) window.clearTimeout(prev);
-            btn.classList.add("is-copied");
-            if (idle) idle.setAttribute("hidden", "");
-            if (done) {
-              done.removeAttribute("hidden");
-              done.setAttribute("aria-hidden", "false");
-            }
-            var ariaKey = btn.getAttribute("data-i18n-aria");
-            if (ariaKey) {
-              btn.setAttribute("data-restore-i18n-aria", ariaKey);
-              btn.removeAttribute("data-i18n-aria");
-            }
-            var tipKey = btn.getAttribute("data-i18n-tooltip");
-            if (tipKey) {
-              btn.setAttribute("data-restore-i18n-tooltip", tipKey);
-              btn.removeAttribute("data-i18n-tooltip");
-            }
-            btn.setAttribute("aria-disabled", "true");
-            btn.setAttribute("tabindex", "-1");
-            btn.setAttribute("aria-label", t("components.accordion.design.copySectionLinkCopiedAria"));
-            btn.setAttribute("data-tooltip", "");
-            btn[copyTimerKey] = window.setTimeout(function () {
-              btn.classList.remove("is-copied");
-              if (idle) idle.removeAttribute("hidden");
-              if (done) {
-                done.setAttribute("hidden", "");
-                done.setAttribute("aria-hidden", "true");
-              }
-              var rk = btn.getAttribute("data-restore-i18n-aria");
-              if (rk) {
-                btn.setAttribute("data-i18n-aria", rk);
-                btn.removeAttribute("data-restore-i18n-aria");
-              }
-              var rtk = btn.getAttribute("data-restore-i18n-tooltip");
-              if (rtk) {
-                btn.setAttribute("data-i18n-tooltip", rtk);
-                btn.removeAttribute("data-restore-i18n-tooltip");
-              }
-              btn.removeAttribute("aria-disabled");
-              btn.removeAttribute("tabindex");
-              btn.setAttribute("aria-label", t("components.accordion.design.copySectionLinkAria"));
-              btn.setAttribute("data-tooltip", t("components.accordion.design.copySectionLinkTooltip"));
-              btn[copyTimerKey] = undefined;
-            }, 2200);
-          }
-
-          btn.addEventListener("click", function () {
-            if (btn.classList.contains("is-copied")) return;
-            var url = new URL(window.location.href);
-            url.hash = hash;
-            copyTextToClipboard(url.toString()).then(function (ok) {
-              if (!ok) return;
-              showCopiedFeedback();
-            });
-          });
-        });
-      }
-
       function wireDocTabs(root) {
         var tablist = root.querySelector('[role="tablist"]');
         var panelsRoot = root.querySelector(".doc-tabs__panels");
@@ -802,13 +658,6 @@ import { uiStrings } from "../../i18n/ui";
       }
 
       document.querySelectorAll("[data-doc-tabs]").forEach(wireDocTabs);
-      wireSectionAnchorCopyButtons();
-
-      document.addEventListener("prism-locale-applied", function () {
-        document.querySelectorAll("[data-copy-section-anchor].is-copied").forEach(function (b) {
-          b.setAttribute("aria-label", t("components.accordion.design.copySectionLinkCopiedAria"));
-        });
-      });
     })();
   </script>
 </ComponentsLayout>
@@ -943,7 +792,7 @@ import { uiStrings } from "../../i18n/ui";
   }
 
   .doc-overview-resources {
-    margin-top: var(--prism-space-xl);
+    margin-top: 0;
   }
 
   .doc-overview-resources__h2 {
@@ -1071,99 +920,6 @@ import { uiStrings } from "../../i18n/ui";
     letter-spacing: -0.025em;
     line-height: 1.2;
     color: var(--prism-color-text-primary);
-  }
-
-  .doc-tabs__h2-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: var(--prism-space-xs) var(--prism-space-sm);
-    margin: 0 0 var(--prism-space-md);
-  }
-
-  .doc-tabs__h2-row .doc-tabs__h2 {
-    margin: 0;
-    flex: 1 1 auto;
-    min-width: 0;
-  }
-
-  .doc-tabs__h2-row__actions {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-  }
-
-  @media (hover: hover) {
-    .doc-tabs__h2-row__actions {
-      opacity: 0;
-      transition: opacity 0.15s ease;
-    }
-
-    .doc-tabs__h2-row:hover .doc-tabs__h2-row__actions,
-    .doc-tabs__h2-row:focus-within .doc-tabs__h2-row__actions,
-    .doc-tabs__h2-row:has(.doc-tabs__h2-anchor-btn.is-copied) .doc-tabs__h2-row__actions {
-      opacity: 1;
-    }
-  }
-
-  @media (hover: hover) and (prefers-reduced-motion: reduce) {
-    .doc-tabs__h2-row__actions {
-      transition: none;
-    }
-  }
-
-  .doc-tabs__h2-anchor-btn {
-    flex-shrink: 0;
-    box-sizing: border-box;
-  }
-
-  .doc-tabs__h2-anchor-btn__idle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .doc-tabs__h2-anchor-btn__done {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    gap: 0.375rem;
-  }
-
-  .doc-tabs__h2-anchor-btn.is-copied {
-    width: auto;
-    min-width: 2.375rem;
-    height: 2.375rem;
-    padding-inline: 0.65rem var(--prism-space-lg);
-    border-radius: 9999px;
-    pointer-events: none;
-    cursor: default;
-    user-select: none;
-    background: color-mix(in srgb, var(--prism-color-success) 12%, var(--prism-color-surface));
-    border: none;
-    box-shadow: none;
-    color: color-mix(in srgb, var(--prism-color-success) 30%, var(--prism-color-text-primary));
-  }
-
-  .doc-tabs__h2-anchor-btn.is-copied:focus,
-  .doc-tabs__h2-anchor-btn.is-copied:focus-visible {
-    outline: none;
-  }
-
-  .doc-tabs__h2-anchor-btn.is-copied .doc-tabs__h2-anchor-btn__idle {
-    display: none !important;
-  }
-
-  .doc-tabs__h2-anchor-btn.is-copied .doc-tabs__h2-anchor-btn__done {
-    display: inline-flex;
-  }
-
-  .doc-tabs__h2-anchor-btn__label {
-    font-size: 0.8125rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    line-height: 1;
-    white-space: nowrap;
   }
 
   .doc-tabs__figure {

@@ -1,0 +1,66 @@
+---
+/**
+ * Section heading with optional deep-link copy control (uses global styles + BaseLayout script).
+ * @prop id — `id` on the `<h2>` (and default URL fragment unless `copyFragmentId` is set).
+ * @prop class — extra classes on the `<h2>` (e.g. `doc-tabs__h2`, `h-updates__h`).
+ * @prop rowClass — optional classes on the wrapping row.
+ * @prop copyFragmentId — URL hash target without `#` when it must differ from `id` (e.g. blog article id).
+ */
+interface Props {
+  id: string;
+  class?: string;
+  rowClass?: string;
+  copyFragmentId?: string;
+  /** Optional `data-i18n` key for the heading text */
+  "data-i18n"?: string;
+}
+
+const { id, class: h2Class, rowClass, copyFragmentId, "data-i18n": dataI18n } = Astro.props;
+const frag = (copyFragmentId ?? id).replace(/^#/, "");
+const anchor = "#" + frag;
+---
+
+<div class:list={["doc-h2-anchor-row", rowClass]}>
+  <h2 id={id} class:list={["doc-h2-anchor-heading", h2Class]} data-i18n={dataI18n}>
+    <slot />
+  </h2>
+  <div class="doc-h2-anchor-row__actions">
+    <button
+      type="button"
+      class="icon-btn doc-h2-anchor-btn"
+      data-copy-section-anchor={anchor}
+      data-i18n-aria="docs.copySectionLinkAria"
+      data-i18n-tooltip="docs.copySectionLinkTooltip"
+      aria-label="Copy link"
+      data-tooltip="Copy link"
+    >
+      <span class="doc-h2-anchor-btn__idle" aria-hidden="true">
+        <svg
+          class="icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+        </svg>
+      </span>
+      <span class="doc-h2-anchor-btn__done" hidden aria-hidden="true">
+        <svg
+          class="icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M20 6 9 17l-5-5"></path>
+        </svg>
+      </span>
+    </button>
+  </div>
+</div>

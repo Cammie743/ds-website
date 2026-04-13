@@ -1,4 +1,6 @@
 ---
+import DocH2WithAnchor from "../DocH2WithAnchor.astro";
+
 interface Props {
   id: string;
   updateN: 1 | 2 | 3 | 4 | 5 | 6;
@@ -24,7 +26,14 @@ const datetimeByN: Record<1 | 2 | 3 | 4 | 5 | 6, string> = {
       <span class="blog-article__tag" data-i18n={`home.updates.${n}.tag`}>Tag</span>
       <time datetime={datetimeByN[n]} data-i18n={`home.updates.${n}.date`}>Date</time>
     </p>
-    <h2 class="blog-article__title" data-i18n={`home.updates.${n}.title`}>Title</h2>
+    <DocH2WithAnchor
+      id={`${id}-heading`}
+      copyFragmentId={id}
+      class="blog-article__title"
+      data-i18n={`home.updates.${n}.title`}
+    >
+      Title
+    </DocH2WithAnchor>
   </header>
   <figure class="blog-article__figure">
     <img

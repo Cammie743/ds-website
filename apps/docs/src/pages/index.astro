@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
 ---
 
 <BaseLayout title="Prism">
@@ -24,7 +25,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <section class="h-updates" aria-labelledby="updates-heading">
       <div class="h-updates__head">
         <div class="h-updates__head-main">
-          <h2 id="updates-heading" class="h-updates__h" data-i18n="home.updates.sectionTitle">Latest and greatest from Prism</h2>
+          <DocH2WithAnchor id="updates-heading" class="h-updates__h" data-i18n="home.updates.sectionTitle">
+            Latest and greatest from Prism
+          </DocH2WithAnchor>
           <a class="h-btn h-btn--tertiary h-updates__all" href="/blog/latest" data-i18n="home.updates.viewAll">Explore all blogs</a>
         </div>
       </div>
@@ -245,7 +248,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
     <section class="h-inside" aria-labelledby="inside-heading">
       <header class="h-inside__head home-rise home-rise--6">
-        <h2 id="inside-heading" class="h-inside__h" data-i18n="home.inside.heading">What's inside</h2>
+        <DocH2WithAnchor id="inside-heading" class="h-inside__h" data-i18n="home.inside.heading">What's inside</DocH2WithAnchor>
         <p class="h-inside__intro" data-i18n="home.inside.intro">
           Tokens, components, and guidance—everything documented here is built to move in sync from design to production.
         </p>
@@ -604,7 +607,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     content: attr(data-tooltip);
     position: absolute;
     left: 50%;
-    top: calc(100% + 10px);
+    top: calc(100% + var(--docs-tooltip-gap));
     z-index: 100;
     padding: 0.35rem 0.65rem;
     font-size: 0.6875rem;
