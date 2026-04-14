@@ -156,7 +156,6 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
             <li class="h-updates-carousel__slide" data-updates-kind="feature">
               <a class="h-updates-card" href="/blog/featured#update-home-navigation">
                 <div class="h-updates-card__media">
-                  <span class="h-updates-card__tag h-updates-card__tag--available" data-i18n="home.updates.1.tag">Feature</span>
                   <img
                     class="h-updates-card__img"
                     src="/images/updates/update-1.svg"
@@ -193,7 +192,6 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
             <li class="h-updates-carousel__slide" data-updates-kind="update">
               <a class="h-updates-card" href="/blog/latest#update-theme-previews">
                 <div class="h-updates-card__media">
-                  <span class="h-updates-card__tag h-updates-card__tag--beta" data-i18n="home.updates.2.tag">Enhancement</span>
                   <img
                     class="h-updates-card__img"
                     src="/images/updates/update-2.svg"
@@ -230,7 +228,6 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
             <li class="h-updates-carousel__slide" data-updates-kind="update">
               <a class="h-updates-card" href="/blog/latest#update-foundations-ia">
                 <div class="h-updates-card__media">
-                  <span class="h-updates-card__tag h-updates-card__tag--planned" data-i18n="home.updates.3.tag">Documentation</span>
                   <img
                     class="h-updates-card__img"
                     src="/images/updates/update-3.svg"
@@ -267,7 +264,6 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
             <li class="h-updates-carousel__slide" data-updates-kind="update">
               <a class="h-updates-card" href="/blog/latest#update-search-docs">
                 <div class="h-updates-card__media">
-                  <span class="h-updates-card__tag h-updates-card__tag--beta" data-i18n="home.updates.4.tag">Enhancement</span>
                   <img
                     class="h-updates-card__img"
                     src="/images/updates/update-4.svg"
@@ -305,7 +301,6 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
             <li class="h-updates-carousel__slide" data-updates-kind="update">
               <a class="h-updates-card" href="/blog/2025#update-usage-metrics">
                 <div class="h-updates-card__media">
-                  <span class="h-updates-card__tag h-updates-card__tag--available" data-i18n="home.updates.5.tag">Announcement</span>
                   <img
                     class="h-updates-card__img"
                     src="/images/updates/update-5.svg"
@@ -343,7 +338,6 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
             <li class="h-updates-carousel__slide" data-updates-kind="update">
               <a class="h-updates-card" href="/blog/2025#update-a11y-checklist">
                 <div class="h-updates-card__media">
-                  <span class="h-updates-card__tag h-updates-card__tag--planned" data-i18n="home.updates.6.tag">Documentation</span>
                   <img
                     class="h-updates-card__img"
                     src="/images/updates/update-6.svg"
@@ -510,7 +504,7 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
           </a>
         </li>
         <li class="home-rise home-rise--10">
-          <a class="h-inside__card" href="/resources">
+          <a class="h-inside__card" href="/resources/overview">
             <span class="h-inside__icon-wrap h-inside__icon-wrap--resources" aria-hidden="true">
               <svg class="h-inside__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -1096,13 +1090,11 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
   }
 
   /*
-   * Home section h2s (updates, inside, design-ai): keep font-size at 36px — match across .h-updates__h,
-   * .h-inside__h, .h-design-ai__h when adding new bands.
+   * Home section h2s (updates, inside, design-ai): font-size is set globally on .doc-h2-anchor-heading.
    * :global — class is on <h2> inside DocH2WithAnchor, outside this file’s scoped DOM.
    */
   .home-root :global(.h-updates__h) {
     margin: 0;
-    font-size: 36px;
     font-weight: 700;
     letter-spacing: -0.04em;
     line-height: 1.1;
@@ -1458,43 +1450,6 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     padding: 0.85rem 0 0;
   }
 
-  /* Matches components overview matrix status badges (doc-overview-matrix__badge). */
-  .h-updates-card__tag {
-    position: absolute;
-    top: var(--prism-space-sm);
-    left: var(--prism-space-sm);
-    z-index: 2;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.28em 0.7em;
-    border-radius: var(--prism-radius-sm, 6px);
-    font-size: 0.8125rem;
-    font-weight: 600;
-    line-height: 1.2;
-    letter-spacing: 0.01em;
-  }
-
-  .h-updates-card__tag--available {
-    background-color: color-mix(in srgb, var(--prism-color-success) 10%, var(--prism-color-surface));
-    color: color-mix(in srgb, var(--prism-color-success) 22%, var(--prism-color-text-primary));
-  }
-
-  .h-updates-card__tag--planned {
-    background-color: color-mix(in srgb, var(--prism-color-text-primary) 8%, var(--prism-color-surface));
-    color: var(--prism-color-text-secondary);
-  }
-
-  .h-updates-card__tag--beta {
-    background-color: color-mix(in srgb, var(--prism-color-accent) 10%, var(--prism-color-surface));
-    color: color-mix(in srgb, var(--prism-color-accent-strong) 28%, var(--prism-color-text-primary));
-  }
-
-  .h-updates-card__tag--unavailable {
-    background-color: color-mix(in srgb, var(--prism-color-text-primary) 8%, var(--prism-color-surface));
-    color: var(--prism-color-text-secondary);
-  }
-
   .h-updates-card__date {
     font-size: 16px;
     font-weight: 400;
@@ -1559,7 +1514,6 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
 
   .home-root :global(.h-inside__h) {
     margin: 0 0 clamp(1rem, 2vw, 1.25rem);
-    font-size: 36px;
     font-weight: 700;
     letter-spacing: -0.04em;
     line-height: 1.1;
@@ -1831,7 +1785,6 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
 
   .home-root :global(.h-design-ai__h) {
     margin: 0 0 clamp(1rem, 2vw, 1.25rem);
-    font-size: 36px;
     font-weight: 700;
     letter-spacing: -0.04em;
     line-height: 1.1;

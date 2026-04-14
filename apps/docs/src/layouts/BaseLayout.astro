@@ -167,7 +167,28 @@ const componentsAvatarsDrawerOpen =
                     </svg>
                   </span>
                 </a>
-                <a href="/resources" aria-current={isNavActive("/resources") ? "page" : undefined} data-i18n="nav.resources">Resources</a>
+                <a
+                  class="nav-link--has-nested"
+                  href="/resources/overview"
+                  data-nav-drill="resources"
+                  data-nav-drill-route-prefix="/resources"
+                  aria-current={isNavActive("/resources") ? "page" : undefined}
+                >
+                  <span data-i18n="nav.resources">Resources</span>
+                  <span class="nav-link-chevron" aria-hidden="true">
+                    <svg
+                      class="nav-link-chevron-svg"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="m9 18 6-6-6-6"></path>
+                    </svg>
+                  </span>
+                </a>
                 <a
                   class="nav-link--has-nested"
                   href="/blog/featured"
@@ -382,6 +403,56 @@ const componentsAvatarsDrawerOpen =
                       href="/components/input-fields"
                       aria-current={normPath === "/components/input-fields" ? "page" : undefined}
                       data-i18n="components.toc.inputFields">Input fields</a>
+                  </li>
+                </ul>
+                <ul
+                  id="nav-drawer-sub-resources"
+                  class="nav-drawer-subnav-list"
+                  hidden
+                  data-i18n-aria="resources.sectionNav.aria"
+                  aria-label="Resources pages"
+                >
+                  <li>
+                    <a
+                      href="/resources/overview"
+                      aria-current={normPath === "/resources/overview" ? "page" : undefined}
+                      data-i18n="resources.toc.overview">Overview</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/resources/ai-skills"
+                      aria-current={normPath === "/resources/ai-skills" ? "page" : undefined}
+                      data-i18n="resources.toc.aiSkills">AI skills</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/resources/figma"
+                      aria-current={normPath === "/resources/figma" ? "page" : undefined}
+                      data-i18n="resources.toc.figma">Figma</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/resources/development"
+                      aria-current={normPath === "/resources/development" ? "page" : undefined}
+                      data-i18n="resources.toc.development">Development</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/resources/learning-videos"
+                      aria-current={normPath === "/resources/learning-videos" ? "page" : undefined}
+                      data-i18n="resources.toc.learningVideos">Learning videos</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/resources/fonts"
+                      aria-current={normPath === "/resources/fonts" ? "page" : undefined}
+                      data-i18n="resources.toc.fonts">Fonts</a>
+                  </li>
+                  <li>
+                    <a
+                      href="/resources/templates"
+                      aria-current={normPath === "/resources/templates" ? "page" : undefined}
+                      data-i18n="resources.toc.templates">Templates</a>
                   </li>
                 </ul>
                 <ul
@@ -672,6 +743,7 @@ const componentsAvatarsDrawerOpen =
           var gsUl = document.getElementById("nav-drawer-sub-get-started");
           var fdUl = document.getElementById("nav-drawer-sub-foundations");
           var compUl = document.getElementById("nav-drawer-sub-components");
+          var resUl = document.getElementById("nav-drawer-sub-resources");
           var blogUl = document.getElementById("nav-drawer-sub-blog");
           if (!siteNav) return;
           siteNav.classList.remove("is-nav-drill-sub");
@@ -683,6 +755,7 @@ const componentsAvatarsDrawerOpen =
           if (gsUl) gsUl.hidden = true;
           if (fdUl) fdUl.hidden = true;
           if (compUl) compUl.hidden = true;
+          if (resUl) resUl.hidden = true;
           if (blogUl) blogUl.hidden = true;
         }
         function isNavMobileDrawer() {
@@ -702,6 +775,7 @@ const componentsAvatarsDrawerOpen =
             drillId === "get-started" ||
             drillId === "foundations" ||
             drillId === "components" ||
+            drillId === "resources" ||
             drillId === "blog"
           );
         }
@@ -745,10 +819,12 @@ const componentsAvatarsDrawerOpen =
           var gsUl = document.getElementById("nav-drawer-sub-get-started");
           var fdUl = document.getElementById("nav-drawer-sub-foundations");
           var compUl = document.getElementById("nav-drawer-sub-components");
+          var resUl = document.getElementById("nav-drawer-sub-resources");
           var blogUl = document.getElementById("nav-drawer-sub-blog");
           if (gsUl) gsUl.hidden = drillId !== "get-started";
           if (fdUl) fdUl.hidden = drillId !== "foundations";
           if (compUl) compUl.hidden = drillId !== "components";
+          if (resUl) resUl.hidden = drillId !== "resources";
           if (blogUl) blogUl.hidden = drillId !== "blog";
           var labelSpan = anchor.querySelector("span[data-i18n]");
           var titleText = (labelSpan && labelSpan.textContent && labelSpan.textContent.trim()) || "";

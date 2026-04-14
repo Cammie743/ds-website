@@ -16,6 +16,11 @@
   margin-right: 0;
 }
 
+/* All section H2s use DocH2WithAnchor (home, blog, component docs). */
+.doc-h2-anchor-heading {
+  font-size: 36px;
+}
+
 .doc-h2-anchor-row--tabs .doc-h2-anchor-heading {
   margin: 0;
 }
