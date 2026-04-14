@@ -324,9 +324,9 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
             data-i18n-aria="components.accordion.design.demoAria"
           >
             <div class="accordion-variant-column">
-              <h3 class="accordion-variant-demo__example-title" data-i18n="components.accordion.design.demoLeadingTitle">
+              <p class="accordion-variant-demo__example-caption" data-i18n="components.accordion.design.demoLeadingTitle">
                 Leading chevron
-              </h3>
+              </p>
               <div
                 class="doc-tabs__figure-media accordion-variant-box"
                 role="region"
@@ -446,9 +446,9 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
             </div>
             </div>
             <div class="accordion-variant-column">
-              <h3 class="accordion-variant-demo__example-title" data-i18n="components.accordion.design.demoTrailingTitle">
+              <p class="accordion-variant-demo__example-caption" data-i18n="components.accordion.design.demoTrailingTitle">
                 Trailing chevron
-              </h3>
+              </p>
               <div
                 class="doc-tabs__figure-media accordion-variant-box"
                 role="region"
@@ -568,6 +568,39 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
             </div>
             </div>
           </div>
+        </div>
+        <div class="doc-overview-matrix-shell">
+          <table
+            class="doc-tabs__table doc-overview-matrix"
+            aria-label="Leading and trailing chevron usage"
+            data-i18n-aria="components.accordion.design.variantGuidance.tableAria"
+          >
+            <thead>
+              <tr>
+                <th scope="col" data-i18n="components.accordion.design.variantGuidance.colVariant">Variant</th>
+                <th scope="col" data-i18n="components.accordion.design.variantGuidance.colWhen">When to use</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" class="doc-overview-matrix__type" data-i18n="components.accordion.design.demoLeadingTitle">
+                  Leading chevron
+                </th>
+                <td class="doc-overview-matrix__resource-cell" data-i18n="components.accordion.design.variantGuidance.leadingBody">
+                  Used in narrow-width instances, when the accordion content area takes over less than 50% of an
+                  interface's width.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row" class="doc-overview-matrix__type" data-i18n="components.accordion.design.demoTrailingTitle">
+                  Trailing chevron
+                </th>
+                <td class="doc-overview-matrix__resource-cell" data-i18n="components.accordion.design.variantGuidance.trailingBody">
+                  Used when the accordion content area takes over 50% or more of an interface's width.
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
       <section
@@ -793,6 +826,15 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
 
   .doc-overview-resources {
     margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--prism-space-md);
+    min-width: 0;
+  }
+
+  /* Flex gap matches Variants → panel-copy spacing; row margin would collapse with table shell and read tighter. */
+  .doc-overview-resources > :global(.doc-h2-anchor-row--tabs) {
+    margin-bottom: 0;
   }
 
   .doc-overview-resources__h2 {
@@ -801,6 +843,7 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
 
   /* Outer border on shell; inner grid uses separate borders so corners stay cleaner than collapse. */
   .doc-overview-matrix-shell {
+    min-width: 0;
     border-radius: var(--prism-radius-md);
     border: 1px solid var(--prism-color-border-subtle);
     overflow: hidden;
@@ -815,7 +858,8 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
   }
 
   .doc-overview-matrix thead th {
-    background-color: color-mix(in srgb, var(--prism-color-accent) 9%, var(--prism-color-surface));
+    /* Theme-aware muted band via --prism-color-surface-muted (tokens) */
+    background-color: var(--prism-color-surface-muted);
     color: var(--prism-color-text-primary);
     font-weight: 600;
     font-size: 0.9375rem;
@@ -923,7 +967,7 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
   }
 
   .doc-tabs__figure {
-    margin: var(--prism-space-lg) 0 0;
+    margin: var(--prism-space-2xl) 0 0;
     padding: 0;
     min-width: 0;
     width: 100%;
@@ -973,13 +1017,12 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
     box-sizing: border-box;
   }
 
-  .accordion-variant-demo__example-title {
+  .accordion-variant-demo__example-caption {
     margin: 0;
-    font-size: 0.9375rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    line-height: 1.35;
-    color: var(--prism-color-text-primary);
+    font-size: 1.0625rem;
+    font-weight: 400;
+    line-height: 1.65;
+    color: var(--prism-color-text-secondary);
   }
 
   .accordion-prism-stack {
@@ -1110,7 +1153,7 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
     color: var(--prism-color-text-secondary);
   }
 
-  .doc-tabs__figure + .doc-tabs__table {
+  .doc-tabs__figure + .doc-overview-matrix-shell {
     margin-top: var(--prism-space-xl);
   }
 
@@ -1165,7 +1208,7 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
   }
 
   .doc-tabs__table thead th {
-    background-color: color-mix(in srgb, var(--prism-color-text-primary) 5%, var(--prism-color-surface));
+    background-color: var(--prism-color-surface-muted);
     color: var(--prism-color-text-primary);
     font-weight: 600;
   }

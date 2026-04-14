@@ -97,7 +97,13 @@ import Shell from "../layouts/Shell.astro";
 
   .btn.primary {
     background: var(--prism-color-accent-strong);
-    color: var(--prism-color-text-inverse);
+    color: var(--prism-color-text-on-accent);
+    border-color: var(--prism-color-accent-strong);
+  }
+
+  .btn.primary:hover {
+    background: color-mix(in srgb, var(--prism-color-accent-strong) 92%, #000000);
+    border-color: color-mix(in srgb, var(--prism-color-accent-strong) 92%, #000000);
   }
 
   .btn.secondary {

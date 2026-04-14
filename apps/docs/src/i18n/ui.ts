@@ -31,8 +31,11 @@ export const uiStrings = {
     "home.title": "Prism Design",
     "home.lede":
       "Prism Design 3 is Zoom's design system that helps teams build better product experiences, faster.",
-    "home.ctaFoundations": "Get started",
-    "home.ctaComponents": "Explore the system",
+    "home.btn.elevated": "Elevated",
+    "home.btn.filled": "Filled",
+    "home.btn.tonal": "Tonal",
+    "home.btn.outline": "Outline",
+    "home.btn.text": "Text",
     "home.quick.sectionTitle": "Where to go next",
     "home.quick.getStarted.title": "Get started",
     "home.quick.getStarted.body": "Mission, principles, language, and FAQs for teams onboarding to Prism.",
@@ -335,6 +338,13 @@ export const uiStrings = {
       "Contact support for order changes, damaged shipments, or account questions.",
     "components.accordion.design.variantsBody":
       "There are 2 variants available for accordion - Leading and trailing chevron.",
+    "components.accordion.design.variantGuidance.tableAria": "Leading and trailing chevron usage",
+    "components.accordion.design.variantGuidance.colVariant": "Variant",
+    "components.accordion.design.variantGuidance.colWhen": "When to use",
+    "components.accordion.design.variantGuidance.leadingBody":
+      "Used in narrow-width instances, when the accordion content area takes over less than 50% of an interface's width.",
+    "components.accordion.design.variantGuidance.trailingBody":
+      "Used when the accordion content area takes over 50% or more of an interface's width.",
     "components.accordion.tabs.accessibilityBody":
       "Keyboard support, ARIA roles, and screen reader guidance will be documented here.",
     "components.anchor.h1": "Anchor",
@@ -389,8 +399,11 @@ export const uiStrings = {
     "home.title": "Prism 设计",
     "home.lede":
       "Prism Design 3 是 Zoom 的设计系统，帮助团队更快打造更优质的产品体验。",
-    "home.ctaFoundations": "入门",
-    "home.ctaComponents": "探索设计系统",
+    "home.btn.elevated": "浮起",
+    "home.btn.filled": "填充",
+    "home.btn.tonal": "浅色调",
+    "home.btn.outline": "线框",
+    "home.btn.text": "文字",
     "home.quick.sectionTitle": "下一步去哪",
     "home.quick.getStarted.title": "入门",
     "home.quick.getStarted.body": "使命、原则、设计语言与常见问题，帮助团队接入 Prism。",
@@ -672,6 +685,13 @@ export const uiStrings = {
       "如需改单、破损包裹或账户问题，请联系客服。",
     "components.accordion.design.variantsBody":
       "手风琴有 2 种变体，含前导式与尾随式下箭头。",
+    "components.accordion.design.variantGuidance.tableAria": "前导式与尾随式下箭头的使用说明",
+    "components.accordion.design.variantGuidance.colVariant": "变体",
+    "components.accordion.design.variantGuidance.colWhen": "使用时机",
+    "components.accordion.design.variantGuidance.leadingBody":
+      "用于窄宽度场景：当手风琴内容区域占界面宽度不足 50% 时。",
+    "components.accordion.design.variantGuidance.trailingBody":
+      "当手风琴内容区域占界面宽度达到或超过 50% 时使用。",
     "components.accordion.tabs.accessibilityBody": "键盘支持、ARIA 角色与读屏指引将在此文档化。",
     "components.anchor.h1": "锚点",
     "components.anchor.intro": "哈希导航、焦点管理与固定顶栏偏移将在此文档化。",

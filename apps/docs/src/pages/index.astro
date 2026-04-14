@@ -10,14 +10,41 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
       <p class="h-hero__lede home-rise home-rise--2" data-i18n="home.lede">
         Prism Design 3 is Zoom's design system that helps teams build better product experiences, faster.
       </p>
-      <div class="h-hero__actions home-rise home-rise--3">
-        <a class="h-btn h-btn--primary" href="/get-started/overview">
-          <span data-i18n="home.ctaFoundations">Get started</span>
-          <span class="h-btn__arrow" aria-hidden="true">→</span>
+      <div class="h-hero__actions home-rise home-rise--3" aria-label="Button hierarchy examples">
+        <a class="h-btn h-btn--elevated" href="/get-started/overview">
+          <span class="h-btn__surface" aria-hidden="true"></span>
+          <span class="h-btn__content">
+            <span data-i18n="home.btn.elevated">Elevated</span>
+            <span class="h-btn__arrow" aria-hidden="true">→</span>
+          </span>
         </a>
-        <a class="h-btn h-btn--quiet" href="/foundations/overview">
-          <span data-i18n="home.ctaComponents">Explore the system</span>
-          <span class="h-btn__arrow" aria-hidden="true">→</span>
+        <a class="h-btn h-btn--filled" href="/foundations/overview">
+          <span class="h-btn__surface" aria-hidden="true"></span>
+          <span class="h-btn__content">
+            <span data-i18n="home.btn.filled">Filled</span>
+            <span class="h-btn__arrow" aria-hidden="true">→</span>
+          </span>
+        </a>
+        <a class="h-btn h-btn--tonal" href="/components/overview">
+          <span class="h-btn__surface" aria-hidden="true"></span>
+          <span class="h-btn__content">
+            <span data-i18n="home.btn.tonal">Tonal</span>
+            <span class="h-btn__arrow" aria-hidden="true">→</span>
+          </span>
+        </a>
+        <a class="h-btn h-btn--outline" href="/blog/latest">
+          <span class="h-btn__surface" aria-hidden="true"></span>
+          <span class="h-btn__content">
+            <span data-i18n="home.btn.outline">Outline</span>
+            <span class="h-btn__arrow" aria-hidden="true">→</span>
+          </span>
+        </a>
+        <a class="h-btn h-btn--text" href="/get-started/mission">
+          <span class="h-btn__surface" aria-hidden="true"></span>
+          <span class="h-btn__content">
+            <span data-i18n="home.btn.text">Text</span>
+            <span class="h-btn__arrow" aria-hidden="true">→</span>
+          </span>
         </a>
       </div>
     </section>
@@ -28,7 +55,10 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
           <DocH2WithAnchor id="updates-heading" class="h-updates__h" data-i18n="home.updates.sectionTitle">
             Latest and greatest from Prism
           </DocH2WithAnchor>
-          <a class="h-btn h-btn--tertiary h-updates__all" href="/blog/latest" data-i18n="home.updates.viewAll">Explore all blogs</a>
+          <a class="h-btn h-btn--text h-updates__all" href="/blog/latest">
+            <span class="h-btn__surface" aria-hidden="true"></span>
+            <span class="h-btn__content" data-i18n="home.updates.viewAll">Explore all blogs</span>
+          </a>
         </div>
       </div>
       <div
@@ -353,8 +383,8 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     text-align: center;
   }
 
-  /* Full-bleed mesh behind hero only (default light theme) */
-  :global(html:not([data-theme])) .h-hero::before {
+  /* Full-bleed corner bursts behind hero — default + explicit themes (was light-only via html:not([data-theme])) */
+  .h-hero::before {
     content: "";
     position: absolute;
     z-index: -1;
@@ -370,7 +400,43 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
       radial-gradient(ellipse 100% 85% at 96% 4%, color-mix(in srgb, #93c5fd 42%, transparent), transparent 52%),
       radial-gradient(ellipse 70% 60% at 88% 42%, color-mix(in srgb, #bfdbfe 28%, transparent), transparent 50%),
       radial-gradient(ellipse 55% 45% at 18% 22%, color-mix(in srgb, #e0e7ff 22%, transparent), transparent 55%),
-      #ffffff;
+      var(--prism-color-canvas);
+  }
+
+  :global([data-theme="dark"]) .h-hero::before {
+    background:
+      radial-gradient(ellipse 120% 90% at 8% 96%, color-mix(in srgb, #b794f6 26%, transparent), transparent 58%),
+      radial-gradient(ellipse 100% 85% at 96% 4%, color-mix(in srgb, var(--prism-color-accent) 32%, transparent), transparent 52%),
+      radial-gradient(ellipse 70% 60% at 88% 42%, color-mix(in srgb, var(--prism-color-accent-strong) 18%, transparent), transparent 50%),
+      radial-gradient(ellipse 55% 45% at 18% 22%, color-mix(in srgb, #c4b5fd 14%, transparent), transparent 55%),
+      var(--prism-color-canvas);
+  }
+
+  :global([data-theme="bloom"]) .h-hero::before {
+    background:
+      radial-gradient(ellipse 120% 90% at 8% 96%, color-mix(in srgb, var(--prism-color-accent-strong) 26%, transparent), transparent 58%),
+      radial-gradient(ellipse 100% 85% at 96% 4%, color-mix(in srgb, #b8d9fb 40%, transparent), transparent 52%),
+      radial-gradient(ellipse 70% 60% at 88% 42%, color-mix(in srgb, var(--prism-color-accent) 24%, transparent), transparent 50%),
+      radial-gradient(ellipse 55% 45% at 18% 22%, color-mix(in srgb, #dbeafe 22%, transparent), transparent 55%),
+      var(--prism-color-canvas);
+  }
+
+  :global([data-theme="agave"]) .h-hero::before {
+    background:
+      radial-gradient(ellipse 120% 90% at 8% 96%, color-mix(in srgb, #b8eadf 36%, transparent), transparent 58%),
+      radial-gradient(ellipse 100% 85% at 96% 4%, color-mix(in srgb, var(--prism-color-accent) 30%, transparent), transparent 52%),
+      radial-gradient(ellipse 70% 60% at 88% 42%, color-mix(in srgb, var(--prism-color-accent-strong) 20%, transparent), transparent 50%),
+      radial-gradient(ellipse 55% 45% at 18% 22%, color-mix(in srgb, #ccfbf1 18%, transparent), transparent 55%),
+      var(--prism-color-canvas);
+  }
+
+  :global([data-theme="rose"]) .h-hero::before {
+    background:
+      radial-gradient(ellipse 120% 90% at 8% 96%, color-mix(in srgb, #f5c9cc 38%, transparent), transparent 58%),
+      radial-gradient(ellipse 100% 85% at 96% 4%, color-mix(in srgb, var(--prism-color-accent) 30%, transparent), transparent 52%),
+      radial-gradient(ellipse 70% 60% at 88% 42%, color-mix(in srgb, #fce7f3 22%, transparent), transparent 50%),
+      radial-gradient(ellipse 55% 45% at 18% 22%, color-mix(in srgb, var(--prism-color-accent-strong) 16%, transparent), transparent 55%),
+      var(--prism-color-canvas);
   }
 
   /* Updates + What's inside: solid white (full width), over global canvas */
@@ -421,21 +487,44 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
   }
 
   .h-btn {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.45em;
     padding: 0.7rem 1.5rem;
     font-size: 0.9375rem;
     font-weight: 600;
     letter-spacing: -0.02em;
     text-decoration: none;
     border-radius: 9999px;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
     transition:
       background 0.35s var(--home-ease),
       color 0.35s var(--home-ease),
       border-color 0.35s var(--home-ease),
-      transform 0.35s var(--home-ease);
+      box-shadow 0.35s var(--home-ease);
+  }
+
+  /* MD3-style press: clipped ripple + state layer (shadow stays outside; overflow only on inner surface) */
+  .h-btn__surface {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    border-radius: inherit;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .h-btn__content {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45em;
   }
 
   .h-btn__arrow {
@@ -448,40 +537,145 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     transform: translateX(0.15em);
   }
 
-  .h-btn--primary {
+  /*
+   * Elevated: three-stop gradient from bottom-left → top-right (`to top right`).
+   * Default light: #0845BF → #006EE7 → #4F90EE at 0% / 60% / 100%
+   * No 1px border (avoids subpixel gaps vs rounded gradient). No accent-colored shadow blur
+   * (that reads as a “ring” on dark UI); depth uses token shadow only.
+   */
+  .h-btn--elevated {
+    border: 0;
+    padding: calc(0.7rem + 1px) calc(1.5rem + 1px);
+    background: linear-gradient(to top right, #0845bf 0%, #006ee7 60%, #4f90ee 100%);
+    color: var(--prism-color-text-on-accent);
+    box-shadow: var(--prism-shadow-lg);
+  }
+
+  .h-btn--elevated:hover {
+    color: var(--prism-color-text-on-accent);
+    background: linear-gradient(to top right, #06318a 0%, #0059b8 60%, #3d7ac7 100%);
+    box-shadow: var(--prism-shadow-lg);
+  }
+
+  :global([data-theme="bloom"]) .h-btn--elevated {
+    background: linear-gradient(to top right, #0a3d9c 0%, #2271df 60%, #63a6ff 100%);
+    box-shadow: var(--prism-shadow-lg);
+  }
+
+  :global([data-theme="bloom"]) .h-btn--elevated:hover {
+    background: linear-gradient(to top right, #082f7a 0%, #1a5fc4 60%, #4f92e6 100%);
+    box-shadow: var(--prism-shadow-lg);
+  }
+
+  :global([data-theme="agave"]) .h-btn--elevated {
+    background: linear-gradient(to top right, #054d3d 0%, #0c8665 60%, #52d4b4 100%);
+    box-shadow: var(--prism-shadow-lg);
+  }
+
+  :global([data-theme="agave"]) .h-btn--elevated:hover {
+    background: linear-gradient(to top right, #043d30 0%, #0a6b52 60%, #45c4a3 100%);
+    box-shadow: var(--prism-shadow-lg);
+  }
+
+  :global([data-theme="rose"]) .h-btn--elevated {
+    background: linear-gradient(to top right, #7d2832 0%, #ca4754 60%, #f5aeb6 100%);
+    box-shadow: var(--prism-shadow-lg);
+  }
+
+  :global([data-theme="rose"]) .h-btn--elevated:hover {
+    background: linear-gradient(to top right, #651f27 0%, #a83a45 60%, #e098a0 100%);
+    box-shadow: var(--prism-shadow-lg);
+  }
+
+  :global([data-theme="dark"]) .h-btn--elevated {
+    background: linear-gradient(to top right, #042a72 0%, #0d6bde 60%, #5ba3ff 100%);
+    box-shadow: var(--prism-shadow-lg);
+  }
+
+  :global([data-theme="dark"]) .h-btn--elevated:hover {
+    background: linear-gradient(to top right, #031d54 0%, #0a57b8 60%, #4a94ea 100%);
+    box-shadow: var(--prism-shadow-lg);
+  }
+
+  /* 2 — Filled (primary action) */
+  .h-btn--filled {
     background: var(--prism-color-accent-strong);
-    color: var(--prism-color-text-inverse);
-    border: 1px solid var(--prism-color-accent-strong);
-  }
-
-  .h-btn--primary:hover {
-    transform: translateY(-1px);
-    background: var(--prism-color-accent);
-    border-color: var(--prism-color-accent);
-  }
-
-  .h-btn--quiet {
-    background: color-mix(in srgb, var(--prism-color-accent) 12%, transparent);
-    color: var(--prism-color-accent-strong);
-    border: 1px solid color-mix(in srgb, var(--prism-color-accent-strong) 42%, transparent);
-  }
-
-  .h-btn--quiet:hover {
-    background: color-mix(in srgb, var(--prism-color-accent) 22%, transparent);
+    color: var(--prism-color-text-on-accent);
     border-color: var(--prism-color-accent-strong);
-    transform: translateY(-1px);
+    box-shadow: none;
   }
 
-  .h-btn--tertiary {
+  .h-btn--filled:hover {
+    color: var(--prism-color-text-on-accent);
+    background: color-mix(in srgb, var(--prism-color-accent-strong) 88%, #000000);
+    border-color: color-mix(in srgb, var(--prism-color-accent-strong) 88%, #000000);
+  }
+
+  /* 3 — Tonal: primary tint + body text; no visible border — edge reads from fill vs canvas */
+  .h-btn--tonal {
+    background: color-mix(in srgb, var(--prism-color-accent) 26%, var(--prism-color-surface));
+    color: var(--prism-color-text-primary);
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+  .h-btn--tonal:hover {
+    color: var(--prism-color-text-primary);
+    background: color-mix(in srgb, var(--prism-color-accent) 34%, var(--prism-color-surface));
+    border-color: transparent;
+  }
+
+  :global([data-theme="dark"]) .h-btn--tonal {
+    background: color-mix(in srgb, var(--prism-color-accent) 22%, var(--prism-color-surface-muted));
+    border-color: transparent;
+  }
+
+  :global([data-theme="dark"]) .h-btn--tonal:hover {
+    background: color-mix(in srgb, var(--prism-color-accent) 30%, var(--prism-color-surface-muted));
+    border-color: transparent;
+  }
+
+  /* 4 — Outline: lighter stroke vs canvas; label stays body text */
+  .h-btn--outline {
     background: transparent;
-    color: var(--prism-color-accent-strong);
-    border: 1px solid color-mix(in srgb, var(--prism-color-accent-strong) 42%, transparent);
+    color: var(--prism-color-text-primary);
+    border-color: color-mix(in srgb, var(--prism-color-text-primary) 22%, var(--prism-color-border-subtle));
+    box-shadow: none;
   }
 
-  .h-btn--tertiary:hover {
-    background: color-mix(in srgb, var(--prism-color-accent) 14%, transparent);
-    color: var(--prism-color-accent-strong);
-    border-color: var(--prism-color-accent-strong);
+  .h-btn--outline:hover {
+    color: var(--prism-color-text-primary);
+    background: color-mix(in srgb, var(--prism-color-text-primary) 5%, var(--prism-color-canvas));
+    border-color: color-mix(in srgb, var(--prism-color-text-primary) 28%, var(--prism-color-border-subtle));
+  }
+
+  :global([data-theme="dark"]) .h-btn--outline:hover {
+    background: color-mix(in srgb, var(--prism-color-text-primary) 6%, var(--prism-color-canvas));
+  }
+
+  /*
+   * 5 — Text: on light themes, slightly deepen accent-strong (91/9 vs black) so default + hover tint
+   * both meet WCAG AA 4.5:1 vs canvas at ~14% accent wash. Dark keeps brighter accent on charcoal.
+   */
+  .h-btn--text {
+    background: transparent;
+    color: color-mix(in srgb, var(--prism-color-accent-strong) 91%, #000000);
+    border-color: transparent;
+    box-shadow: none;
+  }
+
+  .h-btn--text:hover {
+    color: color-mix(in srgb, var(--prism-color-accent-strong) 91%, #000000);
+    background: color-mix(in srgb, var(--prism-color-accent) 14%, var(--prism-color-canvas));
+  }
+
+  :global([data-theme="dark"]) .h-btn--text {
+    color: var(--prism-color-accent);
+  }
+
+  :global([data-theme="dark"]) .h-btn--text:hover {
+    color: var(--prism-color-accent);
+    background: color-mix(in srgb, var(--prism-color-accent) 16%, var(--prism-color-canvas));
   }
 
   .h-btn:focus-visible {
@@ -489,10 +683,13 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     outline-offset: 3px;
   }
 
+  :global([data-theme="dark"]) .h-btn:focus-visible {
+    outline-color: var(--prism-color-accent);
+  }
+
   /* Updates */
   .h-updates {
     padding: clamp(3rem, 8vw, 5rem) 0;
-    border-top: 1px solid color-mix(in srgb, var(--prism-color-border-subtle) 85%, transparent);
   }
 
   .h-updates__head {
@@ -514,7 +711,7 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     line-height: 1.1;
   }
 
-  .h-updates__all.h-btn--tertiary {
+  .h-updates__all.h-btn--text {
     padding: 0.45rem 1rem;
     font-size: 0.875rem;
     letter-spacing: -0.01em;
@@ -897,12 +1094,6 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .h-btn--primary:hover,
-    .h-btn--quiet:hover,
-    .h-btn--tertiary:hover {
-      transform: none;
-    }
-
     .h-btn:hover .h-btn__arrow {
       transform: none;
     }
@@ -921,6 +1112,47 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
 
     .h-inside__link:hover .h-inside__arrow {
       transform: none;
+    }
+  }
+</style>
+
+<!--
+  Ripples are created in JS — they must not use Astro-scoped selectors or they never match.
+  Pattern inspired by https://css-tricks.com/how-to-recreate-the-ripple-effect-of-material-design-buttons/
+-->
+<style is:global>
+  .home-root a.h-btn .h-btn__ripple {
+    position: absolute;
+    z-index: 1;
+    box-sizing: border-box;
+    border-radius: 50%;
+    pointer-events: none;
+    will-change: transform, opacity;
+    /* Inherits label color from .h-btn → soft tinted ink (MD3-style) */
+    background: color-mix(in srgb, currentColor 34%, transparent);
+    box-shadow: 0 0 28px color-mix(in srgb, currentColor 14%, transparent);
+    opacity: 0.5;
+    transform: scale(0);
+  }
+
+  .home-root a.h-btn .h-btn__ripple.h-btn__ripple--press {
+    animation: h-btnRipplePress 0.48s cubic-bezier(0.2, 0, 0.2, 1) forwards;
+  }
+
+  @keyframes h-btnRipplePress {
+    0% {
+      transform: scale(0);
+      opacity: 0.48;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0.36;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .home-root a.h-btn .h-btn__ripple {
+      display: none !important;
     }
   }
 </style>
@@ -1159,6 +1391,103 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     }
     setSlideWidths();
     sync();
+  }
+
+  /**
+   * MD3-style ink: grows from pointer on press (CSS keyframes), holds, then fades on release.
+   * Ripples use is:global styles — Astro scoped CSS does not apply to JS-created nodes.
+   */
+  function initHomeButtonPressFeedback() {
+    var root = document.querySelector(".home-root");
+    if (!root) return;
+
+    var reduceMotion =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    root.addEventListener(
+      "pointerdown",
+      function (e) {
+        if (reduceMotion) return;
+        var btn = e.target.closest(".home-root a.h-btn");
+        if (!btn || !root.contains(btn)) return;
+        if (e.pointerType === "mouse" && e.button !== 0) return;
+
+        var surface = btn.querySelector(".h-btn__surface");
+        if (!surface) return;
+
+        var prev = surface.querySelector(".h-btn__ripple");
+        if (prev) prev.remove();
+
+        var rect = btn.getBoundingClientRect();
+        var x = e.clientX - rect.left;
+        var y = e.clientY - rect.top;
+        var maxDim = Math.max(rect.width, rect.height);
+        var d = maxDim * 2.55;
+
+        var ripple = document.createElement("span");
+        ripple.className = "h-btn__ripple";
+        ripple.style.left = x - d / 2 + "px";
+        ripple.style.top = y - d / 2 + "px";
+        ripple.style.width = d + "px";
+        ripple.style.height = d + "px";
+        surface.appendChild(ripple);
+
+        requestAnimationFrame(function () {
+          ripple.classList.add("h-btn__ripple--press");
+        });
+
+        var pid = e.pointerId;
+
+        function removeListeners() {
+          document.removeEventListener("pointerup", onUp, true);
+          document.removeEventListener("pointercancel", onUp, true);
+        }
+
+        function onUp(e2) {
+          if (e2.pointerId !== pid) return;
+          removeListeners();
+
+          var cs = window.getComputedStyle(ripple);
+          var op = cs.opacity;
+          var tr = cs.transform;
+          ripple.classList.remove("h-btn__ripple--press");
+          ripple.style.animation = "none";
+          ripple.style.opacity = op;
+          ripple.style.transform = tr;
+          void ripple.offsetWidth;
+          ripple.style.transition =
+            "opacity 0.32s ease-out, transform 0.42s cubic-bezier(0.2, 0.75, 0.25, 1)";
+          requestAnimationFrame(function () {
+            ripple.style.opacity = "0";
+            ripple.style.transform = "scale(1.12)";
+          });
+
+          function cleanup() {
+            if (ripple.parentNode) ripple.parentNode.removeChild(ripple);
+          }
+
+          ripple.addEventListener(
+            "transitionend",
+            function (tev) {
+              if (tev.propertyName === "opacity") cleanup();
+            },
+            { once: true }
+          );
+          window.setTimeout(cleanup, 480);
+        }
+
+        document.addEventListener("pointerup", onUp, true);
+        document.addEventListener("pointercancel", onUp, true);
+      },
+      { passive: true }
+    );
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initHomeButtonPressFeedback);
+  } else {
+    initHomeButtonPressFeedback();
   }
 
   initUpdatesCarousel();

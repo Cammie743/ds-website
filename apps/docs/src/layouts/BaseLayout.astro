@@ -1738,6 +1738,17 @@ const componentsAvatarsDrawerOpen =
       padding-inline-start: calc(var(--site-page-pad-x) + var(--site-header-pad-start-extra));
       --top-pad-x: var(--site-page-pad-x);
       --top-pad-y: 0px;
+      /* Mirror #site-nav drawer end inset so the menu/close control can align with #nav-drawer-panel-root */
+      --nav-drawer-inline-end: var(--site-page-pad-x);
+    }
+
+    /* Scrolled pill: 16px from viewport edges (or safe-area when it requires more) */
+    .top.is-scrolled {
+      width: calc(
+        100% - max(16px, env(safe-area-inset-left, 0px)) - max(16px, env(safe-area-inset-right, 0px))
+      );
+      max-width: none;
+      margin-inline: auto;
     }
 
     /*
@@ -1769,6 +1780,29 @@ const componentsAvatarsDrawerOpen =
     .top.is-nav-open .nav-toggle {
       position: relative;
       z-index: 120;
+    }
+
+    /*
+      Scrolled pill: #nav-toggle stays in the centered header while the sheet is viewport-right.
+      Root drawer only — keep drill subnav header/back layout unchanged.
+    */
+    .top.is-scrolled.is-nav-open:not(:has(#site-nav.is-nav-drill-sub))::after {
+      content: "";
+      flex: 0 0 2.375rem;
+      width: 2.375rem;
+      min-width: 2.375rem;
+      height: 2.375rem;
+      pointer-events: none;
+    }
+
+    .top.is-scrolled.is-nav-open #site-nav:not(.is-nav-drill-sub) ~ #nav-toggle {
+      position: fixed;
+      z-index: 120;
+      top: calc(
+        var(--site-header-pill-top-gap) + env(safe-area-inset-top, 0px) + var(--top-pad-y) +
+          (72px - 2 * var(--top-pad-y) - 2.375rem) / 2
+      );
+      right: var(--nav-drawer-inline-end);
     }
 
     .top-tools {
@@ -2458,7 +2492,10 @@ const componentsAvatarsDrawerOpen =
     padding-top: 0;
     padding-right: calc(var(--site-page-pad-x) + env(safe-area-inset-right, 0px));
     padding-bottom: 0;
-    padding-left: calc(var(--site-page-pad-x) + env(safe-area-inset-left, 0px));
+    /* Match .top: Prism / “Search” start uses --site-header-pad-start-extra */
+    padding-left: calc(
+      var(--site-page-pad-x) + var(--site-header-pad-start-extra) + env(safe-area-inset-left, 0px)
+    );
   }
 
   .search-drawer-field-wrap {
@@ -2866,11 +2903,29 @@ const componentsAvatarsDrawerOpen =
     margin: 0;
   }
 
-  /* Match docs sidebar breakpoint: same outer width as scrolled pill header */
+  /*
+   * Align main/footer with the pill shell from tablet-up.
+   * Resting header uses the same shell only when the inline nav is shown (68rem+); at the drawer
+   * breakpoint the bar stays full width so it lines up with the hamburger layout.
+   * Narrow scrolled pill: .top.is-scrolled is inset from the viewport (see max-width: 68rem block).
+   */
   @media (min-width: 56rem) {
-    .top,
     .main,
     .foot {
+      width: var(--site-pill-shell-width);
+      max-width: var(--site-pill-shell-width);
+      margin-inline: auto;
+    }
+
+    /* Full-width search bar: inner band matches non-scrolled .top content width (scroll/pill drawer unchanged) */
+    .top:not(.is-scrolled) ~ .search-drawer .search-drawer-inner {
+      max-width: var(--site-pill-shell-width);
+      margin-inline: auto;
+    }
+  }
+
+  @media (min-width: calc(68rem + 1px)) {
+    .top:not(.is-scrolled) {
       width: var(--site-pill-shell-width);
       max-width: var(--site-pill-shell-width);
       margin-inline: auto;
@@ -2899,6 +2954,7 @@ const componentsAvatarsDrawerOpen =
     }
 
     /* Match morphing close / header inset so link rows align with the control edge */
+    .top,
     .nav {
       --nav-drawer-inline-end: 16px;
     }
@@ -2915,7 +2971,7 @@ const componentsAvatarsDrawerOpen =
 
     .search-drawer-inner {
       padding-right: calc(16px + env(safe-area-inset-right, 0px));
-      padding-left: calc(16px + env(safe-area-inset-left, 0px));
+      padding-left: calc(16px + var(--site-header-pad-start-extra) + env(safe-area-inset-left, 0px));
     }
   }
 </style>

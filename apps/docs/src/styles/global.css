@@ -68,25 +68,25 @@ code {
 
 [data-theme="bloom"] .prism-bg {
   background:
-    radial-gradient(1200px 620px at 10% -18%, color-mix(in srgb, var(--prism-color-accent) 12%, transparent), transparent 65%),
-    radial-gradient(920px 500px at 90% 4%, color-mix(in srgb, #e8a8d8 14%, transparent), transparent 58%),
-    radial-gradient(780px 520px at 50% 108%, color-mix(in srgb, var(--prism-color-accent-strong) 8%, transparent), transparent 56%),
+    radial-gradient(1200px 620px at 10% -18%, color-mix(in srgb, var(--prism-color-accent) 10%, transparent), transparent 65%),
+    radial-gradient(920px 500px at 90% 4%, color-mix(in srgb, #b8d9fb 18%, transparent), transparent 58%),
+    radial-gradient(780px 520px at 50% 108%, color-mix(in srgb, var(--prism-color-accent-strong) 6%, transparent), transparent 56%),
     var(--prism-color-canvas);
 }
 
 [data-theme="agave"] .prism-bg {
   background:
-    radial-gradient(1200px 620px at 10% -18%, color-mix(in srgb, var(--prism-color-accent) 11%, transparent), transparent 65%),
-    radial-gradient(920px 500px at 90% 4%, color-mix(in srgb, #7dd3c0 12%, transparent), transparent 58%),
-    radial-gradient(780px 520px at 50% 108%, color-mix(in srgb, var(--prism-color-accent-strong) 7%, transparent), transparent 56%),
+    radial-gradient(1200px 620px at 10% -18%, color-mix(in srgb, var(--prism-color-accent) 9%, transparent), transparent 65%),
+    radial-gradient(920px 500px at 90% 4%, color-mix(in srgb, #b8eadf 16%, transparent), transparent 58%),
+    radial-gradient(780px 520px at 50% 108%, color-mix(in srgb, var(--prism-color-accent-strong) 5%, transparent), transparent 56%),
     var(--prism-color-canvas);
 }
 
 [data-theme="rose"] .prism-bg {
   background:
-    radial-gradient(1200px 620px at 10% -18%, color-mix(in srgb, var(--prism-color-accent) 11%, transparent), transparent 65%),
-    radial-gradient(920px 500px at 90% 4%, color-mix(in srgb, #f0a0a0 12%, transparent), transparent 58%),
-    radial-gradient(780px 520px at 50% 108%, color-mix(in srgb, var(--prism-color-accent-strong) 7%, transparent), transparent 56%),
+    radial-gradient(1200px 620px at 10% -18%, color-mix(in srgb, var(--prism-color-accent) 9%, transparent), transparent 65%),
+    radial-gradient(920px 500px at 90% 4%, color-mix(in srgb, #f5c9cc 16%, transparent), transparent 58%),
+    radial-gradient(780px 520px at 50% 108%, color-mix(in srgb, var(--prism-color-accent-strong) 5%, transparent), transparent 56%),
     var(--prism-color-canvas);
 }
 
@@ -113,21 +113,21 @@ code {
 
 [data-theme="bloom"] .prism-chrome-bg {
   background-image:
-    radial-gradient(1200px 620px at 10% -18%, color-mix(in srgb, var(--prism-color-accent) 12%, transparent), transparent 65%),
-    radial-gradient(920px 500px at 90% 4%, color-mix(in srgb, #e8a8d8 14%, transparent), transparent 58%),
-    radial-gradient(780px 520px at 50% 108%, color-mix(in srgb, var(--prism-color-accent-strong) 8%, transparent), transparent 56%);
+    radial-gradient(1200px 620px at 10% -18%, color-mix(in srgb, var(--prism-color-accent) 10%, transparent), transparent 65%),
+    radial-gradient(920px 500px at 90% 4%, color-mix(in srgb, #b8d9fb 18%, transparent), transparent 58%),
+    radial-gradient(780px 520px at 50% 108%, color-mix(in srgb, var(--prism-color-accent-strong) 6%, transparent), transparent 56%);
 }
 
 [data-theme="agave"] .prism-chrome-bg {
   background-image:
-    radial-gradient(1200px 620px at 10% -18%, color-mix(in srgb, var(--prism-color-accent) 11%, transparent), transparent 65%),
-    radial-gradient(920px 500px at 90% 4%, color-mix(in srgb, #7dd3c0 12%, transparent), transparent 58%),
-    radial-gradient(780px 520px at 50% 108%, color-mix(in srgb, var(--prism-color-accent-strong) 7%, transparent), transparent 56%);
+    radial-gradient(1200px 620px at 10% -18%, color-mix(in srgb, var(--prism-color-accent) 9%, transparent), transparent 65%),
+    radial-gradient(920px 500px at 90% 4%, color-mix(in srgb, #b8eadf 16%, transparent), transparent 58%),
+    radial-gradient(780px 520px at 50% 108%, color-mix(in srgb, var(--prism-color-accent-strong) 5%, transparent), transparent 56%);
 }
 
 [data-theme="rose"] .prism-chrome-bg {
   background-image:
-    radial-gradient(1200px 620px at 10% -18%, color-mix(in srgb, var(--prism-color-accent) 11%, transparent), transparent 65%),
-    radial-gradient(920px 500px at 90% 4%, color-mix(in srgb, #f0a0a0 12%, transparent), transparent 58%),
-    radial-gradient(780px 520px at 50% 108%, color-mix(in srgb, var(--prism-color-accent-strong) 7%, transparent), transparent 56%);
+    radial-gradient(1200px 620px at 10% -18%, color-mix(in srgb, var(--prism-color-accent) 9%, transparent), transparent 65%),
+    radial-gradient(920px 500px at 90% 4%, color-mix(in srgb, #f5c9cc 16%, transparent), transparent 58%),
+    radial-gradient(780px 520px at 50% 108%, color-mix(in srgb, var(--prism-color-accent-strong) 5%, transparent), transparent 56%);
 }

@@ -1,0 +1,27 @@
+---
+description: Prism docs — use the overview “matrix” table shell and classes for new data tables
+globs: apps/docs/**/*.astro
+alwaysApply: false
+---
+
+# Docs data tables (matrix pattern)
+
+When adding a **tabular data block** on Prism docs (`apps/docs`), match the **Overview / resources matrix** UI unless a simpler table is explicitly required.
+
+## Markup
+
+1. **Shell** — wrap the `<table>` in a div with class **`doc-overview-matrix-shell`** (rounded border, outer stroke, overflow clip, surface fill).
+2. **Table** — use **`class="doc-tabs__table doc-overview-matrix"`** on `<table>`. This enables the shared border-seam layout (`border-collapse: separate`) and a **neutral** header row using **`--prism-color-surface-muted`** (theme overrides in tokens), not an accent tint.
+3. **Header row** — `<thead><tr>` with `<th scope="col">` cells (i18n via `data-i18n` as usual).
+4. **Body rows**
+   - First column (row label / category): `<th scope="row" class="doc-overview-matrix__type">`
+   - Remaining columns: `<td class="doc-overview-matrix__resource-cell">` (links or prose; links can use `doc-overview-matrix__resource` + `doc-overview-matrix__cell-align` when mirroring the overview table).
+
+## Spacing
+
+If the table follows the demo **figure** on component pages, prefer **`margin-top` on the shell** via a sibling selector, e.g. **`.doc-tabs__figure + .doc-overview-matrix-shell`**, so spacing stays consistent with the Accordion Guidelines tab.
+
+## Do not
+
+- Rely on **`doc-tabs__table` alone** for matrix-style docs tables — it uses **collapsed** borders and no matrix seam layout; pair **`doc-overview-matrix`** for the matrix chrome.
+- Omit the **shell** when using **`doc-overview-matrix`** — the shell provides the outer chrome that matches Overview.

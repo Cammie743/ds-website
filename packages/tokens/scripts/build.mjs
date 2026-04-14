@@ -40,6 +40,7 @@ ${lines.join("\n")}
   --prism-color-canvas-inverse: #f6f7fb;
   --prism-color-surface: #12151c;
   --prism-color-surface-raised: #181c26;
+  --prism-color-surface-muted: #1b212d;
   --prism-color-border-subtle: #2a3040;
   --prism-color-border-strong: #3d4458;
   --prism-color-text-primary: #f6f7fb;
@@ -51,63 +52,66 @@ ${lines.join("\n")}
 }
 
 [data-theme="bloom"] {
-  --prism-color-canvas: #faf5fb;
-  --prism-color-canvas-inverse: #1a0f18;
-  --prism-color-surface: #fffcfe;
-  --prism-color-surface-raised: #fff8fc;
-  --prism-color-border-subtle: #f0e3ef;
-  --prism-color-border-strong: #dcc6d8;
-  --prism-color-text-primary: #241022;
-  --prism-color-text-secondary: #5c5160;
-  --prism-color-text-inverse: #faf5fb;
-  --prism-color-accent: #d946b8;
-  --prism-color-accent-strong: #b03092;
+  --prism-color-canvas: #f5f8fc;
+  --prism-color-canvas-inverse: #0e1622;
+  --prism-color-surface: #ffffff;
+  --prism-color-surface-raised: #fafcfe;
+  --prism-color-surface-muted: #edf3fa;
+  --prism-color-border-subtle: #e1eaf5;
+  --prism-color-border-strong: #c6d4e8;
+  --prism-color-text-primary: #101826;
+  --prism-color-text-secondary: #546178;
+  --prism-color-text-inverse: #f7f9fc;
+  --prism-color-accent: #4d9fff;
+  --prism-color-accent-strong: #2271df;
   --prism-color-success: #0d9d63;
   --prism-color-warning: #e68600;
   --prism-color-error: #d93025;
-  --prism-shadow-sm: 0 1px 3px rgba(55, 20, 50, 0.05);
-  --prism-shadow-md: 0 12px 32px rgba(55, 20, 50, 0.07);
-  --prism-shadow-lg: 0 28px 56px rgba(55, 20, 50, 0.09);
+  --prism-shadow-sm: 0 1px 3px rgba(20, 40, 72, 0.04);
+  --prism-shadow-md: 0 12px 32px rgba(20, 40, 72, 0.06);
+  --prism-shadow-lg: 0 28px 56px rgba(20, 40, 72, 0.08);
 }
 
 [data-theme="agave"] {
-  --prism-color-canvas: #f2faf7;
-  --prism-color-canvas-inverse: #061a15;
+  --prism-color-canvas: #f4faf7;
+  --prism-color-canvas-inverse: #0a1814;
   --prism-color-surface: #ffffff;
-  --prism-color-surface-raised: #f7fcfa;
-  --prism-color-border-subtle: #d7ebe4;
-  --prism-color-border-strong: #b3d4c8;
-  --prism-color-text-primary: #0c1f1a;
-  --prism-color-text-secondary: #4a6560;
-  --prism-color-text-inverse: #f2faf7;
-  --prism-color-accent: #1aaf8b;
-  --prism-color-accent-strong: #0d8f70;
+  --prism-color-surface-raised: #f9fcfb;
+  --prism-color-surface-muted: #eaf5f0;
+  --prism-color-border-subtle: #dceee6;
+  --prism-color-border-strong: #bed9cd;
+  --prism-color-text-primary: #0f1e19;
+  --prism-color-text-secondary: #4d625c;
+  --prism-color-text-inverse: #f4faf7;
+  --prism-color-accent: #3dc49f;
+  --prism-color-accent-strong: #0c8665;
   --prism-color-success: #0d9d63;
   --prism-color-warning: #e68600;
   --prism-color-error: #d93025;
-  --prism-shadow-sm: 0 1px 3px rgba(12, 45, 38, 0.05);
-  --prism-shadow-md: 0 12px 32px rgba(12, 45, 38, 0.07);
-  --prism-shadow-lg: 0 28px 56px rgba(12, 45, 38, 0.09);
+  --prism-shadow-sm: 0 1px 3px rgba(14, 48, 40, 0.04);
+  --prism-shadow-md: 0 12px 32px rgba(14, 48, 40, 0.06);
+  --prism-shadow-lg: 0 28px 56px rgba(14, 48, 40, 0.08);
 }
 
 [data-theme="rose"] {
-  --prism-color-canvas: #fcf6f6;
-  --prism-color-canvas-inverse: #1a0d0d;
-  --prism-color-surface: #fffdfd;
-  --prism-color-surface-raised: #fff8f8;
-  --prism-color-border-subtle: #f0dede;
-  --prism-color-border-strong: #e0c4c4;
-  --prism-color-text-primary: #281818;
-  --prism-color-text-secondary: #6e5757;
-  --prism-color-text-inverse: #fcf6f6;
-  --prism-color-accent: #e05858;
-  --prism-color-accent-strong: #c43a3a;
+  --prism-color-canvas: #fcf9f9;
+  --prism-color-canvas-inverse: #1a1112;
+  --prism-color-surface: #ffffff;
+  --prism-color-surface-raised: #fffbfb;
+  --prism-color-surface-muted: #f7f0f2;
+  --prism-color-border-subtle: #ebe0e2;
+  --prism-color-border-strong: #dacbcd;
+  --prism-color-text-primary: #221a1b;
+  --prism-color-text-secondary: #645558;
+  --prism-color-text-inverse: #fcf9f9;
+  --prism-color-accent: #ec7a85;
+  --prism-color-accent-strong: #ca4754;
   --prism-color-success: #0d9d63;
   --prism-color-warning: #e68600;
   --prism-color-error: #d93025;
-  --prism-shadow-sm: 0 1px 3px rgba(50, 20, 20, 0.05);
-  --prism-shadow-md: 0 12px 32px rgba(50, 20, 20, 0.07);
-  --prism-shadow-lg: 0 28px 56px rgba(50, 20, 20, 0.09);
+  --prism-shadow-sm: 0 1px 3px rgba(52, 28, 32, 0.04);
+  --prism-shadow-md: 0 12px 32px rgba(52, 28, 32, 0.06);
+  --prism-shadow-lg: 0 28px 56px rgba(52, 28, 32, 0.08);
 }
 `;
 
