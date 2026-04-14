@@ -387,38 +387,203 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
       <header class="h-inside__head home-rise home-rise--6">
         <DocH2WithAnchor id="inside-heading" class="h-inside__h" data-i18n="home.inside.heading">What's inside</DocH2WithAnchor>
         <p class="h-inside__intro" data-i18n="home.inside.intro">
-          Tokens, components, and guidance—everything documented here is built to move in sync from design to production.
+          Foundations, components, content, and resources—everything documented here is built to move in sync from
+          design to production.
         </p>
       </header>
       <ul class="h-inside__list">
         <li class="home-rise home-rise--7">
-          <a class="h-inside__link" href="/foundations/overview">
-            <span class="h-inside__name" data-i18n="home.card.tokens.title">Tokens</span>
-            <span class="h-inside__desc" data-i18n="home.card.tokens.body">
-              Semantic color, space, radius, elevation, and typography values shared across teams and tools.
+          <a class="h-inside__card" href="/foundations/overview">
+            <span class="h-inside__icon-wrap h-inside__icon-wrap--foundations" aria-hidden="true">
+              <svg class="h-inside__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M4.098 19.902a3.75 3.75 0 005.304 0l6.401-6.402M6.75 21A3.75 3.75 0 013 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 003.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008z"></path>
+              </svg>
             </span>
-            <span class="h-inside__arrow" aria-hidden="true">→</span>
+            <span class="h-inside__name" data-i18n="home.card.foundations.title">Foundations</span>
+            <span class="h-inside__desc" data-i18n="home.card.foundations.body">
+              Color, typography, spacing, and elevation — the core elements that create a unified visual language.
+            </span>
+            <span class="h-inside__cta">
+              <span class="h-inside__cta__label" data-i18n="home.card.foundations.cta">Explore</span>
+              <span class="h-inside__cta__arrow" aria-hidden="true">
+                <svg
+                  class="h-inside__cta__arrow-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M7 7h10v10"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path
+                    d="M7 17 17 7"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg>
+              </span>
+            </span>
           </a>
         </li>
         <li class="home-rise home-rise--8">
-          <a class="h-inside__link" href="/components/overview">
+          <a class="h-inside__card" href="/components/overview">
+            <span class="h-inside__icon-wrap h-inside__icon-wrap--components" aria-hidden="true">
+              <svg class="h-inside__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"></path>
+              </svg>
+            </span>
             <span class="h-inside__name" data-i18n="home.card.components.title">Components</span>
             <span class="h-inside__desc" data-i18n="home.card.components.body">
-              Tested UI primitives and patterns aligned with product standards.
+              Reusable building blocks designed and coded to be flexible, accessible, and scalable.
             </span>
-            <span class="h-inside__arrow" aria-hidden="true">→</span>
+            <span class="h-inside__cta">
+              <span class="h-inside__cta__label" data-i18n="home.card.components.cta">Browse</span>
+              <span class="h-inside__cta__arrow" aria-hidden="true">
+                <svg
+                  class="h-inside__cta__arrow-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M7 7h10v10"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path
+                    d="M7 17 17 7"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg>
+              </span>
+            </span>
           </a>
         </li>
         <li class="home-rise home-rise--9">
-          <a class="h-inside__link" href="/get-started/mission">
-            <span class="h-inside__name" data-i18n="home.card.guidance.title">Guidance</span>
-            <span class="h-inside__desc" data-i18n="home.card.guidance.body">
-              Principles for clarity, density, and motion so new work stays on-brand without guesswork.
+          <a class="h-inside__card" href="/blog/latest">
+            <span class="h-inside__icon-wrap h-inside__icon-wrap--content" aria-hidden="true">
+              <svg class="h-inside__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z"></path>
+              </svg>
             </span>
-            <span class="h-inside__arrow" aria-hidden="true">→</span>
+            <span class="h-inside__name" data-i18n="home.card.content.title">Content</span>
+            <span class="h-inside__desc" data-i18n="home.card.content.body">
+              Writing guidelines and best practices so your product speaks with one clear, consistent voice.
+            </span>
+            <span class="h-inside__cta">
+              <span class="h-inside__cta__label" data-i18n="home.card.content.cta">Read</span>
+              <span class="h-inside__cta__arrow" aria-hidden="true">
+                <svg
+                  class="h-inside__cta__arrow-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M7 7h10v10"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path
+                    d="M7 17 17 7"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg>
+              </span>
+            </span>
+          </a>
+        </li>
+        <li class="home-rise home-rise--10">
+          <a class="h-inside__card" href="/resources">
+            <span class="h-inside__icon-wrap h-inside__icon-wrap--resources" aria-hidden="true">
+              <svg class="h-inside__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"></path>
+              </svg>
+            </span>
+            <span class="h-inside__name" data-i18n="home.card.resources.title">Resources</span>
+            <span class="h-inside__desc" data-i18n="home.card.resources.body">
+              Design tokens, code entities, and theming tools that bridge design and engineering.
+            </span>
+            <span class="h-inside__cta">
+              <span class="h-inside__cta__label" data-i18n="home.card.resources.cta">Access</span>
+              <span class="h-inside__cta__arrow" aria-hidden="true">
+                <svg
+                  class="h-inside__cta__arrow-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M7 7h10v10"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                  <path
+                    d="M7 17 17 7"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+                </svg>
+              </span>
+            </span>
           </a>
         </li>
       </ul>
+    </section>
+
+    <section class="h-design-ai" aria-labelledby="design-ai-heading">
+      <div class="h-design-ai__grid">
+        <div class="h-design-ai__copy">
+          <header class="h-design-ai__head home-rise home-rise--6">
+            <DocH2WithAnchor id="design-ai-heading" class="h-design-ai__h" data-i18n="home.designAi.heading">
+              Design with AI and Prism
+            </DocH2WithAnchor>
+            <p class="h-design-ai__intro" data-i18n="home.designAi.intro">
+              Explore Prism AI resources, learn how to bring AI into your workflow, and start designing AI-powered
+              experiences.
+            </p>
+          </header>
+          <div class="h-design-ai__actions home-rise home-rise--11">
+            <a class="h-btn h-btn--filled" href="/get-started/overview">
+              <span class="h-btn__surface" aria-hidden="true"></span>
+              <span class="h-btn__content">
+                <span data-i18n="home.designAi.ctaAgent">Open Prism AI Agent</span>
+                <span class="h-btn__arrow" aria-hidden="true">→</span>
+              </span>
+            </a>
+            <a class="h-btn h-btn--outline" href="/blog/latest">
+              <span class="h-btn__surface" aria-hidden="true"></span>
+              <span class="h-btn__content">
+                <span data-i18n="home.designAi.ctaBuild">Build with AI</span>
+                <span class="h-btn__arrow" aria-hidden="true">→</span>
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="h-design-ai__media home-rise home-rise--12">
+          <div class="h-design-ai__swatch" aria-hidden="true"></div>
+        </div>
+      </div>
     </section>
   </div>
 </BaseLayout>
@@ -465,6 +630,15 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
   }
   .home-rise--9 {
     animation-delay: 0.26s;
+  }
+  .home-rise--10 {
+    animation-delay: 0.32s;
+  }
+  .home-rise--11 {
+    animation-delay: 0.38s;
+  }
+  .home-rise--12 {
+    animation-delay: 0.44s;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -546,15 +720,17 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
       var(--prism-color-canvas);
   }
 
-  /* Updates + What's inside: solid white (full width), over global canvas */
+  /* Updates / What's inside: full-bleed horizontal backgrounds (break out of .home-root width) */
   .h-updates,
-  .h-inside {
+  .h-inside,
+  .h-design-ai {
     position: relative;
     isolation: isolate;
   }
 
   .h-updates::before,
-  .h-inside::before {
+  .h-inside::before,
+  .h-design-ai::before {
     content: "";
     position: absolute;
     z-index: -1;
@@ -563,6 +739,17 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     width: 100vw;
     margin-inline: -50vw;
     pointer-events: none;
+  }
+
+  .h-updates::before {
+    background: var(--prism-color-surface);
+  }
+
+  .h-inside::before {
+    background: var(--prism-color-surface-muted);
+  }
+
+  .h-design-ai::before {
     background: var(--prism-color-surface);
   }
 
@@ -819,7 +1006,7 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
 
   /* Updates */
   .h-updates {
-    padding: clamp(3rem, 8vw, 5rem) 0;
+    padding: 64px 0;
   }
 
   .h-updates__head {
@@ -908,7 +1095,11 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     height: 1.5em;
   }
 
-  /* :global — class is on <h2> inside DocH2WithAnchor, outside this file’s scoped DOM. */
+  /*
+   * Home section h2s (updates, inside, design-ai): keep font-size at 36px — match across .h-updates__h,
+   * .h-inside__h, .h-design-ai__h when adding new bands.
+   * :global — class is on <h2> inside DocH2WithAnchor, outside this file’s scoped DOM.
+   */
   .home-root :global(.h-updates__h) {
     margin: 0;
     font-size: 36px;
@@ -1228,7 +1419,7 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
   .h-updates-card__media {
     position: relative;
     aspect-ratio: 16 / 9;
-    background: color-mix(in srgb, var(--prism-color-border-subtle) 35%, var(--prism-color-surface));
+    background: #D1D5DB;
     overflow: hidden;
     border-radius: 1rem;
   }
@@ -1359,17 +1550,16 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
 
   /* What's inside */
   .h-inside {
-    padding: clamp(3.5rem, 10vw, 6rem) 0 clamp(2rem, 6vw, 4rem);
-    border-top: 1px solid color-mix(in srgb, var(--prism-color-border-subtle) 85%, transparent);
+    padding: 64px 0;
   }
 
   .h-inside__head {
-    margin-bottom: clamp(2.5rem, 6vw, 4rem);
+    margin-bottom: clamp(1.25rem, 3vw, 1.75rem);
   }
 
   .home-root :global(.h-inside__h) {
     margin: 0 0 clamp(1rem, 2vw, 1.25rem);
-    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-size: 36px;
     font-weight: 700;
     letter-spacing: -0.04em;
     line-height: 1.1;
@@ -1387,83 +1577,284 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     list-style: none;
     margin: 0;
     padding: 0;
-  }
-
-  .h-inside__link {
     display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto;
-    column-gap: clamp(1rem, 3vw, 2rem);
-    row-gap: 0.5rem;
-    padding: clamp(1.75rem, 4vw, 2.5rem) 0;
-    text-decoration: none;
-    color: inherit;
-    border-top: 1px solid color-mix(in srgb, var(--prism-color-border-subtle) 75%, transparent);
-    transition:
-      border-color 0.4s var(--home-ease),
-      padding-left 0.45s var(--home-ease);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(1rem, 2.5vw, 1.35rem);
+    align-items: stretch;
   }
 
-  .h-inside__list li:last-child .h-inside__link {
-    border-bottom: 1px solid color-mix(in srgb, var(--prism-color-border-subtle) 75%, transparent);
-  }
-
-  .h-inside__link:hover {
-    padding-left: 0.5rem;
-    border-color: color-mix(in srgb, var(--prism-color-text-primary) 14%, var(--prism-color-border-subtle));
-  }
-
-  .h-inside__link:focus-visible {
-    outline: 2px solid var(--prism-color-accent-strong);
-    outline-offset: 6px;
-  }
-
-  .h-inside__name {
-    grid-column: 1;
-    grid-row: 1;
-    font-size: clamp(1.35rem, 3vw, 1.85rem);
-    font-weight: 700;
-    letter-spacing: -0.035em;
-    line-height: 1.15;
-    transition: color 0.35s var(--home-ease);
-  }
-
-  .h-inside__link:hover .h-inside__name {
-    color: var(--prism-color-accent-strong);
-  }
-
-  .h-inside__desc {
-    grid-column: 1;
-    grid-row: 2;
-    max-width: 38rem;
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    color: var(--prism-color-text-secondary);
-  }
-
-  .h-inside__arrow {
-    grid-column: 2;
-    grid-row: 1 / span 2;
-    align-self: center;
-    font-size: 1.35rem;
-    font-weight: 300;
-    color: var(--prism-color-text-secondary);
-    opacity: 0.35;
-    transition:
-      opacity 0.35s var(--home-ease),
-      transform 0.45s var(--home-ease);
-  }
-
-  .h-inside__link:hover .h-inside__arrow {
-    opacity: 1;
-    transform: translateX(0.35rem);
+  @media (max-width: 56rem) {
+    .h-inside__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 
   @media (max-width: 32rem) {
-    .h-inside__arrow {
-      align-self: start;
-      padding-top: 0.2rem;
+    .h-inside__list {
+      grid-template-columns: minmax(0, 1fr);
     }
+  }
+
+  .h-inside__list > li {
+    display: flex;
+    min-width: 0;
+  }
+
+  .h-inside__card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    min-height: 100%;
+    box-sizing: border-box;
+    padding: 1.35rem 1.25rem 1.2rem;
+    text-decoration: none;
+    color: inherit;
+    background: var(--prism-color-surface);
+    border: none;
+    border-radius: 16px;
+    box-shadow: none;
+    transition: transform 0.35s var(--home-ease);
+  }
+
+  .h-inside__card:hover {
+    transform: translateY(-3px);
+  }
+
+  .h-inside__card:focus-visible {
+    outline: 2px solid var(--prism-color-accent-strong);
+    outline-offset: 3px;
+  }
+
+  :global([data-theme="dark"]) .h-inside__card {
+    background: var(--prism-color-surface-muted);
+    box-shadow: none;
+  }
+
+  .h-inside__icon-wrap {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    margin-bottom: 1rem;
+    border-radius: var(--prism-radius-sm, 8px);
+  }
+
+  .h-inside__icon {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+
+  .h-inside__icon path {
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .h-inside__icon-wrap--foundations {
+    background: color-mix(in srgb, #3b82f6 14%, var(--prism-color-surface-muted));
+    color: #1d4ed8;
+  }
+
+  .h-inside__icon-wrap--components {
+    background: color-mix(in srgb, #10b981 14%, var(--prism-color-surface-muted));
+    color: #047857;
+  }
+
+  .h-inside__icon-wrap--content {
+    background: color-mix(in srgb, #f59e0b 16%, var(--prism-color-surface-muted));
+    color: #b45309;
+  }
+
+  .h-inside__icon-wrap--resources {
+    background: color-mix(in srgb, #8b5cf6 14%, var(--prism-color-surface-muted));
+    color: #6d28d9;
+  }
+
+  :global([data-theme="dark"]) .h-inside__icon-wrap--foundations {
+    background: color-mix(in srgb, #3b82f6 18%, var(--prism-color-surface));
+    color: #93c5fd;
+  }
+
+  :global([data-theme="dark"]) .h-inside__icon-wrap--components {
+    background: color-mix(in srgb, #10b981 18%, var(--prism-color-surface));
+    color: #6ee7b7;
+  }
+
+  :global([data-theme="dark"]) .h-inside__icon-wrap--content {
+    background: color-mix(in srgb, #f59e0b 18%, var(--prism-color-surface));
+    color: #fcd34d;
+  }
+
+  :global([data-theme="dark"]) .h-inside__icon-wrap--resources {
+    background: color-mix(in srgb, #8b5cf6 18%, var(--prism-color-surface));
+    color: #c4b5fd;
+  }
+
+  .h-inside__name {
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    color: var(--prism-color-text-primary);
+  }
+
+  .h-inside__desc {
+    flex: 1 1 auto;
+    margin: 0.5rem 0 0;
+    font-size: 0.875rem;
+    line-height: 1.55;
+    color: var(--prism-color-text-secondary);
+  }
+
+  .h-inside__cta {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 0.4em;
+    margin-top: 1.15rem;
+    padding: 0.25rem 0;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    color: color-mix(in srgb, var(--prism-color-accent-strong) 91%, #000000);
+    transition:
+      color 0.2s ease,
+      text-decoration-color 0.2s ease;
+  }
+
+  .h-inside__card:hover .h-inside__cta {
+    color: color-mix(in srgb, var(--prism-color-accent-strong) 82%, #000000);
+  }
+
+  .h-inside__cta__label {
+    text-decoration: none;
+    text-underline-offset: 0.2em;
+    transition: text-decoration-color 0.2s ease;
+  }
+
+  .h-inside__card:hover .h-inside__cta__label {
+    text-decoration: underline;
+    text-decoration-color: currentColor;
+  }
+
+  .h-inside__cta__arrow {
+    display: inline-flex;
+    align-items: center;
+    line-height: 0;
+    transition: transform 0.35s var(--home-ease);
+  }
+
+  .h-inside__card:hover .h-inside__cta__arrow {
+    transform: translate(0.12em, -0.12em);
+  }
+
+  .h-inside__cta__arrow-icon {
+    display: block;
+    width: 16px;
+    height: 16px;
+  }
+
+  .h-inside__cta__arrow-icon path {
+    stroke-width: 2;
+  }
+
+  :global([data-theme="dark"]) .h-inside__cta {
+    color: var(--prism-color-accent);
+  }
+
+  :global([data-theme="dark"]) .h-inside__card:hover .h-inside__cta {
+    color: var(--prism-color-accent);
+  }
+
+  :global([data-theme="dark"]) .h-inside__card:focus-visible {
+    outline-color: var(--prism-color-accent);
+  }
+
+  /* Design with AI and Prism */
+  .h-design-ai {
+    padding: 64px 0;
+  }
+
+  .h-design-ai__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(11rem, min(50%, 32rem));
+    gap: clamp(1.5rem, 4vw, 2.5rem);
+    align-items: center;
+  }
+
+  @media (max-width: 52rem) {
+    .h-design-ai__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .h-design-ai__copy {
+    min-width: 0;
+  }
+
+  .h-design-ai__head {
+    margin-bottom: 0;
+  }
+
+  .h-design-ai__media {
+    justify-self: end;
+    width: 100%;
+    max-width: 32rem;
+  }
+
+  @media (max-width: 52rem) {
+    .h-design-ai__media {
+      justify-self: stretch;
+      max-width: none;
+    }
+  }
+
+  .h-design-ai__swatch {
+    width: 100%;
+    aspect-ratio: 5 / 4;
+    border-radius: 16px;
+    border: none;
+    border-image: none;
+    box-shadow: none;
+    background-color: rgba(209, 213, 219, 1);
+    box-sizing: border-box;
+  }
+
+  :global([data-theme="dark"]) .h-design-ai__swatch {
+    background: #6b7280;
+  }
+
+  .home-root :global(.h-design-ai__h) {
+    margin: 0 0 clamp(1rem, 2vw, 1.25rem);
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+  }
+
+  .h-design-ai__intro {
+    margin: 0;
+    max-width: 42rem;
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--prism-color-text-secondary);
+  }
+
+  .h-design-ai__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    margin-top: clamp(1.25rem, 3vw, 1.75rem);
+  }
+
+  .h-design-ai__actions .h-btn {
+    flex: 0 1 auto;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1487,11 +1878,11 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
       transition: none;
     }
 
-    .h-inside__link:hover {
-      padding-left: 0;
+    .h-inside__card:hover {
+      transform: none;
     }
 
-    .h-inside__link:hover .h-inside__arrow {
+    .h-inside__card:hover .h-inside__cta__arrow {
       transform: none;
     }
   }
