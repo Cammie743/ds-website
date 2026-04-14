@@ -837,7 +837,8 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
     margin-bottom: 0;
   }
 
-  .doc-overview-resources__h2 {
+  /* :global — classes sit on <h2> inside DocH2WithAnchor (outside this file’s scoped DOM). */
+  .doc-overview-resources :global(.doc-overview-resources__h2) {
     margin-top: 0;
   }
 
@@ -957,9 +958,9 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
     color: var(--prism-color-text-secondary);
   }
 
-  .doc-tabs__h2 {
+  .doc-tabs :global(.doc-tabs__h2) {
     margin: 0 0 var(--prism-space-md);
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: 36px;
     font-weight: 700;
     letter-spacing: -0.025em;
     line-height: 1.2;

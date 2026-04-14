@@ -27,22 +27,79 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
           <DocH2WithAnchor id="updates-heading" class="h-updates__h" data-i18n="home.updates.sectionTitle">
             Latest and greatest from Prism
           </DocH2WithAnchor>
-          <a class="h-btn h-btn--text h-updates__all" href="/blog/latest">
-            <span class="h-btn__surface" aria-hidden="true"></span>
-            <span class="h-btn__content" data-i18n="home.updates.viewAll">Explore all blogs</span>
+          <a class="h-updates__view-all" href="/blog/latest">
+            <span class="h-updates__view-all__label" data-i18n="home.updates.viewAll">Explore all blogs</span>
+            <span class="h-updates__view-all__arrow" aria-hidden="true">
+              <svg
+                class="h-updates__view-all__arrow-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M7 7h10v10"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+                <path
+                  d="M7 17 17 7"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+            </span>
           </a>
         </div>
       </div>
       <div
         class="h-updates-carousel home-rise home-rise--6"
         data-updates-carousel
-        data-carousel-real-total="6"
         role="region"
         aria-roledescription="carousel"
         aria-labelledby="updates-heading"
       >
         <div class="h-updates-carousel__toolbar">
-          <p class="h-updates-carousel__count" data-carousel-count aria-live="polite">1 of 6</p>
+          <fieldset class="view-segmented h-updates-carousel__filter" data-updates-filter>
+            <legend class="view-segmented__legend">
+              <span data-i18n="home.updates.filterLegend">Filter updates</span>
+            </legend>
+            <div class="view-segmented__inner">
+              <input
+                class="view-segmented__input"
+                type="radio"
+                name="home-updates-filter"
+                id="home-updates-filter-all"
+                value="all"
+                checked
+              />
+              <label class="view-segmented__label" for="home-updates-filter-all">
+                <span data-i18n="home.updates.filterAll">All latest</span>
+              </label>
+              <input
+                class="view-segmented__input"
+                type="radio"
+                name="home-updates-filter"
+                id="home-updates-filter-feature"
+                value="feature"
+              />
+              <label class="view-segmented__label" for="home-updates-filter-feature">
+                <span data-i18n="home.updates.filterFeature">Feature</span>
+              </label>
+              <input
+                class="view-segmented__input"
+                type="radio"
+                name="home-updates-filter"
+                id="home-updates-filter-update"
+                value="update"
+              />
+              <label class="view-segmented__label" for="home-updates-filter-update">
+                <span data-i18n="home.updates.filterUpdate">Update</span>
+              </label>
+            </div>
+          </fieldset>
           <div class="h-updates-carousel__btn-row">
             <button
               type="button"
@@ -96,9 +153,10 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
         </div>
         <div id="updates-carousel-viewport" class="h-updates-carousel__viewport" data-carousel-viewport>
           <ol class="h-updates-carousel__list">
-            <li class="h-updates-carousel__slide">
+            <li class="h-updates-carousel__slide" data-updates-kind="feature">
               <a class="h-updates-card" href="/blog/featured#update-home-navigation">
                 <div class="h-updates-card__media">
+                  <span class="h-updates-card__tag h-updates-card__tag--available" data-i18n="home.updates.1.tag">Feature</span>
                   <img
                     class="h-updates-card__img"
                     src="/images/updates/update-1.svg"
@@ -111,18 +169,31 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
                   />
                 </div>
                 <div class="h-updates-card__meta">
-                  <span class="h-updates-card__tag" data-i18n="home.updates.1.tag">Feature</span>
-                  <time class="h-updates-card__date" datetime="2026-04-01" data-i18n="home.updates.1.date">Apr 2026</time>
+                  <time class="h-updates-card__date" datetime="2026-04-01" data-i18n="home.updates.1.date">April 1, 2026</time>
                 </div>
                 <span class="h-updates-card__title" data-i18n="home.updates.1.title">Home and navigation refresh</span>
                 <p class="h-updates-card__desc" data-i18n="home.updates.1.body">
                   Clearer paths into foundations, components, and bilingual documentation.
                 </p>
+                <div class="h-updates-card__author">
+                  <img
+                    class="h-updates-card__author-avatar"
+                    src="/images/prism-library/avatars/rowan-vega.png"
+                    width="64"
+                    height="64"
+                    loading="lazy"
+                    decoding="async"
+                    alt=""
+                    data-i18n-alt="home.updates.1.authorAvatarAlt"
+                  />
+                  <span class="h-updates-card__author-name" data-i18n="home.updates.1.authorName">Rowan Vega</span>
+                </div>
               </a>
             </li>
-            <li class="h-updates-carousel__slide">
+            <li class="h-updates-carousel__slide" data-updates-kind="update">
               <a class="h-updates-card" href="/blog/latest#update-theme-previews">
                 <div class="h-updates-card__media">
+                  <span class="h-updates-card__tag h-updates-card__tag--beta" data-i18n="home.updates.2.tag">Enhancement</span>
                   <img
                     class="h-updates-card__img"
                     src="/images/updates/update-2.svg"
@@ -135,18 +206,31 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
                   />
                 </div>
                 <div class="h-updates-card__meta">
-                  <span class="h-updates-card__tag" data-i18n="home.updates.2.tag">Enhancement</span>
-                  <time class="h-updates-card__date" datetime="2026-03-01" data-i18n="home.updates.2.date">Mar 2026</time>
+                  <time class="h-updates-card__date" datetime="2026-03-01" data-i18n="home.updates.2.date">March 1, 2026</time>
                 </div>
                 <span class="h-updates-card__title" data-i18n="home.updates.2.title">Theme previews across the site</span>
                 <p class="h-updates-card__desc" data-i18n="home.updates.2.body">
                   Bloom, Agave, and Rose palettes help stress-test semantic color tokens in context.
                 </p>
+                <div class="h-updates-card__author">
+                  <img
+                    class="h-updates-card__author-avatar"
+                    src="/images/prism-library/avatars/kenji-park.png"
+                    width="64"
+                    height="64"
+                    loading="lazy"
+                    decoding="async"
+                    alt=""
+                    data-i18n-alt="home.updates.2.authorAvatarAlt"
+                  />
+                  <span class="h-updates-card__author-name" data-i18n="home.updates.2.authorName">Kenji Park</span>
+                </div>
               </a>
             </li>
-            <li class="h-updates-carousel__slide">
+            <li class="h-updates-carousel__slide" data-updates-kind="update">
               <a class="h-updates-card" href="/blog/latest#update-foundations-ia">
                 <div class="h-updates-card__media">
+                  <span class="h-updates-card__tag h-updates-card__tag--planned" data-i18n="home.updates.3.tag">Documentation</span>
                   <img
                     class="h-updates-card__img"
                     src="/images/updates/update-3.svg"
@@ -159,18 +243,31 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
                   />
                 </div>
                 <div class="h-updates-card__meta">
-                  <span class="h-updates-card__tag" data-i18n="home.updates.3.tag">Documentation</span>
-                  <time class="h-updates-card__date" datetime="2026-02-01" data-i18n="home.updates.3.date">Feb 2026</time>
+                  <time class="h-updates-card__date" datetime="2026-02-01" data-i18n="home.updates.3.date">February 1, 2026</time>
                 </div>
                 <span class="h-updates-card__title" data-i18n="home.updates.3.title">Foundations and components IA</span>
                 <p class="h-updates-card__desc" data-i18n="home.updates.3.body">
                   Structured foundations pages and a public checklist as the library grows.
                 </p>
+                <div class="h-updates-card__author">
+                  <img
+                    class="h-updates-card__author-avatar"
+                    src="/images/prism-library/avatars/ellis-mercer.png"
+                    width="64"
+                    height="64"
+                    loading="lazy"
+                    decoding="async"
+                    alt=""
+                    data-i18n-alt="home.updates.3.authorAvatarAlt"
+                  />
+                  <span class="h-updates-card__author-name" data-i18n="home.updates.3.authorName">Ellis Mercer</span>
+                </div>
               </a>
             </li>
-            <li class="h-updates-carousel__slide">
+            <li class="h-updates-carousel__slide" data-updates-kind="update">
               <a class="h-updates-card" href="/blog/latest#update-search-docs">
                 <div class="h-updates-card__media">
+                  <span class="h-updates-card__tag h-updates-card__tag--beta" data-i18n="home.updates.4.tag">Enhancement</span>
                   <img
                     class="h-updates-card__img"
                     src="/images/updates/update-4.svg"
@@ -183,19 +280,32 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
                   />
                 </div>
                 <div class="h-updates-card__meta">
-                  <span class="h-updates-card__tag" data-i18n="home.updates.4.tag">Enhancement</span>
-                  <time class="h-updates-card__date" datetime="2026-01-15" data-i18n="home.updates.4.date">Jan 2026</time>
+                  <time class="h-updates-card__date" datetime="2026-01-15" data-i18n="home.updates.4.date">January 15, 2026</time>
                 </div>
                 <span class="h-updates-card__title" data-i18n="home.updates.4.title">Search across documentation</span>
                 <p class="h-updates-card__desc" data-i18n="home.updates.4.body">
                   The global search drawer now indexes foundations, components, and get-started pages with bilingual
                   snippets and clearer result grouping.
                 </p>
+                <div class="h-updates-card__author">
+                  <img
+                    class="h-updates-card__author-avatar"
+                    src="/images/prism-library/avatars/calvin-rhodes.png"
+                    width="64"
+                    height="64"
+                    loading="lazy"
+                    decoding="async"
+                    alt=""
+                    data-i18n-alt="home.updates.4.authorAvatarAlt"
+                  />
+                  <span class="h-updates-card__author-name" data-i18n="home.updates.4.authorName">Calvin Rhodes</span>
+                </div>
               </a>
             </li>
-            <li class="h-updates-carousel__slide">
+            <li class="h-updates-carousel__slide" data-updates-kind="update">
               <a class="h-updates-card" href="/blog/2025#update-usage-metrics">
                 <div class="h-updates-card__media">
+                  <span class="h-updates-card__tag h-updates-card__tag--available" data-i18n="home.updates.5.tag">Announcement</span>
                   <img
                     class="h-updates-card__img"
                     src="/images/updates/update-5.svg"
@@ -208,19 +318,32 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
                   />
                 </div>
                 <div class="h-updates-card__meta">
-                  <span class="h-updates-card__tag" data-i18n="home.updates.5.tag">Announcement</span>
-                  <time class="h-updates-card__date" datetime="2025-12-08" data-i18n="home.updates.5.date">Dec 2025</time>
+                  <time class="h-updates-card__date" datetime="2025-12-08" data-i18n="home.updates.5.date">December 8, 2025</time>
                 </div>
                 <span class="h-updates-card__title" data-i18n="home.updates.5.title">Component usage metrics</span>
                 <p class="h-updates-card__desc" data-i18n="home.updates.5.body">
                   We published an opt-in specification for measuring Prism adoption in host apps without collecting
                   end-user PII.
                 </p>
+                <div class="h-updates-card__author">
+                  <img
+                    class="h-updates-card__author-avatar"
+                    src="/images/prism-library/avatars/amari-okoro.png"
+                    width="64"
+                    height="64"
+                    loading="lazy"
+                    decoding="async"
+                    alt=""
+                    data-i18n-alt="home.updates.5.authorAvatarAlt"
+                  />
+                  <span class="h-updates-card__author-name" data-i18n="home.updates.5.authorName">Amari Okoro</span>
+                </div>
               </a>
             </li>
-            <li class="h-updates-carousel__slide">
+            <li class="h-updates-carousel__slide" data-updates-kind="update">
               <a class="h-updates-card" href="/blog/2025#update-a11y-checklist">
                 <div class="h-updates-card__media">
+                  <span class="h-updates-card__tag h-updates-card__tag--planned" data-i18n="home.updates.6.tag">Documentation</span>
                   <img
                     class="h-updates-card__img"
                     src="/images/updates/update-6.svg"
@@ -233,14 +356,26 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
                   />
                 </div>
                 <div class="h-updates-card__meta">
-                  <span class="h-updates-card__tag" data-i18n="home.updates.6.tag">Documentation</span>
-                  <time class="h-updates-card__date" datetime="2025-11-20" data-i18n="home.updates.6.date">Nov 2025</time>
+                  <time class="h-updates-card__date" datetime="2025-11-20" data-i18n="home.updates.6.date">November 20, 2025</time>
                 </div>
                 <span class="h-updates-card__title" data-i18n="home.updates.6.title">Accessibility audit checklist</span>
                 <p class="h-updates-card__desc" data-i18n="home.updates.6.body">
                   A WCAG 2.2 AA-oriented checklist maps Prism components to keyboard, contrast, and assistive-tech
                   expectations for audits.
                 </p>
+                <div class="h-updates-card__author">
+                  <img
+                    class="h-updates-card__author-avatar"
+                    src="/images/prism-library/avatars/sofia-delgado.png"
+                    width="64"
+                    height="64"
+                    loading="lazy"
+                    decoding="async"
+                    alt=""
+                    data-i18n-alt="home.updates.6.authorAvatarAlt"
+                  />
+                  <span class="h-updates-card__author-name" data-i18n="home.updates.6.authorName">Sofia Delgado</span>
+                </div>
               </a>
             </li>
           </ol>
@@ -304,7 +439,7 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     --home-ease: cubic-bezier(0.22, 1, 0.36, 1);
     --home-dur: 0.85s;
     width: 100%;
-    max-width: 52rem;
+    max-width: 1000px;
     margin: 0 auto;
   }
 
@@ -458,6 +593,12 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
   }
 
+  .h-hero__actions .h-btn {
+    height: 48px;
+    padding: 0 1.5rem;
+    font-size: 16px;
+  }
+
   .h-btn {
     position: relative;
     display: inline-flex;
@@ -507,6 +648,23 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
 
   .h-btn:hover .h-btn__arrow {
     transform: translateX(0.15em);
+  }
+
+  .h-btn:hover .h-btn__arrow--ne {
+    transform: translate(0.12em, -0.12em);
+  }
+
+  .h-btn__arrow--svg {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 0;
+  }
+
+  .h-btn__arrow-icon {
+    display: block;
+    width: 1.22em;
+    height: 1.22em;
   }
 
   /*
@@ -670,25 +828,93 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
 
   .h-updates__head-main {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: clamp(0.85rem, 2vw, 1.25rem);
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--prism-space-md) var(--prism-space-lg);
   }
 
-  .h-updates__h {
+  .h-updates__head-main :global(.doc-h2-anchor-row) {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .h-updates__head-main > a.h-updates__view-all {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 0.4em;
     margin: 0;
-    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    padding: 0.25rem 0;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    text-decoration: none;
+    color: color-mix(in srgb, var(--prism-color-accent-strong) 91%, #000000);
+    border-radius: 2px;
+    transition:
+      color 0.2s ease,
+      text-decoration-color 0.2s ease;
+  }
+
+  .h-updates__view-all:hover {
+    color: color-mix(in srgb, var(--prism-color-accent-strong) 82%, #000000);
+  }
+
+  .h-updates__view-all__label {
+    text-decoration: none;
+    text-underline-offset: 0.2em;
+    transition: text-decoration-color 0.2s ease;
+  }
+
+  .h-updates__view-all:hover .h-updates__view-all__label {
+    text-decoration: underline;
+    text-decoration-color: currentColor;
+  }
+
+  :global([data-theme="dark"]) .h-updates__head-main > a.h-updates__view-all {
+    color: var(--prism-color-accent);
+  }
+
+  :global([data-theme="dark"]) .h-updates__view-all:hover {
+    color: var(--prism-color-accent);
+  }
+
+  .h-updates__view-all:focus-visible {
+    outline: 2px solid var(--prism-color-accent-strong);
+    outline-offset: 3px;
+  }
+
+  :global([data-theme="dark"]) .h-updates__view-all:focus-visible {
+    outline-color: var(--prism-color-accent);
+  }
+
+  .h-updates__view-all__arrow {
+    display: inline-flex;
+    align-items: center;
+    line-height: 0;
+    transition: transform 0.35s var(--home-ease);
+  }
+
+  .h-updates__view-all:hover .h-updates__view-all__arrow {
+    transform: translate(0.12em, -0.12em);
+  }
+
+  .h-updates__view-all__arrow-icon {
+    display: block;
+    width: 1.5em;
+    height: 1.5em;
+  }
+
+  /* :global — class is on <h2> inside DocH2WithAnchor, outside this file’s scoped DOM. */
+  .home-root :global(.h-updates__h) {
+    margin: 0;
+    font-size: 36px;
     font-weight: 700;
     letter-spacing: -0.04em;
     line-height: 1.1;
-  }
-
-  .h-updates__all.h-btn--text {
-    padding: 0.45rem 1rem;
-    font-size: 0.875rem;
-    letter-spacing: -0.01em;
-    flex-shrink: 0;
-    white-space: nowrap;
   }
 
   .h-updates-carousel {
@@ -707,13 +933,124 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     margin-bottom: 0.65rem;
   }
 
-  .h-updates-carousel__count {
+  /* Pill segmented control (same treatment as foundations/overview grid–list switcher). */
+  .h-updates-carousel .view-segmented {
     margin: 0;
-    font-size: 0.875rem;
-    font-weight: 600;
+    padding: 0;
+    border: none;
+    min-width: 0;
+    flex-shrink: 0;
+  }
+
+  .h-updates-carousel .view-segmented__legend {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .h-updates-carousel .view-segmented__inner {
+    display: inline-flex;
+    align-items: stretch;
+    box-sizing: border-box;
+    height: 2.375rem;
+    min-height: 2.375rem;
+    padding: 2px;
+    gap: 2px;
+    border-radius: 9999px;
+    background: color-mix(in srgb, var(--prism-color-text-primary) 5%, transparent);
+    border: 1px solid var(--prism-color-border-subtle);
+  }
+
+  .h-updates-carousel .view-segmented__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .h-updates-carousel .view-segmented__label {
+    display: inline-flex;
+    align-items: center;
+    align-self: stretch;
+    gap: 0.35rem;
+    padding: 0 1.125rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
     letter-spacing: -0.01em;
+    line-height: 1.25;
+    color: #0b0d12;
+    border-radius: 9999px;
+    cursor: pointer;
+    user-select: none;
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+
+  :global([data-theme="dark"]) .h-updates-carousel .view-segmented__label {
     color: var(--prism-color-text-secondary);
-    font-variant-numeric: tabular-nums;
+  }
+
+  .h-updates-carousel .view-segmented__input:checked + .view-segmented__label {
+    background: var(--prism-color-text-primary);
+    color: var(--prism-color-text-inverse);
+    box-shadow: var(--prism-shadow-sm);
+  }
+
+  :global([data-theme="dark"]) .h-updates-carousel .view-segmented__input:checked + .view-segmented__label {
+    background: var(--prism-color-text-inverse);
+    color: var(--prism-color-text-primary);
+  }
+
+  .h-updates-carousel .view-segmented__label:hover {
+    color: var(--prism-color-text-primary);
+  }
+
+  .h-updates-carousel .view-segmented__input:checked + .view-segmented__label:hover {
+    color: var(--prism-color-text-inverse);
+  }
+
+  :global([data-theme="dark"]) .h-updates-carousel .view-segmented__input:checked + .view-segmented__label:hover {
+    color: var(--prism-color-text-primary);
+  }
+
+  .h-updates-carousel .view-segmented__input:focus-visible + .view-segmented__label {
+    outline: 2px solid color-mix(in srgb, var(--prism-color-accent-strong) 45%, transparent);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 719px) {
+    .h-updates-carousel__toolbar {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .h-updates-carousel .view-segmented__inner {
+      display: flex;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .h-updates-carousel .view-segmented__label {
+      flex: 1 1 0;
+      justify-content: center;
+    }
+
+    .h-updates-carousel__btn-row {
+      justify-content: flex-end;
+    }
   }
 
   .h-updates-carousel__btn-row {
@@ -766,7 +1103,8 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     outline-offset: 2px;
   }
 
-  .h-updates-carousel__btn:disabled {
+  /* Higher specificity than `.h-updates-carousel .icon-btn` so `cursor: pointer` does not win. */
+  .h-updates-carousel .icon-btn:disabled {
     opacity: 0.35;
     cursor: not-allowed;
   }
@@ -808,24 +1146,33 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     box-shadow: var(--prism-shadow-sm);
   }
 
-  .h-updates-carousel .icon-btn[data-tooltip]:not([data-tooltip=""]):hover::after,
-  .h-updates-carousel .icon-btn[data-tooltip]:not([data-tooltip=""]):focus-visible::after {
+  .h-updates-carousel .icon-btn[data-tooltip]:not([data-tooltip=""]):not(:disabled):hover::after,
+  .h-updates-carousel .icon-btn[data-tooltip]:not([data-tooltip=""]):not(:disabled):focus-visible::after {
     opacity: 1;
     visibility: visible;
     transform: translate3d(-50%, 0, 0);
   }
 
+  /*
+    Full-bleed to the viewport so cards aren’t clipped at the home column width; JS sets
+    padding-left so the first card still lines up with “1 of 6” in the toolbar.
+  */
   .h-updates-carousel__viewport {
-    overflow-x: hidden;
+    box-sizing: border-box;
+    width: 100vw;
+    max-width: none;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-top: clamp(0.35rem, 1.5vw, 0.75rem);
+    padding-bottom: clamp(1rem, 3vw, 1.75rem);
+    padding-left: 0;
+    padding-right: 0;
+    overflow-x: auto;
+    overflow-y: visible;
     overscroll-behavior-x: contain;
-    touch-action: pan-y;
-    scroll-snap-type: x mandatory;
+    touch-action: pan-x pan-y;
     scroll-behavior: auto;
     scrollbar-width: none;
-    /* Flush with toolbar so cards align with “1 of 6” and the trailing nav control. */
-    padding-block: clamp(0.35rem, 1.5vw, 0.75rem) clamp(1rem, 3vw, 1.75rem);
-    margin: 0;
-    padding-inline: 0;
   }
 
   .h-updates-carousel__viewport::-webkit-scrollbar {
@@ -834,7 +1181,8 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
 
   .h-updates-carousel__list {
     display: flex;
-    gap: var(--prism-space-sm);
+    box-sizing: border-box;
+    gap: 24px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -846,8 +1194,6 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     width: var(--updates-slide-basis, 100%);
     max-width: var(--updates-slide-basis, 100%);
     min-width: 0;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
     min-height: 100%;
     box-sizing: border-box;
   }
@@ -866,23 +1212,12 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     min-height: 100%;
     text-decoration: none;
     color: inherit;
+    text-align: left;
     border-radius: 1rem;
-    border: 1px solid color-mix(in srgb, var(--prism-color-border-subtle) 82%, transparent);
+    border: none;
     background: var(--prism-color-surface);
     overflow: visible;
-    box-shadow: 0 1px 0 color-mix(in srgb, var(--prism-color-text-primary) 4%, transparent);
-    transition:
-      border-color 0.35s var(--home-ease),
-      box-shadow 0.35s var(--home-ease),
-      transform 0.35s var(--home-ease);
-  }
-
-  .h-updates-card:hover {
-    border-color: color-mix(in srgb, var(--prism-color-accent-strong) 35%, var(--prism-color-border-subtle));
-    box-shadow:
-      0 12px 40px color-mix(in srgb, var(--prism-color-text-primary) 6%, transparent),
-      0 1px 0 color-mix(in srgb, var(--prism-color-text-primary) 5%, transparent);
-    transform: translateY(-2px);
+    box-shadow: none;
   }
 
   .h-updates-card:focus-visible {
@@ -891,13 +1226,32 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
   }
 
   .h-updates-card__media {
+    position: relative;
     aspect-ratio: 16 / 9;
     background: color-mix(in srgb, var(--prism-color-border-subtle) 35%, var(--prism-color-surface));
     overflow: hidden;
-    border-radius: 1rem 1rem 0 0;
+    border-radius: 1rem;
+  }
+
+  .h-updates-card__media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: color-mix(in srgb, var(--prism-color-text-primary) 8%, transparent);
+    opacity: 0;
+    transition: opacity 0.18s ease;
+    pointer-events: none;
+  }
+
+  .h-updates-card:hover .h-updates-card__media::after,
+  .h-updates-card:focus-visible .h-updates-card__media::after {
+    opacity: 1;
   }
 
   .h-updates-card__img {
+    position: relative;
+    z-index: 0;
     display: block;
     width: 100%;
     height: 100%;
@@ -908,52 +1262,99 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: flex-start;
     gap: 0.5rem 0.75rem;
-    padding: 0.85rem 1rem 0;
+    padding: 0.85rem 0 0;
   }
 
+  /* Matches components overview matrix status badges (doc-overview-matrix__badge). */
   .h-updates-card__tag {
-    display: inline-block;
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 0.2rem 0.5rem;
-    border-radius: 9999px;
-    background: color-mix(in srgb, var(--prism-color-accent) 16%, transparent);
-    color: var(--prism-color-accent-strong);
+    position: absolute;
+    top: var(--prism-space-sm);
+    left: var(--prism-space-sm);
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.28em 0.7em;
+    border-radius: var(--prism-radius-sm, 6px);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+  }
+
+  .h-updates-card__tag--available {
+    background-color: color-mix(in srgb, var(--prism-color-success) 10%, var(--prism-color-surface));
+    color: color-mix(in srgb, var(--prism-color-success) 22%, var(--prism-color-text-primary));
+  }
+
+  .h-updates-card__tag--planned {
+    background-color: color-mix(in srgb, var(--prism-color-text-primary) 8%, var(--prism-color-surface));
+    color: var(--prism-color-text-secondary);
+  }
+
+  .h-updates-card__tag--beta {
+    background-color: color-mix(in srgb, var(--prism-color-accent) 10%, var(--prism-color-surface));
+    color: color-mix(in srgb, var(--prism-color-accent-strong) 28%, var(--prism-color-text-primary));
+  }
+
+  .h-updates-card__tag--unavailable {
+    background-color: color-mix(in srgb, var(--prism-color-text-primary) 8%, var(--prism-color-surface));
+    color: var(--prism-color-text-secondary);
   }
 
   .h-updates-card__date {
-    font-size: 0.8125rem;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 400;
     letter-spacing: -0.01em;
     color: var(--prism-color-text-secondary);
   }
 
   .h-updates-card__title {
     display: block;
-    padding: 0.5rem 1rem 0;
-    font-size: 1.0625rem;
+    padding: 0.5rem 0 0;
+    font-size: 24px;
     font-weight: 700;
     letter-spacing: -0.03em;
     line-height: 1.25;
-    transition: color 0.3s var(--home-ease);
   }
 
-  .h-updates-card:hover .h-updates-card__title {
+  .h-updates-card:hover .h-updates-card__title,
+  .h-updates-card:focus-visible .h-updates-card__title {
     color: var(--prism-color-accent-strong);
   }
 
   .h-updates-card__desc {
     margin: 0;
-    padding: 0.45rem 1rem 1.1rem;
-    flex: 1;
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    font-size: 0.875rem;
+    padding: 0.45rem 0 0.5rem;
+    font-size: 14px;
     line-height: 1.55;
     color: var(--prism-color-text-secondary);
+  }
+
+  .h-updates-card__author {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 0 1.1rem;
+  }
+
+  .h-updates-card__author-avatar {
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid color-mix(in srgb, var(--prism-color-border-subtle) 75%, transparent);
+  }
+
+  .h-updates-card__author-name {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    color: #556070;
   }
 
   /* What's inside */
@@ -966,7 +1367,7 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     margin-bottom: clamp(2.5rem, 6vw, 4rem);
   }
 
-  .h-inside__h {
+  .home-root :global(.h-inside__h) {
     margin: 0 0 clamp(1rem, 2vw, 1.25rem);
     font-size: clamp(1.5rem, 3.5vw, 2rem);
     font-weight: 700;
@@ -1070,12 +1471,20 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
       transform: none;
     }
 
+    .h-btn:hover .h-btn__arrow--ne {
+      transform: none;
+    }
+
+    .h-updates__view-all:hover .h-updates__view-all__arrow {
+      transform: none;
+    }
+
     .h-updates-carousel__viewport {
       scroll-behavior: auto;
     }
 
-    .h-updates-card:hover {
-      transform: none;
+    .h-updates-card__media::after {
+      transition: none;
     }
 
     .h-inside__link:hover {
@@ -1137,30 +1546,26 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     var list = viewport && viewport.querySelector(".h-updates-carousel__list");
     var prev = root.querySelector("[data-carousel-prev]");
     var next = root.querySelector("[data-carousel-next]");
-    var countEl = root.querySelector("[data-carousel-count]");
     if (!viewport || !list || !prev || !next) return;
 
-    var realTotal = parseInt(String(root.getAttribute("data-carousel-real-total") || "6"), 10) || 6;
-
-    function appendLoopClones() {
-      if (list.querySelector(".h-updates-carousel__slide--clone")) return;
-      var originals = Array.prototype.slice.call(
-        list.querySelectorAll(":scope > .h-updates-carousel__slide:not(.h-updates-carousel__slide--clone)")
-      );
-      originals.forEach(function (slide) {
-        var c = slide.cloneNode(true);
-        c.classList.add("h-updates-carousel__slide--clone");
-        c.setAttribute("aria-hidden", "true");
-        var link = c.querySelector("a");
-        if (link) link.setAttribute("tabindex", "-1");
-        list.appendChild(c);
-      });
-    }
-
-    appendLoopClones();
-
-    var allSlides = Array.prototype.slice.call(list.querySelectorAll(".h-updates-carousel__slide"));
+    var allSlides = Array.prototype.slice.call(
+      list.querySelectorAll(":scope > .h-updates-carousel__slide:not(.h-updates-carousel__slide--clone)")
+    );
     if (allSlides.length === 0) return;
+
+    var toolbar = root.querySelector(".h-updates-carousel__toolbar");
+    /** Max scrollLeft where the last card’s right edge lines up with the Next button (≤ physical max). */
+    var carouselEndScroll = 0;
+
+    /** Align list start with the toolbar (home column) while the viewport spans the full window width. */
+    function syncCarouselPad() {
+      if (!toolbar || !viewport) return;
+      var tl = toolbar.getBoundingClientRect().left;
+      var vl = viewport.getBoundingClientRect().left;
+      var pad = Math.max(0, Math.round(tl - vl));
+      viewport.style.paddingLeft = pad + "px";
+      viewport.style.paddingRight = "0px";
+    }
 
     var wideMq = typeof window.matchMedia === "function" ? window.matchMedia("(min-width: 720px)") : null;
 
@@ -1176,10 +1581,38 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
       });
     }
 
-    function visibleCount() {
+    function lastVisibleSlide() {
+      for (var i = allSlides.length - 1; i >= 0; i--) {
+        var s = allSlides[i];
+        if (s && getComputedStyle(s).display !== "none") return s;
+      }
+      return null;
+    }
+
+    function applyUpdatesFilter() {
+      var checked = root.querySelector('input[name="home-updates-filter"]:checked');
+      var v = checked ? checked.value : "all";
+      allSlides.forEach(function (slide) {
+        var kind = slide.getAttribute("data-updates-kind") || "update";
+        var show = v === "all" || v === kind;
+        if (show) slide.removeAttribute("hidden");
+        else slide.setAttribute("hidden", "");
+      });
+      viewport.scrollLeft = 0;
+      sync();
+    }
+
+    /** Columns used only for `--updates-slide-basis` math (not scroll snapping). */
+    function slideColumnCountForWidth() {
       var n = activeSlides().length;
-      var vis = wideMq && wideMq.matches ? 3 : 1;
-      return Math.min(vis, n);
+      var maxCols = wideMq && wideMq.matches ? 4 : 1;
+      if (n <= 0) return 1;
+      /*
+        With one matching slide (e.g. Feature filter), min(maxCols, n) would be 1 and the card
+        would span the full viewport — inconsistent with the multi-card row. Keep ~1/maxCols width.
+      */
+      if (wideMq && wideMq.matches && n === 1) return maxCols;
+      return Math.min(maxCols, n);
     }
 
     function viewportInnerWidthPx() {
@@ -1201,48 +1634,109 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     function slideWidthPx() {
       var inner = viewportInnerWidthPx();
       if (inner <= 0) return 0;
-      var vis = visibleCount();
+      var cols = slideColumnCountForWidth();
       var g = gapPx();
-      var gutters = (vis - 1) * g;
+      var gutters = (cols - 1) * g;
       var share = inner - gutters;
       if (share <= 0) return 0;
-      /* Fractional width so vis slides + (vis−1) gaps exactly span the toolbar width. */
-      return share / vis;
+      var base = share / cols;
+      /* Slightly wider than “fill the row” so cards read a touch larger (multi-column only). */
+      if (cols > 1) base *= 1.06;
+      return base;
     }
 
-    function stepPx() {
-      var sw = slideWidthPx();
-      if (sw <= 0) return gapPx() || 1;
-      return sw + gapPx();
+    /** Viewport X where card left edges should line up (same column as section title + segmented control). */
+    function contentAlignEdgeX() {
+      var v = viewport.getBoundingClientRect();
+      var cs = getComputedStyle(viewport);
+      var pl = parseFloat(cs.paddingLeft);
+      if (!Number.isFinite(pl)) pl = 0;
+      return v.left + pl;
     }
 
-    function maxLeftIndex() {
-      var n = activeSlides().length;
-      var vis = visibleCount();
-      return Math.max(0, n - vis);
+    /** First slide whose right edge crosses the alignment column (leftmost “column” card). */
+    function leftColumnSlideIndex(slides) {
+      var edge = contentAlignEdgeX();
+      for (var i = 0; i < slides.length; i++) {
+        var r = slides[i].getBoundingClientRect();
+        if (r.right > edge + 0.5) return i;
+      }
+      return 0;
     }
 
-    /** Largest L <= maxLeftIndex() where the counter shows cardOneBased (same formula as updateCounterOnly). */
-    function largestLeftIndexForCounterCard(cardOneBased) {
-      var r = realTotal;
-      var maxL = maxLeftIndex();
-      if (r <= 0 || maxL <= 0) return 0;
-      var want = (((cardOneBased - 1) % r) + r) % r;
-      var k = Math.floor(maxL / r) * r + want;
-      if (k > maxL) k -= r;
-      return Math.max(0, k);
+    /** Scroll so `slide`’s left edge meets the padded content edge (toolbar / title column). */
+    function scrollToAlignSlideLeft(slide, smooth) {
+      if (!slide) return;
+      syncCarouselPad();
+      var edge = contentAlignEdgeX();
+      var delta = slide.getBoundingClientRect().left - edge;
+      var target = viewport.scrollLeft + delta;
+      var maxS = maxScrollLeft();
+      var clamped = Math.max(0, Math.min(maxS, Math.round(target)));
+      viewport.scrollTo({ left: clamped, behavior: smooth === false ? "auto" : "smooth" });
     }
 
-    function firstSetWidthPx() {
-      var c = list.querySelector(".h-updates-carousel__slide--clone");
-      if (!c || getComputedStyle(c).display === "none") return 0;
-      return c.offsetLeft;
+    function nativeMaxScrollLeft() {
+      return Math.max(0, viewport.scrollWidth - viewport.clientWidth);
     }
 
-    function formatPosition(cardOneBased, tot) {
-      var zh = document.documentElement.dataset.uiLang === "zh";
-      if (zh) return String(cardOneBased) + " / " + String(tot);
-      return String(cardOneBased) + " of " + String(tot);
+    /**
+     * List padding-right only as needed so at max scroll the last card’s right can meet the Next
+     * control (tight — no wide empty runway).
+     */
+    function syncListEndSpace() {
+      var saved = viewport.scrollLeft;
+      var endPad = 0;
+      for (var pass = 0; pass < 5; pass++) {
+        list.style.paddingRight = endPad + "px";
+        void list.offsetHeight;
+        var maxS = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+        var lastAtEnd = maxS > 0 ? lastVisibleSlide() : null;
+        if (!lastAtEnd || !next) break;
+        viewport.scrollLeft = maxS;
+        void viewport.offsetHeight;
+        var lr = lastAtEnd.getBoundingClientRect().right;
+        var nr = next.getBoundingClientRect().right;
+        viewport.scrollLeft = saved;
+        void list.offsetHeight;
+        if (lr <= nr + 1) break;
+        endPad += Math.ceil(lr - nr);
+      }
+      list.style.paddingRight = endPad + "px";
+    }
+
+    /** Scroll position that right-aligns the last card to the Next button (linear scroll model). */
+    function syncEndScrollTarget() {
+      var maxS = nativeMaxScrollLeft();
+      if (maxS <= 0) {
+        carouselEndScroll = 0;
+        return;
+      }
+      var last = lastVisibleSlide();
+      if (!last || !next) {
+        carouselEndScroll = maxS;
+        return;
+      }
+      var saved = viewport.scrollLeft;
+      viewport.scrollLeft = maxS;
+      void viewport.offsetHeight;
+      var lr = last.getBoundingClientRect().right;
+      var nr = next.getBoundingClientRect().right;
+      viewport.scrollLeft = saved;
+      void viewport.offsetHeight;
+      var ideal = Math.round(lr + maxS - nr);
+      carouselEndScroll = Math.max(0, Math.min(maxS, ideal));
+    }
+
+    function maxScrollLeft() {
+      return carouselEndScroll;
+    }
+
+    function clampCarouselScroll() {
+      var mx = carouselEndScroll;
+      if (viewport.scrollLeft > mx + 0.5) {
+        viewport.scrollLeft = mx;
+      }
     }
 
     function setSlideWidths() {
@@ -1251,88 +1745,69 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
       viewport.style.setProperty("--updates-slide-basis", (Number.isFinite(sw) ? sw : 0) + "px");
     }
 
-    function nearestLeftIndex() {
-      var step = stepPx();
-      if (step <= 0) return 0;
-      var maxL = maxLeftIndex();
-      var raw = Math.round(viewport.scrollLeft / step);
-      return Math.max(0, Math.min(maxL, raw));
-    }
-
-    function scrollToLeftIndex(L, smooth) {
-      var step = stepPx();
-      var maxL = maxLeftIndex();
-      var clamped = Math.max(0, Math.min(maxL, L));
-      var target = clamped * step;
-      if (smooth === false) {
-        viewport.scrollLeft = target;
-      } else {
-        viewport.scrollTo({ left: target, behavior: "smooth" });
-      }
-    }
-
-    function normalizeLoopPosition() {
-      var w = firstSetWidthPx();
-      if (w <= 0) return;
-      while (viewport.scrollLeft >= w - 1) {
-        viewport.scrollLeft -= w;
-      }
-    }
-
-    function updateCounterOnly() {
-      var L = nearestLeftIndex();
-      var cardNum = (L % realTotal) + 1;
-      if (countEl) countEl.textContent = formatPosition(cardNum, realTotal);
+    function updateNavDisabled() {
+      var maxS = maxScrollLeft();
+      var x = viewport.scrollLeft;
+      var slides = activeSlides();
+      var edge = contentAlignEdgeX();
+      var atStart =
+        slides.length === 0 || slides[0].getBoundingClientRect().left >= edge - 2;
+      prev.disabled = maxS <= 0 || atStart;
+      next.disabled = maxS <= 0 || x >= maxS - 2;
     }
 
     function sync() {
+      syncCarouselPad();
       setSlideWidths();
-      updateCounterOnly();
-      prev.disabled = false;
-      next.disabled = false;
-    }
-
-    function applyNavScroll(targetL) {
-      scrollToLeftIndex(targetL, false);
-      normalizeLoopPosition();
-      updateCounterOnly();
+      syncListEndSpace();
+      syncEndScrollTarget();
+      clampCarouselScroll();
+      updateNavDisabled();
     }
 
     var scrollIdleTimer;
     function onScrollIdle() {
-      normalizeLoopPosition();
-      updateCounterOnly();
+      clampCarouselScroll();
+      updateNavDisabled();
     }
 
     prev.addEventListener("click", function () {
-      var maxL = maxLeftIndex();
-      if (maxL <= 0) return;
-      var L = nearestLeftIndex();
-      var prevL = L <= 0 ? largestLeftIndexForCounterCard(realTotal) : L - 1;
-      applyNavScroll(prevL);
+      if (prev.disabled) return;
+      syncCarouselPad();
+      setSlideWidths();
+      syncListEndSpace();
+      syncEndScrollTarget();
+      if (maxScrollLeft() <= 0) return;
+      var slides = activeSlides();
+      if (slides.length === 0) return;
+      var i = leftColumnSlideIndex(slides);
+      if (i <= 0) scrollToAlignSlideLeft(slides[0], true);
+      else scrollToAlignSlideLeft(slides[i - 1], true);
     });
     next.addEventListener("click", function () {
-      var maxL = maxLeftIndex();
-      if (maxL <= 0) return;
-      var L = nearestLeftIndex();
-      if (L < maxL) {
-        applyNavScroll(L + 1);
+      if (next.disabled) return;
+      syncCarouselPad();
+      setSlideWidths();
+      syncListEndSpace();
+      syncEndScrollTarget();
+      if (maxScrollLeft() <= 0) return;
+      var slides = activeSlides();
+      if (slides.length === 0) return;
+      var i = leftColumnSlideIndex(slides);
+      if (i >= slides.length - 1) return;
+      var nextIdx = i + 1;
+      /* Last step: land on end-aligned scroll (last card right = Next), not raw native max. */
+      if (nextIdx === slides.length - 1) {
+        viewport.scrollTo({ left: carouselEndScroll, behavior: "smooth" });
       } else {
-        applyNavScroll(0);
+        scrollToAlignSlideLeft(slides[nextIdx], true);
       }
     });
     viewport.addEventListener(
-      "wheel",
-      function (ev) {
-        if (Math.abs(ev.deltaX) <= Math.abs(ev.deltaY)) return;
-        ev.preventDefault();
-      },
-      { passive: false }
-    );
-    viewport.addEventListener(
       "scroll",
       function () {
-        updateCounterOnly();
+        clampCarouselScroll();
+        updateNavDisabled();
         clearTimeout(scrollIdleTimer);
         scrollIdleTimer = setTimeout(onScrollIdle, 130);
       },
@@ -1343,14 +1818,27 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
       onScrollIdle();
     });
 
+    var filterRoot = root.querySelector("[data-updates-filter]");
+    if (filterRoot) {
+      filterRoot.querySelectorAll('input[type="radio"][name="home-updates-filter"]').forEach(function (inp) {
+        inp.addEventListener("change", applyUpdatesFilter);
+      });
+    }
+
     function preserveScrollAfterLayout() {
-      var maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
-      var ratio = maxScroll > 0 ? viewport.scrollLeft / maxScroll : 0;
+      syncCarouselPad();
       setSlideWidths();
+      syncListEndSpace();
+      syncEndScrollTarget();
+      var d = carouselEndScroll;
+      var ratio = d > 0 ? Math.min(1, Math.max(0, viewport.scrollLeft / d)) : 0;
       requestAnimationFrame(function () {
-        var newMax = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
-        viewport.scrollTo({ left: newMax * ratio, behavior: "auto" });
-        normalizeLoopPosition();
+        syncCarouselPad();
+        setSlideWidths();
+        syncListEndSpace();
+        syncEndScrollTarget();
+        var d2 = carouselEndScroll;
+        viewport.scrollTo({ left: d2 * ratio, behavior: "auto" });
         sync();
       });
     }
@@ -1361,7 +1849,6 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     } else if (wideMq && typeof wideMq.addListener === "function") {
       wideMq.addListener(preserveScrollAfterLayout);
     }
-    setSlideWidths();
     sync();
   }
 

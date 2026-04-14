@@ -186,16 +186,37 @@ const navItems: { id: BlogNavCurrent; href: string; i18n: string; fallback: stri
     color: var(--prism-color-text-secondary);
   }
 
+  /* Matches components overview matrix status badges (doc-overview-matrix__badge). */
   .page :global(.blog-article__tag) {
-    display: inline-block;
-    font-size: 0.6875rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 0.2rem 0.5rem;
-    border-radius: 9999px;
-    background: color-mix(in srgb, var(--prism-color-accent) 16%, transparent);
-    color: var(--prism-color-accent-strong);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.28em 0.7em;
+    border-radius: var(--prism-radius-sm, 6px);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+  }
+
+  .page :global(.blog-article__tag--available) {
+    background-color: color-mix(in srgb, var(--prism-color-success) 10%, var(--prism-color-surface));
+    color: color-mix(in srgb, var(--prism-color-success) 22%, var(--prism-color-text-primary));
+  }
+
+  .page :global(.blog-article__tag--planned) {
+    background-color: color-mix(in srgb, var(--prism-color-text-primary) 8%, var(--prism-color-surface));
+    color: var(--prism-color-text-secondary);
+  }
+
+  .page :global(.blog-article__tag--beta) {
+    background-color: color-mix(in srgb, var(--prism-color-accent) 10%, var(--prism-color-surface));
+    color: color-mix(in srgb, var(--prism-color-accent-strong) 28%, var(--prism-color-text-primary));
+  }
+
+  .page :global(.blog-article__tag--unavailable) {
+    background-color: color-mix(in srgb, var(--prism-color-text-primary) 8%, var(--prism-color-surface));
+    color: var(--prism-color-text-secondary);
   }
 
   .page :global(.blog-article__title) {

@@ -1850,8 +1850,8 @@ const componentsAvatarsDrawerOpen =
       z-index: 200;
     }
 
-    .nav > .top-tools-drawer-util :global(.icon-btn[data-tooltip]:not([data-tooltip=""]):hover::after),
-    .nav > .top-tools-drawer-util :global(.icon-btn[data-tooltip]:not([data-tooltip=""]):focus-visible::after) {
+    .nav > .top-tools-drawer-util :global(.icon-btn[data-tooltip]:not([data-tooltip=""]):not(:disabled):hover::after),
+    .nav > .top-tools-drawer-util :global(.icon-btn[data-tooltip]:not([data-tooltip=""]):not(:disabled):focus-visible::after) {
       transform: translate3d(-50%, 0, 0);
     }
 
@@ -1954,8 +1954,8 @@ const componentsAvatarsDrawerOpen =
       transform: translate3d(0, -6px, 0);
     }
 
-    .nav :global(.icon-btn.nav-drawer-close[data-tooltip]:not([data-tooltip=""]):hover::after),
-    .nav :global(.icon-btn.nav-drawer-close[data-tooltip]:not([data-tooltip=""]):focus-visible::after) {
+    .nav :global(.icon-btn.nav-drawer-close[data-tooltip]:not([data-tooltip=""]):not(:disabled):hover::after),
+    .nav :global(.icon-btn.nav-drawer-close[data-tooltip]:not([data-tooltip=""]):not(:disabled):focus-visible::after) {
       transform: translate3d(0, 0, 0);
     }
 
@@ -2672,7 +2672,11 @@ const componentsAvatarsDrawerOpen =
     box-shadow: var(--prism-shadow-sm);
   }
 
-  :global(.icon-btn:hover) {
+  :global(.icon-btn:disabled) {
+    cursor: not-allowed;
+  }
+
+  :global(.icon-btn:hover:not(:disabled)) {
     border-color: var(--prism-color-border-strong);
     color: var(--prism-color-text-primary);
   }
@@ -2824,24 +2828,24 @@ const componentsAvatarsDrawerOpen =
     box-shadow: var(--prism-shadow-sm);
   }
 
-  :global(.icon-btn[data-tooltip]:not([data-tooltip=""]):hover::after),
-  :global(.icon-btn[data-tooltip]:not([data-tooltip=""]):focus-visible::after),
-  .nav-toggle[data-tooltip]:not([data-tooltip=""]):hover::after,
-  .nav-toggle[data-tooltip]:not([data-tooltip=""]):focus-visible::after,
-  .search-clear[data-tooltip]:not([data-tooltip=""]):hover::after,
-  .search-clear[data-tooltip]:not([data-tooltip=""]):focus-visible::after {
+  :global(.icon-btn[data-tooltip]:not([data-tooltip=""]):not(:disabled):hover::after),
+  :global(.icon-btn[data-tooltip]:not([data-tooltip=""]):not(:disabled):focus-visible::after),
+  .nav-toggle[data-tooltip]:not([data-tooltip=""]):not(:disabled):hover::after,
+  .nav-toggle[data-tooltip]:not([data-tooltip=""]):not(:disabled):focus-visible::after,
+  .search-clear[data-tooltip]:not([data-tooltip=""]):not(:disabled):hover::after,
+  .search-clear[data-tooltip]:not([data-tooltip=""]):not(:disabled):focus-visible::after {
     opacity: 1;
     visibility: visible;
     transform: translate3d(-50%, 0, 0);
   }
 
-  .nav-toggle[data-tooltip]:not([data-tooltip=""]):hover::after,
-  .nav-toggle[data-tooltip]:not([data-tooltip=""]):focus-visible::after {
+  .nav-toggle[data-tooltip]:not([data-tooltip=""]):not(:disabled):hover::after,
+  .nav-toggle[data-tooltip]:not([data-tooltip=""]):not(:disabled):focus-visible::after {
     transform: translate3d(0, 0, 0);
   }
 
-  .search-drawer-close[data-tooltip]:not([data-tooltip=""]):hover::after,
-  .search-drawer-close[data-tooltip]:not([data-tooltip=""]):focus-visible::after {
+  .search-drawer-close[data-tooltip]:not([data-tooltip=""]):not(:disabled):hover::after,
+  .search-drawer-close[data-tooltip]:not([data-tooltip=""]):not(:disabled):focus-visible::after {
     transform: translate3d(0, 0, 0);
   }
 
@@ -2853,8 +2857,8 @@ const componentsAvatarsDrawerOpen =
       transform: translate3d(-50%, -6px, 0);
     }
 
-    .search-drawer-close[data-tooltip]:not([data-tooltip=""]):hover::after,
-    .search-drawer-close[data-tooltip]:not([data-tooltip=""]):focus-visible::after {
+    .search-drawer-close[data-tooltip]:not([data-tooltip=""]):not(:disabled):hover::after,
+    .search-drawer-close[data-tooltip]:not([data-tooltip=""]):not(:disabled):focus-visible::after {
       transform: translate3d(-50%, 0, 0);
     }
   }
@@ -2875,8 +2879,8 @@ const componentsAvatarsDrawerOpen =
     transform: translate3d(-50%, -6px, 0);
   }
 
-  .search-clear[data-tooltip]:not([data-tooltip=""]):hover::after,
-  .search-clear[data-tooltip]:not([data-tooltip=""]):focus-visible::after {
+  .search-clear[data-tooltip]:not([data-tooltip=""]):not(:disabled):hover::after,
+  .search-clear[data-tooltip]:not([data-tooltip=""]):not(:disabled):focus-visible::after {
     transform: translate3d(-50%, 0, 0);
   }
 

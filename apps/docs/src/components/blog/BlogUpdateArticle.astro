@@ -18,12 +18,24 @@ const datetimeByN: Record<1 | 2 | 3 | 4 | 5 | 6, string> = {
   5: "2025-12-08",
   6: "2025-11-20",
 };
+
+/** Mirrors home carousel tag variants / components matrix status badges. */
+const tagVariantByN: Record<1 | 2 | 3 | 4 | 5 | 6, "available" | "beta" | "planned"> = {
+  1: "available",
+  2: "beta",
+  3: "planned",
+  4: "beta",
+  5: "available",
+  6: "planned",
+};
 ---
 
 <article id={id} class:list={["blog-article", { "blog-article--first": isFirstInPage }]}>
   <header class="blog-article__head">
     <p class="blog-article__meta">
-      <span class="blog-article__tag" data-i18n={`home.updates.${n}.tag`}>Tag</span>
+      <span
+        class:list={["blog-article__tag", `blog-article__tag--${tagVariantByN[n]}`]}
+        data-i18n={`home.updates.${n}.tag`}>Tag</span>
       <time datetime={datetimeByN[n]} data-i18n={`home.updates.${n}.date`}>Date</time>
     </p>
     <DocH2WithAnchor

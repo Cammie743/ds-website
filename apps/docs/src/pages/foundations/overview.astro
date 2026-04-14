@@ -675,12 +675,12 @@ const sortAria = {
     align-items: center;
     align-self: stretch;
     gap: 0.35rem;
-    padding: 0 0.75rem;
+    padding: 0 1.125rem;
     font-size: 0.8125rem;
     font-weight: 500;
     letter-spacing: -0.01em;
     line-height: 1.25;
-    color: var(--prism-color-text-secondary);
+    color: #0b0d12;
     border-radius: 9999px;
     cursor: pointer;
     user-select: none;
@@ -690,13 +690,30 @@ const sortAria = {
       box-shadow 0.15s ease;
   }
 
+  :global([data-theme="dark"]) .view-segmented__label {
+    color: var(--prism-color-text-secondary);
+  }
+
   .view-segmented__input:checked + .view-segmented__label {
-    background: var(--prism-color-surface);
-    color: var(--prism-color-text-primary);
+    background: var(--prism-color-text-primary);
+    color: var(--prism-color-text-inverse);
     box-shadow: var(--prism-shadow-sm);
   }
 
+  :global([data-theme="dark"]) .view-segmented__input:checked + .view-segmented__label {
+    background: var(--prism-color-text-inverse);
+    color: var(--prism-color-text-primary);
+  }
+
   .view-segmented__label:hover {
+    color: var(--prism-color-text-primary);
+  }
+
+  .view-segmented__input:checked + .view-segmented__label:hover {
+    color: var(--prism-color-text-inverse);
+  }
+
+  :global([data-theme="dark"]) .view-segmented__input:checked + .view-segmented__label:hover {
     color: var(--prism-color-text-primary);
   }
 
@@ -839,9 +856,15 @@ const sortAria = {
       color 0.15s ease;
   }
 
-  #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-header__sort:hover {
+  #foundations-overview-root:has(#foundations-overview-view-list:checked)
+    .overview-list-header__sort:hover:not(:disabled) {
     background: color-mix(in srgb, var(--prism-color-text-primary) 6%, transparent);
     color: var(--prism-color-text-primary);
+  }
+
+  #foundations-overview-root:has(#foundations-overview-view-list:checked)
+    .overview-list-header__title-cell.overview-list-header__sort:disabled {
+    cursor: not-allowed;
   }
 
   #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-header__sort:focus-visible {
@@ -889,9 +912,9 @@ const sortAria = {
   }
 
   #foundations-overview-root:has(#foundations-overview-view-list:checked)
-    .overview-list-header__sort[data-tooltip]:not([data-tooltip=""]):hover::after,
+    .overview-list-header__sort[data-tooltip]:not([data-tooltip=""]):not(:disabled):hover::after,
   #foundations-overview-root:has(#foundations-overview-view-list:checked)
-    .overview-list-header__sort[data-tooltip]:not([data-tooltip=""]):focus-visible::after {
+    .overview-list-header__sort[data-tooltip]:not([data-tooltip=""]):not(:disabled):focus-visible::after {
     opacity: 1;
     visibility: visible;
     transform: translate3d(-50%, 0, 0);
