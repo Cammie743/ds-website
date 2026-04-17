@@ -1,0 +1,119 @@
+/*
+ * Shared: overview / matrix tables (Components accordion, Style guide, etc.).
+ * Matches seam + header styling from component doc tabs.
+ */
+
+.doc-overview-matrix-shell {
+  min-width: 0;
+  border-radius: var(--prism-radius-md);
+  border: 1px solid var(--prism-color-border-subtle);
+  overflow: hidden;
+  background-color: var(--prism-color-surface);
+}
+
+.doc-overview-matrix {
+  margin: 0;
+  border: none;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.doc-overview-matrix thead th {
+  background-color: var(--prism-color-surface-muted);
+  color: var(--prism-color-text-primary);
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.doc-overview-matrix thead th:last-child {
+  text-align: start;
+}
+
+.doc-overview-matrix__status-cell {
+  text-align: start;
+  white-space: nowrap;
+}
+
+.doc-tabs__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.doc-tabs__table th,
+.doc-tabs__table td {
+  padding: var(--prism-space-md) var(--prism-space-lg);
+  text-align: start;
+  vertical-align: top;
+  border: 1px solid var(--prism-color-border-subtle);
+}
+
+.doc-tabs__table.doc-overview-matrix th,
+.doc-tabs__table.doc-overview-matrix td {
+  border: 0 solid var(--prism-color-border-subtle);
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+}
+
+.doc-tabs__table.doc-overview-matrix thead th {
+  border-top-width: 0;
+}
+
+.doc-tabs__table.doc-overview-matrix tr > :first-child {
+  border-left-width: 0;
+}
+
+.doc-tabs__table.doc-overview-matrix tr > :last-child {
+  border-right-width: 0;
+}
+
+.doc-tabs__table.doc-overview-matrix tbody tr:last-child th,
+.doc-tabs__table.doc-overview-matrix tbody tr:last-child td {
+  border-bottom-width: 0;
+}
+
+.doc-tabs__table thead th {
+  background-color: var(--prism-color-surface-muted);
+  color: var(--prism-color-text-primary);
+  font-weight: 600;
+}
+
+.doc-tabs__table tbody th {
+  background-color: color-mix(in srgb, var(--prism-color-text-primary) 3%, var(--prism-color-surface));
+  color: var(--prism-color-text-primary);
+  font-weight: 600;
+}
+
+.doc-tabs__table tbody td {
+  color: var(--prism-color-text-secondary);
+}
+
+.doc-tabs__table.doc-overview-matrix tbody th.doc-overview-matrix__type {
+  width: 10.5rem;
+  max-width: 34%;
+  background-color: var(--prism-color-surface);
+  color: var(--prism-color-text-secondary);
+  font-weight: 400;
+  font-size: 0.9375rem;
+  line-height: 1.35;
+  vertical-align: middle;
+}
+
+.doc-tabs__table.doc-overview-matrix td.doc-overview-matrix__type-spacer {
+  vertical-align: middle;
+  background-color: var(--prism-color-surface);
+}
+
+.doc-tabs__table.doc-overview-matrix td.doc-overview-matrix__resource-cell,
+.doc-tabs__table.doc-overview-matrix td.doc-overview-matrix__status-cell {
+  vertical-align: middle;
+}
+
+.doc-overview-matrix__cell-align {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+}

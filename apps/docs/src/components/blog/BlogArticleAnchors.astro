@@ -1,0 +1,139 @@
+---
+/** In-page anchors: long-form sections for update 1, title-only for shorter posts. */
+import type { BlogUpdateN } from "../../data/blogUpdates";
+
+interface Props {
+  id: string;
+  updateN: BlogUpdateN;
+}
+
+const { id, updateN } = Astro.props;
+
+const titleId = `${id}-heading`;
+const section = (suffix: string) => `${id}-section-${suffix}`;
+const sub = (suffix: string) => `${id}-sub-${suffix}`;
+---
+
+<nav class="blog-anchor-nav" aria-labelledby="blog-anchor-nav-label">
+  <h2 id="blog-anchor-nav-label" class="blog-anchor-nav__label" data-i18n="blog.articleAnchors.heading">
+    On this page
+  </h2>
+  {
+    updateN === 1 ? (
+      <ul class="blog-anchor-nav__list">
+        <li>
+          <a class="blog-anchor-nav__link" href={`#${titleId}`} data-i18n="home.updates.1.title">
+            Title
+          </a>
+        </li>
+        <li>
+          <a class="blog-anchor-nav__link" href={`#${section("components")}`} data-i18n="blog.update.1.section.components">
+            Component updates
+          </a>
+          <ul class="blog-anchor-nav__sublist">
+            <li>
+              <a class="blog-anchor-nav__link blog-anchor-nav__link--nested" href={`#${sub("comp-button")}`} data-i18n="blog.update.1.sub.comp.button">
+                Secondary basic button
+              </a>
+            </li>
+            <li>
+              <a class="blog-anchor-nav__link blog-anchor-nav__link--nested" href={`#${sub("comp-media-player")}`} data-i18n="blog.update.1.sub.comp.mediaPlayer">
+                Media player
+              </a>
+            </li>
+            <li>
+              <a class="blog-anchor-nav__link blog-anchor-nav__link--nested" href={`#${sub("comp-pagination")}`} data-i18n="blog.update.1.sub.comp.pagination">
+                Pagination (Vue only)
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="blog-anchor-nav__link" href={`#${section("icons")}`} data-i18n="blog.update.1.section.icons">
+            Icon updates
+          </a>
+        </li>
+        <li>
+          <a class="blog-anchor-nav__link" href={`#${section("tokens")}`} data-i18n="blog.update.1.section.tokens">
+            Token updates
+          </a>
+        </li>
+      </ul>
+    ) : (
+      <ul class="blog-anchor-nav__list">
+        <li>
+          <a class="blog-anchor-nav__link" href={`#${titleId}`} data-i18n={`home.updates.${updateN}.title`}>
+            Title
+          </a>
+        </li>
+      </ul>
+    )
+  }
+</nav>
+
+<style>
+  .blog-anchor-nav {
+    margin: 0;
+  }
+
+  .blog-anchor-nav__label {
+    margin: 0 0 var(--prism-space-sm);
+    padding-inline: var(--prism-space-md);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: -0.012em;
+    line-height: 1.35;
+    color: var(--prism-color-text-secondary);
+  }
+
+  .blog-anchor-nav__list,
+  .blog-anchor-nav__sublist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .blog-anchor-nav__sublist {
+    margin-top: 2px;
+    margin-bottom: var(--prism-space-xs);
+    padding-left: var(--prism-space-md);
+    border-left: 1px solid color-mix(in srgb, var(--prism-color-border-subtle) 75%, transparent);
+  }
+
+  .blog-anchor-nav__link {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: var(--prism-space-sm) var(--prism-space-md);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: -0.012em;
+    line-height: 1.4;
+    text-decoration: none;
+    color: var(--prism-color-text-primary);
+    border-radius: 10px;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .blog-anchor-nav__link--nested {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--prism-color-text-secondary);
+  }
+
+  .blog-anchor-nav__link:hover,
+  .blog-anchor-nav__link:focus-visible {
+    background-color: var(--nav-drawer-item-active-bg);
+    color: var(--prism-color-accent-strong);
+  }
+
+  .blog-anchor-nav__link:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--prism-color-accent-strong) 45%, transparent);
+    outline-offset: 2px;
+  }
+</style>

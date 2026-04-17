@@ -271,10 +271,15 @@ const navItems: NavItem[] = [
   .section-nav-disclosure {
     display: flex;
     flex-direction: column;
-    gap: var(--prism-space-xs);
+    /* Avoid flex gap + list gap doubling when <details> is closed (zero-height <ul> flex item). */
+    gap: 0;
     width: 100%;
     min-width: 0;
     border-radius: 12px;
+  }
+
+  .section-nav-disclosure[open] > .section-nav-sublist {
+    margin-top: var(--prism-space-xs);
   }
 
   .section-nav-disclosure-summary {

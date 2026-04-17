@@ -1,5 +1,21 @@
 ---
 import ResourcesLayout from "../../layouts/ResourcesLayout.astro";
+import { uiStrings } from "../../i18n/ui";
+
+const en = uiStrings.en as Record<string, string>;
+
+const cards = [
+  { href: "/resources/ai-skills", titleI18n: "resources.toc.aiSkills", fallback: "AI skills" },
+  { href: "/resources/figma", titleI18n: "resources.toc.figma", fallback: "Figma" },
+  { href: "/resources/development", titleI18n: "resources.toc.development", fallback: "Development" },
+  {
+    href: "/resources/learning-videos",
+    titleI18n: "resources.toc.learningVideos",
+    fallback: "Learning videos",
+  },
+  { href: "/resources/fonts", titleI18n: "resources.toc.fonts", fallback: "Fonts" },
+  { href: "/resources/templates", titleI18n: "resources.toc.templates", fallback: "Templates" },
+] as const;
 ---
 
 <ResourcesLayout title="Resources" current="overview" description="Guides, tools, and links for Prism.">
@@ -7,4 +23,183 @@ import ResourcesLayout from "../../layouts/ResourcesLayout.astro";
     <h1 data-i18n="resources.title">Resources</h1>
     <p class="intro" data-i18n="resources.lede">Additional guides and references will live here.</p>
   </header>
+
+  <div
+    class="comp-overview-grid"
+    data-i18n-aria="resources.overview.galleryAria"
+    aria-label={en["resources.overview.galleryAria"]}
+  >
+    {
+      cards.map((card) => (
+        <a class="comp-card comp-card--link" href={card.href}>
+          <figure class="comp-card__figure">
+            <div class="comp-card__media">
+              <svg
+                class="comp-card__placeholder"
+                viewBox="0 0 480 300"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="xMidYMid slice"
+                aria-hidden="true"
+              >
+                <rect width="480" height="300" rx="18" class="comp-card__ph-bg" />
+                <rect x="36" y="44" width="280" height="22" rx="8" class="comp-card__ph-bar" />
+                <rect x="36" y="86" width="408" height="14" rx="6" class="comp-card__ph-line" />
+                <rect x="36" y="112" width="360" height="14" rx="6" class="comp-card__ph-line" />
+                <rect x="36" y="138" width="320" height="14" rx="6" class="comp-card__ph-line" />
+                <rect x="36" y="188" width="408" height="62" rx="12" class="comp-card__ph-block" />
+              </svg>
+            </div>
+            <figcaption class="comp-card__caption">
+              <span class="comp-card__title" data-i18n={card.titleI18n}>
+                {card.fallback}
+              </span>
+            </figcaption>
+          </figure>
+        </a>
+      ))
+    }
+  </div>
 </ResourcesLayout>
+
+<style>
+  .page-head {
+    width: 100%;
+    max-width: none;
+    margin-bottom: var(--prism-space-2xl);
+  }
+
+  h1 {
+    margin: 0 0 var(--prism-space-md);
+    font-size: clamp(3rem, 8.5vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+  }
+
+  .intro {
+    margin: 0;
+    color: var(--prism-color-text-secondary);
+    line-height: 1.65;
+    font-size: 1.0625rem;
+  }
+
+  .comp-overview-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--prism-space-xl);
+    margin: var(--prism-space-3xl) 0 var(--prism-space-2xl);
+    align-items: start;
+  }
+
+  @media (max-width: 46.875rem) {
+    .comp-overview-grid {
+      gap: var(--prism-space-lg);
+    }
+  }
+
+  @media (min-width: 52rem) {
+    .comp-overview-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .comp-card {
+    margin: 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--prism-space-sm);
+  }
+
+  .comp-card--link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    padding: 0 0 var(--prism-space-sm);
+  }
+
+  .comp-card--link:focus-visible {
+    outline: 2px solid var(--prism-color-accent-strong);
+    outline-offset: 2px;
+  }
+
+  .comp-card__figure {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--prism-space-sm);
+    min-width: 0;
+  }
+
+  .comp-card__media {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    aspect-ratio: 8 / 5;
+  }
+
+  .comp-card--link .comp-card__media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: color-mix(in srgb, var(--prism-color-text-primary) 8%, transparent);
+    opacity: 0;
+    transition: opacity 0.18s ease;
+    pointer-events: none;
+  }
+
+  .comp-card--link:hover .comp-card__media::after,
+  .comp-card--link:focus-visible .comp-card__media::after {
+    opacity: 1;
+  }
+
+  .comp-card__placeholder {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+    border-radius: 12px;
+  }
+
+  .comp-card__ph-bg {
+    fill: color-mix(in srgb, var(--prism-color-text-primary) 5%, var(--prism-color-surface-muted));
+  }
+
+  .comp-card__ph-bar {
+    fill: color-mix(in srgb, var(--prism-color-text-primary) 12%, transparent);
+  }
+
+  .comp-card__ph-line {
+    fill: color-mix(in srgb, var(--prism-color-text-primary) 8%, transparent);
+  }
+
+  .comp-card__ph-block {
+    fill: color-mix(in srgb, var(--prism-color-text-primary) 6%, var(--prism-color-surface-elevated));
+  }
+
+  .comp-card__caption {
+    margin: 0;
+    padding: 0 var(--prism-space-sm);
+    text-align: left;
+  }
+
+  .comp-card__title {
+    font-weight: 600;
+    font-size: clamp(1rem, 0.35vw + 0.92rem, 1.1875rem);
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+    color: var(--prism-color-text-primary);
+    transition: color 0.2s ease;
+  }
+
+  .comp-card--link:hover .comp-card__title,
+  .comp-card--link:focus-visible .comp-card__title {
+    color: var(--prism-color-accent-strong);
+  }
+</style>

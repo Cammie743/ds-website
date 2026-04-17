@@ -1,20 +1,30 @@
 ---
 import BlogLayout from "../../layouts/BlogLayout.astro";
 import BlogUpdateArticle from "../../components/blog/BlogUpdateArticle.astro";
+import BlogTeasersViewControls from "../../components/blog/BlogTeasersViewControls.astro";
 ---
 
-<BlogLayout title="Latest updates" current="latest" description="Recent release notes and product updates from the Prism team.">
+<BlogLayout
+  title="Latest updates"
+  current="latest"
+  description="Recent release notes and product updates from the Prism team."
+  pageVariant="teasers"
+>
   <header class="page-head">
     <h1 data-i18n="blog.nav.latest">Latest updates</h1>
-    <p class="intro" data-i18n="blog.lede">
-      Release notes, deep dives, and product updates from the Prism team.
-    </p>
+    <div class="blog-teasers-head-row">
+      <p class="intro" data-i18n="blog.lede">
+        Release notes, deep dives, and product updates from the Prism team.
+      </p>
+      <BlogTeasersViewControls />
+    </div>
   </header>
-  <div class="blog-posts">
-    <BlogUpdateArticle id="update-theme-previews" updateN={2} isFirstInPage />
-    <BlogUpdateArticle id="update-foundations-ia" updateN={3} />
-    <BlogUpdateArticle id="update-search-docs" updateN={4} />
-    <BlogUpdateArticle id="update-usage-metrics" updateN={5} />
-    <BlogUpdateArticle id="update-a11y-checklist" updateN={6} />
+  <div class="blog-posts blog-posts--teasers">
+    <BlogUpdateArticle id="update-april-2026" updateN={1} isFirstInPage />
+    <BlogUpdateArticle id="update-theme-previews" updateN={3} />
+    <BlogUpdateArticle id="update-foundations-ia" updateN={4} />
+    <BlogUpdateArticle id="update-search-docs" updateN={5} />
+    <BlogUpdateArticle id="update-usage-metrics" updateN={6} />
+    <BlogUpdateArticle id="update-a11y-checklist" updateN={7} />
   </div>
 </BlogLayout>

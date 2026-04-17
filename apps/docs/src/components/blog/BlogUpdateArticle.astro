@@ -1,53 +1,315 @@
 ---
 import DocH2WithAnchor from "../DocH2WithAnchor.astro";
+import { BLOG_UPDATE_SLUG_BY_N, type BlogUpdateN } from "../../data/blogUpdates";
 
 interface Props {
   id: string;
-  updateN: 1 | 2 | 3 | 4 | 5 | 6;
+  updateN: 1 | 2 | 3 | 4 | 5 | 6 | 7;
   isFirstInPage?: boolean;
+  /** Listing: home-level teaser + link. Detail: full post body + byline. */
+  mode?: "teaser" | "full";
 }
 
-const { id, updateN, isFirstInPage = false } = Astro.props;
-const n = updateN;
+const { id, updateN, isFirstInPage = false, mode = "teaser" } = Astro.props;
+/** `Object.entries` and some callers may pass string indices; normalize for strict `===` checks. */
+const n = (typeof updateN === "number" ? updateN : Number(updateN)) as typeof updateN;
 
-const datetimeByN: Record<1 | 2 | 3 | 4 | 5 | 6, string> = {
-  1: "2026-04-01",
-  2: "2026-03-01",
-  3: "2026-02-01",
-  4: "2026-01-15",
-  5: "2025-12-08",
-  6: "2025-11-20",
+/** Newer post (reverse-chronological “up” the feed). */
+const prevNav =
+  n > 1
+    ? { n: (n - 1) as BlogUpdateN, slug: BLOG_UPDATE_SLUG_BY_N[(n - 1) as BlogUpdateN] }
+    : null;
+/** Older post (“down” the feed). */
+const nextNav =
+  n < 7
+    ? { n: (n + 1) as BlogUpdateN, slug: BLOG_UPDATE_SLUG_BY_N[(n + 1) as BlogUpdateN] }
+    : null;
+
+const datetimeByN: Record<1 | 2 | 3 | 4 | 5 | 6 | 7, string> = {
+  1: "2026-04-17",
+  2: "2026-04-01",
+  3: "2026-03-01",
+  4: "2026-02-01",
+  5: "2026-01-15",
+  6: "2025-12-08",
+  7: "2025-11-20",
 };
 
+const headingId = `${id}-heading`;
+const postHref = `/blog/update/${id}`;
+
+const authorAvatarSrc: Record<1 | 2 | 3 | 4 | 5 | 6 | 7, string> = {
+  1: "/images/prism-library/avatars/april-2026-update.png",
+  2: "/images/prism-library/avatars/rowan-vega.png",
+  3: "/images/prism-library/avatars/kenji-park.png",
+  4: "/images/prism-library/avatars/ellis-mercer.png",
+  5: "/images/prism-library/avatars/calvin-rhodes.png",
+  6: "/images/prism-library/avatars/amari-okoro.png",
+  7: "/images/prism-library/avatars/sofia-delgado.png",
+};
 ---
 
-<article id={id} class:list={["blog-article", { "blog-article--first": isFirstInPage }]}>
-  <header class="blog-article__head">
-    <p class="blog-article__meta">
-      <time datetime={datetimeByN[n]} data-i18n={`home.updates.${n}.date`}>Date</time>
-    </p>
-    <DocH2WithAnchor
-      id={`${id}-heading`}
-      copyFragmentId={id}
-      class="blog-article__title"
-      data-i18n={`home.updates.${n}.title`}
-    >
-      Title
-    </DocH2WithAnchor>
-  </header>
-  <figure class="blog-article__figure">
-    <img
-      class="blog-article__img"
-      src={`/images/updates/update-${n}.svg`}
-      width="640"
-      height="360"
-      loading="lazy"
-      decoding="async"
-      alt=""
-      data-i18n-alt={`home.updates.${n}.alt`}
-    />
-  </figure>
-  <div class="blog-article__body">
-    <p data-i18n={`blog.update.${n}.body`}>Body</p>
-  </div>
-</article>
+{
+  mode === "teaser" ? (
+    <article id={id} class:list={["blog-article", "blog-article--teaser", { "blog-article--first": isFirstInPage }]}>
+      <a class="blog-article__teaser" href={postHref} aria-labelledby={headingId}>
+        <div class="blog-article__teaser-text">
+          <p class="blog-article__meta">
+            <time datetime={datetimeByN[n]} data-i18n={`home.updates.${n}.date`}>
+              Date
+            </time>
+          </p>
+          <h2
+            id={headingId}
+            class="blog-article__title doc-h2-anchor-heading"
+            data-i18n={`home.updates.${n}.title`}
+          >
+            Title
+          </h2>
+          <p class="blog-article__excerpt" data-i18n={`home.updates.${n}.body`}>
+            Summary
+          </p>
+          <div class="blog-article__author">
+            <img
+              class="blog-article__author-avatar"
+              src={authorAvatarSrc[n]}
+              width="64"
+              height="64"
+              loading="lazy"
+              decoding="async"
+              alt=""
+              data-i18n-alt={`home.updates.${n}.authorAvatarAlt`}
+            />
+            <span class="blog-article__author-name" data-i18n={`home.updates.${n}.authorName`}>
+              Author
+            </span>
+          </div>
+          <span class="blog-article__read-more">
+            <span class="blog-article__read-more__label" data-i18n="blog.readFullArticle">Read full article</span>
+            <span class="blog-article__read-more__arrow" aria-hidden="true">
+              <svg
+                class="blog-article__read-more__arrow-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M7 7h10v10"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+                <path
+                  d="M7 17 17 7"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+            </span>
+          </span>
+        </div>
+        <figure class="blog-article__figure">
+          <img
+            class="blog-article__img"
+            src={`/images/updates/update-${n}.svg`}
+            width="780"
+            height="440"
+            loading="lazy"
+            decoding="async"
+            alt=""
+            data-i18n-alt={`home.updates.${n}.alt`}
+          />
+        </figure>
+      </a>
+    </article>
+  ) : (
+    <article id={id} class:list={["blog-article", "blog-article--full", { "blog-article--first": isFirstInPage }]}>
+      <header class="blog-article__head">
+        <p class="blog-article__meta">
+          <time datetime={datetimeByN[n]} data-i18n={`home.updates.${n}.date`}>
+            Date
+          </time>
+        </p>
+        <h1 id={headingId} class="blog-article__title" data-i18n={`home.updates.${n}.title`}>
+          Title
+        </h1>
+        <div class="blog-article__head-author">
+          <img
+            class="blog-article__head-author-avatar"
+            src={authorAvatarSrc[n]}
+            width="48"
+            height="48"
+            loading="lazy"
+            decoding="async"
+            alt=""
+            data-i18n-alt={`home.updates.${n}.authorAvatarAlt`}
+          />
+          <span class="blog-article__head-author-name" data-i18n={`home.updates.${n}.authorName`}>
+            Author
+          </span>
+        </div>
+      </header>
+      <figure class="blog-article__figure">
+        <img
+          class="blog-article__img"
+          src={`/images/updates/update-${n}.svg`}
+          width="640"
+          height="360"
+          loading="lazy"
+          decoding="async"
+          alt=""
+          data-i18n-alt={`home.updates.${n}.alt`}
+        />
+      </figure>
+      <div class="blog-article__body">
+        {n === 1 ? (
+          <div class="blog-article__sections">
+            <DocH2WithAnchor
+              id={`${id}-section-components`}
+              class="doc-tabs__h2 blog-article__section-title"
+              rowClass="doc-h2-anchor-row--tabs"
+              data-i18n="blog.update.1.section.components"
+            >
+              Component updates
+            </DocH2WithAnchor>
+            <p class="blog-article__section-intro" data-i18n="blog.update.1.p.comp.intro">
+              Component updates intro
+            </p>
+            <div class="blog-article__subsection">
+              <h4 id={`${id}-sub-comp-button`} class="blog-article__subsection-title" data-i18n="blog.update.1.sub.comp.button">
+                Secondary basic button
+              </h4>
+              <p data-i18n="blog.update.1.p.comp.button">
+                Secondary basic button (UXD-13772, Cam Foster). The default secondary basic treatment stayed light blue
+                while many other secondary controls read grey, which made specs and dense UIs easy to misread. A grey-only
+                secondary basic also felt too light when you still needed a clear secondary step under a primary. We kept
+                that blue treatment as Secondary default—the stronger secondary that sits next to primary—and added
+                Secondary neutral on secondary basic only: a half-step-down grey option when you want secondary actions
+                to match other grey secondaries or to calm button-heavy layouts, with the blue default still there when
+                you need more separation from primary.
+              </p>
+              <figure class="blog-article__inline-figure">
+                <img
+                  class="blog-article__img"
+                  src="/images/updates/update-1-comp-button.png"
+                  width="1024"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                  alt=""
+                  data-i18n-alt="blog.update.1.comp.imgAlt.button"
+                />
+                <figcaption class="blog-article__inline-caption">
+                  <span class="blog-article__inline-caption__badge">
+                    <span class="blog-article__inline-caption__badge-num">1</span>
+                  </span>
+                  <span class="blog-article__inline-caption__text" data-i18n="blog.update.1.comp.caption.button">
+                    Secondary basic button - Neutral sentiment
+                  </span>
+                </figcaption>
+              </figure>
+            </div>
+            <div class="blog-article__subsection">
+              <h4 id={`${id}-sub-comp-media-player`} class="blog-article__subsection-title" data-i18n="blog.update.1.sub.comp.mediaPlayer">
+                Media player
+              </h4>
+              <p data-i18n="blog.update.1.p.comp.mediaPlayer">Media player body</p>
+              <figure class="blog-article__inline-figure">
+                <img
+                  class="blog-article__img"
+                  src="/images/updates/update-1-comp-media-player.svg"
+                  width="640"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                  alt=""
+                  data-i18n-alt="blog.update.1.comp.imgAlt.mediaPlayer"
+                />
+              </figure>
+            </div>
+            <div class="blog-article__subsection">
+              <h4 id={`${id}-sub-comp-pagination`} class="blog-article__subsection-title" data-i18n="blog.update.1.sub.comp.pagination">
+                Pagination (Vue only)
+              </h4>
+              <p data-i18n="blog.update.1.p.comp.pagination">Pagination body</p>
+              <figure class="blog-article__inline-figure">
+                <img
+                  class="blog-article__img"
+                  src="/images/updates/update-1-comp-pagination.svg"
+                  width="640"
+                  height="220"
+                  loading="lazy"
+                  decoding="async"
+                  alt=""
+                  data-i18n-alt="blog.update.1.comp.imgAlt.pagination"
+                />
+              </figure>
+            </div>
+            <DocH2WithAnchor
+              id={`${id}-section-icons`}
+              class="doc-tabs__h2 blog-article__section-title"
+              rowClass="doc-h2-anchor-row--tabs"
+              data-i18n="blog.update.1.section.icons"
+            >
+              Icon updates
+            </DocH2WithAnchor>
+            <p data-i18n="blog.update.1.p.icons">Icon updates body</p>
+            <DocH2WithAnchor
+              id={`${id}-section-tokens`}
+              class="doc-tabs__h2 blog-article__section-title"
+              rowClass="doc-h2-anchor-row--tabs"
+              data-i18n="blog.update.1.section.tokens"
+            >
+              Token updates
+            </DocH2WithAnchor>
+            <p data-i18n="blog.update.1.p.tokens">Token updates body</p>
+          </div>
+        ) : (
+          <div class="blog-article__sections">
+            <p data-i18n={`blog.update.${n}.body`}>Body</p>
+          </div>
+        )}
+      </div>
+      <nav class="blog-article-nav" aria-label="Adjacent updates" data-i18n-aria="blog.articleNav.aria">
+        <div class="blog-article-nav__inner">
+          {
+            prevNav ? (
+              <a class="blog-article-nav__link blog-article-nav__link--prev" href={`/blog/update/${prevNav.slug}`}>
+                <span class="blog-article-nav__dir">
+                  <span class="blog-article-nav__arrow" aria-hidden="true">
+                    ←
+                  </span>
+                  <span data-i18n="blog.articleNav.previous">Previous</span>
+                </span>
+                <span class="blog-article-nav__title" data-i18n={`home.updates.${prevNav.n}.title`}>
+                  Title
+                </span>
+              </a>
+            ) : (
+              <span class="blog-article-nav__slot blog-article-nav__slot--empty" aria-hidden="true" />
+            )
+          }
+          {
+            nextNav ? (
+              <a class="blog-article-nav__link blog-article-nav__link--next" href={`/blog/update/${nextNav.slug}`}>
+                <span class="blog-article-nav__dir">
+                  <span data-i18n="blog.articleNav.next">Next</span>
+                  <span class="blog-article-nav__arrow" aria-hidden="true">
+                    →
+                  </span>
+                </span>
+                <span class="blog-article-nav__title" data-i18n={`home.updates.${nextNav.n}.title`}>
+                  Title
+                </span>
+              </a>
+            ) : (
+              <span class="blog-article-nav__slot blog-article-nav__slot--empty" aria-hidden="true" />
+            )
+          }
+        </div>
+      </nav>
+    </article>
+  )
+}

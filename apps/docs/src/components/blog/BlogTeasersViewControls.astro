@@ -1,0 +1,53 @@
+---
+/** Grid / list segmented control for blog teaser listing pages (matches Foundations overview). */
+---
+
+<fieldset class="view-segmented blog-teasers-view-controls">
+  <legend class="view-segmented__legend">
+    <span data-i18n="blog.teasers.viewLayout">Blog updates layout</span>
+  </legend>
+  <div class="view-segmented__inner">
+    <input
+      class="view-segmented__input"
+      type="radio"
+      name="blog-teasers-view"
+      id="blog-teasers-view-grid"
+      value="grid"
+      checked
+    />
+    <label class="view-segmented__label" for="blog-teasers-view-grid">
+      <svg class="view-segmented__icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="3" width="7" height="7" rx="1.5" fill="currentColor"></rect>
+        <rect x="14" y="3" width="7" height="7" rx="1.5" fill="currentColor"></rect>
+        <rect x="3" y="14" width="7" height="7" rx="1.5" fill="currentColor"></rect>
+        <rect x="14" y="14" width="7" height="7" rx="1.5" fill="currentColor"></rect>
+      </svg>
+      <span data-i18n="foundations.overview.viewGrid">Grid</span>
+    </label>
+    <input
+      class="view-segmented__input"
+      type="radio"
+      name="blog-teasers-view"
+      id="blog-teasers-view-list"
+      value="list"
+    />
+    <label class="view-segmented__label" for="blog-teasers-view-list">
+      <svg
+        class="view-segmented__icon view-segmented__icon--stroke"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          d="M9 6h12M9 12h12M9 18h12M4 6h.01M4 12h.01M4 18h.01"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+      <span data-i18n="foundations.overview.viewList">List</span>
+    </label>
+  </div>
+</fieldset>

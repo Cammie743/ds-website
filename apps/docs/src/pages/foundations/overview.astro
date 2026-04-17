@@ -787,7 +787,7 @@ const sortAria = {
     background-color: var(--prism-color-border-subtle);
   }
 
-  /* Row separators next to a hovered or focused card: match hover fill so the seam disappears without collapsing layout (height: 0 caused a 1px jump). */
+  /* Row separators next to a hovered or focused card: transparent fill (same as blog list) — keeps 1px height, no seam vs page chrome. */
   #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-card:hover + .overview-list-divider,
   #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-card:focus-visible + .overview-list-divider,
   #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-divider:has(+ .overview-card:hover),
@@ -798,7 +798,7 @@ const sortAria = {
   #foundations-overview-root:has(#foundations-overview-view-list:checked)
     .overview-list-header:has(+ .overview-card:focus-visible)
     .overview-list-header__rule {
-    background-color: var(--nav-drawer-item-active-bg);
+    background-color: transparent;
   }
 
   #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-header {
@@ -1030,7 +1030,18 @@ const sortAria = {
     transform: translateX(0.35rem);
   }
 
+  /* List rows: no media dim overlay inside the hover pill (matches blog list thumb treatment). */
+  #foundations-overview-root:has(#foundations-overview-view-list:checked)
+    .overview-card:hover
+    .overview-figure__media::after,
+  #foundations-overview-root:has(#foundations-overview-view-list:checked)
+    .overview-card:focus-visible
+    .overview-figure__media::after {
+    opacity: 0;
+  }
+
   #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-figure__media {
+    aspect-ratio: unset;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -1203,6 +1214,7 @@ const sortAria = {
     position: relative;
     overflow: hidden;
     border-radius: 12px;
+    aspect-ratio: 8 / 5;
   }
 
   .overview-figure__media::after {
@@ -1222,8 +1234,11 @@ const sortAria = {
 
   .overview-figure__img {
     display: block;
+    position: absolute;
+    inset: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     vertical-align: middle;
     border-radius: 12px;
   }

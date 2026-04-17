@@ -131,3 +131,32 @@ code {
     radial-gradient(920px 500px at 90% 4%, color-mix(in srgb, #f5c9cc 16%, transparent), transparent 58%),
     radial-gradient(780px 520px at 50% 108%, color-mix(in srgb, var(--prism-color-accent-strong) 5%, transparent), transparent 56%);
 }
+
+/* Inner docs: flat white (default) or flat canvas (theme previews) — no radial wash. Home keeps full gradient stack. */
+html[data-page="inner"] {
+  background: #ffffff;
+}
+
+html[data-page="inner"] .prism-bg {
+  background: #ffffff;
+}
+
+html[data-page="inner"][data-theme] {
+  background: var(--prism-color-canvas);
+}
+
+html[data-page="inner"][data-theme] .prism-bg {
+  background: var(--prism-color-canvas);
+}
+
+html[data-page="inner"]:not([data-theme]) .prism-chrome-bg {
+  background-color: #ffffff;
+  background-image: none;
+  background-attachment: scroll;
+}
+
+html[data-page="inner"][data-theme] .prism-chrome-bg {
+  background-color: var(--prism-color-canvas);
+  background-image: none;
+  background-attachment: scroll;
+}

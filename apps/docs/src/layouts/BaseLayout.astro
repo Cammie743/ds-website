@@ -31,10 +31,12 @@ const normPath = pathNorm(pathname);
 
 const componentsAvatarsDrawerOpen =
   normPath === "/components/avatars" || normPath.startsWith("/components/avatars/");
+
+const pageShell = normPath === "/" ? "home" : "inner";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" data-page={pageShell}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

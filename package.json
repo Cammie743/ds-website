@@ -10,7 +10,9 @@
     "tokens:build": "npm run build -w @prism/tokens",
     "tokens:check": "npm run check -w @prism/tokens",
     "dev": "npm run build -w @prism/tokens && npm run dev -w @prism/docs",
-    "build": "npm run tokens:build && npm run build --workspaces --if-present"
+    "docs:dev": "npm run dev -w @prism/docs",
+    "build": "npm run tokens:build && npm run build --workspaces --if-present",
+    "docs:preview": "npm run preview -w @prism/docs"
   },
   "engines": {
     "node": ">=20"

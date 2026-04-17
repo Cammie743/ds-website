@@ -602,6 +602,278 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
             </tbody>
           </table>
         </div>
+        <div class="accordion-design-configurations">
+          <DocH2WithAnchor
+            id="accordion-design-configurations"
+            rowClass="doc-h2-anchor-row--tabs"
+            class="doc-tabs__h2"
+            data-i18n="components.accordion.design.configurationsH2"
+          >
+            Configurations
+          </DocH2WithAnchor>
+          <p class="doc-tabs__panel-copy" data-i18n="components.accordion.design.configurationsBody">
+            There are 4 options available for accordion - Info button, secondary text, leading icon, and no bottom
+            divider.
+          </p>
+          <div class="doc-tabs__figure">
+            <div class="accordion-variant-row accordion-variant-row--config">
+              <div class="accordion-variant-column">
+                <div class="accordion-variant-demo__example-intro">
+                  <h3 class="accordion-variant-demo__example-caption" data-i18n="components.accordion.design.configInfoTitle">
+                    Info button
+                  </h3>
+                  <p class="accordion-variant-demo__example-desc" data-i18n="components.accordion.design.configInfoDescription">
+                    Use this when brief clarification is needed without adding persistent visual weight to the row.
+                  </p>
+                </div>
+                <div
+                  class="doc-tabs__figure-media accordion-variant-box"
+                  role="region"
+                  aria-label="Accordion with trailing chevron and info button example"
+                  data-i18n-aria="components.accordion.design.configInfoAria"
+                >
+                  <div class="accordion-variant-demo__example accordion-variant-demo__example--trailing">
+                    <div class="accordion-prism-stack">
+                      <details class="accordion-prism-item">
+                        <summary class="accordion-prism-summary accordion-prism-summary--with-info">
+                          <span class="accordion-prism-summary-start">
+                            <span class="accordion-prism-label" data-i18n="components.accordion.design.demoSummary1">
+                              Billing overview
+                            </span>
+                            <span class="accordion-prism-info-wrap">
+                            <button
+                              type="button"
+                              class="accordion-prism-info-btn"
+                              aria-label="More information"
+                              data-i18n-aria="components.accordion.design.configInfoButtonAria"
+                              aria-describedby="accordion-info-popover-1"
+                            >
+                              <svg
+                                class="accordion-prism-info-icon"
+                                width="18"
+                                height="18"
+                                viewBox="0 0 18 18"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                aria-hidden="true"
+                              >
+                                <g clip-path="url(#accordion-info-clip-1)">
+                                  <path
+                                    d="M9.17944 7.84814C9.34814 7.84818 9.48585 7.90477 9.58191 8.02417C9.67522 8.13645 9.71863 8.28468 9.71863 8.45996V11.4447H10.392C10.533 11.4447 10.6552 11.4913 10.7534 11.5848C10.8519 11.6787 10.902 11.7973 10.9021 11.936C10.9021 12.0749 10.8521 12.1941 10.7534 12.2881C10.6552 12.3816 10.5329 12.4282 10.392 12.4282H7.94812C7.8072 12.4282 7.68487 12.3816 7.58667 12.2881C7.48805 12.1941 7.43884 12.0747 7.43884 11.936C7.43893 11.7976 7.48821 11.6787 7.58667 11.5848C7.68487 11.4913 7.8072 11.4447 7.94812 11.4447H8.62146V8.83081H8.05066C7.90966 8.83081 7.78745 8.78423 7.68921 8.69067C7.59072 8.59678 7.54053 8.47828 7.54053 8.33948C7.54053 8.20067 7.59073 8.08217 7.68921 7.98828C7.78745 7.89472 7.90966 7.84814 8.05066 7.84814H9.17944Z"
+                                    fill="currentColor"
+                                  ></path>
+                                  <path
+                                    d="M8.94531 5.27783C9.18315 5.27788 9.38511 5.36105 9.54688 5.52649C9.71263 5.69225 9.79724 5.89714 9.79724 6.13574L9.79297 6.22205C9.77468 6.42025 9.69312 6.59341 9.54858 6.73816L9.54773 6.7373C9.40611 6.88264 9.23389 6.96503 9.03333 6.9834L8.94531 6.98767C8.71046 6.98767 8.50755 6.90445 8.34204 6.73901C8.17652 6.57349 8.0934 6.37062 8.09338 6.13574C8.09338 5.89721 8.17623 5.6923 8.34204 5.52649C8.50757 5.36099 8.71042 5.27783 8.94531 5.27783Z"
+                                    fill="currentColor"
+                                  ></path>
+                                  <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M9.30847 2.81177C10.0381 2.84718 10.7315 3.00664 11.3875 3.29028C12.1361 3.61405 12.7965 4.06105 13.3673 4.63184C13.9381 5.20262 14.3851 5.86309 14.7089 6.61169C15.0331 7.35755 15.1951 8.15407 15.1951 9C15.1951 9.84595 15.0331 10.6445 14.7089 11.3943C14.3851 12.1389 13.938 12.7974 13.3673 13.3682C12.7965 13.939 12.1361 14.3859 11.3875 14.7097C10.6416 15.034 9.84508 15.1959 8.99915 15.1959C8.15319 15.1959 7.35466 15.0339 6.60486 14.7097C5.86024 14.3859 5.20172 13.9389 4.63098 13.3682C4.06025 12.7974 3.61321 12.1389 3.28943 11.3943C2.96522 10.6445 2.80322 9.84595 2.80322 9C2.80322 8.15407 2.96518 7.35755 3.28943 6.61169C3.61315 5.86319 4.05828 5.20261 4.625 4.63184C5.19573 4.06111 5.85427 3.61407 6.59888 3.29028L6.59973 3.28943L6.88171 3.17578C7.54839 2.92759 8.25302 2.80408 8.99316 2.80408L9.30847 2.81177ZM8.99316 3.96704C8.38127 3.96704 7.80479 4.06612 7.26367 4.26526L7.03296 4.3584C6.42495 4.61505 5.89277 4.97426 5.43506 5.43591C5.03437 5.8401 4.7089 6.29969 4.45923 6.81592L4.35669 7.04065C4.10054 7.64774 3.97217 8.30058 3.97217 9C3.97217 9.69942 4.10054 10.3523 4.35669 10.9594L4.45923 11.1841L4.55664 11.3755C4.7916 11.8147 5.08458 12.2105 5.43506 12.5641C5.89688 13.0219 6.43155 13.3818 7.03979 13.6425C7.64684 13.9026 8.29981 14.033 8.99915 14.033C9.69848 14.033 10.3514 13.9026 10.9585 13.6425C11.5667 13.3818 12.1014 13.0219 12.5632 12.5641C13.0249 12.1024 13.3841 11.5681 13.6407 10.9602L13.733 10.7286C13.9321 10.1877 14.0321 9.61173 14.0321 9C14.0321 8.30066 13.9017 7.6477 13.6416 7.04065C13.3809 6.43244 13.0191 5.89777 12.5573 5.43591C12.1568 5.03201 11.6975 4.7062 11.179 4.45923L10.9525 4.35754C10.4213 4.12992 9.85481 4.00154 9.25293 3.97302L8.99316 3.96704Z"
+                                    fill="currentColor"
+                                  ></path>
+                                </g>
+                                <defs>
+                                  <clipPath id="accordion-info-clip-1">
+                                    <rect width="18" height="18" rx="9" fill="white"></rect>
+                                  </clipPath>
+                                </defs>
+                              </svg>
+                            </button>
+                            <span
+                              id="accordion-info-popover-1"
+                              class="accordion-prism-info-popover"
+                              role="tooltip"
+                              data-i18n="components.accordion.design.configInfoPopover"
+                            >
+                              This is an example of an info button and info popover.
+                            </span>
+                            </span>
+                          </span>
+                          <span class="accordion-prism-chevron accordion-prism-chevron--muted" aria-hidden="true">
+                            <svg
+                              class="accordion-prism-chevron-svg"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              aria-hidden="true"
+                            >
+                              <path d="m9 18 6-6-6-6"></path>
+                            </svg>
+                          </span>
+                        </summary>
+                        <div class="accordion-prism-panel">
+                          <p class="accordion-prism-panel-copy" data-i18n="components.accordion.design.demoBody1">
+                            Review line items, tax, and payment method before submitting. You can return here while the
+                            order is still open.
+                          </p>
+                        </div>
+                      </details>
+                      <details class="accordion-prism-item">
+                        <summary class="accordion-prism-summary accordion-prism-summary--with-info">
+                          <span class="accordion-prism-summary-start">
+                            <span class="accordion-prism-label" data-i18n="components.accordion.design.demoSummary2">
+                              Shipping and delivery
+                            </span>
+                            <span class="accordion-prism-info-wrap">
+                            <button
+                              type="button"
+                              class="accordion-prism-info-btn"
+                              aria-label="More information"
+                              data-i18n-aria="components.accordion.design.configInfoButtonAria"
+                              aria-describedby="accordion-info-popover-2"
+                            >
+                              <svg
+                                class="accordion-prism-info-icon"
+                                width="18"
+                                height="18"
+                                viewBox="0 0 18 18"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                aria-hidden="true"
+                              >
+                                <g clip-path="url(#accordion-info-clip-2)">
+                                  <path
+                                    d="M9.17944 7.84814C9.34814 7.84818 9.48585 7.90477 9.58191 8.02417C9.67522 8.13645 9.71863 8.28468 9.71863 8.45996V11.4447H10.392C10.533 11.4447 10.6552 11.4913 10.7534 11.5848C10.8519 11.6787 10.902 11.7973 10.9021 11.936C10.9021 12.0749 10.8521 12.1941 10.7534 12.2881C10.6552 12.3816 10.5329 12.4282 10.392 12.4282H7.94812C7.8072 12.4282 7.68487 12.3816 7.58667 12.2881C7.48805 12.1941 7.43884 12.0747 7.43884 11.936C7.43893 11.7976 7.48821 11.6787 7.58667 11.5848C7.68487 11.4913 7.8072 11.4447 7.94812 11.4447H8.62146V8.83081H8.05066C7.90966 8.83081 7.78745 8.78423 7.68921 8.69067C7.59072 8.59678 7.54053 8.47828 7.54053 8.33948C7.54053 8.20067 7.59073 8.08217 7.68921 7.98828C7.78745 7.89472 7.90966 7.84814 8.05066 7.84814H9.17944Z"
+                                    fill="currentColor"
+                                  ></path>
+                                  <path
+                                    d="M8.94531 5.27783C9.18315 5.27788 9.38511 5.36105 9.54688 5.52649C9.71263 5.69225 9.79724 5.89714 9.79724 6.13574L9.79297 6.22205C9.77468 6.42025 9.69312 6.59341 9.54858 6.73816L9.54773 6.7373C9.40611 6.88264 9.23389 6.96503 9.03333 6.9834L8.94531 6.98767C8.71046 6.98767 8.50755 6.90445 8.34204 6.73901C8.17652 6.57349 8.0934 6.37062 8.09338 6.13574C8.09338 5.89721 8.17623 5.6923 8.34204 5.52649C8.50757 5.36099 8.71042 5.27783 8.94531 5.27783Z"
+                                    fill="currentColor"
+                                  ></path>
+                                  <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M9.30847 2.81177C10.0381 2.84718 10.7315 3.00664 11.3875 3.29028C12.1361 3.61405 12.7965 4.06105 13.3673 4.63184C13.9381 5.20262 14.3851 5.86309 14.7089 6.61169C15.0331 7.35755 15.1951 8.15407 15.1951 9C15.1951 9.84595 15.0331 10.6445 14.7089 11.3943C14.3851 12.1389 13.938 12.7974 13.3673 13.3682C12.7965 13.939 12.1361 14.3859 11.3875 14.7097C10.6416 15.034 9.84508 15.1959 8.99915 15.1959C8.15319 15.1959 7.35466 15.0339 6.60486 14.7097C5.86024 14.3859 5.20172 13.9389 4.63098 13.3682C4.06025 12.7974 3.61321 12.1389 3.28943 11.3943C2.96522 10.6445 2.80322 9.84595 2.80322 9C2.80322 8.15407 2.96518 7.35755 3.28943 6.61169C3.61315 5.86319 4.05828 5.20261 4.625 4.63184C5.19573 4.06111 5.85427 3.61407 6.59888 3.29028L6.59973 3.28943L6.88171 3.17578C7.54839 2.92759 8.25302 2.80408 8.99316 2.80408L9.30847 2.81177ZM8.99316 3.96704C8.38127 3.96704 7.80479 4.06612 7.26367 4.26526L7.03296 4.3584C6.42495 4.61505 5.89277 4.97426 5.43506 5.43591C5.03437 5.8401 4.7089 6.29969 4.45923 6.81592L4.35669 7.04065C4.10054 7.64774 3.97217 8.30058 3.97217 9C3.97217 9.69942 4.10054 10.3523 4.35669 10.9594L4.45923 11.1841L4.55664 11.3755C4.7916 11.8147 5.08458 12.2105 5.43506 12.5641C5.89688 13.0219 6.43155 13.3818 7.03979 13.6425C7.64684 13.9026 8.29981 14.033 8.99915 14.033C9.69848 14.033 10.3514 13.9026 10.9585 13.6425C11.5667 13.3818 12.1014 13.0219 12.5632 12.5641C13.0249 12.1024 13.3841 11.5681 13.6407 10.9602L13.733 10.7286C13.9321 10.1877 14.0321 9.61173 14.0321 9C14.0321 8.30066 13.9017 7.6477 13.6416 7.04065C13.3809 6.43244 13.0191 5.89777 12.5573 5.43591C12.1568 5.03201 11.6975 4.7062 11.179 4.45923L10.9525 4.35754C10.4213 4.12992 9.85481 4.00154 9.25293 3.97302L8.99316 3.96704Z"
+                                    fill="currentColor"
+                                  ></path>
+                                </g>
+                                <defs>
+                                  <clipPath id="accordion-info-clip-2">
+                                    <rect width="18" height="18" rx="9" fill="white"></rect>
+                                  </clipPath>
+                                </defs>
+                              </svg>
+                            </button>
+                            <span
+                              id="accordion-info-popover-2"
+                              class="accordion-prism-info-popover"
+                              role="tooltip"
+                              data-i18n="components.accordion.design.configInfoPopover"
+                            >
+                              This is an example of an info button and info popover.
+                            </span>
+                            </span>
+                          </span>
+                          <span class="accordion-prism-chevron accordion-prism-chevron--muted" aria-hidden="true">
+                            <svg
+                              class="accordion-prism-chevron-svg"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              aria-hidden="true"
+                            >
+                              <path d="m9 18 6-6-6-6"></path>
+                            </svg>
+                          </span>
+                        </summary>
+                        <div class="accordion-prism-panel">
+                          <p class="accordion-prism-panel-copy" data-i18n="components.accordion.design.demoBody2">
+                            Delivery estimates update when your address or items change. Expand this panel for carrier
+                            options and tracking details.
+                          </p>
+                        </div>
+                      </details>
+                      <details class="accordion-prism-item">
+                        <summary class="accordion-prism-summary accordion-prism-summary--with-info">
+                          <span class="accordion-prism-summary-start">
+                            <span class="accordion-prism-label" data-i18n="components.accordion.design.demoSummary3">
+                              Returns and exchanges
+                            </span>
+                            <span class="accordion-prism-info-wrap">
+                            <button
+                              type="button"
+                              class="accordion-prism-info-btn"
+                              aria-label="More information"
+                              data-i18n-aria="components.accordion.design.configInfoButtonAria"
+                              aria-describedby="accordion-info-popover-3"
+                            >
+                              <svg
+                                class="accordion-prism-info-icon"
+                                width="18"
+                                height="18"
+                                viewBox="0 0 18 18"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                                aria-hidden="true"
+                              >
+                                <g clip-path="url(#accordion-info-clip-3)">
+                                  <path
+                                    d="M9.17944 7.84814C9.34814 7.84818 9.48585 7.90477 9.58191 8.02417C9.67522 8.13645 9.71863 8.28468 9.71863 8.45996V11.4447H10.392C10.533 11.4447 10.6552 11.4913 10.7534 11.5848C10.8519 11.6787 10.902 11.7973 10.9021 11.936C10.9021 12.0749 10.8521 12.1941 10.7534 12.2881C10.6552 12.3816 10.5329 12.4282 10.392 12.4282H7.94812C7.8072 12.4282 7.68487 12.3816 7.58667 12.2881C7.48805 12.1941 7.43884 12.0747 7.43884 11.936C7.43893 11.7976 7.48821 11.6787 7.58667 11.5848C7.68487 11.4913 7.8072 11.4447 7.94812 11.4447H8.62146V8.83081H8.05066C7.90966 8.83081 7.78745 8.78423 7.68921 8.69067C7.59072 8.59678 7.54053 8.47828 7.54053 8.33948C7.54053 8.20067 7.59073 8.08217 7.68921 7.98828C7.78745 7.89472 7.90966 7.84814 8.05066 7.84814H9.17944Z"
+                                    fill="currentColor"
+                                  ></path>
+                                  <path
+                                    d="M8.94531 5.27783C9.18315 5.27788 9.38511 5.36105 9.54688 5.52649C9.71263 5.69225 9.79724 5.89714 9.79724 6.13574L9.79297 6.22205C9.77468 6.42025 9.69312 6.59341 9.54858 6.73816L9.54773 6.7373C9.40611 6.88264 9.23389 6.96503 9.03333 6.9834L8.94531 6.98767C8.71046 6.98767 8.50755 6.90445 8.34204 6.73901C8.17652 6.57349 8.0934 6.37062 8.09338 6.13574C8.09338 5.89721 8.17623 5.6923 8.34204 5.52649C8.50757 5.36099 8.71042 5.27783 8.94531 5.27783Z"
+                                    fill="currentColor"
+                                  ></path>
+                                  <path
+                                    fill-rule="evenodd"
+                                    clip-rule="evenodd"
+                                    d="M9.30847 2.81177C10.0381 2.84718 10.7315 3.00664 11.3875 3.29028C12.1361 3.61405 12.7965 4.06105 13.3673 4.63184C13.9381 5.20262 14.3851 5.86309 14.7089 6.61169C15.0331 7.35755 15.1951 8.15407 15.1951 9C15.1951 9.84595 15.0331 10.6445 14.7089 11.3943C14.3851 12.1389 13.938 12.7974 13.3673 13.3682C12.7965 13.939 12.1361 14.3859 11.3875 14.7097C10.6416 15.034 9.84508 15.1959 8.99915 15.1959C8.15319 15.1959 7.35466 15.0339 6.60486 14.7097C5.86024 14.3859 5.20172 13.9389 4.63098 13.3682C4.06025 12.7974 3.61321 12.1389 3.28943 11.3943C2.96522 10.6445 2.80322 9.84595 2.80322 9C2.80322 8.15407 2.96518 7.35755 3.28943 6.61169C3.61315 5.86319 4.05828 5.20261 4.625 4.63184C5.19573 4.06111 5.85427 3.61407 6.59888 3.29028L6.59973 3.28943L6.88171 3.17578C7.54839 2.92759 8.25302 2.80408 8.99316 2.80408L9.30847 2.81177ZM8.99316 3.96704C8.38127 3.96704 7.80479 4.06612 7.26367 4.26526L7.03296 4.3584C6.42495 4.61505 5.89277 4.97426 5.43506 5.43591C5.03437 5.8401 4.7089 6.29969 4.45923 6.81592L4.35669 7.04065C4.10054 7.64774 3.97217 8.30058 3.97217 9C3.97217 9.69942 4.10054 10.3523 4.35669 10.9594L4.45923 11.1841L4.55664 11.3755C4.7916 11.8147 5.08458 12.2105 5.43506 12.5641C5.89688 13.0219 6.43155 13.3818 7.03979 13.6425C7.64684 13.9026 8.29981 14.033 8.99915 14.033C9.69848 14.033 10.3514 13.9026 10.9585 13.6425C11.5667 13.3818 12.1014 13.0219 12.5632 12.5641C13.0249 12.1024 13.3841 11.5681 13.6407 10.9602L13.733 10.7286C13.9321 10.1877 14.0321 9.61173 14.0321 9C14.0321 8.30066 13.9017 7.6477 13.6416 7.04065C13.3809 6.43244 13.0191 5.89777 12.5573 5.43591C12.1568 5.03201 11.6975 4.7062 11.179 4.45923L10.9525 4.35754C10.4213 4.12992 9.85481 4.00154 9.25293 3.97302L8.99316 3.96704Z"
+                                    fill="currentColor"
+                                  ></path>
+                                </g>
+                                <defs>
+                                  <clipPath id="accordion-info-clip-3">
+                                    <rect width="18" height="18" rx="9" fill="white"></rect>
+                                  </clipPath>
+                                </defs>
+                              </svg>
+                            </button>
+                            <span
+                              id="accordion-info-popover-3"
+                              class="accordion-prism-info-popover"
+                              role="tooltip"
+                              data-i18n="components.accordion.design.configInfoPopover"
+                            >
+                              This is an example of an info button and info popover.
+                            </span>
+                            </span>
+                          </span>
+                          <span class="accordion-prism-chevron accordion-prism-chevron--muted" aria-hidden="true">
+                            <svg
+                              class="accordion-prism-chevron-svg"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              aria-hidden="true"
+                            >
+                              <path d="m9 18 6-6-6-6"></path>
+                            </svg>
+                          </span>
+                        </summary>
+                        <div class="accordion-prism-panel">
+                          <p class="accordion-prism-panel-copy" data-i18n="components.accordion.design.demoBody3">
+                            See eligible items, return windows, and how refunds post to your original payment method.
+                          </p>
+                        </div>
+                      </details>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
       <section
         class="doc-tabs__panel"
@@ -670,6 +942,7 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
           "accordion-overview-resources-h2": 0,
           "accordion-panel-design": 1,
           "accordion-design-variants": 1,
+          "accordion-design-configurations": 1,
           "accordion-panel-accessibility": 2,
         };
 
@@ -691,6 +964,12 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
       }
 
       document.querySelectorAll("[data-doc-tabs]").forEach(wireDocTabs);
+
+      document.querySelectorAll(".accordion-prism-info-btn").forEach(function (btn) {
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+        });
+      });
     })();
   </script>
 </ComponentsLayout>
@@ -791,7 +1070,7 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
 
   .doc-tabs__tab:focus-visible {
     outline: 2px solid color-mix(in srgb, var(--prism-color-accent-strong) 45%, transparent);
-    outline-offset: 4px;
+    outline-offset: 2px;
     border-radius: 2px;
   }
 
@@ -974,7 +1253,7 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
   }
 
   .doc-tabs__figure-media {
-    overflow: hidden;
+    overflow: visible;
     box-sizing: border-box;
     width: 100%;
     border: 1px solid var(--prism-color-border-subtle);
@@ -997,6 +1276,10 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
     }
   }
 
+  .accordion-variant-row--config {
+    grid-template-columns: 1fr;
+  }
+
   .accordion-variant-column {
     display: flex;
     flex-direction: column;
@@ -1017,6 +1300,12 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
     box-sizing: border-box;
   }
 
+  .accordion-variant-demo__example-intro {
+    display: flex;
+    flex-direction: column;
+    gap: var(--prism-space-xs);
+  }
+
   .accordion-variant-demo__example-caption {
     margin: 0;
     font-size: 1.0625rem;
@@ -1025,12 +1314,29 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
     color: var(--prism-color-text-secondary);
   }
 
+  /* Subsection title under “Configurations” — matches doc H3 presence (primary, semibold). */
+  .accordion-variant-row--config .accordion-variant-demo__example-caption {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.35;
+    color: var(--prism-color-text-primary);
+  }
+
+  .accordion-variant-demo__example-desc {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--prism-color-text-secondary);
+  }
+
   .accordion-prism-stack {
     width: 100%;
     max-width: 400px;
     margin-inline: auto;
     background: var(--prism-color-surface);
-    overflow: hidden;
+    overflow: visible;
   }
 
   .accordion-prism-item {
@@ -1041,6 +1347,12 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
     border-top: 1px solid var(--prism-color-border-subtle);
   }
 
+  .accordion-prism-item:has(.accordion-prism-info-wrap:hover),
+  .accordion-prism-item:has(.accordion-prism-info-wrap:focus-within) {
+    position: relative;
+    z-index: 100;
+  }
+
   .accordion-prism-summary {
     position: relative;
     display: flex;
@@ -1049,7 +1361,8 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
     width: 100%;
     box-sizing: border-box;
     margin: 0;
-    padding: var(--prism-space-sm) var(--prism-space-sm);
+    min-height: calc(4px + 32px + 4px);
+    padding: 4px var(--prism-space-sm);
     cursor: pointer;
     list-style: none;
     font-family: var(--prism-font-sans);
@@ -1069,9 +1382,12 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
   .accordion-prism-summary::before {
     content: "";
     position: absolute;
-    inset: 4px;
+    left: 0;
+    right: 0;
+    top: 4px;
+    height: 32px;
     z-index: 0;
-    border-radius: 10px;
+    border-radius: 8px;
     background-color: transparent;
     pointer-events: none;
     transition: background-color 0.15s ease;
@@ -1091,9 +1407,22 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
   }
 
   .accordion-prism-summary:focus-visible {
-    outline: 2px solid color-mix(in srgb, var(--prism-color-accent-strong) 45%, transparent);
-    outline-offset: -2px;
-    z-index: 1;
+    outline: none;
+    border-radius: 12px;
+  }
+
+  .accordion-prism-summary:focus-visible::after {
+    content: "";
+    position: absolute;
+    box-sizing: border-box;
+    top: 0;
+    right: -4px;
+    bottom: 0;
+    left: -4px;
+    border: 2px solid color-mix(in srgb, var(--prism-color-accent-strong) 45%, transparent);
+    border-radius: 12px;
+    pointer-events: none;
+    z-index: 0;
   }
 
   .accordion-prism-summary--trailing {
@@ -1104,6 +1433,119 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
     flex: 1;
     min-width: 0;
     text-align: start;
+  }
+
+  .accordion-prism-summary--with-info {
+    justify-content: space-between;
+    gap: var(--prism-space-sm);
+  }
+
+  .accordion-prism-summary-start {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .accordion-prism-summary--with-info .accordion-prism-label {
+    flex: 0 1 auto;
+    min-width: 0;
+  }
+
+  .accordion-prism-info-btn {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 999px;
+    color: var(--prism-color-text-secondary);
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+  }
+
+  .accordion-prism-info-btn:hover {
+    background-color: color-mix(in srgb, var(--prism-color-text-primary) 6%, transparent);
+  }
+
+  .accordion-prism-info-btn:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--prism-color-accent-strong) 45%, transparent);
+    outline-offset: 2px;
+  }
+
+  .accordion-prism-info-wrap {
+    position: relative;
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    vertical-align: middle;
+  }
+
+  .accordion-prism-info-popover {
+    position: absolute;
+    z-index: 1000;
+    top: auto;
+    bottom: calc(100% + var(--prism-space-sm));
+    left: 50%;
+    transform: translateX(-50%);
+    box-sizing: border-box;
+    /* Icon wrap is narrow; explicit width avoids shrink-to-fit using that CB and over-wrapping. */
+    width: 17rem;
+    max-width: calc(100vw - 2rem);
+    padding: var(--prism-space-lg);
+    border-radius: 16px;
+    border: 1px solid var(--prism-color-border-subtle);
+    background-color: var(--prism-color-surface);
+    color: var(--prism-color-text-primary);
+    font-family: var(--prism-font-sans);
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: calc(18 / 14);
+    letter-spacing: -0.01em;
+    text-align: start;
+    pointer-events: none;
+    box-shadow:
+      0 6px 12px color-mix(in srgb, var(--prism-color-text-primary) 8%, transparent),
+      0 12px 24px color-mix(in srgb, var(--prism-color-text-primary) 8%, transparent);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.15s ease,
+      visibility 0.15s ease;
+  }
+
+  .accordion-prism-info-popover::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    transform: translateX(-50%);
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 11px solid var(--prism-color-surface);
+    pointer-events: none;
+  }
+
+  .accordion-prism-info-wrap:hover .accordion-prism-info-popover,
+  .accordion-prism-info-wrap:focus-within .accordion-prism-info-popover {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .accordion-prism-info-icon {
+    display: block;
+    width: 18px;
+    height: 18px;
+  }
+
+  .accordion-prism-chevron--muted {
+    color: var(--prism-color-text-secondary);
   }
 
   .accordion-prism-label {
@@ -1155,6 +1597,10 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
 
   .doc-tabs__figure + .doc-overview-matrix-shell {
     margin-top: var(--prism-space-xl);
+  }
+
+  .accordion-design-configurations {
+    margin-top: var(--prism-space-2xl);
   }
 
   .doc-tabs__table {
