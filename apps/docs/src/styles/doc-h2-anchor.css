@@ -16,7 +16,7 @@
   margin-right: 0;
 }
 
-/* All section H2s use DocH2WithAnchor (home, blog, component docs). */
+/* All section H2s use DocH2WithAnchor (home, article listings, component docs). */
 .doc-h2-anchor-heading {
   font-size: 36px;
 }

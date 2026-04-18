@@ -1,0 +1,21 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import BlogUpdateArticle from "../../components/blog/BlogUpdateArticle.astro";
+import BlogTeasersViewControls from "../../components/blog/BlogTeasersViewControls.astro";
+---
+
+<BlogLayout title="2025" current="y2025" description="Articles from 2025 by the Prism team." pageVariant="teasers">
+  <header class="page-head">
+    <h1 data-i18n="blog.nav.y2025">2025</h1>
+    <div class="blog-teasers-head-row">
+      <p class="intro" data-i18n="blog.lede">
+        Release notes, deep dives, and product updates from the Prism team.
+      </p>
+      <BlogTeasersViewControls />
+    </div>
+  </header>
+  <div class="blog-posts blog-posts--teasers">
+    <BlogUpdateArticle id="update-usage-metrics" updateN={6} isFirstInPage />
+    <BlogUpdateArticle id="update-a11y-checklist" updateN={7} />
+  </div>
+</BlogLayout>

@@ -15,16 +15,16 @@ const { title, description = "Updates and articles from the Prism team.", curren
   Astro.props;
 
 const navItems: { id: BlogNavCurrent; href: string; i18n: string; fallback: string }[] = [
-  { id: "featured", href: "/blog/featured", i18n: "blog.nav.featured", fallback: "Featured" },
-  { id: "latest", href: "/blog/latest", i18n: "blog.nav.latest", fallback: "Latest updates" },
-  { id: "y2026", href: "/blog/2026", i18n: "blog.nav.y2026", fallback: "2026" },
-  { id: "y2025", href: "/blog/2025", i18n: "blog.nav.y2025", fallback: "2025" },
+  { id: "featured", href: "/articles/featured", i18n: "blog.nav.featured", fallback: "Featured" },
+  { id: "latest", href: "/articles/latest", i18n: "blog.nav.latest", fallback: "Latest updates" },
+  { id: "y2026", href: "/articles/2026", i18n: "blog.nav.y2026", fallback: "2026" },
+  { id: "y2025", href: "/articles/2025", i18n: "blog.nav.y2025", fallback: "2025" },
 ];
 ---
 
 <BaseLayout title={title} description={description}>
   <div class:list={["blog-layout", pageVariant === "article" && "blog-layout--article"]}>
-    <nav class="section-nav section-nav--page" data-i18n-aria="blog.sectionNav.aria" aria-label="Blog sections">
+    <nav class="section-nav section-nav--page" data-i18n-aria="blog.sectionNav.aria" aria-label="Articles">
       <ul class="section-nav-list">
         {
           navItems.map((item) => (
@@ -74,15 +74,36 @@ const navItems: { id: BlogNavCurrent; href: string; i18n: string; fallback: stri
         var root = document.getElementById("blog-teasers-root");
         if (!grid || !list || !root) return;
 
-        try {
-          var v = localStorage.getItem(viewKey);
-          if (v === "list") list.checked = true;
-          else if (v === "grid") grid.checked = true;
-        } catch (e) {}
+        var narrowMq = window.matchMedia("(max-width: 46.875rem)");
+
+        function applyStoredView() {
+          try {
+            var v = localStorage.getItem(viewKey);
+            if (v === "list") list.checked = true;
+            else if (v === "grid") grid.checked = true;
+          } catch (e) {}
+        }
+
+        function syncViewToViewport() {
+          if (narrowMq.matches) {
+            grid.checked = true;
+          } else {
+            applyStoredView();
+          }
+        }
+
+        syncViewToViewport();
+
+        if (narrowMq.addEventListener) {
+          narrowMq.addEventListener("change", syncViewToViewport);
+        } else {
+          narrowMq.addListener(syncViewToViewport);
+        }
 
         root.addEventListener("change", function (e) {
           var t = e.target;
           if (!t || t.name !== "blog-teasers-view") return;
+          if (narrowMq.matches) return;
           try {
             localStorage.setItem(viewKey, t.value);
           } catch (e2) {}
@@ -745,6 +766,18 @@ const navItems: { id: BlogNavCurrent; href: string; i18n: string; fallback: stri
     font-size: 0.9375rem;
     line-height: 1.55;
     color: var(--prism-color-text-secondary);
+    min-height: 0;
+  }
+
+  .page :global(.blog-article--teaser .blog-article__excerpt-text) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    overflow: clip;
+    contain: paint;
+    max-height: calc(3 * 1.55em);
+    max-height: calc(3 * 1lh);
   }
 
   /* Matches home updates cards ( .h-updates-card__author ). */
@@ -846,7 +879,7 @@ const navItems: { id: BlogNavCurrent; href: string; i18n: string; fallback: stri
     margin: 0;
   }
 
-  /* —— Blog teaser listing: head row + grid/list (matches Foundations overview) —— */
+  /* —— Article teaser listing: head row + grid/list (matches Foundations overview) —— */
   .page :global(.blog-teasers-head-row) {
     display: flex;
     flex-wrap: wrap;
@@ -882,23 +915,9 @@ const navItems: { id: BlogNavCurrent; href: string; i18n: string; fallback: stri
       flex: none;
     }
 
+    /* Same breakpoint as stacked head row: hide grid/list switcher; grid-only (see inline script). */
     .page :global(.blog-teasers-view-controls.view-segmented) {
-      margin-inline-start: 0;
-      margin-top: 0;
-      align-self: stretch;
-      width: 100%;
-      min-width: 0;
-    }
-
-    .page :global(.blog-teasers-view-controls .view-segmented__inner) {
-      display: flex;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    .page :global(.blog-teasers-view-controls .view-segmented__label) {
-      flex: 1 1 0;
-      justify-content: center;
+      display: none;
     }
   }
 
@@ -1009,6 +1028,100 @@ const navItems: { id: BlogNavCurrent; href: string; i18n: string; fallback: stri
     opacity: 1;
   }
 
+  /*
+   * Teaser titles: `data-stagger-title-underline` + BaseLayout script wraps each soft-wrapped line in
+   * `.prism-stagger-title-line` so underlines can run one line after the next. Without spans (no JS),
+   * `box-decoration-break: clone` keeps a reasonable multi-line fallback.
+   */
+  #blog-teasers-root :global(.blog-article--teaser .blog-article__title) {
+    --prism-stagger-title-segment: 0.38s;
+  }
+
+  #blog-teasers-root :global(.blog-article--teaser .blog-article__title:not(:has(.prism-stagger-title-line))) {
+    display: inline;
+    max-width: 100%;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    padding-bottom: 0.1em;
+    box-sizing: border-box;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition:
+      color 0.32s ease,
+      background-size var(--prism-stagger-title-segment) cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  #blog-teasers-root
+    :global(.blog-article--teaser .blog-article__teaser:hover .blog-article__title:not(:has(.prism-stagger-title-line))),
+  #blog-teasers-root
+    :global(
+      .blog-article--teaser .blog-article__teaser:focus-visible .blog-article__title:not(:has(.prism-stagger-title-line))
+    ) {
+    background-size: 100% 2px;
+  }
+
+  /*
+   * Column flex + flex-start: line spans stay content-width (list/grid text column is full-width;
+   * plain block children were stretching so the second line’s underline matched the column width).
+   */
+  #blog-teasers-root :global(.blog-article--teaser .blog-article__title:has(.prism-stagger-title-line)) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    background: none;
+    padding-bottom: 0;
+  }
+
+  #blog-teasers-root :global(.blog-article--teaser .blog-article__title .prism-stagger-title-line) {
+    display: block;
+    flex-shrink: 0;
+    width: 100%;
+    max-width: max-content;
+    padding-bottom: 0.1em;
+    box-sizing: border-box;
+    color: inherit;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition:
+      color 0.32s ease,
+      background-size var(--prism-stagger-title-segment) cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay:
+      0s,
+      calc(
+        (var(--prism-stagger-title-line-count, 1) - 1 - var(--prism-stagger-title-line-i, 0)) *
+          var(--prism-stagger-title-segment)
+      );
+  }
+
+  #blog-teasers-root
+    :global(.blog-article--teaser .blog-article__teaser:hover .blog-article__title .prism-stagger-title-line),
+  #blog-teasers-root
+    :global(
+      .blog-article--teaser .blog-article__teaser:focus-visible .blog-article__title .prism-stagger-title-line
+    ) {
+    color: var(--prism-color-accent-strong);
+    background-size: 100% 2px;
+    transition-delay: 0s, calc(var(--prism-stagger-title-line-i, 0) * var(--prism-stagger-title-segment));
+  }
+
+  :global([data-theme="dark"])
+    #blog-teasers-root:has(#blog-teasers-view-grid:checked)
+    :global(.blog-article--teaser .blog-article__teaser:hover .blog-article__title .prism-stagger-title-line),
+  :global([data-theme="dark"])
+    #blog-teasers-root:has(#blog-teasers-view-grid:checked)
+    :global(
+      .blog-article--teaser .blog-article__teaser:focus-visible .blog-article__title .prism-stagger-title-line
+    ) {
+    color: var(--prism-color-accent);
+  }
+
   /* Grid: multi-column cards (image on top) */
   #blog-teasers-root:has(#blog-teasers-view-grid:checked) :global(.blog-posts--teasers) {
     display: grid;
@@ -1044,30 +1157,86 @@ const navItems: { id: BlogNavCurrent; href: string; i18n: string; fallback: stri
     align-items: stretch;
     gap: var(--prism-space-lg);
     margin: 0;
+    padding: 0;
     height: 100%;
   }
 
-  #blog-teasers-root:has(#blog-teasers-view-grid:checked) :global(.blog-article__figure) {
+  #blog-teasers-root:has(#blog-teasers-view-grid:checked) :global(.blog-article--teaser .blog-article__teaser:hover),
+  #blog-teasers-root:has(#blog-teasers-view-grid:checked) :global(.blog-article--teaser .blog-article__teaser:focus-visible) {
+    background-color: transparent;
+  }
+
+  /* Grid: image on top — 16:9 frame (same ratio as 384×216 / home updates) + dim overlay on hover. */
+  #blog-teasers-root:has(#blog-teasers-view-grid:checked) :global(.blog-article--teaser .blog-article__figure) {
     order: -1;
+    position: relative;
+    width: 100%;
+    margin: 0;
+    aspect-ratio: 16 / 9;
+  }
+
+  #blog-teasers-root:has(#blog-teasers-view-grid:checked) :global(.blog-article--teaser .blog-article__figure)::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: color-mix(in srgb, var(--prism-color-text-primary) 8%, transparent);
+    opacity: 0;
+    transition: opacity 0.18s ease;
+    pointer-events: none;
+  }
+
+  #blog-teasers-root:has(#blog-teasers-view-grid:checked)
+    :global(.blog-article--teaser .blog-article__teaser:hover .blog-article__figure)::after,
+  #blog-teasers-root:has(#blog-teasers-view-grid:checked)
+    :global(.blog-article--teaser .blog-article__teaser:focus-visible .blog-article__figure)::after {
+    opacity: 1;
+  }
+
+  #blog-teasers-root:has(#blog-teasers-view-grid:checked)
+    :global(.blog-article--teaser .blog-article__figure .blog-article__img) {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   /* Grid: teaser title matches home updates cards ( .h-updates-card__title ). */
   #blog-teasers-root:has(#blog-teasers-view-grid:checked) :global(.blog-article--teaser .blog-article__title) {
-    display: block;
-    padding: 0.5rem 0 0;
+    padding: 0.5rem 0 0.1em;
     font-size: 24px;
     font-weight: 700;
     letter-spacing: -0.03em;
     line-height: 1.25;
-    transition: color 0.2s ease;
   }
 
-  /* Same as .h-updates-card:hover .h-updates-card__title on the home page. */
+  /* Grid cards: no fill on hover — title picks up brand blue (split titles color each `.prism-stagger-title-line`). */
   #blog-teasers-root:has(#blog-teasers-view-grid:checked)
-    :global(.blog-article--teaser .blog-article__teaser:hover .blog-article__title),
+    :global(.blog-article--teaser .blog-article__teaser:hover .blog-article__title:not(:has(.prism-stagger-title-line))),
   #blog-teasers-root:has(#blog-teasers-view-grid:checked)
-    :global(.blog-article--teaser .blog-article__teaser:focus-visible .blog-article__title) {
+    :global(
+      .blog-article--teaser .blog-article__teaser:focus-visible .blog-article__title:not(:has(.prism-stagger-title-line))
+    ) {
     color: var(--prism-color-accent-strong);
+  }
+
+  :global([data-theme="dark"])
+    #blog-teasers-root:has(#blog-teasers-view-grid:checked)
+    :global(
+      .blog-article--teaser .blog-article__teaser:hover .blog-article__title:not(:has(.prism-stagger-title-line))
+    ),
+  :global([data-theme="dark"])
+    #blog-teasers-root:has(#blog-teasers-view-grid:checked)
+    :global(
+      .blog-article--teaser
+        .blog-article__teaser:focus-visible
+        .blog-article__title:not(:has(.prism-stagger-title-line))
+    ) {
+    color: var(--prism-color-accent);
   }
 
   #blog-teasers-root:has(#blog-teasers-view-grid:checked) :global(.blog-article--teaser .blog-article__excerpt) {
@@ -1149,14 +1318,12 @@ const navItems: { id: BlogNavCurrent; href: string; i18n: string; fallback: stri
     outline-offset: 2px;
   }
 
-  #blog-teasers-root:has(#blog-teasers-view-list:checked) :global(.blog-article--teaser .blog-article__title) {
-    transition: color 0.2s ease;
-  }
-
   #blog-teasers-root:has(#blog-teasers-view-list:checked)
-    :global(.blog-article--teaser .blog-article__teaser:hover .blog-article__title),
+    :global(.blog-article--teaser .blog-article__teaser:hover .blog-article__title:not(:has(.prism-stagger-title-line))),
   #blog-teasers-root:has(#blog-teasers-view-list:checked)
-    :global(.blog-article--teaser .blog-article__teaser:focus-visible .blog-article__title) {
+    :global(
+      .blog-article--teaser .blog-article__teaser:focus-visible .blog-article__title:not(:has(.prism-stagger-title-line))
+    ) {
     color: var(--prism-color-accent-strong);
   }
 

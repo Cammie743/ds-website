@@ -1,0 +1,66 @@
+---
+import BlogLayout from "../../../layouts/BlogLayout.astro";
+import BlogUpdateArticle from "../../../components/blog/BlogUpdateArticle.astro";
+import BlogArticleAnchors from "../../../components/blog/BlogArticleAnchors.astro";
+import { uiStrings } from "../../../i18n/ui";
+import {
+  BLOG_UPDATE_PUBLISHED_YEAR_BY_N,
+  BLOG_UPDATE_SLUG_BY_N,
+  getBlogUpdatePostPath,
+  getBlogUpdateUrlSlug,
+  type BlogUpdateN,
+} from "../../../data/blogUpdates";
+
+export function getStaticPaths() {
+  return (Object.entries(BLOG_UPDATE_SLUG_BY_N) as [string, string][]).map(([k, id]) => {
+    const updateN = Number(k) as BlogUpdateN;
+    const year = BLOG_UPDATE_PUBLISHED_YEAR_BY_N[updateN];
+    const slug = getBlogUpdateUrlSlug(updateN);
+    return { params: { year, slug }, props: { id, updateN } };
+  });
+}
+
+const { id, updateN } = Astro.props;
+const { year, slug } = Astro.params;
+
+if (year !== BLOG_UPDATE_PUBLISHED_YEAR_BY_N[updateN] || slug !== getBlogUpdateUrlSlug(updateN)) {
+  return Astro.redirect(getBlogUpdatePostPath(updateN), 301);
+}
+
+function listingTitle(n: BlogUpdateN): string {
+  switch (n) {
+    case 1:
+      return uiStrings.en["home.updates.1.title"];
+    case 2:
+      return uiStrings.en["home.updates.2.title"];
+    case 3:
+      return uiStrings.en["home.updates.3.title"];
+    case 4:
+      return uiStrings.en["home.updates.4.title"];
+    case 5:
+      return uiStrings.en["home.updates.5.title"];
+    case 6:
+      return uiStrings.en["home.updates.6.title"];
+    case 7:
+      return uiStrings.en["home.updates.7.title"];
+    default:
+      return uiStrings.en["blog.nav.latest"];
+  }
+}
+---
+
+<BlogLayout
+  title={listingTitle(updateN)}
+  current="latest"
+  description={uiStrings.en["blog.lede"]}
+  pageVariant="article"
+>
+  <p class="blog-update-back">
+    <a class="blog-update-back__link" href="/articles/latest">
+      <span class="blog-update-back__arrow" aria-hidden="true">←</span>
+      <span class="blog-update-back__label" data-i18n="blog.backToUpdates">Back to Latest updates</span>
+    </a>
+  </p>
+  <BlogUpdateArticle id={id} updateN={updateN} mode="full" isFirstInPage />
+  <BlogArticleAnchors slot="anchors" id={id} updateN={updateN} />
+</BlogLayout>

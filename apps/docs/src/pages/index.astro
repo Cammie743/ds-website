@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
+import { getBlogUpdatePostPath } from "../data/blogUpdates";
 ---
 
 <BaseLayout title="Prism">
@@ -27,7 +28,7 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
           <DocH2WithAnchor id="updates-heading" class="h-updates__h" data-i18n="home.updates.sectionTitle">
             Latest and greatest from Prism
           </DocH2WithAnchor>
-          <a class="h-updates__view-all" href="/blog/latest">
+          <a class="h-updates__view-all" href="/articles/latest">
             <span class="h-updates__view-all__label" data-i18n="home.updates.viewAll">Explore all blogs</span>
             <span class="h-updates__view-all__arrow" aria-hidden="true">
               <svg
@@ -154,7 +155,7 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
         <div id="updates-carousel-viewport" class="h-updates-carousel__viewport" data-carousel-viewport>
           <ol class="h-updates-carousel__list">
             <li class="h-updates-carousel__slide" data-updates-kind="update">
-              <a class="h-updates-card" href="/blog/update/update-april-2026">
+              <a class="h-updates-card" href={getBlogUpdatePostPath(1)}>
                 <div class="h-updates-card__media">
                   <img
                     class="h-updates-card__img"
@@ -170,10 +171,13 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
                 <div class="h-updates-card__meta">
                   <time class="h-updates-card__date" datetime="2026-04-17" data-i18n="home.updates.1.date">April 17, 2026</time>
                 </div>
-                <span class="h-updates-card__title" data-i18n="home.updates.1.title">April release: Figma library updates for v2.5</span>
-                <p class="h-updates-card__desc" data-i18n="home.updates.1.body">
+                <span class="h-updates-card__title">
+                  <span class="h-updates-card__title-text" data-stagger-title-underline data-i18n="home.updates.1.title"
+                    >April release: Figma library updates for v2.5</span>
+                </span>
+                <p class="h-updates-card__desc"><span class="h-updates-card__desc-text" data-i18n="home.updates.1.body">
                   New button variants, icons, bug fixes, updated colors, and more.
-                </p>
+                </span></p>
                 <div class="h-updates-card__author">
                   <img
                     class="h-updates-card__author-avatar"
@@ -190,7 +194,7 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
               </a>
             </li>
             <li class="h-updates-carousel__slide" data-updates-kind="feature">
-              <a class="h-updates-card" href="/blog/update/update-home-navigation">
+              <a class="h-updates-card" href={getBlogUpdatePostPath(2)}>
                 <div class="h-updates-card__media">
                   <img
                     class="h-updates-card__img"
@@ -206,10 +210,12 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
                 <div class="h-updates-card__meta">
                   <time class="h-updates-card__date" datetime="2026-04-01" data-i18n="home.updates.2.date">April 1, 2026</time>
                 </div>
-                <span class="h-updates-card__title" data-i18n="home.updates.2.title">Home and navigation refresh</span>
-                <p class="h-updates-card__desc" data-i18n="home.updates.2.body">
+                <span class="h-updates-card__title">
+                  <span class="h-updates-card__title-text" data-stagger-title-underline data-i18n="home.updates.2.title">Home and navigation refresh</span>
+                </span>
+                <p class="h-updates-card__desc"><span class="h-updates-card__desc-text" data-i18n="home.updates.2.body">
                   Clearer paths into foundations, components, and bilingual documentation.
-                </p>
+                </span></p>
                 <div class="h-updates-card__author">
                   <img
                     class="h-updates-card__author-avatar"
@@ -226,7 +232,7 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
               </a>
             </li>
             <li class="h-updates-carousel__slide" data-updates-kind="update">
-              <a class="h-updates-card" href="/blog/update/update-theme-previews">
+              <a class="h-updates-card" href={getBlogUpdatePostPath(3)}>
                 <div class="h-updates-card__media">
                   <img
                     class="h-updates-card__img"
@@ -242,10 +248,12 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
                 <div class="h-updates-card__meta">
                   <time class="h-updates-card__date" datetime="2026-03-01" data-i18n="home.updates.3.date">March 1, 2026</time>
                 </div>
-                <span class="h-updates-card__title" data-i18n="home.updates.3.title">Theme previews across the site</span>
-                <p class="h-updates-card__desc" data-i18n="home.updates.3.body">
+                <span class="h-updates-card__title">
+                  <span class="h-updates-card__title-text" data-stagger-title-underline data-i18n="home.updates.3.title">Theme previews across the site</span>
+                </span>
+                <p class="h-updates-card__desc"><span class="h-updates-card__desc-text" data-i18n="home.updates.3.body">
                   Bloom, Agave, and Rose palettes help stress-test semantic color tokens in context.
-                </p>
+                </span></p>
                 <div class="h-updates-card__author">
                   <img
                     class="h-updates-card__author-avatar"
@@ -262,7 +270,7 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
               </a>
             </li>
             <li class="h-updates-carousel__slide" data-updates-kind="update">
-              <a class="h-updates-card" href="/blog/update/update-foundations-ia">
+              <a class="h-updates-card" href={getBlogUpdatePostPath(4)}>
                 <div class="h-updates-card__media">
                   <img
                     class="h-updates-card__img"
@@ -278,10 +286,12 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
                 <div class="h-updates-card__meta">
                   <time class="h-updates-card__date" datetime="2026-02-01" data-i18n="home.updates.4.date">February 1, 2026</time>
                 </div>
-                <span class="h-updates-card__title" data-i18n="home.updates.4.title">Foundations and components IA</span>
-                <p class="h-updates-card__desc" data-i18n="home.updates.4.body">
+                <span class="h-updates-card__title">
+                  <span class="h-updates-card__title-text" data-stagger-title-underline data-i18n="home.updates.4.title">Foundations and components IA</span>
+                </span>
+                <p class="h-updates-card__desc"><span class="h-updates-card__desc-text" data-i18n="home.updates.4.body">
                   Structured foundations pages and a public checklist as the library grows.
-                </p>
+                </span></p>
                 <div class="h-updates-card__author">
                   <img
                     class="h-updates-card__author-avatar"
@@ -298,7 +308,7 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
               </a>
             </li>
             <li class="h-updates-carousel__slide" data-updates-kind="update">
-              <a class="h-updates-card" href="/blog/update/update-search-docs">
+              <a class="h-updates-card" href={getBlogUpdatePostPath(5)}>
                 <div class="h-updates-card__media">
                   <img
                     class="h-updates-card__img"
@@ -314,11 +324,13 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
                 <div class="h-updates-card__meta">
                   <time class="h-updates-card__date" datetime="2026-01-15" data-i18n="home.updates.5.date">January 15, 2026</time>
                 </div>
-                <span class="h-updates-card__title" data-i18n="home.updates.5.title">Search across documentation</span>
-                <p class="h-updates-card__desc" data-i18n="home.updates.5.body">
+                <span class="h-updates-card__title">
+                  <span class="h-updates-card__title-text" data-stagger-title-underline data-i18n="home.updates.5.title">Search across documentation</span>
+                </span>
+                <p class="h-updates-card__desc"><span class="h-updates-card__desc-text" data-i18n="home.updates.5.body">
                   The global search drawer now indexes foundations, components, and get-started pages with bilingual
                   snippets and clearer result grouping.
-                </p>
+                </span></p>
                 <div class="h-updates-card__author">
                   <img
                     class="h-updates-card__author-avatar"
@@ -335,7 +347,7 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
               </a>
             </li>
             <li class="h-updates-carousel__slide" data-updates-kind="update">
-              <a class="h-updates-card" href="/blog/update/update-usage-metrics">
+              <a class="h-updates-card" href={getBlogUpdatePostPath(6)}>
                 <div class="h-updates-card__media">
                   <img
                     class="h-updates-card__img"
@@ -351,11 +363,13 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
                 <div class="h-updates-card__meta">
                   <time class="h-updates-card__date" datetime="2025-12-08" data-i18n="home.updates.6.date">December 8, 2025</time>
                 </div>
-                <span class="h-updates-card__title" data-i18n="home.updates.6.title">Component usage metrics</span>
-                <p class="h-updates-card__desc" data-i18n="home.updates.6.body">
+                <span class="h-updates-card__title">
+                  <span class="h-updates-card__title-text" data-stagger-title-underline data-i18n="home.updates.6.title">Component usage metrics</span>
+                </span>
+                <p class="h-updates-card__desc"><span class="h-updates-card__desc-text" data-i18n="home.updates.6.body">
                   We published an opt-in specification for measuring Prism adoption in host apps without collecting
                   end-user PII.
-                </p>
+                </span></p>
                 <div class="h-updates-card__author">
                   <img
                     class="h-updates-card__author-avatar"
@@ -372,7 +386,7 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
               </a>
             </li>
             <li class="h-updates-carousel__slide" data-updates-kind="update">
-              <a class="h-updates-card" href="/blog/update/update-a11y-checklist">
+              <a class="h-updates-card" href={getBlogUpdatePostPath(7)}>
                 <div class="h-updates-card__media">
                   <img
                     class="h-updates-card__img"
@@ -388,11 +402,13 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
                 <div class="h-updates-card__meta">
                   <time class="h-updates-card__date" datetime="2025-11-20" data-i18n="home.updates.7.date">November 20, 2025</time>
                 </div>
-                <span class="h-updates-card__title" data-i18n="home.updates.7.title">Accessibility audit checklist</span>
-                <p class="h-updates-card__desc" data-i18n="home.updates.7.body">
+                <span class="h-updates-card__title">
+                  <span class="h-updates-card__title-text" data-stagger-title-underline data-i18n="home.updates.7.title">Accessibility audit checklist</span>
+                </span>
+                <p class="h-updates-card__desc"><span class="h-updates-card__desc-text" data-i18n="home.updates.7.body">
                   A WCAG 2.2 AA-oriented checklist maps Prism components to keyboard, contrast, and assistive-tech
                   expectations for audits.
-                </p>
+                </span></p>
                 <div class="h-updates-card__author">
                   <img
                     class="h-updates-card__author-avatar"
@@ -501,7 +517,7 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
           </a>
         </li>
         <li class="home-rise home-rise--9">
-          <a class="h-inside__card" href="/blog/latest">
+          <a class="h-inside__card" href="/articles/latest">
             <span class="h-inside__icon-wrap h-inside__icon-wrap--content" aria-hidden="true">
               <svg class="h-inside__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -601,7 +617,7 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
                 <span class="h-btn__arrow" aria-hidden="true">→</span>
               </span>
             </a>
-            <a class="h-btn h-btn--outline" href="/blog/latest">
+            <a class="h-btn h-btn--outline" href="/articles/latest">
               <span class="h-btn__surface" aria-hidden="true"></span>
               <span class="h-btn__content">
                 <span data-i18n="home.designAi.ctaBuild">Build with AI</span>
@@ -1071,24 +1087,48 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     text-decoration: none;
     color: color-mix(in srgb, var(--prism-color-accent-strong) 91%, #000000);
     border-radius: 2px;
-    transition:
-      color 0.2s ease,
-      text-decoration-color 0.2s ease;
+    transition: color 0.2s ease;
   }
 
   .h-updates__view-all:hover {
     color: color-mix(in srgb, var(--prism-color-accent-strong) 82%, #000000);
   }
 
-  .h-updates__view-all__label {
+  /* Text + arrow links: animated underline under label only (matches site nav) */
+  .h-updates__view-all__label,
+  .h-inside__cta__label {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
     text-decoration: none;
-    text-underline-offset: 0.2em;
-    transition: text-decoration-color 0.2s ease;
   }
 
-  .h-updates__view-all:hover .h-updates__view-all__label {
-    text-decoration: underline;
-    text-decoration-color: currentColor;
+  .h-updates__view-all__label::after,
+  .h-inside__cta__label::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: calc(100% + 0.12em);
+    width: 100%;
+    height: 2px;
+    border-radius: 999px;
+    background-color: currentColor;
+    pointer-events: none;
+    transform: scaleX(0);
+    transform-origin: right center;
+    opacity: 0;
+    transition:
+      transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.32s ease;
+  }
+
+  .h-updates__view-all:hover .h-updates__view-all__label::after,
+  .h-updates__view-all:focus-visible .h-updates__view-all__label::after,
+  .h-inside__card:hover .h-inside__cta__label::after,
+  .h-inside__card:focus-visible .h-inside__cta__label::after {
+    transform: scaleX(1);
+    transform-origin: left center;
+    opacity: 1;
   }
 
   :global([data-theme="dark"]) .h-updates__head-main > a.h-updates__view-all {
@@ -1477,6 +1517,12 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     object-fit: cover;
   }
 
+  /* Match article grid: inset date, title, body, and author under the image (media stays full-bleed). */
+  .h-updates-card > :not(.h-updates-card__media) {
+    padding-inline: 8px;
+    box-sizing: border-box;
+  }
+
   .h-updates-card__meta {
     display: flex;
     flex-wrap: wrap;
@@ -1494,26 +1540,44 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     color: rgb(from var(--prism-color-text-secondary) r g b / 1);
   }
 
+  /* Outer span: flex column spacing. */
   .h-updates-card__title {
     display: block;
+    min-width: 0;
     padding: 0.5rem 0 0;
+  }
+
+  .h-updates-card__title-text {
+    --prism-stagger-title-segment: 0.38s;
+    min-width: 0;
     font-size: 24px;
     font-weight: 700;
     letter-spacing: -0.03em;
     line-height: 1.25;
   }
 
-  .h-updates-card:hover .h-updates-card__title,
-  .h-updates-card:focus-visible .h-updates-card__title {
-    color: var(--prism-color-accent-strong);
-  }
+  /* Home article title hover + staggered lines: see `<style is:global>` (matches blog teasers; injected spans). */
 
+  /* Outer keeps padding; inner is the -webkit-box so clamp height matches line boxes (avoids 4th line peek). */
   .h-updates-card__desc {
     margin: 0;
     padding: 0.45rem 0 0.5rem;
+    box-sizing: border-box;
     font-size: 14px;
     line-height: 1.55;
     color: var(--prism-color-text-secondary);
+    min-height: 0;
+  }
+
+  .h-updates-card__desc-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    overflow: clip;
+    contain: paint;
+    max-height: calc(3 * 1.55em);
+    max-height: calc(3 * 1lh);
   }
 
   .h-updates-card__author {
@@ -1713,24 +1777,11 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     letter-spacing: -0.01em;
     line-height: 1.3;
     color: color-mix(in srgb, var(--prism-color-accent-strong) 91%, #000000);
-    transition:
-      color 0.2s ease,
-      text-decoration-color 0.2s ease;
+    transition: color 0.2s ease;
   }
 
   .h-inside__card:hover .h-inside__cta {
     color: color-mix(in srgb, var(--prism-color-accent-strong) 82%, #000000);
-  }
-
-  .h-inside__cta__label {
-    text-decoration: none;
-    text-underline-offset: 0.2em;
-    transition: text-decoration-color 0.2s ease;
-  }
-
-  .h-inside__card:hover .h-inside__cta__label {
-    text-decoration: underline;
-    text-decoration-color: currentColor;
   }
 
   .h-inside__cta__arrow {
@@ -1875,6 +1926,11 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
     .h-inside__card:hover .h-inside__cta__arrow {
       transform: none;
     }
+
+    .h-updates__view-all__label::after,
+    .h-inside__cta__label::after {
+      transition: none;
+    }
   }
 </style>
 
@@ -1883,6 +1939,75 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
   Pattern inspired by https://css-tricks.com/how-to-recreate-the-ripple-effect-of-material-design-buttons/
 -->
 <style is:global>
+  /*
+   * Home “What’s new” card titles — same model as `/articles/latest` teasers (BlogLayout):
+   * per-line spans, staggered underline in / out, full title blue at once on card hover.
+   * Global sheet so `.prism-stagger-title-line` (injected) always matches.
+   */
+  .home-root .h-updates-card__title-text:not(:has(.prism-stagger-title-line)) {
+    display: inline;
+    max-width: 100%;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    padding-bottom: 0.1em;
+    box-sizing: border-box;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition:
+      color 0.32s ease,
+      background-size var(--prism-stagger-title-segment, 0.38s) cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .home-root .h-updates-card:hover .h-updates-card__title-text:not(:has(.prism-stagger-title-line)),
+  .home-root .h-updates-card:focus-visible .h-updates-card__title-text:not(:has(.prism-stagger-title-line)) {
+    color: var(--prism-color-accent-strong);
+    background-size: 100% 2px;
+  }
+
+  .home-root .h-updates-card__title-text:has(.prism-stagger-title-line) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    background: none;
+    padding-bottom: 0;
+  }
+
+  .home-root .h-updates-card__title-text .prism-stagger-title-line {
+    display: block;
+    flex-shrink: 0;
+    width: 100%;
+    max-width: max-content;
+    padding-bottom: 0.1em;
+    box-sizing: border-box;
+    color: inherit;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition:
+      color 0.32s ease,
+      background-size var(--prism-stagger-title-segment, 0.38s) cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay:
+      0s,
+      calc(
+        (var(--prism-stagger-title-line-count, 1) - 1 - var(--prism-stagger-title-line-i, 0)) *
+          var(--prism-stagger-title-segment, 0.38s)
+      );
+  }
+
+  .home-root .h-updates-card:hover .h-updates-card__title-text .prism-stagger-title-line,
+  .home-root .h-updates-card:focus-visible .h-updates-card__title-text .prism-stagger-title-line {
+    color: var(--prism-color-accent-strong);
+    background-size: 100% 2px;
+    transition-delay: 0s,
+      calc(var(--prism-stagger-title-line-i, 0) * var(--prism-stagger-title-segment, 0.38s));
+  }
+
   .home-root a.h-btn .h-btn__ripple {
     position: absolute;
     z-index: 1;
@@ -2017,6 +2142,18 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
       if (inner <= 0) return 0;
       var cols = slideColumnCountForWidth();
       var g = gapPx();
+      var n = activeSlides().length;
+      /*
+        Single-column (narrow) layout: make each card slightly narrower than the viewport so a slice
+        of the following card stays visible — signals more content via swipe or Next.
+        Omit when only one slide matches (e.g. Feature filter with one item).
+      */
+      if ((!wideMq || !wideMq.matches) && cols === 1 && n > 1) {
+        var peekDesired = Math.round(Math.min(96, Math.max(44, inner * 0.175)));
+        var peek = Math.min(peekDesired, Math.max(0, inner - g - 176));
+        var w = inner - g - peek;
+        if (w > 0) return w;
+      }
       var gutters = (cols - 1) * g;
       var share = inner - gutters;
       if (share <= 0) return 0;
@@ -2144,6 +2281,7 @@ import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
       syncEndScrollTarget();
       clampCarouselScroll();
       updateNavDisabled();
+      document.dispatchEvent(new CustomEvent("prism-resplit-stagger-titles"));
     }
 
     var scrollIdleTimer;

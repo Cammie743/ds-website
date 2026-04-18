@@ -19,7 +19,7 @@ function isNavActive(href: string): boolean {
   if (href === "/foundations") return pathname.startsWith("/foundations");
   if (href === "/components") return pathname.startsWith("/components");
   if (href === "/resources") return pathname.startsWith("/resources");
-  if (href === "/blog") return pathname.startsWith("/blog");
+  if (href === "/articles") return pathname.startsWith("/articles");
   return false;
 }
 
@@ -193,12 +193,12 @@ const pageShell = normPath === "/" ? "home" : "inner";
                 </a>
                 <a
                   class="nav-link--has-nested"
-                  href="/blog/featured"
-                  data-nav-drill="blog"
-                  data-nav-drill-route-prefix="/blog"
-                  aria-current={isNavActive("/blog") ? "page" : undefined}
+                  href="/articles/featured"
+                  data-nav-drill="article"
+                  data-nav-drill-route-prefix="/articles"
+                  aria-current={isNavActive("/articles") ? "page" : undefined}
                 >
-                  <span data-i18n="nav.blog">Blog</span>
+                  <span data-i18n="nav.article">Articles</span>
                   <span class="nav-link-chevron" aria-hidden="true">
                     <svg
                       class="nav-link-chevron-svg"
@@ -458,34 +458,34 @@ const pageShell = normPath === "/" ? "home" : "inner";
                   </li>
                 </ul>
                 <ul
-                  id="nav-drawer-sub-blog"
+                  id="nav-drawer-sub-article"
                   class="nav-drawer-subnav-list"
                   hidden
                   data-i18n-aria="blog.sectionNav.aria"
-                  aria-label="Blog sections"
+                  aria-label="Articles"
                 >
                   <li>
                     <a
-                      href="/blog/featured"
-                      aria-current={normPath === "/blog/featured" ? "page" : undefined}
+                      href="/articles/featured"
+                      aria-current={normPath === "/articles/featured" ? "page" : undefined}
                       data-i18n="blog.nav.featured">Featured</a>
                   </li>
                   <li>
                     <a
-                      href="/blog/latest"
-                      aria-current={normPath === "/blog/latest" ? "page" : undefined}
+                      href="/articles/latest"
+                      aria-current={normPath === "/articles/latest" ? "page" : undefined}
                       data-i18n="blog.nav.latest">Latest updates</a>
                   </li>
                   <li>
                     <a
-                      href="/blog/2026"
-                      aria-current={normPath === "/blog/2026" ? "page" : undefined}
+                      href="/articles/2026"
+                      aria-current={normPath === "/articles/2026" ? "page" : undefined}
                       data-i18n="blog.nav.y2026">2026</a>
                   </li>
                   <li>
                     <a
-                      href="/blog/2025"
-                      aria-current={normPath === "/blog/2025" ? "page" : undefined}
+                      href="/articles/2025"
+                      aria-current={normPath === "/articles/2025" ? "page" : undefined}
                       data-i18n="blog.nav.y2025">2025</a>
                   </li>
                 </ul>
@@ -666,6 +666,103 @@ const pageShell = normPath === "/" ? "home" : "inner";
         function searchOpenTooltipKey() {
           return isMacOSClient() ? "search.openTooltipMac" : "search.openTooltipWin";
         }
+        /** Wrap soft-wrapped title text in spans so each line can underline after the previous (see CSS `--prism-stagger-title-line-i`). */
+        function splitStaggeredTitleLines(el) {
+          if (!el || el.nodeType !== 1) return;
+          var raw = el.textContent || "";
+          if (!raw) {
+            el.textContent = "";
+            el.style.removeProperty("--prism-stagger-title-line-count");
+            return;
+          }
+          var text = raw.replace(/\r\n/g, "\n");
+          el.textContent = "";
+          var tn = document.createTextNode(text);
+          el.appendChild(tn);
+          var range = document.createRange();
+          var segments = [];
+          try {
+            var n = text.length;
+            /** Char-by-char tops: stable for 3+ wrapped lines (range min/max top heuristic missed mid-lines). */
+            function lineStartsFromTextNode(node) {
+              var len = node.data.length;
+              if (len === 0) return [];
+              var starts = [0];
+              var prevTop = null;
+              var prevH = 0;
+              for (var ci = 0; ci < len; ci++) {
+                range.setStart(node, ci);
+                range.setEnd(node, ci + 1);
+                var br = range.getBoundingClientRect();
+                if (br.width <= 0 && br.height <= 0) continue;
+                var top = br.top;
+                var h = br.height || 16;
+                if (prevTop !== null) {
+                  var thr = Math.max(6, prevH * 0.22);
+                  if (Math.abs(top - prevTop) > thr) {
+                    starts.push(ci);
+                  }
+                }
+                prevTop = top;
+                prevH = h;
+              }
+              return starts;
+            }
+            var starts = lineStartsFromTextNode(tn);
+            /*
+             * Per-char getBoundingClientRect().top can jitter between glyphs on one visual line; that
+             * yields a "new line" per character, one-char segments, and the leading-whitespace trim below
+             * drops every inter-word space. If we see implausibly many starts, treat as a single line.
+             */
+            if (starts.length > Math.max(6, Math.floor(text.length / 2))) {
+              starts = [0];
+            }
+            if (starts.length === 0) {
+              segments = [{ start: 0, end: n }];
+            } else {
+              for (var si = 0; si < starts.length; si++) {
+                var a = starts[si];
+                var b = si + 1 < starts.length ? starts[si + 1] : n;
+                if (b > a) segments.push({ start: a, end: b });
+              }
+            }
+          } catch (err) {
+            segments = [{ start: 0, end: text.length }];
+          }
+          el.removeChild(tn);
+          el.textContent = "";
+          var outIndex = 0;
+          for (var i = 0; i < segments.length; i++) {
+            var slice = text.slice(segments[i].start, segments[i].end);
+            if (i > 0) slice = slice.replace(/^\s+/, "");
+            slice = slice.replace(/\s+$/, "");
+            if (!slice) continue;
+            var span = document.createElement("span");
+            span.className = "prism-stagger-title-line";
+            span.style.setProperty("--prism-stagger-title-line-i", String(outIndex));
+            span.textContent = slice;
+            el.appendChild(span);
+            outIndex++;
+          }
+          if (outIndex === 0) {
+            el.textContent = text;
+            el.style.setProperty("--prism-stagger-title-line-count", "1");
+            return;
+          }
+          el.style.setProperty("--prism-stagger-title-line-count", String(outIndex));
+        }
+        var staggerTitleResizeTimer = 0;
+        window.addEventListener("resize", function () {
+          if (staggerTitleResizeTimer) window.clearTimeout(staggerTitleResizeTimer);
+          staggerTitleResizeTimer = window.setTimeout(function () {
+            staggerTitleResizeTimer = 0;
+            document.querySelectorAll("[data-stagger-title-underline]").forEach(function (el) {
+              var key = el.getAttribute("data-i18n");
+              if (key) el.textContent = t(key);
+              splitStaggeredTitleLines(el);
+            });
+          }, 120);
+        });
         function applyTranslations() {
           var lang = getLang();
           root.lang = lang === "zh" ? "zh-Hans" : "en";
@@ -673,6 +770,9 @@ const pageShell = normPath === "/" ? "home" : "inner";
             var key = el.getAttribute("data-i18n");
             if (!key) return;
             el.textContent = t(key);
+            if (el.hasAttribute("data-stagger-title-underline")) {
+              splitStaggeredTitleLines(el);
+            }
           });
           document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
             var key = el.getAttribute("data-i18n-placeholder");
@@ -746,7 +846,7 @@ const pageShell = normPath === "/" ? "home" : "inner";
           var fdUl = document.getElementById("nav-drawer-sub-foundations");
           var compUl = document.getElementById("nav-drawer-sub-components");
           var resUl = document.getElementById("nav-drawer-sub-resources");
-          var blogUl = document.getElementById("nav-drawer-sub-blog");
+          var articleUl = document.getElementById("nav-drawer-sub-article");
           if (!siteNav) return;
           siteNav.classList.remove("is-nav-drill-sub");
           siteNav.removeAttribute("data-nav-drill-active");
@@ -758,7 +858,7 @@ const pageShell = normPath === "/" ? "home" : "inner";
           if (fdUl) fdUl.hidden = true;
           if (compUl) compUl.hidden = true;
           if (resUl) resUl.hidden = true;
-          if (blogUl) blogUl.hidden = true;
+          if (articleUl) articleUl.hidden = true;
         }
         function isNavMobileDrawer() {
           return window.matchMedia("(max-width: 68rem)").matches;
@@ -778,7 +878,7 @@ const pageShell = normPath === "/" ? "home" : "inner";
             drillId === "foundations" ||
             drillId === "components" ||
             drillId === "resources" ||
-            drillId === "blog"
+            drillId === "article"
           );
         }
         function syncNavDrillToCurrentRoute() {
@@ -822,12 +922,12 @@ const pageShell = normPath === "/" ? "home" : "inner";
           var fdUl = document.getElementById("nav-drawer-sub-foundations");
           var compUl = document.getElementById("nav-drawer-sub-components");
           var resUl = document.getElementById("nav-drawer-sub-resources");
-          var blogUl = document.getElementById("nav-drawer-sub-blog");
+          var articleUl = document.getElementById("nav-drawer-sub-article");
           if (gsUl) gsUl.hidden = drillId !== "get-started";
           if (fdUl) fdUl.hidden = drillId !== "foundations";
           if (compUl) compUl.hidden = drillId !== "components";
           if (resUl) resUl.hidden = drillId !== "resources";
-          if (blogUl) blogUl.hidden = drillId !== "blog";
+          if (articleUl) articleUl.hidden = drillId !== "article";
           var labelSpan = anchor.querySelector("span[data-i18n]");
           var titleText = (labelSpan && labelSpan.textContent && labelSpan.textContent.trim()) || "";
           siteNav.classList.add("is-nav-drill-sub");
@@ -986,6 +1086,25 @@ const pageShell = normPath === "/" ? "home" : "inner";
         });
         applyStoredLocale();
         applyTranslations();
+        /* Re-split after layout + fonts: first split can run before cards have width (e.g. home carousel). */
+        function resplitStaggeredTitles() {
+          document.querySelectorAll("[data-stagger-title-underline]").forEach(function (el) {
+            var key = el.getAttribute("data-i18n");
+            if (key) el.textContent = t(key);
+            splitStaggeredTitleLines(el);
+          });
+        }
+        if (typeof requestAnimationFrame === "function") {
+          requestAnimationFrame(function () {
+            requestAnimationFrame(resplitStaggeredTitles);
+          });
+        } else {
+          setTimeout(resplitStaggeredTitles, 0);
+        }
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(resplitStaggeredTitles);
+        }
+        document.addEventListener("prism-resplit-stagger-titles", resplitStaggeredTitles);
 
         (function initSectionAnchorCopyButtons() {
           var copyTimerKey = "__prismSectionAnchorCopyTimer";
@@ -1215,7 +1334,7 @@ const pageShell = normPath === "/" ? "home" : "inner";
         syncDrawerUtilSlot();
 
         var nav = document.querySelector(".nav");
-        var navExitMs = 320;
+        var navExitMs = 420;
         document.getElementById("site-nav")?.addEventListener(
           "click",
           function (e) {
@@ -1681,32 +1800,35 @@ const pageShell = normPath === "/" ? "home" : "inner";
     left: 50%;
     top: 100%;
     bottom: auto;
-    margin-top: 0.35em;
-    width: calc(100% + 0.85rem);
+    margin-top: 0.26em;
+    width: 100%;
     height: 2px;
     border-radius: 999px;
     background-color: currentColor;
     pointer-events: none;
     transform: translateX(-50%) scaleX(0);
-    transform-origin: center;
+    transform-origin: right center;
     opacity: 0;
     transition:
-      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-      opacity 0.25s ease;
+      transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.32s ease;
   }
 
   .nav a:hover:not([aria-current="page"])::after {
     transform: translateX(-50%) scaleX(1);
+    transform-origin: left center;
     opacity: 1;
   }
 
   @keyframes nav-current-exit {
     from {
       transform: translateX(-50%) scaleX(1);
+      transform-origin: right center;
       opacity: 1;
     }
     to {
       transform: translateX(-50%) scaleX(0);
+      transform-origin: right center;
       opacity: 0;
     }
   }
@@ -1722,7 +1844,7 @@ const pageShell = normPath === "/" ? "home" : "inner";
   }
 
   .nav a[aria-current="page"].nav-underline-exit::after {
-    animation: nav-current-exit 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: nav-current-exit 0.36s cubic-bezier(0.22, 1, 0.36, 1) forwards;
     transition: none;
   }
 

@@ -1,0 +1,25 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+import BlogUpdateArticle from "../../components/blog/BlogUpdateArticle.astro";
+import BlogTeasersViewControls from "../../components/blog/BlogTeasersViewControls.astro";
+---
+
+<BlogLayout
+  title="Featured"
+  current="featured"
+  description="Highlighted release notes and updates from the Prism team."
+  pageVariant="teasers"
+>
+  <header class="page-head">
+    <h1 data-i18n="blog.nav.featured">Featured</h1>
+    <div class="blog-teasers-head-row">
+      <p class="intro" data-i18n="blog.lede">
+        Release notes, deep dives, and product updates from the Prism team.
+      </p>
+      <BlogTeasersViewControls />
+    </div>
+  </header>
+  <div class="blog-posts blog-posts--teasers">
+    <BlogUpdateArticle id="update-home-navigation" updateN={2} isFirstInPage />
+  </div>
+</BlogLayout>

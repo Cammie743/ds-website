@@ -787,7 +787,7 @@ const sortAria = {
     background-color: var(--prism-color-border-subtle);
   }
 
-  /* Row separators next to a hovered or focused card: transparent fill (same as blog list) — keeps 1px height, no seam vs page chrome. */
+  /* Row separators next to a hovered or focused card: transparent fill (same as article list) — keeps 1px height, no seam vs page chrome. */
   #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-card:hover + .overview-list-divider,
   #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-card:focus-visible + .overview-list-divider,
   #foundations-overview-root:has(#foundations-overview-view-list:checked) .overview-list-divider:has(+ .overview-card:hover),
@@ -1030,7 +1030,7 @@ const sortAria = {
     transform: translateX(0.35rem);
   }
 
-  /* List rows: no media dim overlay inside the hover pill (matches blog list thumb treatment). */
+  /* List rows: no media dim overlay inside the hover pill (matches article list thumb treatment). */
   #foundations-overview-root:has(#foundations-overview-view-list:checked)
     .overview-card:hover
     .overview-figure__media::after,
