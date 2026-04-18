@@ -45,10 +45,10 @@ export const uiStrings = {
     "home.updates.sectionTitle": "Latest and greatest from Prism",
     "home.updates.viewAll": "Explore all blogs",
     "home.updates.1.date": "April 17, 2026",
-    "home.updates.1.title": "April 2026: Figma libraries updates for v2.5",
+    "home.updates.1.title": "April release: Figma library updates for v2.5",
     "home.updates.1.body": "New button variants, icons, bug fixes, updated colors, and more.",
     "home.updates.1.alt":
-      "Illustration for April 2026 updates: media frame with play control, secondary buttons, pagination dots, and Docs/Slides/Spreadsheet-style file chips.",
+      "Decorative hero: soft blue and teal gradient background with no text or UI.",
     "home.updates.2.date": "April 1, 2026",
     "home.updates.2.title": "Home and navigation refresh",
     "home.updates.2.body": "Clearer paths into foundations, components, and bilingual documentation.",
@@ -285,29 +285,34 @@ export const uiStrings = {
     "blog.update.postedBy": "Posted by",
     "blog.update.1.contributors":
       "Contributors: Liz Chang and Yee Huang (UXD-12943 — media player).",
+    "blog.update.1.heroAlt":
+      "Decorative hero: soft blue and teal gradient background with no text or UI.",
     "blog.update.1.section.components": "Component updates",
     "blog.update.1.section.icons": "Icon updates",
     "blog.update.1.section.tokens": "Token updates",
     "blog.update.1.p.comp.intro":
-      "The following components have been updated in this release. Each item below summarizes what shipped and where to use it.",
+      "The following components have been updated in this month's weekly releases.",
     "blog.update.1.comp.imgAlt.button":
       "Matrix of primary, secondary, and tertiary buttons for default (blue), neutral (grey secondary), and destructive (red) treatments.",
     "blog.update.1.comp.caption.button": "Secondary basic button - Neutral sentiment",
-    "blog.update.1.comp.imgAlt.mediaPlayer": "Placeholder: media player frame with scrim and play control.",
-    "blog.update.1.comp.imgAlt.pagination": "Placeholder: pagination track with dots and active page.",
+    "blog.update.1.comp.caption.mediaPlayer":
+      "Updated the media player control bar to improve disabled state visibility and overall legibility across different media backgrounds.",
+    "blog.update.1.comp.imgAlt.mediaPlayer":
+      "Media player control bars on split light/dark and light backgrounds, with callouts for disabled icon fill, 8px background blur, and container fill tokens.",
+    "blog.update.1.comp.paginationVideoAria":
+      "Screen recording: Vue pagination moving between pages with the dot track.",
+    "blog.update.1.comp.paginationVideoToggleAria": "Play or pause the pagination demo video.",
     "blog.update.1.sub.comp.button": "Secondary basic button",
     "blog.update.1.sub.comp.mediaPlayer": "Media player",
-    "blog.update.1.sub.comp.pagination": "Pagination (Vue only)",
+    "blog.update.1.sub.comp.pagination": "Pagination",
     "blog.update.1.p.comp.button":
-      "Secondary basic button (UXD-13772, Cam Foster). The default secondary basic treatment stayed light blue while many other secondary controls read grey, which made specs and dense UIs easy to misread. A grey-only secondary basic also felt too light when you still needed a clear secondary step under a primary. We kept that blue treatment as Secondary default—the stronger secondary that sits next to primary—and added Secondary neutral on secondary basic only: a half-step-down grey option when you want secondary actions to match other grey secondaries or to calm button-heavy layouts, with the blue default still there when you need more separation from primary.",
+      "We kept the current Secondary Default button light blue and introduced a new Secondary Neutral option as a half step down. This update gives teams a secondary button that better matches other grey secondary buttons when that is the better fit for the layout, while still preserving the blue Secondary Default button as a stronger alternative to the primary button.",
     "blog.update.1.p.comp.mediaPlayer":
-      "Media player (UXD-12943, Liz Chang and Yee Huang). The component container background now uses fill-global-strong-dark-transparent with an 8px background blur. Disabled buttons in this surface use fill-contrary-transparent for a clearer disabled state.",
+      "Media player has been updated to improve visibility across light and dark media backgrounds. Disabled states could previously become hard to see on lighter content, so the control bar now uses a stronger transparent dark background with 8px blur, and disabled buttons use a more visible transparent fill treatment.",
     "blog.update.1.p.comp.pagination":
-      "Pagination (UXD-9969, Cam Foster), Vue only. We added one additional slot so custom slot content does not shift the layout.",
-    "blog.update.1.p.icons":
-      "Several icons were renamed to match how Doc and Slides experiences are described in product: Paper is now Classic doc, Doc is now AI docs, Present is now AI slides, and Sheet is now AI sheets. We also introduced new icons for Classic doc, AI docs, AI slides, AI sheets, and AI data table so file-type and related navigation stay visually consistent.",
-    "blog.update.1.p.tokens":
-      "File-type color tokens were extended and refreshed: new tokens cover Docs and Slides, and the spreadsheet file-type color token was updated so sheet-style assets stay aligned with the rest of the file-type palette.",
+      "Improved pagination by fixing layout shifts from dynamic slots. Added an additional slot and locked the total slot count, keeping chevrons in a fixed position and reducing accidentally clicking the last page.",
+    "blog.update.1.p.icons": "Coming soon",
+    "blog.update.1.p.tokens": "Coming soon",
     "blog.update.2.body":
       "We reorganized the home page and global navigation so teams can reach foundations, components, and bilingual guidance in fewer clicks. Sticky patterns and drawer behavior were tuned for small viewports, and the IA now mirrors how designers and engineers talk about the system day to day.",
     "blog.update.3.body":
@@ -504,9 +509,9 @@ export const uiStrings = {
     "home.updates.sectionTitle": "Prism 的最新与精选",
     "home.updates.viewAll": "探索全部博客",
     "home.updates.1.date": "2026年4月17日",
-    "home.updates.1.title": "2026 年 4 月：Figma 组件库更新（v2.5）",
+    "home.updates.1.title": "四月发布：Figma 组件库 v2.5 更新",
     "home.updates.1.body": "新增按钮变体、图标、缺陷修复、颜色更新等。",
-    "home.updates.1.alt": "2026 年 4 月更新配图：媒体区域与播放控件、次要按钮、分页圆点，以及文档、幻灯片、表格风格的文件色块。",
+    "home.updates.1.alt": "装饰性头图：柔和的蓝绿色渐变背景，无文字或界面元素。",
     "home.updates.2.date": "2026年4月1日",
     "home.updates.2.title": "首页与导航更新",
     "home.updates.2.body": "更清晰的入口通向基础、组件与双语文档。",
@@ -728,29 +733,32 @@ export const uiStrings = {
     "blog.articleAnchors.asideAria": "本文目录",
     "blog.update.postedBy": "发布者",
     "blog.update.1.contributors": "贡献者：Liz Chang、Yee Huang（UXD-12943，媒体播放器）。",
+    "blog.update.1.heroAlt": "装饰性头图：柔和的蓝绿色渐变背景，无文字或界面元素。",
     "blog.update.1.section.components": "组件更新",
     "blog.update.1.section.icons": "图标更新",
     "blog.update.1.section.tokens": "令牌更新",
     "blog.update.1.p.comp.intro":
-      "以下组件在本版本中有所更新。下文逐项说明变更内容与适用场景。",
+      "以下组件已在当月的每周发布中更新。下文逐项说明变更内容。",
     "blog.update.1.comp.imgAlt.button":
       "主/次/第三档按钮在默认（蓝）、中性（灰次要）与破坏性（红）三种处理下的矩阵示意。",
     "blog.update.1.comp.caption.button": "次要基础按钮 - 中性基调",
-    "blog.update.1.comp.imgAlt.mediaPlayer": "占位图：媒体播放器画面与遮罩、播放控件。",
-    "blog.update.1.comp.imgAlt.pagination": "占位图：分页轨道与圆点及当前页。",
+    "blog.update.1.comp.caption.mediaPlayer":
+      "已更新媒体播放器控制条，以提升禁用态可见性，并在不同媒体背景下整体更易辨认。",
+    "blog.update.1.comp.imgAlt.mediaPlayer":
+      "媒体播放器控制条在左右分屏亮/暗底与浅灰底上的示意，并标注禁用图标填充、8px 背景模糊与容器填充等令牌说明。",
+    "blog.update.1.comp.paginationVideoAria": "屏幕录制：Vue 分页在页面间切换，以及圆点轨道示意。",
+    "blog.update.1.comp.paginationVideoToggleAria": "播放或暂停分页演示视频。",
     "blog.update.1.sub.comp.button": "次要基础按钮",
     "blog.update.1.sub.comp.mediaPlayer": "媒体播放器",
-    "blog.update.1.sub.comp.pagination": "分页（仅 Vue）",
+    "blog.update.1.sub.comp.pagination": "分页",
     "blog.update.1.p.comp.button":
-      "次要基础按钮（UXD-13772，Cam Foster）。默认的次要基础按钮保持浅蓝，而系统中许多其他次要控件偏灰，规格与密集界面里容易混淆。若次要基础按钮只做灰色，又常显得力度不足，难以在主按钮旁承担真正的次要操作。我们保留浅蓝的「次要默认」作为相对主按钮更强的那档次要样式，并仅在次要基础按钮上新增「次要中性」这一档偏灰的半步：在需要与其他灰色次要控件对齐、或按钮很多的布局里更克制，同时仍可在需要更强层级时继续使用蓝色默认。",
+      "我们保留当前的次要默认（Secondary Default）按钮为浅蓝色，并新增次要中性（Secondary Neutral）作为降半档的选择。此次更新让团队在更适合的布局里能使用与其他灰色次要按钮更一致的次要按钮，同时仍保留蓝色的次要默认按钮，作为相对主按钮更强的一档。",
     "blog.update.1.p.comp.mediaPlayer":
-      "媒体播放器（UXD-12943，Liz Chang、Yee Huang）。组件容器背景更新为 fill-global-strong-dark-transparent，并配合 8px 背景模糊；该区域内禁用态按钮颜色改为 fill-contrary-transparent。",
+      "媒体播放器已更新，以在亮暗媒体背景下都更易辨认。此前在偏亮内容上禁用态不易看清，因此控制条现采用更强的透明深色背景并配合 8px 模糊，禁用按钮也改为更醒目的透明填充处理。",
     "blog.update.1.p.comp.pagination":
-      "分页（UXD-9969，Cam Foster），仅 Vue。新增一个插槽，避免自定义插槽内容导致布局跳动。",
-    "blog.update.1.p.icons":
-      "多个图标重命名以贴合产品中「文档」与「幻灯片」相关体验的表述：原「Paper」现为 Classic doc，「Doc」为 AI docs，「Present」为 AI slides，「Sheet」为 AI sheets。同时为 Classic doc、AI docs、AI slides、AI sheets 与 AI data table 提供全新图标，使文件类型及相关导航的视觉表达保持一致。",
-    "blog.update.1.p.tokens":
-      "文件类型相关颜色令牌有所扩展与调整：新增面向文档与幻灯片的文件类型色令牌，并更新电子表格类文件的颜色令牌，使其与整套文件类型色板保持协调。",
+      "分页体验改进：修复动态插槽带来的布局跳动；新增一个插槽并锁定插槽总数，使左右箭头位置保持稳定，并降低误点最后一页的概率。",
+    "blog.update.1.p.icons": "即将推出",
+    "blog.update.1.p.tokens": "即将推出",
     "blog.update.2.body":
       "我们重新梳理首页与全局导航，让团队更快找到基础、组件与双语文档。针对小屏优化了吸顶与抽屉交互，信息架构也与设计与工程师的日常表述更一致。",
     "blog.update.3.body":
