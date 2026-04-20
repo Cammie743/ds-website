@@ -1,7 +1,9 @@
 /* Shared: section H2 + deep-link copy control (see DocH2WithAnchor.astro; wired in BaseLayout.astro). */
 
+/* z-index: later siblings (e.g. cards with overlays) paint after us by default; lift the row so tooltips stay on top. */
 .doc-h2-anchor-row {
   position: relative;
+  z-index: 1;
   display: block;
   margin: 0;
 }
