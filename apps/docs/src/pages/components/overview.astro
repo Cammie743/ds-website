@@ -2,6 +2,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import ComponentsLayout from "../../layouts/ComponentsLayout.astro";
+import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
 import { uiStrings } from "../../i18n/ui";
 
 const componentsImgDir = path.join(process.cwd(), "public", "images", "components");
@@ -17,6 +18,102 @@ const HREF_BY_STEM = new Map<string, string>([
   ["dialog", "/components/dialog"],
   ["inputfields", "/components/input-fields"],
 ]);
+
+type CategoryId =
+  | "actions"
+  | "forms"
+  | "feedback"
+  | "layout"
+  | "loading"
+  | "media"
+  | "navigation"
+  | "overlays"
+  | "other";
+
+const CATEGORY_ORDER: CategoryId[] = [
+  "actions",
+  "forms",
+  "layout",
+  "loading",
+  "feedback",
+  "media",
+  "navigation",
+  "overlays",
+  "other",
+];
+
+function categoryIdForStem(stem: string): CategoryId {
+  const map: Record<string, CategoryId> = {
+    accordion: "layout",
+    card: "layout",
+    carousel: "layout",
+    dialog: "layout",
+    divider: "layout",
+    drawer: "layout",
+    window: "layout",
+    loadingindicator: "loading",
+    loading: "loading",
+    progressindicators: "loading",
+    progressindicator: "loading",
+    skeleton: "loading",
+    skelton: "loading",
+    badge: "feedback",
+    banner: "feedback",
+    coachmark: "feedback",
+    notification: "feedback",
+    notifications: "feedback",
+    popover: "feedback",
+    popovers: "feedback",
+    snackbar: "feedback",
+    tooltip: "feedback",
+    anchor: "navigation",
+    breadcrumbs: "navigation",
+    link: "navigation",
+    menu: "forms",
+    navigation: "navigation",
+    pagination: "navigation",
+    scrollview: "navigation",
+    scrollarea: "navigation",
+    tab: "navigation",
+    tabs: "navigation",
+    tree: "navigation",
+    avatar: "other",
+    buttons: "actions",
+    inputfields: "forms",
+    checkmark: "forms",
+    checkbox: "forms",
+    chip: "forms",
+    chips: "forms",
+    colorpicker: "forms",
+    datepicker: "forms",
+    dropdown: "forms",
+    emojipicker: "forms",
+    emojiselector: "forms",
+    fileuploader: "forms",
+    fileupload: "forms",
+    imagecropper: "forms",
+    listbox: "forms",
+    pincodeinput: "forms",
+    pininput: "forms",
+    radiobutton: "forms",
+    radiobuttons: "forms",
+    radio: "forms",
+    search: "forms",
+    timepicker: "forms",
+    transferlist: "forms",
+    slider: "forms",
+    dialpad: "actions",
+    draganddrop: "actions",
+    dragdrop: "actions",
+    mediacontrols: "actions",
+    mediacontrol: "actions",
+    resizehandle: "actions",
+    segmentedcontrol: "actions",
+    toggle: "actions",
+    toolbar: "actions",
+  };
+  return map[stem] ?? "other";
+}
 
 function compactStem(file: string): string {
   return file
@@ -50,9 +147,18 @@ type OverviewItem = {
   title: string;
   htmlAlt: string;
   href: string | null;
+  categoryId: CategoryId;
+};
+
+type CategoryGroup = {
+  id: CategoryId;
+  i18n: string;
+  fallback: string;
+  items: OverviewItem[];
 };
 
 let items: OverviewItem[] = [];
+let categoryGroups: CategoryGroup[] = [];
 
 try {
   const names = fs
@@ -70,10 +176,26 @@ try {
       title: displayTitle(file),
       htmlAlt: altForFile(file),
       href: HREF_BY_STEM.get(stem) ?? null,
+      categoryId: categoryIdForStem(stem),
     };
   });
+
+  const byCat = new Map<CategoryId, OverviewItem[]>();
+  for (const id of CATEGORY_ORDER) {
+    byCat.set(id, []);
+  }
+  for (const item of items) {
+    byCat.get(item.categoryId)!.push(item);
+  }
+  categoryGroups = CATEGORY_ORDER.filter((id) => (byCat.get(id) ?? []).length > 0).map((id) => ({
+    id,
+    i18n: `components.overview.category.${id}`,
+    fallback: en[`components.overview.category.${id}`] ?? id,
+    items: byCat.get(id)!,
+  }));
 } catch {
   items = [];
+  categoryGroups = [];
 }
 ---
 
@@ -82,60 +204,244 @@ try {
   description="Prism UI components for web experiences."
   current="overview"
 >
-  <header class="page-head">
-    <h1 data-i18n="components.overview.h1">Components</h1>
-    <p class="intro" data-i18n="components.intro">
-      Reference implementations and usage notes live in the web reference app. This section tracks what is
-      documented as the library grows.
-    </p>
-  </header>
-
-  {
-    items.length > 0 ? (
-      <div
-        class="comp-overview-grid"
-        data-i18n-aria="components.overview.galleryAria"
-        aria-label={en["components.overview.galleryAria"]}
-      >
-        {items.map(({ src, title, htmlAlt, href }) =>
-          href ? (
-            <a class="comp-card comp-card--link" href={href}>
-              <figure class="comp-card__figure">
-                <div class="comp-card__media">
-                  <img
-                    class="comp-card__img"
-                    src={src}
-                    loading="lazy"
-                    decoding="async"
-                    alt={htmlAlt}
-                  />
-                </div>
-                <figcaption class="comp-card__caption">
-                  <span class="comp-card__title">{title}</span>
-                </figcaption>
-              </figure>
-            </a>
-          ) : (
-            <figure class="comp-card comp-card--static">
-              <div class="comp-card__media">
-                <img class="comp-card__img" src={src} loading="lazy" decoding="async" alt={htmlAlt} />
+  <div id="components-overview-root">
+    <header class="page-head">
+      <h1 data-i18n="components.overview.h1">Components</h1>
+      <div class="components-head-row">
+        <p class="intro" data-i18n="components.intro">
+          Reference implementations and usage notes live in the web reference app. This section tracks what is
+          documented as the library grows.
+        </p>
+        {
+          items.length > 0 ? (
+            <fieldset class="view-segmented">
+              <legend class="view-segmented__legend">
+                <span data-i18n="components.overview.sortLegend">Organize component previews</span>
+              </legend>
+              <div class="view-segmented__inner">
+                <input
+                  class="view-segmented__input"
+                  type="radio"
+                  name="components-overview-sort"
+                  id="components-overview-view-alphabetical"
+                  value="alphabetical"
+                  checked
+                />
+                <label class="view-segmented__label" for="components-overview-view-alphabetical">
+                  <svg
+                    class="view-segmented__icon view-segmented__icon--stroke"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 48 48"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M36 4V43.5"
+                      stroke="currentColor"
+                      stroke-width="4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                    <path
+                      d="M7 28H23L7 44H23"
+                      stroke="currentColor"
+                      stroke-width="4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                    <path
+                      d="M7 20L15.2759 4L23 20"
+                      stroke="currentColor"
+                      stroke-width="4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                    <path
+                      d="M44 36L36 44L28 36"
+                      stroke="currentColor"
+                      stroke-width="4"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                  </svg>
+                  <span data-i18n="components.overview.sortAlphabetical">Alphabetical</span>
+                </label>
+                <input
+                  class="view-segmented__input"
+                  type="radio"
+                  name="components-overview-sort"
+                  id="components-overview-view-category"
+                  value="category"
+                />
+                <label class="view-segmented__label" for="components-overview-view-category">
+                  <svg
+                    class="view-segmented__icon view-segmented__icon--stroke"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 192 192"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <circle
+                      cx="60"
+                      cy="60"
+                      r="25"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-miterlimit="10"
+                      stroke-width="12"></circle>
+                    <circle
+                      cx="132"
+                      cy="132"
+                      r="25"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-miterlimit="10"
+                      stroke-width="12"></circle>
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linejoin="round"
+                      stroke-width="12"
+                      d="M35 107h50v50H35zm97-68.651-25 43.302h50l-25-43.302z"></path>
+                  </svg>
+                  <span data-i18n="components.overview.sortCategory">Category</span>
+                </label>
               </div>
-              <figcaption class="comp-card__caption">
-                <span class="comp-card__title">{title}</span>
-              </figcaption>
-            </figure>
-          )
-        )}
+            </fieldset>
+          ) : null
+        }
       </div>
-    ) : null
-  }
+    </header>
 
-  <p class="note">
-    <span data-i18n="components.notePrefix">Run</span>
-    <code>npm run dev -w @prism/reference-web</code>
-    <span data-i18n="components.noteSuffix">to open the interactive gallery locally (default port 4322).</span>
-  </p>
+    {
+      items.length > 0 ? (
+        <>
+          <div class="comp-overview-panel comp-overview-panel--alphabetical">
+            <div
+              class="comp-overview-grid"
+              data-i18n-aria="components.overview.galleryAria"
+              aria-label={en["components.overview.galleryAria"]}
+            >
+              {items.map(({ src, title, htmlAlt, href }) =>
+                href ? (
+                  <a class="comp-card comp-card--link" href={href}>
+                    <figure class="comp-card__figure">
+                      <div class="comp-card__media">
+                        <img
+                          class="comp-card__img"
+                          src={src}
+                          loading="lazy"
+                          decoding="async"
+                          alt={htmlAlt}
+                        />
+                      </div>
+                      <figcaption class="comp-card__caption">
+                        <span class="comp-card__title">{title}</span>
+                      </figcaption>
+                    </figure>
+                  </a>
+                ) : (
+                  <figure class="comp-card comp-card--static">
+                    <div class="comp-card__media">
+                      <img class="comp-card__img" src={src} loading="lazy" decoding="async" alt={htmlAlt} />
+                    </div>
+                    <figcaption class="comp-card__caption">
+                      <span class="comp-card__title">{title}</span>
+                    </figcaption>
+                  </figure>
+                )
+              )}
+            </div>
+          </div>
+          <div class="comp-overview-panel comp-overview-panel--category">
+            {categoryGroups.map((group) => (
+              <section class="comp-overview-category" aria-labelledby={`comp-overview-cat-${group.id}`}>
+                <DocH2WithAnchor
+                  id={`comp-overview-cat-${group.id}`}
+                  class="doc-tabs__h2"
+                  rowClass="doc-h2-anchor-row--tabs"
+                  data-i18n={group.i18n}
+                >
+                  {group.fallback}
+                </DocH2WithAnchor>
+                <div
+                  class="comp-overview-grid"
+                  data-i18n-aria="components.overview.galleryAria"
+                  aria-label={en["components.overview.galleryAria"]}
+                >
+                  {group.items.map(({ src, title, htmlAlt, href }) =>
+                    href ? (
+                      <a class="comp-card comp-card--link" href={href}>
+                        <figure class="comp-card__figure">
+                          <div class="comp-card__media">
+                            <img
+                              class="comp-card__img"
+                              src={src}
+                              loading="lazy"
+                              decoding="async"
+                              alt={htmlAlt}
+                            />
+                          </div>
+                          <figcaption class="comp-card__caption">
+                            <span class="comp-card__title">{title}</span>
+                          </figcaption>
+                        </figure>
+                      </a>
+                    ) : (
+                      <figure class="comp-card comp-card--static">
+                        <div class="comp-card__media">
+                          <img
+                            class="comp-card__img"
+                            src={src}
+                            loading="lazy"
+                            decoding="async"
+                            alt={htmlAlt}
+                          />
+                        </div>
+                        <figcaption class="comp-card__caption">
+                          <span class="comp-card__title">{title}</span>
+                        </figcaption>
+                      </figure>
+                    )
+                  )}
+                </div>
+              </section>
+            ))}
+          </div>
+        </>
+      ) : null
+    }
+
+    <p class="note">
+      <span data-i18n="components.notePrefix">Run</span>
+      <code>npm run dev -w @prism/reference-web</code>
+      <span data-i18n="components.noteSuffix">to open the interactive gallery locally (default port 4322).</span>
+    </p>
+  </div>
 </ComponentsLayout>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+    var sortKey = "prism-components-overview-sort";
+    var alpha = document.getElementById("components-overview-view-alphabetical");
+    var category = document.getElementById("components-overview-view-category");
+    var root = document.getElementById("components-overview-root");
+    if (!alpha || !category || !root) return;
+
+    try {
+      var v = localStorage.getItem(sortKey);
+      if (v === "category") category.checked = true;
+      else if (v === "alphabetical") alpha.checked = true;
+    } catch (e) {}
+
+    root.addEventListener("change", function (e) {
+      var t = e.target;
+      if (!t || t.name !== "components-overview-sort") return;
+      try {
+        localStorage.setItem(sortKey, t.value);
+      } catch (e2) {}
+    });
+  });
+</script>
 
 <style>
   .page-head {
@@ -152,6 +458,171 @@ try {
     line-height: 1.08;
   }
 
+  .components-head-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--prism-space-md) var(--prism-space-xl);
+  }
+
+  .components-head-row .intro {
+    flex: 1 1 min(16rem, 100%);
+    min-width: 0;
+  }
+
+  .view-segmented {
+    margin: 0;
+    padding: 0;
+    border: none;
+    min-width: 0;
+    flex-shrink: 0;
+    align-self: flex-start;
+    margin-inline-start: auto;
+    margin-top: calc(var(--prism-space-xs) * 1.5);
+  }
+
+  @media (max-width: 46.875rem) {
+    .components-head-row {
+      flex-direction: column;
+      align-items: stretch;
+      gap: var(--prism-space-md);
+    }
+
+    .components-head-row .intro {
+      flex: none;
+    }
+
+    .view-segmented {
+      margin-inline-start: 0;
+      margin-top: 0;
+      align-self: stretch;
+      width: 100%;
+      min-width: 0;
+    }
+
+    .view-segmented__inner {
+      display: flex;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .view-segmented__label {
+      flex: 1 1 0;
+      justify-content: center;
+    }
+  }
+
+  .view-segmented__legend {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .view-segmented__inner {
+    display: inline-flex;
+    align-items: stretch;
+    box-sizing: border-box;
+    height: 2.375rem;
+    min-height: 2.375rem;
+    padding: 2px;
+    gap: 2px;
+    border-radius: 9999px;
+    background: color-mix(in srgb, var(--prism-color-text-primary) 5%, transparent);
+    border: 1px solid var(--prism-color-border-subtle);
+  }
+
+  .view-segmented__input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .view-segmented__label {
+    display: inline-flex;
+    align-items: center;
+    align-self: stretch;
+    gap: 0.35rem;
+    padding: 0 1.125rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    color: #0b0d12;
+    border-radius: 9999px;
+    cursor: pointer;
+    user-select: none;
+    transition:
+      background-color 0.15s ease,
+      color 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+
+  :global([data-theme="dark"]) .view-segmented__label {
+    color: var(--prism-color-text-secondary);
+  }
+
+  .view-segmented__input:checked + .view-segmented__label {
+    background: var(--prism-color-text-primary);
+    color: var(--prism-color-text-inverse);
+    box-shadow: var(--prism-shadow-sm);
+  }
+
+  :global([data-theme="dark"]) .view-segmented__input:checked + .view-segmented__label {
+    background: var(--prism-color-text-inverse);
+    color: var(--prism-color-text-primary);
+  }
+
+  .view-segmented__label:hover {
+    color: var(--prism-color-text-primary);
+  }
+
+  .view-segmented__input:checked + .view-segmented__label:hover {
+    color: var(--prism-color-text-inverse);
+  }
+
+  :global([data-theme="dark"]) .view-segmented__input:checked + .view-segmented__label:hover {
+    color: var(--prism-color-text-primary);
+  }
+
+  .view-segmented__input:focus-visible + .view-segmented__label {
+    outline: 2px solid color-mix(in srgb, var(--prism-color-accent-strong) 45%, transparent);
+    outline-offset: 2px;
+  }
+
+  .view-segmented__icon {
+    flex-shrink: 0;
+    opacity: 0.88;
+  }
+
+  .view-segmented__icon--stroke {
+    display: block;
+  }
+
+  .view-segmented__input:checked + .view-segmented__label .view-segmented__icon {
+    opacity: 1;
+  }
+
+  #components-overview-root:has(#components-overview-view-alphabetical:checked) .comp-overview-panel--category {
+    display: none;
+  }
+
+  #components-overview-root:has(#components-overview-view-category:checked) .comp-overview-panel--alphabetical {
+    display: none;
+  }
+
   .intro {
     margin: 0;
     color: var(--prism-color-text-secondary);
@@ -159,12 +630,41 @@ try {
     font-size: 1.0625rem;
   }
 
+  .comp-overview-panel--category {
+    margin: var(--prism-space-3xl) 0 var(--prism-space-2xl);
+  }
+
+  .comp-overview-category {
+    margin: 0 0 var(--prism-space-3xl);
+  }
+
+  .comp-overview-category:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Match component doc tab H2s: global `doc-h2-anchor-heading` supplies 36px (doc-h2-anchor.css). */
+  .comp-overview-category :global(.doc-h2-anchor-row--tabs .doc-tabs__h2) {
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    color: var(--prism-color-text-primary);
+  }
+
+  .comp-overview-category :global(.doc-h2-anchor-row) {
+    overflow: visible;
+  }
+
   .comp-overview-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--prism-space-xl);
-    margin: var(--prism-space-3xl) 0 var(--prism-space-2xl);
+    margin: 0;
     align-items: start;
+  }
+
+  .comp-overview-panel--alphabetical .comp-overview-grid {
+    margin: var(--prism-space-3xl) 0 var(--prism-space-2xl);
   }
 
   @media (max-width: 46.875rem) {
