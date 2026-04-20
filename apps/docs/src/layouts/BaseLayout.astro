@@ -1807,7 +1807,7 @@ const pageShell = normPath === "/" ? "home" : "inner";
     background-color: currentColor;
     pointer-events: none;
     transform: translateX(-50%) scaleX(0);
-    transform-origin: right center;
+    transform-origin: left center;
     opacity: 0;
     transition:
       transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
@@ -1984,9 +1984,10 @@ const pageShell = normPath === "/" ? "home" : "inner";
 
     /*
       Scrolled pill: #nav-toggle stays in the centered header while the sheet is viewport-right.
-      Root drawer only — keep drill subnav header/back layout unchanged.
+      Same placement in drill subviews so the morphing close control does not jump when a
+      nested section (e.g. Components) opens.
     */
-    .top.is-scrolled.is-nav-open:not(:has(#site-nav.is-nav-drill-sub))::after {
+    .top.is-scrolled.is-nav-open::after {
       content: "";
       flex: 0 0 2.375rem;
       width: 2.375rem;
@@ -1995,7 +1996,7 @@ const pageShell = normPath === "/" ? "home" : "inner";
       pointer-events: none;
     }
 
-    .top.is-scrolled.is-nav-open #site-nav:not(.is-nav-drill-sub) ~ #nav-toggle {
+    .top.is-scrolled.is-nav-open > #nav-toggle {
       position: fixed;
       z-index: 120;
       top: calc(
@@ -2251,17 +2252,14 @@ const pageShell = normPath === "/" ? "home" : "inner";
 
     .nav button.nav-drawer-parent {
       display: grid;
-      grid-template-columns: var(--prism-space-lg) minmax(0, 1fr);
-      column-gap: 0;
+      grid-template-columns: auto minmax(0, 1fr);
+      column-gap: var(--prism-space-sm);
       align-items: center;
       width: 100%;
       box-sizing: border-box;
       margin: 0;
-      /*
-        Col 1 = same width as .nav a horizontal padding: chevron aligns with subnav pill left edge.
-        Col 2 = title starts where Mission / other sub link text starts (after that padding).
-      */
-      padding: var(--prism-space-md) var(--prism-space-lg) var(--prism-space-md) 0;
+      /* Match .nav a horizontal padding so back chevron and title align with subnav link text */
+      padding: var(--prism-space-md) var(--prism-space-lg);
       border: 0;
       border-radius: var(--prism-radius-md);
       background-color: transparent;
@@ -2280,12 +2278,6 @@ const pageShell = normPath === "/" ? "home" : "inner";
       color: var(--prism-color-accent-strong);
     }
 
-    .nav button.nav-drawer-parent:hover .nav-drawer-parent-chevron,
-    .nav button.nav-drawer-parent:focus-visible .nav-drawer-parent-chevron {
-      color: var(--prism-color-accent-strong);
-      opacity: 1;
-    }
-
     .nav button.nav-drawer-parent:focus-visible {
       outline: 2px solid color-mix(in srgb, var(--prism-color-accent-strong) 45%, transparent);
       outline-offset: 2px;
@@ -2297,9 +2289,7 @@ const pageShell = normPath === "/" ? "home" : "inner";
       justify-content: flex-start;
       justify-self: start;
       width: 1.3125rem;
-      margin-inline-start: calc(-1 * var(--prism-space-sm));
-      color: var(--prism-color-text-secondary);
-      opacity: 0.88;
+      margin-inline-start: calc(-1 * var(--prism-space-xs));
     }
 
     .nav-drawer-parent-chevron-svg {

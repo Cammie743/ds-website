@@ -37,7 +37,7 @@
   },
   "font": {
     "sans": "'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif",
-    "mono": "'Inter', ui-monospace, monospace"
+    "mono": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace"
   },
   "shadow": {
     "sm": "0 1px 3px rgba(15, 23, 42, 0.04)",

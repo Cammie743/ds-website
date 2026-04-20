@@ -52,11 +52,52 @@ const sub = (suffix: string) => `${id}-sub-${suffix}`;
           <a class="blog-anchor-nav__link" href={`#${section("icons")}`} data-i18n="blog.update.1.section.icons">
             Icon updates
           </a>
+          <ul class="blog-anchor-nav__sublist">
+            <li>
+              <a class="blog-anchor-nav__link blog-anchor-nav__link--nested" href={`#${sub("icons-office")}`} data-i18n="blog.update.1.sub.icons.office">
+                Office icons
+              </a>
+            </li>
+            <li>
+              <a class="blog-anchor-nav__link blog-anchor-nav__link--nested" href={`#${sub("icons-deprecated")}`} data-i18n="blog.update.1.sub.icons.deprecated">
+                Deprecated icons
+              </a>
+            </li>
+            <li>
+              <a
+                class="blog-anchor-nav__link blog-anchor-nav__link--nested"
+                href={`#${sub("icons-file-types-updated")}`}
+                data-i18n="blog.update.1.sub.icons.fileTypesUpdated"
+              >
+                Updated file type icons
+              </a>
+            </li>
+          </ul>
         </li>
         <li>
           <a class="blog-anchor-nav__link" href={`#${section("tokens")}`} data-i18n="blog.update.1.section.tokens">
-            Token updates
+            Color updates
           </a>
+          <ul class="blog-anchor-nav__sublist">
+            <li>
+              <a
+                class="blog-anchor-nav__link blog-anchor-nav__link--nested"
+                href={`#${sub("tokens-spreadsheet")}`}
+                data-i18n="blog.update.1.sub.tokens.spreadsheet"
+              >
+                Spreadsheet file type
+              </a>
+            </li>
+            <li>
+              <a
+                class="blog-anchor-nav__link blog-anchor-nav__link--nested"
+                href={`#${sub("tokens-new-file-types")}`}
+                data-i18n="blog.update.1.sub.tokens.newFileTypes"
+              >
+                New file types
+              </a>
+            </li>
+          </ul>
         </li>
       </ul>
     ) : (
@@ -74,11 +115,18 @@ const sub = (suffix: string) => `${id}-sub-${suffix}`;
 <style>
   .blog-anchor-nav {
     margin: 0;
+    /* 2px rail + 2px active thumb (same width, blue paints over grey). */
+    --blog-anchor-track-w: 2px;
+    --blog-anchor-blue-w: 2px;
+    /* Track (2px) + 4px gap before link rows. */
+    --blog-anchor-rail-pl: 6px;
   }
 
   .blog-anchor-nav__label {
     margin: 0 0 var(--prism-space-sm);
-    padding-inline: var(--prism-space-md);
+    /* Match first-line inset of .blog-anchor-nav__link text (list rail + link horizontal padding). */
+    padding-left: calc(var(--blog-anchor-rail-pl) + 10px);
+    padding-right: var(--prism-space-md);
     font-size: 0.8125rem;
     font-weight: 600;
     letter-spacing: -0.012em;
@@ -90,24 +138,47 @@ const sub = (suffix: string) => `${id}-sub-${suffix}`;
   .blog-anchor-nav__sublist {
     list-style: none;
     margin: 0;
-    padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+  }
+
+  .blog-anchor-nav__list {
+    position: relative;
+    z-index: 0;
+    overflow: visible;
+    padding-left: var(--blog-anchor-rail-pl);
+    border-left: none;
+    gap: 0px;
+  }
+
+  /* Full-height rounded grey rail (replaces the old 1px border). */
+  .blog-anchor-nav__list::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: var(--blog-anchor-track-w);
+    border-radius: 9999px;
+    background: color-mix(in srgb, var(--prism-color-border-subtle) 72%, var(--prism-color-surface));
+    pointer-events: none;
   }
 
   .blog-anchor-nav__sublist {
+    gap: 2px;
     margin-top: 2px;
     margin-bottom: var(--prism-space-xs);
     padding-left: var(--prism-space-md);
-    border-left: 1px solid color-mix(in srgb, var(--prism-color-border-subtle) 75%, transparent);
   }
 
   .blog-anchor-nav__link {
+    position: relative;
+    z-index: 1;
     display: block;
     box-sizing: border-box;
     width: 100%;
-    padding: var(--prism-space-sm) var(--prism-space-md);
+    padding: 6px 10px;
     font-size: 0.875rem;
     font-weight: 500;
     letter-spacing: -0.012em;
@@ -136,4 +207,102 @@ const sub = (suffix: string) => `${id}-sub-${suffix}`;
     outline: 2px solid color-mix(in srgb, var(--prism-color-accent-strong) 45%, transparent);
     outline-offset: 2px;
   }
+
+  /*
+   * Blue thumb centered on the grey rail; vertical inset = link padding so height matches the
+   * text block (wrapped lines included), not the full padded row.
+   */
+  .blog-anchor-nav__link.is-active::before {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    top: 6px;
+    bottom: 6px;
+    left: calc(
+      var(--blog-anchor-track-w) / 2 - var(--blog-anchor-blue-w) / 2 - var(--blog-anchor-rail-pl)
+    );
+    width: var(--blog-anchor-blue-w);
+    border-radius: 9999px;
+    background: var(--prism-color-accent-strong);
+    pointer-events: none;
+  }
+
+  .blog-anchor-nav__link--nested.is-active::before {
+    left: calc(
+      var(--blog-anchor-track-w) / 2 - var(--blog-anchor-blue-w) / 2 - var(--blog-anchor-rail-pl) - 10px
+    );
+  }
 </style>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+    var aside = document.querySelector(".blog-anchor-aside");
+    var nav = aside && aside.querySelector(".blog-anchor-nav");
+    if (!nav) return;
+
+    var links = nav.querySelectorAll('a.blog-anchor-nav__link[href^="#"]');
+    if (!links.length) return;
+
+    var ids = [];
+    for (var i = 0; i < links.length; i++) {
+      var href = links[i].getAttribute("href");
+      if (!href || href.length < 2) continue;
+      ids.push(href.slice(1));
+    }
+    if (!ids.length) return;
+
+    function scrollSpyTriggerY() {
+      var article = document.querySelector(".blog-article--full");
+      var probe =
+        article &&
+        (article.querySelector(".blog-article__title") ||
+          article.querySelector(".blog-article__section-title") ||
+          article.querySelector(".blog-article__subsection-title"));
+      var fallback =
+        parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--site-header-sticky-anchor")) || 72;
+      fallback += 24;
+      if (!probe) return fallback;
+      var sm = parseFloat(getComputedStyle(probe).scrollMarginTop);
+      return (isNaN(sm) ? fallback : sm) + 2;
+    }
+
+    function syncActive() {
+      var triggerY = scrollSpyTriggerY();
+      var activeId = ids[0];
+      for (var j = 0; j < ids.length; j++) {
+        var el = document.getElementById(ids[j]);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= triggerY) activeId = ids[j];
+      }
+      for (var k = 0; k < links.length; k++) {
+        var link = links[k];
+        var hid = link.getAttribute("href");
+        if (!hid || hid.length < 2) continue;
+        var id = hid.slice(1);
+        if (id === activeId) {
+          link.classList.add("is-active");
+          link.setAttribute("aria-current", "location");
+        } else {
+          link.classList.remove("is-active");
+          link.removeAttribute("aria-current");
+        }
+      }
+    }
+
+    var ticking = false;
+    function onScrollOrResize() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        ticking = false;
+        syncActive();
+      });
+    }
+
+    syncActive();
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
+    window.addEventListener("hashchange", syncActive);
+    window.addEventListener("load", syncActive);
+  });
+</script>

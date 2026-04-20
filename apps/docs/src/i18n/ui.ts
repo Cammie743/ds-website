@@ -279,7 +279,6 @@ export const uiStrings = {
     "blog.articleNav.aria": "Adjacent updates",
     "blog.articleNav.previous": "Previous",
     "blog.articleNav.next": "Next",
-    "blog.readFullArticle": "Read full article",
     "blog.articleAnchors.heading": "On this page",
     "blog.articleAnchors.asideAria": "In this article",
     "blog.update.postedBy": "Posted by",
@@ -289,7 +288,7 @@ export const uiStrings = {
       "Decorative hero: soft blue and teal gradient background with no text or UI.",
     "blog.update.1.section.components": "Component updates",
     "blog.update.1.section.icons": "Icon updates",
-    "blog.update.1.section.tokens": "Token updates",
+    "blog.update.1.section.tokens": "Color updates",
     "blog.update.1.p.comp.intro":
       "The following components have been updated in this month's weekly releases.",
     "blog.update.1.comp.imgAlt.button":
@@ -305,14 +304,58 @@ export const uiStrings = {
     "blog.update.1.sub.comp.button": "Secondary basic button",
     "blog.update.1.sub.comp.mediaPlayer": "Media player",
     "blog.update.1.sub.comp.pagination": "Pagination",
+    "blog.update.1.sub.tokens.spreadsheet": "Spreadsheet file type",
+    "blog.update.1.sub.tokens.newFileTypes": "New file types",
     "blog.update.1.p.comp.button":
       "We kept the current Secondary Default button light blue and introduced a new Secondary Neutral option as a half step down. This update gives teams a secondary button that better matches other grey secondary buttons when that is the better fit for the layout, while still preserving the blue Secondary Default button as a stronger alternative to the primary button.",
     "blog.update.1.p.comp.mediaPlayer":
       "Media player has been updated to improve visibility across light and dark media backgrounds. Disabled states could previously become hard to see on lighter content, so the control bar now uses a stronger transparent dark background with 8px blur, and disabled buttons use a more visible transparent fill treatment.",
     "blog.update.1.p.comp.pagination":
       "Improved pagination by fixing layout shifts from dynamic slots. Added an additional slot and locked the total slot count, keeping chevrons in a fixed position and reducing accidentally clicking the last page.",
-    "blog.update.1.p.icons": "Coming soon",
-    "blog.update.1.p.tokens": "Coming soon",
+    "blog.update.1.sub.icons.office": "Office icons",
+    "blog.update.1.p.icons.office":
+      "We introduced a new set of icons for the new Zoom AI products and more.",
+    "blog.update.1.icons.office.imgAlt":
+      "Five rounded-square office file-type icons in a row on a light dotted grid: classic doc, AI docs, AI slides, AI sheets, and AI data tables.",
+    "blog.update.1.icons.office.caption.1": "Classic doc",
+    "blog.update.1.icons.office.caption.2": "AI docs",
+    "blog.update.1.icons.office.caption.3": "AI slides",
+    "blog.update.1.icons.office.caption.4": "AI sheets",
+    "blog.update.1.icons.office.caption.5": "AI data tables",
+    "blog.update.1.sub.icons.deprecated": "Deprecated icons",
+    "blog.update.1.p.icons.deprecated.intro": "The following icons have been deprecated and replaced:",
+    "blog.update.1.icons.deprecated.paper": "Paper → Classic doc",
+    "blog.update.1.icons.deprecated.docs": "Docs → AI docs",
+    "blog.update.1.icons.deprecated.present": "Present → AI slides",
+    "blog.update.1.icons.deprecated.sheet": "Sheet → AI sheets",
+    "blog.update.1.sub.icons.fileTypesUpdated": "Updated file type icons",
+    "blog.update.1.p.icons.fileTypesUpdated": "We refreshed the file type icons for XLS, PPT, and DOC.",
+    "blog.update.1.icons.fileTypesUpdated.imgAlt":
+      "Three pairs of rounded file-type icons on a dotted grid: XLS, PPT, and DOC. Each pair shows the previous extension-label tile and the updated tile with a large initial plus a small chart or document glyph.",
+    "blog.update.1.p.tokens.lead": "We updated the ",
+    "blog.update.1.p.tokens.tail": " token to a brighter green.",
+    "blog.update.1.tokens.affectedIconsLabel": "These icons use the new updated color:",
+    "blog.update.1.tokens.affectedIcons.xls": "XLS",
+    "blog.update.1.tokens.affectedIcons.spreadsheet": "Spreadsheet",
+    "blog.update.1.tokens.affectedIcons.aiSheets": "AI sheets",
+    "blog.update.1.tokens.affectedIcons.aiDataTables": "AI data tables",
+    "blog.update.1.tokens.compareAria": "Original and updated library token tile",
+    "blog.update.1.tokens.imgAlt.original":
+      "Original library token tile: teal SIM-style icon centered on a white background with a light grey dotted grid.",
+    "blog.update.1.tokens.imgAlt.updated":
+      "Updated library token tile: vibrant green SIM-style icon with white chip pads in a 2x2 grid, centered on white with a light grey dotted grid.",
+    "blog.update.1.tokens.caption.original": "Original",
+    "blog.update.1.tokens.caption.updated": "Updated",
+    "blog.update.1.tokens.newFile.captionLead": "New token:",
+    "blog.update.1.tokens.newFile.affectedIconsColon": "Affected icons:",
+    "blog.update.1.tokens.newFile.docsAffected.classicDoc": "Classic doc",
+    "blog.update.1.tokens.newFile.docsAffected.doc": "Doc",
+    "blog.update.1.tokens.newFile.slidesAffected.aiSlides": "AI Slides",
+    "blog.update.1.tokens.newFileTypesCompareAria": "New docs and slides library file-type tiles",
+    "blog.update.1.tokens.imgAlt.docs":
+      "New library file-type tile for docs: blue rounded square with a white document and image glyph on a white dotted grid.",
+    "blog.update.1.tokens.imgAlt.slides":
+      "New library file-type tile for slides: magenta rounded square with a white pie chart on a light grey dotted grid.",
     "blog.update.2.body":
       "We reorganized the home page and global navigation so teams can reach foundations, components, and bilingual guidance in fewer clicks. Sticky patterns and drawer behavior were tuned for small viewports, and the IA now mirrors how designers and engineers talk about the system day to day.",
     "blog.update.3.body":
@@ -728,7 +771,6 @@ export const uiStrings = {
     "blog.articleNav.aria": "相邻更新",
     "blog.articleNav.previous": "较新一篇",
     "blog.articleNav.next": "较早一篇",
-    "blog.readFullArticle": "阅读全文",
     "blog.articleAnchors.heading": "本页目录",
     "blog.articleAnchors.asideAria": "本文目录",
     "blog.update.postedBy": "发布者",
@@ -736,7 +778,7 @@ export const uiStrings = {
     "blog.update.1.heroAlt": "装饰性头图：柔和的蓝绿色渐变背景，无文字或界面元素。",
     "blog.update.1.section.components": "组件更新",
     "blog.update.1.section.icons": "图标更新",
-    "blog.update.1.section.tokens": "令牌更新",
+    "blog.update.1.section.tokens": "颜色更新",
     "blog.update.1.p.comp.intro":
       "以下组件已在当月的每周发布中更新。下文逐项说明变更内容。",
     "blog.update.1.comp.imgAlt.button":
@@ -751,14 +793,57 @@ export const uiStrings = {
     "blog.update.1.sub.comp.button": "次要基础按钮",
     "blog.update.1.sub.comp.mediaPlayer": "媒体播放器",
     "blog.update.1.sub.comp.pagination": "分页",
+    "blog.update.1.sub.tokens.spreadsheet": "电子表格文件类型",
+    "blog.update.1.sub.tokens.newFileTypes": "新文件类型",
     "blog.update.1.p.comp.button":
       "我们保留当前的次要默认（Secondary Default）按钮为浅蓝色，并新增次要中性（Secondary Neutral）作为降半档的选择。此次更新让团队在更适合的布局里能使用与其他灰色次要按钮更一致的次要按钮，同时仍保留蓝色的次要默认按钮，作为相对主按钮更强的一档。",
     "blog.update.1.p.comp.mediaPlayer":
       "媒体播放器已更新，以在亮暗媒体背景下都更易辨认。此前在偏亮内容上禁用态不易看清，因此控制条现采用更强的透明深色背景并配合 8px 模糊，禁用按钮也改为更醒目的透明填充处理。",
     "blog.update.1.p.comp.pagination":
       "分页体验改进：修复动态插槽带来的布局跳动；新增一个插槽并锁定插槽总数，使左右箭头位置保持稳定，并降低误点最后一页的概率。",
-    "blog.update.1.p.icons": "即将推出",
-    "blog.update.1.p.tokens": "即将推出",
+    "blog.update.1.sub.icons.office": "办公图标",
+    "blog.update.1.p.icons.office": "我们为全新的 Zoom AI 等产品引入了一套新图标。",
+    "blog.update.1.icons.office.imgAlt":
+      "浅灰色点阵背景上横向排列的五个圆角方块办公文件类型图标：经典文档、AI 文档、AI 幻灯片、AI 表格与 AI 数据表。",
+    "blog.update.1.icons.office.caption.1": "经典文档",
+    "blog.update.1.icons.office.caption.2": "AI 文档",
+    "blog.update.1.icons.office.caption.3": "AI 幻灯片",
+    "blog.update.1.icons.office.caption.4": "AI 表格",
+    "blog.update.1.icons.office.caption.5": "AI 数据表",
+    "blog.update.1.sub.icons.deprecated": "已弃用图标",
+    "blog.update.1.p.icons.deprecated.intro": "下列图标已弃用，并由以下新图标替代：",
+    "blog.update.1.icons.deprecated.paper": "纸张 → 经典文档",
+    "blog.update.1.icons.deprecated.docs": "文档 → AI 文档",
+    "blog.update.1.icons.deprecated.present": "演示 → AI 幻灯片",
+    "blog.update.1.icons.deprecated.sheet": "表格 → AI 表格",
+    "blog.update.1.sub.icons.fileTypesUpdated": "已更新的文件类型图标",
+    "blog.update.1.p.icons.fileTypesUpdated": "我们刷新了 XLS、PPT 与 DOC 的文件类型图标。",
+    "blog.update.1.icons.fileTypesUpdated.imgAlt":
+      "浅灰色点阵背景上的三对圆角文件类型图标：XLS、PPT 与 DOC。每对依次为带扩展名标签的旧版图块，以及带大号首字母与小号图表或文档符号的新版图块。",
+    "blog.update.1.p.tokens.lead": "已将",
+    "blog.update.1.p.tokens.tail": " 令牌更新为更鲜亮的绿色。",
+    "blog.update.1.tokens.affectedIconsLabel": "这些图标使用更新后的新颜色：",
+    "blog.update.1.tokens.affectedIcons.xls": "XLS",
+    "blog.update.1.tokens.affectedIcons.spreadsheet": "电子表格",
+    "blog.update.1.tokens.affectedIcons.aiSheets": "AI 表格",
+    "blog.update.1.tokens.affectedIcons.aiDataTables": "AI 数据表",
+    "blog.update.1.tokens.compareAria": "原始与更新后的库令牌图块",
+    "blog.update.1.tokens.imgAlt.original":
+      "原始库令牌图块：青绿色 SIM 风格图标居中，置于白色底与浅灰色点阵上。",
+    "blog.update.1.tokens.imgAlt.updated":
+      "更新后的库令牌图块：鲜绿色 SIM 风格图标，中央为白色 2×2 触点图案，置于白色底与浅灰色点阵上。",
+    "blog.update.1.tokens.caption.original": "原始",
+    "blog.update.1.tokens.caption.updated": "更新后",
+    "blog.update.1.tokens.newFile.captionLead": "新令牌：",
+    "blog.update.1.tokens.newFile.affectedIconsColon": "受影响的图标：",
+    "blog.update.1.tokens.newFile.docsAffected.classicDoc": "经典文档",
+    "blog.update.1.tokens.newFile.docsAffected.doc": "文档",
+    "blog.update.1.tokens.newFile.slidesAffected.aiSlides": "AI 幻灯片",
+    "blog.update.1.tokens.newFileTypesCompareAria": "新增的文档与幻灯片库文件类型图块",
+    "blog.update.1.tokens.imgAlt.docs":
+      "新增的文档库文件类型图块：蓝色圆角方块，白色文档与图片符号，置于白色点阵背景上。",
+    "blog.update.1.tokens.imgAlt.slides":
+      "新增的幻灯片库文件类型图块：洋红色圆角方块，白色饼图，置于浅灰色点阵背景上。",
     "blog.update.2.body":
       "我们重新梳理首页与全局导航，让团队更快找到基础、组件与双语文档。针对小屏优化了吸顶与抽屉交互，信息架构也与设计与工程师的日常表述更一致。",
     "blog.update.3.body":

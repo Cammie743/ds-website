@@ -87,31 +87,6 @@ const updateHeroImageHeight = n === 1 ? 601 : mode === "teaser" ? 440 : 360;
               Author
             </span>
           </div>
-          <span class="blog-article__read-more">
-            <span class="blog-article__read-more__label" data-i18n="blog.readFullArticle">Read full article</span>
-            <span class="blog-article__read-more__arrow" aria-hidden="true">
-              <svg
-                class="blog-article__read-more__arrow-icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <path
-                  d="M7 7h10v10"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-                <path
-                  d="M7 17 17 7"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-              </svg>
-            </span>
-          </span>
         </div>
         <figure class="blog-article__figure">
           <img
@@ -298,16 +273,239 @@ const updateHeroImageHeight = n === 1 ? 601 : mode === "teaser" ? 440 : 360;
             >
               Icon updates
             </DocH2WithAnchor>
-            <p data-i18n="blog.update.1.p.icons">Coming soon</p>
+            <div class="blog-article__subsection">
+              <h4 id={`${id}-sub-icons-office`} class="blog-article__subsection-title" data-i18n="blog.update.1.sub.icons.office">
+                Office icons
+              </h4>
+              <p data-i18n="blog.update.1.p.icons.office">
+                We introduced a new set of icons for the new Zoom AI products and more.
+              </p>
+              <figure class="blog-article__inline-figure">
+                <img
+                  class="blog-article__img"
+                  src="/images/updates/update-1-office-icons.png"
+                  width="1024"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                  alt=""
+                  data-i18n-alt="blog.update.1.icons.office.imgAlt"
+                />
+                <figcaption class="blog-article__inline-caption blog-article__inline-caption--stack">
+                  <div class="blog-article__inline-caption-row">
+                    <span class="blog-article__inline-caption__badge" aria-hidden="true">
+                      <span class="blog-article__inline-caption__badge-num">1</span>
+                    </span>
+                    <span class="blog-article__inline-caption__text" data-i18n="blog.update.1.icons.office.caption.1">
+                      Classic doc
+                    </span>
+                  </div>
+                  <div class="blog-article__inline-caption-row">
+                    <span class="blog-article__inline-caption__badge" aria-hidden="true">
+                      <span class="blog-article__inline-caption__badge-num">2</span>
+                    </span>
+                    <span class="blog-article__inline-caption__text" data-i18n="blog.update.1.icons.office.caption.2">
+                      AI docs
+                    </span>
+                  </div>
+                  <div class="blog-article__inline-caption-row">
+                    <span class="blog-article__inline-caption__badge" aria-hidden="true">
+                      <span class="blog-article__inline-caption__badge-num">3</span>
+                    </span>
+                    <span class="blog-article__inline-caption__text" data-i18n="blog.update.1.icons.office.caption.3">
+                      AI slides
+                    </span>
+                  </div>
+                  <div class="blog-article__inline-caption-row">
+                    <span class="blog-article__inline-caption__badge" aria-hidden="true">
+                      <span class="blog-article__inline-caption__badge-num">4</span>
+                    </span>
+                    <span class="blog-article__inline-caption__text" data-i18n="blog.update.1.icons.office.caption.4">
+                      AI sheets
+                    </span>
+                  </div>
+                  <div class="blog-article__inline-caption-row">
+                    <span class="blog-article__inline-caption__badge" aria-hidden="true">
+                      <span class="blog-article__inline-caption__badge-num">5</span>
+                    </span>
+                    <span class="blog-article__inline-caption__text" data-i18n="blog.update.1.icons.office.caption.5">
+                      AI data tables
+                    </span>
+                  </div>
+                </figcaption>
+              </figure>
+            </div>
+            <div class="blog-article__subsection">
+              <h4 id={`${id}-sub-icons-deprecated`} class="blog-article__subsection-title" data-i18n="blog.update.1.sub.icons.deprecated">
+                Deprecated icons
+              </h4>
+              <p class="blog-article__affected-icons-label" data-i18n="blog.update.1.p.icons.deprecated.intro">
+                The following icons have been deprecated and replaced:
+              </p>
+              <ul class="blog-article__affected-icons-list">
+                <li data-i18n="blog.update.1.icons.deprecated.paper">Paper → Classic doc</li>
+                <li data-i18n="blog.update.1.icons.deprecated.docs">Docs → AI docs</li>
+                <li data-i18n="blog.update.1.icons.deprecated.present">Present → AI slides</li>
+                <li data-i18n="blog.update.1.icons.deprecated.sheet">Sheet → AI sheets</li>
+              </ul>
+            </div>
+            <div class="blog-article__subsection">
+              <h4 id={`${id}-sub-icons-file-types-updated`} class="blog-article__subsection-title" data-i18n="blog.update.1.sub.icons.fileTypesUpdated">
+                Updated file type icons
+              </h4>
+              <p data-i18n="blog.update.1.p.icons.fileTypesUpdated">
+                We refreshed the file type icons for XLS, PPT, and DOC.
+              </p>
+              <figure class="blog-article__inline-figure">
+                <img
+                  class="blog-article__img"
+                  src="/images/updates/update-1-file-type-icons-xls-ppt-doc.png"
+                  width="1024"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                  alt=""
+                  data-i18n-alt="blog.update.1.icons.fileTypesUpdated.imgAlt"
+                />
+              </figure>
+            </div>
             <DocH2WithAnchor
               id={`${id}-section-tokens`}
               class="doc-tabs__h2 blog-article__section-title"
               rowClass="doc-h2-anchor-row--tabs"
               data-i18n="blog.update.1.section.tokens"
             >
-              Token updates
+              Color updates
             </DocH2WithAnchor>
-            <p data-i18n="blog.update.1.p.tokens">Coming soon</p>
+            <div class="blog-article__subsection">
+              <h4
+                id={`${id}-sub-tokens-spreadsheet`}
+                class="blog-article__subsection-title"
+                data-i18n="blog.update.1.sub.tokens.spreadsheet"
+              >
+                Spreadsheet file type
+              </h4>
+              <p class="blog-article__token-lede">
+                <span data-i18n="blog.update.1.p.tokens.lead">We updated the </span>
+                <code class="blog-article__token-path">component/icon/fileType/spreadsheet</code>
+                <span data-i18n="blog.update.1.p.tokens.tail"> token to a brighter green.</span>
+              </p>
+              <div
+                class="blog-article__compare-row"
+                role="group"
+                data-i18n-aria="blog.update.1.tokens.compareAria"
+                aria-label="Original and updated library token tile"
+              >
+                <figure class="blog-article__inline-figure blog-article__compare-cell">
+                  <img
+                    class="blog-article__img"
+                    src="/images/updates/update-1-token-original.png"
+                    width="616"
+                    height="340"
+                    loading="lazy"
+                    decoding="async"
+                    alt=""
+                    data-i18n-alt="blog.update.1.tokens.imgAlt.original"
+                  />
+                  <figcaption class="blog-article__inline-caption">
+                    <span class="blog-article__inline-caption__text" data-i18n="blog.update.1.tokens.caption.original">
+                      Original
+                    </span>
+                  </figcaption>
+                </figure>
+                <figure class="blog-article__inline-figure blog-article__compare-cell">
+                  <img
+                    class="blog-article__img"
+                    src="/images/updates/update-1-token-updated.png"
+                    width="616"
+                    height="340"
+                    loading="lazy"
+                    decoding="async"
+                    alt=""
+                    data-i18n-alt="blog.update.1.tokens.imgAlt.updated"
+                  />
+                  <figcaption class="blog-article__inline-caption">
+                    <span class="blog-article__inline-caption__text" data-i18n="blog.update.1.tokens.caption.updated">
+                      Updated
+                    </span>
+                  </figcaption>
+                </figure>
+              </div>
+              <p class="blog-article__affected-icons-label" data-i18n="blog.update.1.tokens.affectedIconsLabel">
+                These icons use the new updated color:
+              </p>
+              <ul class="blog-article__affected-icons-list">
+                <li data-i18n="blog.update.1.tokens.affectedIcons.xls">XLS</li>
+                <li data-i18n="blog.update.1.tokens.affectedIcons.spreadsheet">Spreadsheet</li>
+                <li data-i18n="blog.update.1.tokens.affectedIcons.aiSheets">AI sheets</li>
+                <li data-i18n="blog.update.1.tokens.affectedIcons.aiDataTables">AI data tables</li>
+              </ul>
+            </div>
+            <div class="blog-article__subsection">
+              <h4
+                id={`${id}-sub-tokens-new-file-types`}
+                class="blog-article__subsection-title"
+                data-i18n="blog.update.1.sub.tokens.newFileTypes"
+              >
+                New file types
+              </h4>
+              <div
+                class="blog-article__compare-row"
+                role="group"
+                data-i18n-aria="blog.update.1.tokens.newFileTypesCompareAria"
+                aria-label="New docs and slides library file-type tiles"
+              >
+                <div class="blog-article__compare-cell">
+                  <figure class="blog-article__inline-figure">
+                    <img
+                      class="blog-article__img"
+                      src="/images/updates/update-1-token-file-type-docs.png"
+                      width="616"
+                      height="340"
+                      loading="lazy"
+                      decoding="async"
+                      alt=""
+                      data-i18n-alt="blog.update.1.tokens.imgAlt.docs"
+                    />
+                    <figcaption class="blog-article__inline-caption blog-article__inline-caption--token-new">
+                      <span data-i18n="blog.update.1.tokens.newFile.captionLead">New token:</span>
+                      <code class="blog-article__token-path">component/icon/fileType/docs</code>
+                    </figcaption>
+                  </figure>
+                  <p class="blog-article__affected-icons-label" data-i18n="blog.update.1.tokens.newFile.affectedIconsColon">
+                    Affected icons:
+                  </p>
+                  <ul class="blog-article__affected-icons-list">
+                    <li data-i18n="blog.update.1.tokens.newFile.docsAffected.classicDoc">Classic doc</li>
+                    <li data-i18n="blog.update.1.tokens.newFile.docsAffected.doc">Doc</li>
+                  </ul>
+                </div>
+                <div class="blog-article__compare-cell">
+                  <figure class="blog-article__inline-figure">
+                    <img
+                      class="blog-article__img"
+                      src="/images/updates/update-1-token-file-type-slides.png"
+                      width="616"
+                      height="340"
+                      loading="lazy"
+                      decoding="async"
+                      alt=""
+                      data-i18n-alt="blog.update.1.tokens.imgAlt.slides"
+                    />
+                    <figcaption class="blog-article__inline-caption blog-article__inline-caption--token-new">
+                      <span data-i18n="blog.update.1.tokens.newFile.captionLead">New token:</span>
+                      <code class="blog-article__token-path">component/icon/fileType/slides</code>
+                    </figcaption>
+                  </figure>
+                  <p class="blog-article__affected-icons-label" data-i18n="blog.update.1.tokens.newFile.affectedIconsColon">
+                    Affected icons:
+                  </p>
+                  <ul class="blog-article__affected-icons-list">
+                    <li data-i18n="blog.update.1.tokens.newFile.slidesAffected.aiSlides">AI Slides</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         ) : (
           <div class="blog-article__sections">
