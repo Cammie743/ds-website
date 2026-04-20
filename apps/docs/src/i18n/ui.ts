@@ -76,6 +76,12 @@ export const uiStrings = {
     "home.updates.7.body":
       "A WCAG 2.2 AA-oriented checklist maps Prism components to keyboard, contrast, and assistive-tech expectations for audits.",
     "home.updates.7.alt": "Neutral gray artwork for the accessibility audit post.",
+    "home.updates.8.date": "April 20, 2026",
+    "home.updates.8.title": "Prism Library Skill for product teams",
+    "home.updates.8.body":
+      "An AI skill that packages tokens, components, and patterns so teams can ship interactive prototypes and engineering-ready deliverables fast.",
+    "home.updates.8.alt":
+      "Illustration of a yellow folder labeled Skills with white cards showing kit, components, tokens, and AI peeking out on a dark blue background.",
     "home.updates.1.authorName": "Cam Foster",
     "home.updates.1.authorAvatarAlt":
       "Stylized illustrated portrait of Cam Foster: person with glasses and an orange jacket, peace sign.",
@@ -91,6 +97,9 @@ export const uiStrings = {
     "home.updates.6.authorAvatarAlt": "Portrait of Amari Okoro",
     "home.updates.7.authorName": "Sofia Delgado",
     "home.updates.7.authorAvatarAlt": "Portrait of Sofia Delgado",
+    "home.updates.8.authorName": "Cam Foster",
+    "home.updates.8.authorAvatarAlt":
+      "Stylized illustrated portrait of Cam Foster: person with glasses and an orange jacket, peace sign.",
     "home.updates.carouselPrev": "Previous updates",
     "home.updates.carouselNext": "Next updates",
     "home.updates.carouselPrevTip": "Previous",
@@ -276,6 +285,7 @@ export const uiStrings = {
     "blog.nav.y2026": "2026",
     "blog.nav.y2025": "2025",
     "blog.backToUpdates": "Back to Latest updates",
+    "blog.backToFeatured": "Back to Featured",
     "blog.articleNav.aria": "Adjacent updates",
     "blog.articleNav.previous": "Previous",
     "blog.articleNav.next": "Next",
@@ -368,6 +378,25 @@ export const uiStrings = {
       "Teams asked for a lightweight way to understand which Prism primitives ship in each product area. The new metrics spec describes anonymous, opt-in signals—version skew, bundle coverage of tokens, and component import graphs—that partners can wire up in CI. It deliberately avoids user-level tracking and focuses on design-system health checks for staff engineers.",
     "blog.update.7.body":
       "Accessibility reviews now start from a shared checklist that ties each Prism component to WCAG 2.2 AA expectations: focus order, roles, live regions, and token-driven contrast floors. The doc links to Figma annotations and Storybook states so designers and QA can run the same pass before release.",
+    "blog.update.8.intro.eyebrow": "Introducing the first Prism skill",
+    "blog.update.8.intro.p1":
+      "We’re excited to share the first Prism skill for product teams. This is a new way to help teams move faster with Prism by giving them guided support right when you need it.",
+    "blog.update.8.section.what": "What is the Prism library skill and what can it do?",
+    "blog.update.8.what.lede":
+      "The Prism library skill is a centralized source for components, tokens, and guidance that helps teams design and build with more consistency. It makes it easier to reuse approved patterns, stay aligned to Prism standards, and connect design and development through a shared source of truth.",
+    "blog.update.8.what.listIntro": "It can help teams:",
+    "blog.update.8.what.bullet.better": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "blog.update.8.what.bullet.explore": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "blog.update.8.what.bullet.support": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "blog.update.8.what.bullet.search": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "blog.update.8.section.try": "Get started",
+    "blog.update.8.try.p1":
+      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+    "blog.update.8.try.linkMarketplace": "Zoom Skill Market",
+    "blog.update.8.try.linkSetup": "Prism library skill setup",
+    "blog.update.8.section.future": "This is just the beginning",
+    "blog.update.8.future.p1":
+      "We’re excited to learn from this launch and keep making Prism easier to use.",
     "resources.title": "Resources",
     "resources.lede": "Additional guides and references will live here.",
     "resources.overview.galleryAria": "Resource topics",
@@ -591,6 +620,12 @@ export const uiStrings = {
     "home.updates.7.title": "无障碍审计清单",
     "home.updates.7.body": "以 WCAG 2.2 AA 为导向的清单，将 Prism 组件映射到键盘、对比度与辅助技术预期，便于审计对齐。",
     "home.updates.7.alt": "无障碍审计相关的中性灰色配图。",
+    "home.updates.8.date": "2026年4月20日",
+    "home.updates.8.title": "面向产品团队的 Prism 库技能",
+    "home.updates.8.body":
+      "这是一款 AI 技能，将令牌、组件与模式打包在一起，帮助团队快速交付可交互原型与工程就绪的交付物。",
+    "home.updates.8.alt":
+      "插图：深蓝色背景上有一只标有 Skills 的黄色文件夹，露出写有工具包、组件、令牌与 AI 的白色卡片。",
     "home.updates.1.authorName": "Cam Foster",
     "home.updates.1.authorAvatarAlt":
       "Cam Foster 的风格化插画头像：戴眼镜、橙色外套、比出胜利手势。",
@@ -606,6 +641,9 @@ export const uiStrings = {
     "home.updates.6.authorAvatarAlt": "Amari Okoro 头像",
     "home.updates.7.authorName": "Sofia Delgado",
     "home.updates.7.authorAvatarAlt": "Sofia Delgado 头像",
+    "home.updates.8.authorName": "Cam Foster",
+    "home.updates.8.authorAvatarAlt":
+      "Cam Foster 的风格化插画头像：戴眼镜、橙色外套、比出胜利手势。",
     "home.updates.carouselPrev": "上一组更新",
     "home.updates.carouselNext": "下一组更新",
     "home.updates.carouselPrevTip": "上一个",
@@ -780,6 +818,7 @@ export const uiStrings = {
     "blog.nav.y2026": "2026",
     "blog.nav.y2025": "2025",
     "blog.backToUpdates": "返回最新更新",
+    "blog.backToFeatured": "返回精选",
     "blog.articleNav.aria": "相邻更新",
     "blog.articleNav.previous": "较新一篇",
     "blog.articleNav.next": "较早一篇",
@@ -868,6 +907,25 @@ export const uiStrings = {
       "许多团队希望了解各产品域中落地了哪些 Prism 原语。新的指标规范描述可选、匿名的信号——版本差异、令牌的打包覆盖，以及组件依赖图——合作伙伴可在 CI 中接入。它刻意避免用户级追踪，面向内部工程视角的设计系统健康度检查。",
     "blog.update.7.body":
       "无障碍评审现从统一清单出发，将各 Prism 组件对应到 WCAG 2.2 AA 预期：焦点顺序、角色、实时区域，以及由令牌约束的对比度底线。文档链接到 Figma 标注与 Storybook 状态，设计与 QA 可在发布前按同一套步骤自检。",
+    "blog.update.8.intro.eyebrow": "介绍首个 Prism 技能",
+    "blog.update.8.intro.p1":
+      "我们很高兴与产品团队分享首个 Prism 技能。这是一种全新方式，帮助团队更快用好 Prism，并在你需要时提供引导式支持。",
+    "blog.update.8.section.what": "什么是 Prism 库技能，它能做什么？",
+    "blog.update.8.what.lede":
+      "Prism 库技能是组件、令牌与指南的集中来源，帮助团队在设计与构建时保持更高的一致性。它让复用已获批模式、对齐 Prism 标准，以及通过统一的真实来源衔接设计与开发变得更加简单。",
+    "blog.update.8.what.listIntro": "它可以帮助团队：",
+    "blog.update.8.what.bullet.better": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "blog.update.8.what.bullet.explore": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "blog.update.8.what.bullet.support": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "blog.update.8.what.bullet.search": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "blog.update.8.section.try": "开始使用",
+    "blog.update.8.try.p1":
+      "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+    "blog.update.8.try.linkMarketplace": "Zoom 技能市场",
+    "blog.update.8.try.linkSetup": "Prism 库技能配置说明",
+    "blog.update.8.section.future": "这只是一个开始",
+    "blog.update.8.future.p1":
+      "我们很高兴从本次发布中学习，并持续让 Prism 更易用。",
     "resources.title": "资源",
     "resources.lede": "更多指南与参考将整理于此。",
     "resources.overview.galleryAria": "资源主题",

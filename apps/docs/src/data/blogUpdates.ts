@@ -1,5 +1,5 @@
 /** Stable post id (DOM / `BlogUpdateArticle` `id` prop) and legacy `/article/update/{id}` segment. Maps to i18n `home.updates.{n}.*` / `blog.update.{n}.body`. */
-export type BlogUpdateN = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+export type BlogUpdateN = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
 export const BLOG_UPDATE_SLUG_BY_N: Record<BlogUpdateN, string> = {
   1: "update-april-2026",
@@ -9,6 +9,7 @@ export const BLOG_UPDATE_SLUG_BY_N: Record<BlogUpdateN, string> = {
   5: "update-search-docs",
   6: "update-usage-metrics",
   7: "update-a11y-checklist",
+  8: "update-prism-skill-library",
 };
 
 /** Calendar year for permalink grouping (`/articles/{year}/…`), aligned with each post’s published date. */
@@ -20,6 +21,7 @@ export const BLOG_UPDATE_PUBLISHED_YEAR_BY_N: Record<BlogUpdateN, string> = {
   5: "2026",
   6: "2025",
   7: "2025",
+  8: "2026",
 };
 
 /**
@@ -64,6 +66,7 @@ export const BLOG_UPDATE_URL_SLUG_BY_N: Record<BlogUpdateNonMonthly, string> = {
   5: "search-across-documentation",
   6: "component-usage-metrics",
   7: "accessibility-audit-checklist",
+  8: "prism-skill-library",
 };
 
 export function getBlogUpdateUrlSlug(updateN: BlogUpdateN): string {

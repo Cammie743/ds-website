@@ -1,4 +1,4 @@
-/* Shared: section H2 + deep-link copy control (see DocH2WithAnchor.astro; wired in BaseLayout.astro). */
+/* Shared: section heading (H2/H3) + deep-link copy control (see DocH2WithAnchor.astro; wired in BaseLayout.astro). */
 
 /* z-index: later siblings (e.g. cards with overlays) paint after us by default; lift the row so tooltips stay on top. */
 .doc-h2-anchor-row {
@@ -18,7 +18,7 @@
   margin-right: 0;
 }
 
-/* All section H2s use DocH2WithAnchor (home, article listings, component docs). */
+/* Section titles use DocH2WithAnchor (home, article listings, component docs, blog); optional `level={3}` / `level={4}` for nested headings. */
 .doc-h2-anchor-heading {
   font-size: 36px;
 }

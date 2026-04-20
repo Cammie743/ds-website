@@ -1,0 +1,38 @@
+---
+description: Prism docs blog/update articles — section H2s must use DocH2WithAnchor with the shared blog classes (April release pattern).
+globs: apps/docs/src/components/blog/**/*.astro
+alwaysApply: false
+---
+
+# Blog / update articles: section `H2`
+
+When adding or editing a **section-level heading** in a **full blog/update article** body (`BlogUpdateArticle` `mode="full"`, or equivalent under `BlogLayout` `page--blog-article`), use **`DocH2WithAnchor`** so the heading matches the April 2026 release and Prism Skill posts: **36px `doc-h2-anchor-heading`**, **copy link**, **`BlogLayout` scroll margin**, and shared section spacing.
+
+## Required pattern
+
+```astro
+<DocH2WithAnchor
+  id={`${articleId}-section-your-slug`}
+  class="doc-tabs__h2 blog-article__section-title"
+  rowClass="doc-h2-anchor-row--tabs"
+  data-i18n="blog.update.N.section.yourKey"
+>
+  English fallback
+</DocH2WithAnchor>
+```
+
+- **`DocH2WithAnchor`** is imported from `apps/docs/src/components/DocH2WithAnchor.astro`.
+- Use **`class="doc-tabs__h2 blog-article__section-title"`** and **`rowClass="doc-h2-anchor-row--tabs"`** — do not substitute ad hoc heading classes for body sections.
+- Prefer **`data-i18n`** with keys in `apps/docs/src/i18n/ui.ts` (en + zh).
+- **Do not** use a bare `<h2>` for these sections; it will not pick up `doc-h2-anchor.css` or the copy-link UI.
+
+## Heading level (`level`)
+
+- **Omit `level`** (default **`<h2>`**) for the main in-body title row and for **every section** on posts like the April release (only `h1` + section `h2`s).
+- Use **`level={3}`** for **section titles that sit under an existing in-body `h2`**, e.g. Prism Library Skill: intro line is **`DocH2WithAnchor`** without `level`; most body sections use **`level={3}`** (`h1` → `h2` intro → `h3` sections).
+- For **small H4 subheads** (same look as the April release), use **plain `<h4 class="blog-article__subsection-title">`** inside **`div.blog-article__subsection`** — not `DocH2WithAnchor` with `level={4}` (no copy link; matches token/component subheads).
+
+## Related files
+
+- Section chrome and spacing: `apps/docs/src/layouts/BlogLayout.astro` (e.g. `.blog-article__section-title`, `.doc-h2-anchor-row` in `.blog-article__sections`).
+- Global heading + copy control: `apps/docs/src/styles/doc-h2-anchor.css`.

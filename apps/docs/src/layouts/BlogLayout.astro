@@ -412,6 +412,150 @@ const navItems: { id: BlogNavCurrent; href: string; i18n: string; fallback: stri
     color: var(--prism-color-text-secondary);
   }
 
+  .page :global(.blog-article__sections > p + p) {
+    margin-top: 1rem;
+  }
+
+  .page :global(.blog-article__body .doc-h2-anchor-row + p) {
+    margin-top: 1rem;
+  }
+
+  .page :global(.blog-article__body p.blog-article__try-cta-links) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0px;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Matches home “Explore all articles” (`.h-updates__view-all` on index). */
+  .page :global(.blog-article__try-cta-links a.blog-article__home-view-all) {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 0.4em;
+    margin: 0;
+    padding: 0.25rem 0;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    text-decoration: none;
+    color: color-mix(in srgb, var(--prism-color-accent-strong) 91%, #000000);
+    border-radius: 2px;
+    transition: color 0.2s ease;
+  }
+
+  .page :global(.blog-article__try-cta-links a.blog-article__home-view-all:hover) {
+    color: color-mix(in srgb, var(--prism-color-accent-strong) 82%, #000000);
+  }
+
+  .page :global(.blog-article__home-view-all__label) {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    text-decoration: none;
+  }
+
+  .page :global(.blog-article__home-view-all__label::after) {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: calc(100% + 0.12em);
+    width: 100%;
+    height: 2px;
+    border-radius: 999px;
+    background-color: currentColor;
+    pointer-events: none;
+    transform: scaleX(0);
+    transform-origin: right center;
+    opacity: 0;
+    transition:
+      transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.32s ease;
+  }
+
+  .page :global(.blog-article__try-cta-links a.blog-article__home-view-all:hover .blog-article__home-view-all__label::after),
+  .page :global(.blog-article__try-cta-links a.blog-article__home-view-all:focus-visible .blog-article__home-view-all__label::after) {
+    transform: scaleX(1);
+    transform-origin: left center;
+    opacity: 1;
+  }
+
+  :global([data-theme="dark"]) .page :global(.blog-article__try-cta-links a.blog-article__home-view-all) {
+    color: var(--prism-color-accent);
+  }
+
+  :global([data-theme="dark"]) .page :global(.blog-article__try-cta-links a.blog-article__home-view-all:hover) {
+    color: var(--prism-color-accent);
+  }
+
+  .page :global(.blog-article__try-cta-links a.blog-article__home-view-all:focus-visible) {
+    outline: 2px solid var(--prism-color-accent-strong);
+    outline-offset: 3px;
+  }
+
+  :global([data-theme="dark"]) .page :global(.blog-article__try-cta-links a.blog-article__home-view-all:focus-visible) {
+    outline-color: var(--prism-color-accent);
+  }
+
+  .page :global(.blog-article__home-view-all__arrow) {
+    display: inline-flex;
+    align-items: center;
+    line-height: 0;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .page :global(.blog-article__try-cta-links a.blog-article__home-view-all:hover .blog-article__home-view-all__arrow) {
+    transform: translate(0.12em, -0.12em);
+  }
+
+  .page :global(.blog-article__home-view-all__arrow-icon) {
+    display: block;
+    width: 1.5em;
+    height: 1.5em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .page :global(.blog-article__try-cta-links a.blog-article__home-view-all:hover .blog-article__home-view-all__arrow) {
+      transform: none;
+    }
+
+    .page :global(.blog-article__home-view-all__label::after) {
+      transition: none;
+    }
+  }
+
+  .page :global(.blog-article__body p + .blog-article__affected-icons-label) {
+    margin-top: 0.75rem;
+  }
+
+  .page :global(.blog-article__body p[data-i18n="blog.update.8.try.p1"] + p.blog-article__try-cta-links) {
+    margin-top: 0.75rem;
+  }
+
+  .page :global(.blog-article__body .blog-article__affected-icons-label + .blog-article__affected-icons-list) {
+    margin-top: 0.25rem;
+  }
+
+  .page :global(.blog-article__body .blog-article__affected-icons-list + p) {
+    margin-top: 0.75rem;
+  }
+
+  .page :global(.blog-article__body a.blog-article__body-cta) {
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--prism-color-accent-strong);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+  }
+
+  .page :global(.blog-article__body a.blog-article__body-cta:hover) {
+    color: var(--prism-color-accent);
+  }
+
   .page :global(.blog-article__body .blog-article__token-path) {
     font-family: var(--prism-font-mono);
     font-size: 0.875em;
@@ -426,13 +570,25 @@ const navItems: { id: BlogNavCurrent; href: string; i18n: string; fallback: stri
     border-radius: 0.35rem;
   }
 
-  /* Section H2s: DocH2WithAnchor (copy link) + Accordion tab typography; `doc-h2-anchor-heading` sets 36px globally. */
+  /* Blog section titles: DocH2WithAnchor + copy link; `doc-h2-anchor-heading` sets 36px globally (H2 default; Prism Skill post uses H3 for body sections under intro H2). */
   .page :global(.blog-article__sections .doc-h2-anchor-row .doc-tabs__h2.blog-article__section-title) {
     margin: 0;
     font-weight: 700;
     letter-spacing: -0.025em;
     line-height: 1.2;
     color: var(--prism-color-text-primary);
+  }
+
+  /*
+    H3 section titles (`DocH2WithAnchor` `level={3}`): between global `.doc-h2-anchor-heading` H2 (36px) and
+    plain `.blog-article__subsection-title` H4s (16px, same as April release subheads).
+  */
+  .page.page--blog-article :global(
+      .blog-article__sections .doc-h2-anchor-row h3.doc-h2-anchor-heading.blog-article__section-title
+    ) {
+    font-size: clamp(1.375rem, 2.4vw, 1.625rem);
+    letter-spacing: -0.022em;
+    line-height: 1.28;
   }
 
   /* Copy control sits in the margin via `doc-h2-anchor.css`; do not pad the row or the H2 won’t line up with body `<p>`. */
@@ -443,12 +599,19 @@ const navItems: { id: BlogNavCurrent; href: string; i18n: string; fallback: stri
 
   .page.page--blog-article :global(.blog-article__sections > .doc-h2-anchor-row:first-child),
   .page.page--blog-article :global(.blog-article__sections .blog-article__subsection + .doc-h2-anchor-row),
-  .page.page--blog-article :global(.blog-article__sections > p + .doc-h2-anchor-row) {
+  .page.page--blog-article :global(.blog-article__sections > p + .doc-h2-anchor-row),
+  .page.page--blog-article :global(.blog-article__sections > p + .blog-article__section),
+  .page.page--blog-article :global(.blog-article__sections > .blog-article__section + .blog-article__section) {
     margin-top: 48px;
   }
 
   .page :global(.blog-article__subsection) {
     margin-top: 2rem;
+  }
+
+  /* Subsection as first child of a `<section>` wrapper (e.g. Prism Skill closing block): avoid stacking `2rem` on top of section-vs-section spacing. */
+  .page.page--blog-article :global(.blog-article__section > .blog-article__subsection:first-child) {
+    margin-top: 0;
   }
 
   .page :global(.blog-article__subsection .blog-article__subsection-title) {
@@ -484,6 +647,8 @@ const navItems: { id: BlogNavCurrent; href: string; i18n: string; fallback: stri
 
   .page :global(.blog-article__body .blog-article__affected-icons-label) {
     margin: 0 0 0.35rem;
+    font-weight: 600;
+    color: var(--prism-color-text-primary);
   }
 
   .page :global(.blog-article__body .blog-article__compare-row + .blog-article__affected-icons-label) {

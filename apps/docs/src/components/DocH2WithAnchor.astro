@@ -1,10 +1,11 @@
 ---
 /**
  * Section heading with optional deep-link copy control (uses global styles + BaseLayout script).
- * @prop id — `id` on the `<h2>` (and default URL fragment unless `copyFragmentId` is set).
- * @prop class — extra classes on the `<h2>` (e.g. `doc-tabs__h2`, `h-updates__h`).
+ * @prop id — `id` on the heading (and default URL fragment unless `copyFragmentId` is set).
+ * @prop class — extra classes on the heading (e.g. `doc-tabs__h2`, `h-updates__h`).
  * @prop rowClass — optional classes on the wrapping row.
  * @prop copyFragmentId — URL hash target without `#` when it must differ from `id` (e.g. article update id).
+ * @prop level — semantic level: `2` (default), `3`, or `4` (rare; blog small H4s prefer `blog-article__subsection-title`).
  */
 interface Props {
   id: string;
@@ -13,17 +14,33 @@ interface Props {
   copyFragmentId?: string;
   /** Optional `data-i18n` key for the heading text */
   "data-i18n"?: string;
+  level?: 2 | 3 | 4;
 }
 
-const { id, class: h2Class, rowClass, copyFragmentId, "data-i18n": dataI18n } = Astro.props;
+const { id, class: h2Class, rowClass, copyFragmentId, "data-i18n": dataI18n, level: levelProp } = Astro.props;
+/** Astro may stringify numeric attributes — normalize `level` for H2 / H3 / H4. */
+const levelN = Number(levelProp);
+const level = levelN === 4 ? 4 : levelN === 3 ? 3 : 2;
 const frag = (copyFragmentId ?? id).replace(/^#/, "");
 const anchor = "#" + frag;
 ---
 
 <div class:list={["doc-h2-anchor-row", rowClass]}>
-  <h2 id={id} class:list={["doc-h2-anchor-heading", h2Class]} data-i18n={dataI18n}>
-    <slot />
-  </h2>
+  {
+    level === 4 ? (
+      <h4 id={id} class:list={["doc-h2-anchor-heading", h2Class]} data-i18n={dataI18n}>
+        <slot />
+      </h4>
+    ) : level === 3 ? (
+      <h3 id={id} class:list={["doc-h2-anchor-heading", h2Class]} data-i18n={dataI18n}>
+        <slot />
+      </h3>
+    ) : (
+      <h2 id={id} class:list={["doc-h2-anchor-heading", h2Class]} data-i18n={dataI18n}>
+        <slot />
+      </h2>
+    )
+  }
   <div class="doc-h2-anchor-row__actions">
     <button
       type="button"

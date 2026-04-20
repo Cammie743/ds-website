@@ -154,6 +154,45 @@ import { getBlogUpdatePostPath } from "../data/blogUpdates";
         </div>
         <div id="updates-carousel-viewport" class="h-updates-carousel__viewport" data-carousel-viewport>
           <ol class="h-updates-carousel__list">
+            <li class="h-updates-carousel__slide" data-updates-kind="feature">
+              <a class="h-updates-card" href={getBlogUpdatePostPath(8)}>
+                <div class="h-updates-card__media">
+                  <img
+                    class="h-updates-card__img"
+                    src="/images/articles/article-8/article-8-prism-skill-library-hero.png"
+                    width="1024"
+                    height="492"
+                    loading="lazy"
+                    decoding="async"
+                    alt=""
+                    data-i18n-alt="home.updates.8.alt"
+                  />
+                </div>
+                <div class="h-updates-card__meta">
+                  <time class="h-updates-card__date" datetime="2026-04-20" data-i18n="home.updates.8.date">April 20, 2026</time>
+                </div>
+                <span class="h-updates-card__title">
+                  <span class="h-updates-card__title-text" data-stagger-title-underline data-i18n="home.updates.8.title"
+                    >Prism Library Skill for product teams</span>
+                </span>
+                <p class="h-updates-card__desc"><span class="h-updates-card__desc-text" data-i18n="home.updates.8.body">
+                  An AI skill that packages tokens, components, and patterns so teams can ship interactive prototypes and engineering-ready deliverables fast.
+                </span></p>
+                <div class="h-updates-card__author">
+                  <img
+                    class="h-updates-card__author-avatar"
+                    src="/images/prism-library/avatars/april-2026-update.png"
+                    width="64"
+                    height="64"
+                    loading="lazy"
+                    decoding="async"
+                    alt=""
+                    data-i18n-alt="home.updates.8.authorAvatarAlt"
+                  />
+                  <span class="h-updates-card__author-name" data-i18n="home.updates.8.authorName">Cam Foster</span>
+                </div>
+              </a>
+            </li>
             <li class="h-updates-carousel__slide" data-updates-kind="update">
               <a class="h-updates-card" href={getBlogUpdatePostPath(1)}>
                 <div class="h-updates-card__media">
@@ -2116,10 +2155,11 @@ import { getBlogUpdatePostPath } from "../data/blogUpdates";
       var maxCols = wideMq && wideMq.matches ? 4 : 1;
       if (n <= 0) return 1;
       /*
-        With one matching slide (e.g. Feature filter), min(maxCols, n) would be 1 and the card
-        would span the full viewport — inconsistent with the multi-card row. Keep ~1/maxCols width.
+        Wide layout: always divide the row by maxCols so card width stays stable when the filter
+        hides items (e.g. Feature with two posts must not grow to half-viewport each). Narrow
+        stays one column with optional peek (see slideWidthPx).
       */
-      if (wideMq && wideMq.matches && n === 1) return maxCols;
+      if (wideMq && wideMq.matches) return maxCols;
       return Math.min(maxCols, n);
     }
 

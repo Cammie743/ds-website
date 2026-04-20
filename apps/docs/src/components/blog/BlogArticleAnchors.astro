@@ -1,5 +1,5 @@
 ---
-/** In-page anchors: long-form sections for update 1, title-only for shorter posts. */
+/** In-page anchors: long-form sections for updates 1 and 8, title-only for other posts. */
 import type { BlogUpdateN } from "../../data/blogUpdates";
 
 interface Props {
@@ -10,6 +10,7 @@ interface Props {
 const { id, updateN } = Astro.props;
 
 const titleId = `${id}-heading`;
+const introSubtitleId = `${id}-intro-subtitle`;
 const section = (suffix: string) => `${id}-section-${suffix}`;
 const sub = (suffix: string) => `${id}-sub-${suffix}`;
 ---
@@ -98,6 +99,34 @@ const sub = (suffix: string) => `${id}-sub-${suffix}`;
               </a>
             </li>
           </ul>
+        </li>
+      </ul>
+    ) : updateN === 8 ? (
+      <ul class="blog-anchor-nav__list">
+        <li>
+          <a class="blog-anchor-nav__link" href={`#${titleId}`} data-i18n="home.updates.8.title">
+            Prism Library Skill for product teams
+          </a>
+        </li>
+        <li>
+          <a class="blog-anchor-nav__link" href={`#${introSubtitleId}`} data-i18n="blog.update.8.intro.eyebrow">
+            Introducing the first Prism skill
+          </a>
+        </li>
+        <li>
+          <a class="blog-anchor-nav__link" href={`#${section("what")}`} data-i18n="blog.update.8.section.what">
+            What is the Prism library skill and what can it do?
+          </a>
+        </li>
+        <li>
+          <a class="blog-anchor-nav__link" href={`#${section("try")}`} data-i18n="blog.update.8.section.try">
+            Get started
+          </a>
+        </li>
+        <li>
+          <a class="blog-anchor-nav__link" href={`#${section("future")}`} data-i18n="blog.update.8.section.future">
+            This is just the beginning
+          </a>
         </li>
       </ul>
     ) : (
@@ -228,8 +257,12 @@ const sub = (suffix: string) => `${id}-sub-${suffix}`;
   }
 
   .blog-anchor-nav__link--nested.is-active::before {
+    /* Same grey rail as parent links: offset by nested list padding-left (was a mistaken 10px). */
     left: calc(
-      var(--blog-anchor-track-w) / 2 - var(--blog-anchor-blue-w) / 2 - var(--blog-anchor-rail-pl) - 10px
+      var(--blog-anchor-track-w) / 2 -
+        var(--blog-anchor-blue-w) / 2 -
+        var(--blog-anchor-rail-pl) -
+        var(--prism-space-md)
     );
   }
 </style>

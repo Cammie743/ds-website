@@ -1138,6 +1138,25 @@ const pageShell = normPath === "/" ? "home" : "inner";
           e.stopPropagation();
           setSearchOpen(!drawer?.classList?.contains("is-open"));
         });
+        (function syncBlogArticleFromFeaturedQuery() {
+          try {
+            if (new URLSearchParams(window.location.search).get("from") !== "featured") return;
+            var back = document.querySelector(".blog-update-back__link");
+            if (back) {
+              back.setAttribute("href", "/articles/featured");
+              var backLabel = back.querySelector(".blog-update-back__label");
+              if (backLabel) backLabel.setAttribute("data-i18n", "blog.backToFeatured");
+            }
+            var featuredNav = document.querySelector('a.section-nav-link[href="/articles/featured"]');
+            var latestNav = document.querySelector('a.section-nav-link[href="/articles/latest"]');
+            if (featuredNav && latestNav) {
+              featuredNav.classList.add("is-current");
+              featuredNav.setAttribute("aria-current", "page");
+              latestNav.classList.remove("is-current");
+              latestNav.removeAttribute("aria-current");
+            }
+          } catch (err) {}
+        })();
         applyStoredLocale();
         applyTranslations();
         /* Re-split after layout + fonts: first split can run before cards have width (e.g. home carousel). */
