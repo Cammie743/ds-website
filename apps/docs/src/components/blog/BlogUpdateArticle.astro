@@ -42,8 +42,9 @@ const authorAvatarSrc: Record<1 | 2 | 3 | 4 | 5 | 6 | 7, string> = {
   7: "/images/prism-library/avatars/sofia-delgado.png",
 };
 
-/** April 2026 hero uses the shared gradient image (`update-1-hero.jpg`) in article views; home carousel uses the same asset. */
-const updateHeroImageSrc = n === 1 ? "/images/updates/update-1-hero.jpg" : `/images/updates/update-${n}.svg`;
+/** April 2026 hero uses the shared gradient image under `article-1/` in article views; home carousel uses the same asset. */
+const updateHeroImageSrc =
+  n === 1 ? "/images/articles/article-1/article-1-hero.jpg" : `/images/articles/article-${n}/article-${n}.svg`;
 const updateHeroImageAltKey = n === 1 ? "blog.update.1.heroAlt" : (`home.updates.${n}.alt` as string);
 const updateHeroImageWidth = n === 1 ? 1024 : mode === "teaser" ? 780 : 640;
 const updateHeroImageHeight = n === 1 ? 601 : mode === "teaser" ? 440 : 360;
@@ -165,7 +166,7 @@ const updateHeroImageHeight = n === 1 ? 601 : mode === "teaser" ? 440 : 360;
               <figure class="blog-article__inline-figure">
                 <img
                   class="blog-article__img"
-                  src="/images/updates/update-1-comp-button.png"
+                  src="/images/articles/article-1/article-1-comp-button.png"
                   width="1024"
                   height="400"
                   loading="lazy"
@@ -193,7 +194,7 @@ const updateHeroImageHeight = n === 1 ? 601 : mode === "teaser" ? 440 : 360;
               <figure class="blog-article__inline-figure blog-article__inline-figure--media-player">
                 <img
                   class="blog-article__img"
-                  src="/images/updates/update-1-comp-media-player.jpg"
+                  src="/images/articles/article-1/article-1-comp-media-player.jpg"
                   width="1024"
                   height="720"
                   loading="lazy"
@@ -230,7 +231,7 @@ const updateHeroImageHeight = n === 1 ? 601 : mode === "teaser" ? 440 : 360;
                       aria-label="Screen recording: Vue pagination moving between pages with the dot track."
                       data-i18n-aria="blog.update.1.comp.paginationVideoAria"
                     >
-                      <source src="/images/updates/update-1-comp-pagination-demo.mp4" type="video/mp4" />
+                      <source src="/images/articles/article-1/article-1-comp-pagination-demo.mp4" type="video/mp4" />
                     </video>
                   </div>
                   <div class="blog-article__inline-video-overlay-actions">
@@ -283,7 +284,7 @@ const updateHeroImageHeight = n === 1 ? 601 : mode === "teaser" ? 440 : 360;
               <figure class="blog-article__inline-figure">
                 <img
                   class="blog-article__img"
-                  src="/images/updates/update-1-office-icons.png"
+                  src="/images/articles/article-1/article-1-office-icons.png"
                   width="1024"
                   height="400"
                   loading="lazy"
@@ -359,7 +360,7 @@ const updateHeroImageHeight = n === 1 ? 601 : mode === "teaser" ? 440 : 360;
               <figure class="blog-article__inline-figure">
                 <img
                   class="blog-article__img"
-                  src="/images/updates/update-1-file-type-icons-xls-ppt-doc.png"
+                  src="/images/articles/article-1/article-1-file-type-icons-xls-ppt-doc.png"
                   width="1024"
                   height="400"
                   loading="lazy"
@@ -399,7 +400,7 @@ const updateHeroImageHeight = n === 1 ? 601 : mode === "teaser" ? 440 : 360;
                 <figure class="blog-article__inline-figure blog-article__compare-cell">
                   <img
                     class="blog-article__img"
-                    src="/images/updates/update-1-token-original.png"
+                    src="/images/articles/article-1/article-1-token-original.png"
                     width="616"
                     height="340"
                     loading="lazy"
@@ -416,7 +417,7 @@ const updateHeroImageHeight = n === 1 ? 601 : mode === "teaser" ? 440 : 360;
                 <figure class="blog-article__inline-figure blog-article__compare-cell">
                   <img
                     class="blog-article__img"
-                    src="/images/updates/update-1-token-updated.png"
+                    src="/images/articles/article-1/article-1-token-updated.png"
                     width="616"
                     height="340"
                     loading="lazy"
@@ -459,7 +460,7 @@ const updateHeroImageHeight = n === 1 ? 601 : mode === "teaser" ? 440 : 360;
                   <figure class="blog-article__inline-figure">
                     <img
                       class="blog-article__img"
-                      src="/images/updates/update-1-token-file-type-docs.png"
+                      src="/images/articles/article-1/article-1-token-file-type-docs.png"
                       width="616"
                       height="340"
                       loading="lazy"
@@ -484,7 +485,7 @@ const updateHeroImageHeight = n === 1 ? 601 : mode === "teaser" ? 440 : 360;
                   <figure class="blog-article__inline-figure">
                     <img
                       class="blog-article__img"
-                      src="/images/updates/update-1-token-file-type-slides.png"
+                      src="/images/articles/article-1/article-1-token-file-type-slides.png"
                       width="616"
                       height="340"
                       loading="lazy"
