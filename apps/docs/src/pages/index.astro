@@ -178,18 +178,30 @@ import { getBlogUpdatePostPath } from "../data/blogUpdates";
                 <p class="h-updates-card__desc"><span class="h-updates-card__desc-text" data-i18n="home.updates.8.body">
                   An AI skill that packages tokens, components, and patterns so teams can ship interactive prototypes and engineering-ready deliverables fast.
                 </span></p>
-                <div class="h-updates-card__author">
-                  <img
-                    class="h-updates-card__author-avatar"
-                    src="/images/prism-library/avatars/april-2026-update.png"
-                    width="64"
-                    height="64"
-                    loading="lazy"
-                    decoding="async"
-                    alt=""
-                    data-i18n-alt="home.updates.8.authorAvatarAlt"
-                  />
-                  <span class="h-updates-card__author-name" data-i18n="home.updates.8.authorName">Cam Foster</span>
+                <div class="h-updates-card__author h-updates-card__author--multi">
+                  <div class="h-updates-card__author-avatars">
+                    <img
+                      class="h-updates-card__author-avatar"
+                      src="/images/prism-library/avatars/jeff-low.png"
+                      width="64"
+                      height="64"
+                      loading="lazy"
+                      decoding="async"
+                      alt=""
+                      data-i18n-alt="home.updates.8.author1AvatarAlt"
+                    />
+                    <img
+                      class="h-updates-card__author-avatar"
+                      src="/images/prism-library/avatars/liz-chang.png"
+                      width="64"
+                      height="64"
+                      loading="lazy"
+                      decoding="async"
+                      alt=""
+                      data-i18n-alt="home.updates.8.author2AvatarAlt"
+                    />
+                  </div>
+                  <span class="h-updates-card__author-name" data-i18n="home.updates.8.authorName">Jeff Low and Liz Chang</span>
                 </div>
               </a>
             </li>
@@ -1634,6 +1646,17 @@ import { getBlogUpdatePostPath } from "../data/blogUpdates";
     border-radius: 50%;
     object-fit: cover;
     border: 1px solid color-mix(in srgb, var(--prism-color-border-subtle) 75%, transparent);
+  }
+
+  .h-updates-card__author-avatars {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .h-updates-card__author-avatars .h-updates-card__author-avatar + .h-updates-card__author-avatar {
+    margin-left: -0.5rem;
+    box-shadow: 0 0 0 1px var(--prism-color-surface);
   }
 
   .h-updates-card__author-name {
