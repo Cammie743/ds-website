@@ -683,8 +683,8 @@ const pageShell = normPath === "/" ? "home" : "inner";
           var segments = [];
           try {
             var n = text.length;
-            /** Char-by-char tops: stable for 3+ wrapped lines (range min/max top heuristic missed mid-lines). */
-            function lineStartsFromTextNode(node) {
+            /** Fallback when `getClientRects()` is unusable (e.g. one line). */
+            function lineStartsFromTextNodeLegacy(node) {
               var len = node.data.length;
               if (len === 0) return [];
               var starts = [0];
@@ -708,12 +708,66 @@ const pageShell = normPath === "/" ? "home" : "inner";
               }
               return starts;
             }
-            var starts = lineStartsFromTextNode(tn);
-            /*
-             * Per-char getBoundingClientRect().top can jitter between glyphs on one visual line; that
-             * yields a "new line" per character, one-char segments, and the leading-whitespace trim below
-             * drops every inter-word space. If we see implausibly many starts, treat as a single line.
+            /**
+             * Map each character to a visual line using the line boxes from Range.getClientRects().
+             * Per-glyph `top` jitter was splitting one wrapped line into many segments so some spans
+             * wrapped internally; `width:fit-content` then matched the column and the gradient ran full width.
              */
+            function lineStartsFromTextNode(node) {
+              var len = node.data.length;
+              if (len === 0) return [];
+              range.setStart(node, 0);
+              range.setEnd(node, len);
+              var rawRects = range.getClientRects();
+              var lineRects = [];
+              for (var r = 0; r < rawRects.length; r++) {
+                var rect = rawRects[r];
+                if (rect.width > 0 || rect.height > 0) lineRects.push(rect);
+              }
+              lineRects.sort(function (a, b) {
+                if (Math.abs(a.top - b.top) > 2) return a.top - b.top;
+                return a.left - b.left;
+              });
+              if (lineRects.length <= 1) {
+                return lineStartsFromTextNodeLegacy(node);
+              }
+              function lineIndexForChar(ci) {
+                range.setStart(node, ci);
+                range.setEnd(node, ci + 1);
+                var br = range.getBoundingClientRect();
+                if (br.width <= 0 && br.height <= 0) return 0;
+                var mx = br.left + br.width * 0.5;
+                var my = br.top + br.height * 0.5;
+                var best = 0;
+                var bestScore = Infinity;
+                for (var i = 0; i < lineRects.length; i++) {
+                  var lr = lineRects[i];
+                  var dx = 0;
+                  if (mx < lr.left) dx = lr.left - mx;
+                  else if (mx > lr.right) dx = mx - lr.right;
+                  var dy = 0;
+                  if (my < lr.top) dy = lr.top - my;
+                  else if (my > lr.bottom) dy = my - lr.bottom;
+                  var score = dx * dx + dy * dy;
+                  if (score < bestScore) {
+                    bestScore = score;
+                    best = i;
+                  }
+                }
+                return best;
+              }
+              var starts = [0];
+              var prevLi = lineIndexForChar(0);
+              for (var ci = 1; ci < len; ci++) {
+                var li = lineIndexForChar(ci);
+                if (li !== prevLi) {
+                  starts.push(ci);
+                  prevLi = li;
+                }
+              }
+              return starts;
+            }
+            var starts = lineStartsFromTextNode(tn);
             if (starts.length > Math.max(6, Math.floor(text.length / 2))) {
               starts = [0];
             }

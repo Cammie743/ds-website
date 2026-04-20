@@ -1093,10 +1093,7 @@ const navItems: { id: BlogNavCurrent; href: string; i18n: string; fallback: stri
     background-size: 100% 2px;
   }
 
-  /*
-   * Column flex + flex-start: line spans stay content-width (list/grid text column is full-width;
-   * plain block children were stretching so the second line’s underline matched the column width).
-   */
+  /* Column flex + flex-start: per-line spans use fit-content so gradient “underline” matches text width. */
   #blog-teasers-root :global(.blog-article--teaser .blog-article__title:has(.prism-stagger-title-line)) {
     display: flex;
     flex-direction: column;
@@ -1109,10 +1106,11 @@ const navItems: { id: BlogNavCurrent; href: string; i18n: string; fallback: stri
   }
 
   #blog-teasers-root :global(.blog-article--teaser .blog-article__title .prism-stagger-title-line) {
-    display: block;
+    display: inline-block;
     flex-shrink: 0;
-    width: 100%;
-    max-width: max-content;
+    align-self: flex-start;
+    width: auto;
+    max-width: 100%;
     padding-bottom: 0.1em;
     box-sizing: border-box;
     color: inherit;
