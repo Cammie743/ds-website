@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
-import { getBlogUpdatePostPath } from "../data/blogUpdates";
+import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
 ---
 
 <BaseLayout title="Prism">
@@ -155,7 +155,7 @@ import { getBlogUpdatePostPath } from "../data/blogUpdates";
         <div id="updates-carousel-viewport" class="h-updates-carousel__viewport" data-carousel-viewport>
           <ol class="h-updates-carousel__list">
             <li class="h-updates-carousel__slide" data-updates-kind="feature">
-              <a class="h-updates-card" href={getBlogUpdatePostPath(8)}>
+              <a class="h-updates-card" href={getBlogTeaserHref(8, "", false)}>
                 <div class="h-updates-card__media">
                   <img
                     class="h-updates-card__img"

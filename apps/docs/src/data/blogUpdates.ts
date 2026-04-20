@@ -81,6 +81,16 @@ export function getBlogUpdatePostPath(updateN: BlogUpdateN): string {
   return `/articles/${year}/${slug}`;
 }
 
+/**
+ * Teaser card `href`. Post 8 is the lead Featured story: open the canonical article with `?from=featured` so
+ * `BlogLayout` highlights Featured and the back link reads “Back to Featured” (same as teasers on `featured.astro`).
+ */
+export function getBlogTeaserHref(updateN: BlogUpdateN, _articlePostId: string, teaserFromFeatured: boolean): string {
+  const postHref = getBlogUpdatePostPath(updateN);
+  if (teaserFromFeatured || updateN === 8) return `${postHref}?from=featured`;
+  return postHref;
+}
+
 /** Resolve canonical article URL from legacy `/article/update/{postId}` id. */
 export function getBlogUpdatePostPathByPostId(postId: string): string | undefined {
   const entry = (Object.entries(BLOG_UPDATE_SLUG_BY_N) as [string, string][]).find(([, id]) => id === postId);

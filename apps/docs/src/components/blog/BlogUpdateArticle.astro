@@ -1,6 +1,6 @@
 ---
 import DocH2WithAnchor from "../DocH2WithAnchor.astro";
-import { getBlogUpdatePostPath, type BlogUpdateN } from "../../data/blogUpdates";
+import { getBlogUpdatePostPath, getBlogTeaserHref, type BlogUpdateN } from "../../data/blogUpdates";
 
 interface Props {
   id: string;
@@ -36,7 +36,7 @@ const datetimeByN: Record<BlogUpdateN, string> = {
 
 const headingId = `${id}-heading`;
 const postHref = getBlogUpdatePostPath(n);
-const teaserHref = teaserFromFeatured ? `${postHref}?from=featured` : postHref;
+const teaserHref = getBlogTeaserHref(n, id, teaserFromFeatured);
 
 const authorAvatarSrc: Record<BlogUpdateN, string> = {
   1: "/images/prism-library/avatars/april-2026-update.png",
