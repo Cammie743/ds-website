@@ -138,10 +138,6 @@ const navItems: { id: FoundationsNavCurrent; href: string; i18n: string; fallbac
     width: 100%;
     box-sizing: border-box;
     padding: var(--prism-space-md) var(--prism-space-lg);
-    font-size: 0.9375rem;
-    font-weight: 500;
-    letter-spacing: -0.015em;
-    line-height: 1.4;
     text-decoration: none;
     color: var(--prism-color-text-primary);
     border-radius: 12px;
@@ -179,18 +175,7 @@ const navItems: { id: FoundationsNavCurrent; href: string; i18n: string; fallbac
   }
 
   /* Slotted page markup lives in child .astro files, so headings need :global() to escape layout scope. */
-  .page :global(h1) {
-    margin: 0 0 var(--prism-space-md);
-    font-size: clamp(3rem, 8.5vw, 4.5rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.08;
-  }
-
   .page :global(.intro) {
     margin: 0;
-    color: var(--prism-color-text-secondary);
-    line-height: 1.65;
-    font-size: 1.0625rem;
   }
 </style>

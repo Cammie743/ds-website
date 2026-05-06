@@ -1,0 +1,409 @@
+---
+import GetStartedLayout from "../../layouts/GetStartedLayout.astro";
+---
+
+<GetStartedLayout
+  title="Typography preview"
+  current="overview"
+  description="Visual preview of the global typography tokens and element styles."
+>
+  <div slot="lead">
+    <header class="page-head">
+      <h1>Typography preview</h1>
+      <p class="intro">
+        This page shows how the global typography styles render in real UI content.
+      </p>
+    </header>
+    <div class="typography-preview-page">
+      <section class="doc-section-block">
+      <h2>Headings</h2>
+      <div class="preview-stack">
+      <div class="preview-row">
+        <p class="preview-label">H1</p>
+        <h1 class="preview-heading" data-preview-sample>The quick brown fox jumps over the lazy dog</h1>
+        <ul class="preview-spec">
+          <li data-prop="font-size"><strong>Size:</strong> <code>var(--docs-h1-size)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="font-weight"><strong>Weight:</strong> <code>var(--docs-h1-weight)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="line-height"><strong>Line height:</strong> <code>var(--docs-h1-line-height)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="letter-spacing"><strong>Letter spacing:</strong> <code>var(--docs-h1-letter-spacing)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="color" data-prism-color="text-stronger-neutral"><strong>Color:</strong> <code>var(--docs-h1-color)</code><span class="preview-spec-value"></span></li>
+        </ul>
+      </div>
+      <div class="preview-row">
+        <p class="preview-label">H2</p>
+        <h2 class="preview-heading" data-preview-sample>The quick brown fox jumps over the lazy dog</h2>
+        <ul class="preview-spec">
+          <li data-prop="font-size"><strong>Size:</strong> <code>var(--docs-h2-size)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="font-weight"><strong>Weight:</strong> <code>var(--docs-h2-weight)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="line-height"><strong>Line height:</strong> <code>var(--docs-h2-line-height)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="letter-spacing"><strong>Letter spacing:</strong> <code>var(--docs-h2-letter-spacing)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="color" data-prism-color="text-stronger-neutral"><strong>Color:</strong> <code>var(--docs-h2-color)</code><span class="preview-spec-value"></span></li>
+        </ul>
+      </div>
+      <div class="preview-row">
+        <p class="preview-label">H3</p>
+        <h3 class="preview-heading" data-preview-sample>The quick brown fox jumps over the lazy dog</h3>
+        <ul class="preview-spec">
+          <li data-prop="font-size"><strong>Size:</strong> <code>var(--docs-h3-size)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="font-weight"><strong>Weight:</strong> <code>var(--docs-h3-weight)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="line-height"><strong>Line height:</strong> <code>var(--docs-h3-line-height)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="color" data-prism-color="text-stronger-neutral"><strong>Color:</strong> <code>var(--docs-h3-color)</code><span class="preview-spec-value"></span></li>
+        </ul>
+      </div>
+      <div class="preview-row">
+        <p class="preview-label">H4</p>
+        <h4 class="preview-heading" data-preview-sample>The quick brown fox jumps over the lazy dog</h4>
+        <ul class="preview-spec">
+          <li data-prop="font-size"><strong>Size:</strong> <code>var(--docs-h4-size)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="font-weight"><strong>Weight:</strong> <code>var(--docs-h4-weight)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="line-height"><strong>Line height:</strong> <code>var(--docs-h4-line-height)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="color" data-prism-color="text-stronger-neutral"><strong>Color:</strong> <code>var(--docs-h4-color)</code><span class="preview-spec-value"></span></li>
+        </ul>
+      </div>
+      </div>
+      </section>
+
+      <section class="doc-section-block">
+      <h2>Body and reading copy</h2>
+      <div class="preview-stack">
+      <div class="preview-row">
+        <p class="preview-label">Body (`p`)</p>
+        <p class="preview-text" data-preview-sample>
+          Body text uses the default paragraph style for everyday reading in docs and component pages.
+        </p>
+        <ul class="preview-spec">
+          <li data-prop="font-size"><strong>Size:</strong> <code>var(--docs-text-md-size)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="font-weight"><strong>Weight:</strong> <code>var(--docs-text-md-weight)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="line-height"><strong>Line height:</strong> <code>var(--docs-text-md-line-height)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="color" data-prism-color="text-strong-neutral"><strong>Color:</strong> <code>var(--docs-text-md-color)</code><span class="preview-spec-value"></span></li>
+        </ul>
+      </div>
+      <div class="preview-row">
+        <p class="preview-label">Intro (`.intro`)</p>
+        <p class="intro preview-text" data-preview-sample>
+          Intro copy uses the large reading style to improve scanability for lead paragraphs.
+        </p>
+        <ul class="preview-spec">
+          <li data-prop="font-size"><strong>Size:</strong> <code>var(--docs-text-lg-size)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="font-weight"><strong>Weight:</strong> <code>var(--docs-text-lg-weight)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="line-height"><strong>Line height:</strong> <code>var(--docs-text-lg-line-height)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="color" data-prism-color="text-neutral"><strong>Color:</strong> <code>var(--docs-text-lg-color)</code><span class="preview-spec-value"></span></li>
+        </ul>
+      </div>
+      <div class="preview-row">
+        <p class="preview-label">List (`li`)</p>
+        <ul class="preview-list">
+          <li data-preview-sample>List item one in global list style.</li>
+          <li>List item two in global list style.</li>
+        </ul>
+        <ul class="preview-spec">
+          <li data-prop="font-size"><strong>Size:</strong> <code>var(--docs-text-md-size)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="font-weight"><strong>Weight:</strong> <code>var(--docs-text-md-weight)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="line-height"><strong>Line height:</strong> <code>var(--docs-text-md-line-height)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="color" data-prism-color="text-strong-neutral"><strong>Color:</strong> <code>var(--docs-text-md-color)</code><span class="preview-spec-value"></span></li>
+        </ul>
+      </div>
+      </div>
+      </section>
+
+      <section class="doc-section-block">
+      <h2>Captions and UI labels</h2>
+      <div class="preview-stack">
+      <div class="preview-row">
+        <p class="preview-label">Caption (`figcaption`)</p>
+        <figure class="preview-figure">
+          <div class="preview-media" aria-hidden="true"></div>
+          <figcaption data-preview-sample>Figure caption with global caption size, weight, and spacing.</figcaption>
+        </figure>
+        <ul class="preview-spec">
+          <li data-prop="font-size"><strong>Size:</strong> <code>var(--docs-caption-size)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="font-weight"><strong>Weight:</strong> <code>var(--docs-caption-weight)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="line-height"><strong>Line height:</strong> <code>var(--docs-caption-line-height)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="letter-spacing"><strong>Letter spacing:</strong> <code>var(--docs-caption-letter-spacing)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="color" data-prism-color="text-neutral"><strong>Color:</strong> <code>var(--docs-caption-color)</code><span class="preview-spec-value"></span></li>
+        </ul>
+      </div>
+      <div class="preview-row">
+        <p class="preview-label">Small (`small`)</p>
+        <small data-preview-sample>Small helper text uses the restored global small style.</small>
+        <ul class="preview-spec">
+          <li data-prop="font-size"><strong>Size:</strong> <code>var(--docs-fs-sm)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="font-weight"><strong>Weight:</strong> <code>var(--docs-caption-weight)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="line-height"><strong>Line height:</strong> <code>var(--docs-caption-line-height)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="letter-spacing"><strong>Letter spacing:</strong> <code>var(--docs-caption-letter-spacing)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="color" data-prism-color="text-neutral"><strong>Color:</strong> <code>var(--docs-caption-color)</code><span class="preview-spec-value"></span></li>
+        </ul>
+      </div>
+      <div class="preview-row">
+        <p class="preview-label">Section nav label (`.section-nav-link`)</p>
+        <span class="section-nav-link preview-nav-link" data-preview-sample>Navigation label style preview</span>
+        <ul class="preview-spec">
+          <li data-prop="font-size"><strong>Size:</strong> <code>var(--docs-label-size)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="font-weight"><strong>Weight:</strong> <code>var(--docs-label-weight)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="line-height"><strong>Line height:</strong> <code>var(--docs-label-line-height)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="letter-spacing"><strong>Letter spacing:</strong> <code>var(--docs-label-letter-spacing)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="color" data-prism-color="text-strong-neutral"><strong>Color:</strong> <code>var(--docs-label-color)</code><span class="preview-spec-value"></span></li>
+        </ul>
+      </div>
+      <div class="preview-row">
+        <p class="preview-label">Inline code (`code`)</p>
+        <p class="preview-text">
+          <code data-preview-sample>Tab</code> / <code>Shift + Tab</code> / <code>Enter</code> / <code>Space</code>
+        </p>
+        <ul class="preview-spec">
+          <li data-prop="font-family"><strong>Font family:</strong> <code>var(--docs-code-family)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="font-size"><strong>Size:</strong> <code>var(--docs-code-size)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="font-weight"><strong>Weight:</strong> <code>var(--docs-code-weight)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="line-height"><strong>Line height:</strong> <code>var(--docs-code-line-height)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="color" data-prism-color="text-strong-neutral"><strong>Color:</strong> <code>var(--docs-code-color)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="background-color"><strong>Background:</strong> <code>var(--docs-code-bg)</code><span class="preview-spec-value"></span></li>
+        </ul>
+      </div>
+      </div>
+      </section>
+
+      <section class="doc-section-block">
+      <h2>Table typography</h2>
+      <div class="preview-stack">
+      <div class="preview-row">
+        <p class="preview-label">Table header (`thead th`)</p>
+        <div class="preview-table-wrap">
+          <table class="doc-tabs__table doc-overview-matrix">
+            <thead>
+              <tr>
+                <th data-preview-sample>Column heading</th>
+                <th>Example value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Row content</td>
+                <td>Value</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <ul class="preview-spec">
+          <li data-prop="font-size"><strong>Size:</strong> <code>var(--docs-fs-sm)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="font-weight"><strong>Weight:</strong> <code>var(--docs-fw-semibold)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="line-height"><strong>Line height:</strong> <code>var(--docs-caption-line-height)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="color" data-prism-color="text-stronger-neutral"><strong>Color:</strong> <code>var(--docs-prism-text-stronger-neutral)</code><span class="preview-spec-value"></span></li>
+        </ul>
+      </div>
+
+      <div class="preview-row">
+        <p class="preview-label">Body cell (`tbody td`)</p>
+        <div class="preview-table-wrap">
+          <table class="doc-tabs__table doc-overview-matrix">
+            <thead>
+              <tr>
+                <th>Column heading</th>
+                <th>Example value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-preview-sample>Body cell text</td>
+                <td>Secondary value</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <ul class="preview-spec">
+          <li data-prop="font-size"><strong>Size:</strong> <code>var(--docs-fs-sm)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="line-height"><strong>Line height:</strong> <code>var(--docs-caption-line-height)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="color" data-prism-color="text-neutral"><strong>Color:</strong> <code>var(--prism-color-text-secondary)</code><span class="preview-spec-value"></span></li>
+        </ul>
+      </div>
+
+      <div class="preview-row">
+        <p class="preview-label">Type/row header (`.doc-overview-matrix__type`)</p>
+        <div class="preview-table-wrap">
+          <table class="doc-tabs__table doc-overview-matrix">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th class="doc-overview-matrix__type" data-preview-sample>Section label</th>
+                <td>Uses alternate type-cell typography.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <ul class="preview-spec">
+          <li data-prop="font-size"><strong>Size:</strong> <code>var(--docs-fs-sm)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="font-weight"><strong>Weight:</strong> <code>var(--docs-fw-regular)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="line-height"><strong>Line height:</strong> <code>var(--docs-caption-line-height)</code><span class="preview-spec-value"></span></li>
+          <li data-prop="color" data-prism-color="text-neutral"><strong>Color:</strong> <code>var(--docs-prism-text-neutral)</code><span class="preview-spec-value"></span></li>
+        </ul>
+      </div>
+      </div>
+      </section>
+    </div>
+  </div>
+</GetStartedLayout>
+
+<script is:inline>
+  (function () {
+    function hydrateSpecValues() {
+      document.querySelectorAll(".preview-row").forEach(function (row) {
+        var sample = row.querySelector("[data-preview-sample]");
+        if (!sample) return;
+        var styles = window.getComputedStyle(sample);
+        row.querySelectorAll(".preview-spec li[data-prop]").forEach(function (item) {
+          var prop = item.getAttribute("data-prop");
+          if (!prop) return;
+          var out = item.querySelector(".preview-spec-value");
+          if (!out) return;
+          if (prop === "color") {
+            var prismColor = item.getAttribute("data-prism-color") || "";
+            out.textContent = prismColor ? " = " + prismColor : "";
+            return;
+          }
+          var value = (styles.getPropertyValue(prop) || "").trim();
+          if (!value) return;
+          out.textContent = " = " + value;
+        });
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", hydrateSpecValues);
+    } else {
+      hydrateSpecValues();
+    }
+  })();
+</script>
+
+<style>
+  :global(.get-started-page__measure) {
+    max-width: none;
+  }
+
+  .typography-preview-page {
+    width: 100%;
+  }
+
+  .preview-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--prism-space-lg);
+  }
+
+  .preview-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(25rem, 34rem);
+    column-gap: var(--prism-space-xl);
+    row-gap: var(--prism-space-md);
+    align-items: start;
+    padding: var(--prism-space-lg);
+    border: 1px solid var(--prism-color-border-subtle);
+    border-radius: var(--prism-radius-md);
+    background: color-mix(in srgb, var(--prism-color-surface) 92%, transparent);
+  }
+
+  .preview-label {
+    margin: 0;
+    color: var(--prism-color-text-secondary);
+    font-size: var(--docs-fs-sm);
+    font-weight: var(--docs-fw-medium);
+    letter-spacing: var(--docs-ls-label);
+    line-height: var(--docs-lh-snug);
+  }
+
+  .preview-heading {
+    margin: 0;
+  }
+
+  .preview-text {
+    margin: 0;
+  }
+
+  .preview-list {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+
+  .preview-figure {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--prism-space-sm);
+  }
+
+  .preview-media {
+    width: 100%;
+    height: 8rem;
+    border-radius: var(--docs-media-radius);
+    border: 1px solid var(--prism-color-border-subtle);
+    background: color-mix(in srgb, var(--prism-color-border-subtle) 25%, var(--prism-color-surface));
+  }
+
+  .preview-nav-link {
+    display: inline-block;
+    width: fit-content;
+    padding: var(--prism-space-sm) var(--prism-space-md);
+    border: 1px dashed var(--prism-color-border-subtle);
+    border-radius: var(--prism-radius-md);
+  }
+
+  .preview-table-wrap {
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--prism-radius-md);
+  }
+
+  .preview-spec {
+    margin: 0;
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    gap: var(--prism-space-xs);
+    padding: var(--prism-space-sm) var(--prism-space-md);
+    border-left: 2px solid color-mix(in srgb, var(--prism-color-border-strong) 55%, transparent);
+    background: color-mix(in srgb, var(--prism-color-border-subtle) 42%, var(--prism-color-surface));
+    color: var(--prism-color-text-secondary);
+    font-size: var(--docs-fs-xs);
+    line-height: var(--docs-lh-body);
+    list-style: none;
+    padding-left: var(--prism-space-md);
+    margin-left: 0;
+  }
+
+  .preview-spec li {
+    margin: 0;
+  }
+
+  .preview-spec-value {
+    color: var(--prism-color-text-primary);
+  }
+
+  .preview-spec strong {
+    color: var(--prism-color-text-primary);
+    font-weight: var(--docs-fw-semibold);
+  }
+
+  .preview-spec code {
+    color: color-mix(in srgb, var(--prism-color-text-primary) 92%, #000);
+    background: color-mix(in srgb, var(--prism-color-border-subtle) 70%, var(--prism-color-surface));
+  }
+
+  @media (max-width: 54rem) {
+    .preview-row {
+      grid-template-columns: minmax(0, 1fr);
+      column-gap: 0;
+    }
+
+    .preview-spec {
+      grid-column: 1;
+      grid-row: auto;
+      margin-top: var(--prism-space-xs);
+    }
+  }
+</style>

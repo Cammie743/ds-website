@@ -1,0 +1,125 @@
+/* In-page TOC (Articles aside + long-form pages such as Design language). */
+
+.article-anchor-nav {
+  margin: 0;
+  /* 2px rail + 2px active thumb (same width, blue paints over grey). */
+  --article-anchor-track-w: 2px;
+  --article-anchor-blue-w: 2px;
+  /* Track (2px) + 4px gap before link rows. */
+  --article-anchor-rail-pl: 6px;
+}
+
+.article-anchor-nav__label {
+  margin: 0 0 var(--prism-space-sm);
+  /* Match first-line inset of .article-anchor-nav__link text (list rail + link horizontal padding). */
+  padding-left: calc(var(--article-anchor-rail-pl) + 10px);
+  padding-right: var(--prism-space-md);
+  font-size: var(--docs-fs-xs);
+  font-weight: var(--docs-fw-semibold);
+  letter-spacing: var(--docs-ls-subtle);
+  line-height: var(--docs-lh-snug);
+  color: var(--prism-color-text-secondary);
+}
+
+.article-anchor-nav__list,
+.article-anchor-nav__sublist {
+  list-style: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.article-anchor-nav__list {
+  position: relative;
+  z-index: 0;
+  overflow: visible;
+  padding-left: var(--article-anchor-rail-pl);
+  border-left: none;
+  gap: 0px;
+}
+
+/* Full-height rounded grey rail (replaces the old 1px border). */
+.article-anchor-nav__list::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: var(--article-anchor-track-w);
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--prism-color-border-subtle) 72%, var(--prism-color-surface));
+  pointer-events: none;
+}
+
+.article-anchor-nav__sublist {
+  gap: 2px;
+  margin-top: 2px;
+  margin-bottom: var(--prism-space-xs);
+  padding-left: var(--prism-space-md);
+}
+
+.article-anchor-nav__link {
+  position: relative;
+  z-index: 1;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 6px 10px;
+  font-size: var(--docs-fs-sm);
+  font-weight: var(--docs-fw-medium);
+  letter-spacing: var(--docs-ls-subtle);
+  line-height: var(--docs-lh-ui);
+  text-decoration: none;
+  color: var(--prism-color-text-primary);
+  border-radius: 10px;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.article-anchor-nav__link--nested {
+  font-size: var(--docs-fs-xs);
+  font-weight: var(--docs-fw-medium);
+  color: var(--prism-color-text-secondary);
+}
+
+.article-anchor-nav__link:hover,
+.article-anchor-nav__link:focus-visible {
+  background-color: var(--nav-drawer-item-active-bg);
+  color: var(--prism-color-accent-strong);
+}
+
+.article-anchor-nav__link:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--prism-color-accent-strong) 45%, transparent);
+  outline-offset: 2px;
+}
+
+/*
+ * Blue thumb centered on the grey rail; vertical inset = link padding so height matches the
+ * text block (wrapped lines included), not the full padded row.
+ */
+.article-anchor-nav__link.is-active::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 6px;
+  bottom: 6px;
+  left: calc(
+    var(--article-anchor-track-w) / 2 - var(--article-anchor-blue-w) / 2 - var(--article-anchor-rail-pl)
+  );
+  width: var(--article-anchor-blue-w);
+  border-radius: 9999px;
+  background: var(--prism-color-accent-strong);
+  pointer-events: none;
+}
+
+.article-anchor-nav__link--nested.is-active::before {
+  /* Same grey rail as parent links: offset by nested list padding-left (was a mistaken 10px). */
+  left: calc(
+    var(--article-anchor-track-w) / 2 -
+      var(--article-anchor-blue-w) / 2 -
+      var(--article-anchor-rail-pl) -
+      var(--prism-space-md)
+  );
+}

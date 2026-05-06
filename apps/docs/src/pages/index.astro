@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import DocH2WithAnchor from "../components/DocH2WithAnchor.astro";
-import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
+import { getArticleUpdatePostPath, getArticleTeaserHref } from "../data/articleUpdates";
 ---
 
 <BaseLayout title="Prism">
@@ -29,7 +29,7 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
             Latest and greatest from Prism
           </DocH2WithAnchor>
           <a class="h-updates__view-all" href="/articles/latest">
-            <span class="h-updates__view-all__label" data-i18n="home.updates.viewAll">Explore all blogs</span>
+            <span class="h-updates__view-all__label" data-i18n="home.updates.viewAll">Explore all articles</span>
             <span class="h-updates__view-all__arrow" aria-hidden="true">
               <svg
                 class="h-updates__view-all__arrow-icon"
@@ -155,7 +155,7 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
         <div id="updates-carousel-viewport" class="h-updates-carousel__viewport" data-carousel-viewport>
           <ol class="h-updates-carousel__list">
             <li class="h-updates-carousel__slide" data-updates-kind="feature">
-              <a class="h-updates-card" href={getBlogTeaserHref(8, "", false)}>
+              <a class="h-updates-card" href={getArticleTeaserHref(8, "", false)}>
                 <div class="h-updates-card__media">
                   <img
                     class="h-updates-card__img"
@@ -206,7 +206,7 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
               </a>
             </li>
             <li class="h-updates-carousel__slide" data-updates-kind="update">
-              <a class="h-updates-card" href={getBlogUpdatePostPath(1)}>
+              <a class="h-updates-card" href={getArticleUpdatePostPath(1)}>
                 <div class="h-updates-card__media">
                   <img
                     class="h-updates-card__img"
@@ -245,7 +245,7 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
               </a>
             </li>
             <li class="h-updates-carousel__slide" data-updates-kind="feature">
-              <a class="h-updates-card" href={getBlogUpdatePostPath(2)}>
+              <a class="h-updates-card" href={getArticleUpdatePostPath(2)}>
                 <div class="h-updates-card__media">
                   <img
                     class="h-updates-card__img"
@@ -283,7 +283,7 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
               </a>
             </li>
             <li class="h-updates-carousel__slide" data-updates-kind="update">
-              <a class="h-updates-card" href={getBlogUpdatePostPath(3)}>
+              <a class="h-updates-card" href={getArticleUpdatePostPath(3)}>
                 <div class="h-updates-card__media">
                   <img
                     class="h-updates-card__img"
@@ -321,7 +321,7 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
               </a>
             </li>
             <li class="h-updates-carousel__slide" data-updates-kind="update">
-              <a class="h-updates-card" href={getBlogUpdatePostPath(4)}>
+              <a class="h-updates-card" href={getArticleUpdatePostPath(4)}>
                 <div class="h-updates-card__media">
                   <img
                     class="h-updates-card__img"
@@ -359,7 +359,7 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
               </a>
             </li>
             <li class="h-updates-carousel__slide" data-updates-kind="update">
-              <a class="h-updates-card" href={getBlogUpdatePostPath(5)}>
+              <a class="h-updates-card" href={getArticleUpdatePostPath(5)}>
                 <div class="h-updates-card__media">
                   <img
                     class="h-updates-card__img"
@@ -398,7 +398,7 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
               </a>
             </li>
             <li class="h-updates-carousel__slide" data-updates-kind="update">
-              <a class="h-updates-card" href={getBlogUpdatePostPath(6)}>
+              <a class="h-updates-card" href={getArticleUpdatePostPath(6)}>
                 <div class="h-updates-card__media">
                   <img
                     class="h-updates-card__img"
@@ -437,7 +437,7 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
               </a>
             </li>
             <li class="h-updates-carousel__slide" data-updates-kind="update">
-              <a class="h-updates-card" href={getBlogUpdatePostPath(7)}>
+              <a class="h-updates-card" href={getArticleUpdatePostPath(7)}>
                 <div class="h-updates-card__media">
                   <img
                     class="h-updates-card__img"
@@ -852,19 +852,19 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
 
   .h-hero__title {
     margin: 0 0 clamp(0.625rem, 1.75vw, 1rem);
-    font-size: clamp(2.75rem, 9.5vw, 4.5rem);
-    font-weight: 700;
-    letter-spacing: -0.045em;
-    line-height: 0.98;
+    font-size: var(--docs-fs-hero-display);
+    font-weight: var(--docs-fw-bold);
+    letter-spacing: var(--docs-ls-display-max);
+    line-height: var(--docs-lh-display);
     text-wrap: balance;
   }
 
   .h-hero__lede {
     margin: 0 auto clamp(1rem, 2.5vw, 1.5rem);
     max-width: 34rem;
-    font-size: clamp(1.0625rem, 2.1vw, 1.3125rem);
-    font-weight: 400;
-    line-height: 1.55;
+    font-size: var(--docs-fs-hero-subtitle);
+    font-weight: var(--docs-fw-regular);
+    line-height: var(--docs-text-sm-line-height);
     color: var(--prism-color-text-secondary);
   }
 
@@ -880,7 +880,7 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
   .h-hero__actions .h-btn {
     height: 48px;
     padding: 0 1.5rem;
-    font-size: 16px;
+    font-size: var(--docs-fs-base);
   }
 
   .h-btn {
@@ -889,9 +889,9 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
     align-items: center;
     justify-content: center;
     padding: 0.7rem 1.5rem;
-    font-size: 0.9375rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
+    font-size: var(--docs-fs-md);
+    font-weight: var(--docs-fw-semibold);
+    letter-spacing: var(--docs-ls-heading-sm);
     text-decoration: none;
     border-radius: 9999px;
     border: 1px solid transparent;
@@ -925,7 +925,7 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
   }
 
   .h-btn__arrow {
-    font-weight: 500;
+    font-weight: var(--docs-fw-medium);
     line-height: 1;
     transition: transform 0.35s var(--home-ease);
   }
@@ -1131,10 +1131,10 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
     gap: 0.4em;
     margin: 0;
     padding: 0.25rem 0;
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1.3;
+    font-size: var(--docs-fs-base);
+    font-weight: var(--docs-fw-medium);
+    letter-spacing: var(--docs-ls-label);
+    line-height: var(--docs-lh-subheading);
     text-decoration: none;
     color: color-mix(in srgb, var(--prism-color-accent-strong) 91%, #000000);
     border-radius: 2px;
@@ -1222,9 +1222,9 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
    */
   .home-root :global(.h-updates__h) {
     margin: 0;
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    line-height: 1.1;
+    font-weight: var(--docs-fw-bold);
+    letter-spacing: var(--docs-ls-display);
+    line-height: var(--docs-lh-heading);
   }
 
   .h-updates-carousel {
@@ -1295,11 +1295,11 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
     align-self: stretch;
     gap: 0.35rem;
     padding: 0 1.125rem;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1.25;
-    color: #0b0d12;
+    font-size: var(--docs-fs-xs);
+    font-weight: var(--docs-fw-medium);
+    letter-spacing: var(--docs-ls-label);
+    line-height: var(--docs-lh-tight);
+    color: var(--docs-text-md-color);
     border-radius: 9999px;
     cursor: pointer;
     user-select: none;
@@ -1427,10 +1427,10 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
     top: calc(100% + var(--docs-tooltip-gap));
     z-index: 100;
     padding: 0.35rem 0.65rem;
-    font-size: 0.6875rem;
-    font-weight: 500;
-    line-height: 1.25;
-    letter-spacing: 0.01em;
+    font-size: var(--docs-fs-3xs);
+    font-weight: var(--docs-fw-medium);
+    line-height: var(--docs-lh-tight);
+    letter-spacing: var(--docs-ls-wide);
     color: var(--prism-color-text-inverse);
     background: var(--prism-color-text-primary);
     border-radius: 6px;
@@ -1585,9 +1585,9 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
   }
 
   .h-updates-card__date {
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: -0.01em;
+    font-size: var(--docs-fs-sm);
+    font-weight: var(--docs-fw-regular);
+    letter-spacing: var(--docs-ls-label);
     color: var(--prism-color-text-secondary);
     color: rgb(from var(--prism-color-text-secondary) r g b / 1);
   }
@@ -1602,21 +1602,21 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
   .h-updates-card__title-text {
     --prism-stagger-title-segment: 0.38s;
     min-width: 0;
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.25;
+    font-size: var(--docs-fs-2xl);
+    font-weight: var(--docs-fw-bold);
+    letter-spacing: var(--docs-ls-tighter);
+    line-height: var(--docs-lh-tight);
   }
 
-  /* Home article title hover + staggered lines: see `<style is:global>` (matches blog teasers; injected spans). */
+  /* Home article title hover + staggered lines: see `<style is:global>` (matches article teasers; injected spans). */
 
   /* Outer keeps padding; inner is the -webkit-box so clamp height matches line boxes (avoids 4th line peek). */
   .h-updates-card__desc {
     margin: 0;
     padding: 0.45rem 0 0.5rem;
     box-sizing: border-box;
-    font-size: 14px;
-    line-height: 1.55;
+    font-size: var(--docs-fs-sm);
+    line-height: var(--docs-text-sm-line-height);
     color: var(--prism-color-text-secondary);
     min-height: 0;
   }
@@ -1660,11 +1660,11 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
   }
 
   .h-updates-card__author-name {
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1.3;
-    color: #556070;
+    font-size: var(--docs-fs-2xs);
+    font-weight: var(--docs-fw-medium);
+    letter-spacing: var(--docs-ls-label);
+    line-height: var(--docs-lh-subheading);
+    color: var(--docs-text-sm-color);
   }
 
   /* What's inside */
@@ -1678,16 +1678,16 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
 
   .home-root :global(.h-inside__h) {
     margin: 0 0 clamp(1rem, 2vw, 1.25rem);
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    line-height: 1.1;
+    font-weight: var(--docs-fw-bold);
+    letter-spacing: var(--docs-ls-display);
+    line-height: var(--docs-lh-heading);
   }
 
   .h-inside__intro {
     margin: 0;
     max-width: 36rem;
-    font-size: 1rem;
-    line-height: 1.65;
+    font-size: var(--docs-fs-base);
+    line-height: var(--docs-lh-reading);
     color: var(--prism-color-text-secondary);
   }
 
@@ -1813,9 +1813,9 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
   }
 
   .h-inside__name {
-    font-size: 1.125rem;
-    font-weight: 700;
-    letter-spacing: -0.03em;
+    font-size: var(--docs-h4-size);
+    font-weight: var(--docs-fw-bold);
+    letter-spacing: var(--docs-ls-tighter);
     line-height: 1.2;
     color: var(--prism-color-text-primary);
   }
@@ -1823,8 +1823,8 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
   .h-inside__desc {
     flex: 1 1 auto;
     margin: 0.5rem 0 0;
-    font-size: 0.875rem;
-    line-height: 1.55;
+    font-size: var(--docs-fs-sm);
+    line-height: var(--docs-text-sm-line-height);
     color: var(--prism-color-text-secondary);
   }
 
@@ -1835,10 +1835,10 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
     gap: 0.4em;
     margin-top: 1.15rem;
     padding: 0.25rem 0;
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1.3;
+    font-size: var(--docs-fs-sm);
+    font-weight: var(--docs-fw-medium);
+    letter-spacing: var(--docs-ls-label);
+    line-height: var(--docs-lh-subheading);
     color: color-mix(in srgb, var(--prism-color-accent-strong) 91%, #000000);
     transition: color 0.2s ease;
   }
@@ -1936,16 +1936,16 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
 
   .home-root :global(.h-design-ai__h) {
     margin: 0 0 clamp(1rem, 2vw, 1.25rem);
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    line-height: 1.1;
+    font-weight: var(--docs-fw-bold);
+    letter-spacing: var(--docs-ls-display);
+    line-height: var(--docs-lh-heading);
   }
 
   .h-design-ai__intro {
     margin: 0;
     max-width: 42rem;
-    font-size: 1rem;
-    line-height: 1.65;
+    font-size: var(--docs-fs-base);
+    line-height: var(--docs-lh-reading);
     color: var(--prism-color-text-secondary);
   }
 
@@ -2003,7 +2003,7 @@ import { getBlogUpdatePostPath, getBlogTeaserHref } from "../data/blogUpdates";
 -->
 <style is:global>
   /*
-   * Home “What’s new” card titles — same model as `/articles/latest` teasers (BlogLayout):
+   * Home “What’s new” card titles — same model as `/articles/latest` teasers (ArticleLayout):
    * per-line spans, staggered underline in / out, full title blue at once on card hover.
    * Global sheet so `.prism-stagger-title-line` (injected) always matches.
    */

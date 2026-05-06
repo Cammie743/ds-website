@@ -29,6 +29,32 @@ video {
   height: auto;
 }
 
+img {
+  border-radius: 12px;
+}
+
+/* Keep image placeholder/media shells consistent even when image files are missing. */
+.doc-preview__media,
+.comp-card__media,
+.overview-figure__media {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Global docs media/card radius: one source of truth across all pages. */
+:root {
+  --docs-media-radius: 12px;
+}
+
+img,
+.doc-preview__media,
+.comp-card__media,
+.overview-figure__media,
+.article-article__figure,
+.article-article__inline-figure {
+  border-radius: var(--docs-media-radius);
+}
+
 a {
   color: var(--prism-color-accent-strong);
   text-decoration-thickness: 1px;
@@ -40,11 +66,14 @@ a:hover {
 }
 
 code {
-  font-family: var(--prism-font-mono);
-  font-size: 0.9em;
-  background: color-mix(in srgb, var(--prism-color-border-subtle) 55%, transparent);
-  padding: 0.12em 0.35em;
-  border-radius: var(--prism-radius-sm);
+  font-family: var(--docs-code-family);
+  font-size: var(--docs-code-size);
+  font-weight: var(--docs-code-weight);
+  line-height: var(--docs-code-line-height);
+  color: var(--docs-code-color);
+  background: var(--docs-code-bg);
+  padding: var(--docs-code-padding-y) var(--docs-code-padding-x);
+  border-radius: var(--docs-code-radius);
 }
 
 .prism-bg {
@@ -159,4 +188,365 @@ html[data-page="inner"][data-theme] .prism-chrome-bg {
   background-color: var(--prism-color-canvas);
   background-image: none;
   background-attachment: scroll;
+}
+
+/* Shared docs section rhythm across the site (avoid page-specific spacing rules). */
+:root {
+  --docs-fs-2xs: 0.75rem;
+  --docs-fs-3xs: 0.6875rem;
+  --docs-fs-xs: 0.8125rem;
+  --docs-fs-sm: 0.875rem;
+  --docs-fs-md: 0.9375rem;
+  --docs-fs-base: 1rem;
+  --docs-fs-lg: 1.0625rem;
+  --docs-fs-xl: 1.25rem;
+  --docs-fs-xl-plus: 1.35rem;
+  --docs-fs-2xl: 1.5rem;
+  --docs-fs-2xl-fluid: clamp(1.375rem, 2.4vw, 1.625rem);
+  --docs-fs-xl-fluid: clamp(1rem, 0.35vw + 0.92rem, 1.1875rem);
+  --docs-fs-brand-fluid: clamp(1.125rem, 3.2vw, 1.5rem);
+  --docs-fs-hero-display: clamp(2.75rem, 9.5vw, 4.5rem);
+  --docs-fs-hero-subtitle: clamp(1.0625rem, 2.1vw, 1.3125rem);
+  --docs-fs-display: clamp(3rem, 8.5vw, 4.5rem);
+  --docs-fw-regular: 400;
+  --docs-fw-medium: 500;
+  --docs-fw-semibold: 600;
+  --docs-fw-bold: 700;
+  --docs-fw-light: 300;
+  --docs-lh-display: 0.98;
+  --docs-lh-heading: 1.1;
+  --docs-lh-heading-tight: 1.15;
+  --docs-lh-subheading: 1.28;
+  --docs-lh-ui-loose: 1.45;
+  --docs-lh-tight: 1.25;
+  --docs-lh-snug: 1.35;
+  --docs-lh-ui: 1.4;
+  --docs-lh-body: 1.6;
+  --docs-lh-reading: 1.65;
+  --docs-lh-relaxed: 1.7;
+  --docs-ls-tightest: -0.035em;
+  --docs-ls-display-max: -0.045em;
+  --docs-ls-display: -0.04em;
+  --docs-ls-tighter: -0.03em;
+  --docs-ls-tight: -0.025em;
+  --docs-ls-fluid: -0.022em;
+  --docs-ls-subtle: -0.012em;
+  --docs-ls-ui: -0.015em;
+  --docs-ls-label: -0.01em;
+  --docs-ls-wide: 0.01em;
+  --docs-ls-wider: 0.03em;
+  --docs-ls-heading-sm: -0.02em;
+  --docs-section-gap: var(--prism-space-3xl);
+  /* Prism semantic text color roles */
+  --docs-prism-text-stronger-neutral: var(--prism-color-text-primary);
+  --docs-prism-text-strong-neutral: var(--prism-color-text-primary);
+  --docs-prism-text-neutral: var(--prism-color-text-secondary);
+  --docs-prism-fill-subtle-neutral: var(--prism-color-fill-subtle-neutral, var(--prism-color-surface-muted));
+  --docs-text-lg-size: var(--docs-h4-size);
+  --docs-text-lg-weight: var(--docs-fw-regular);
+  --docs-text-lg-line-height: var(--docs-lh-reading);
+  --docs-text-lg-color: var(--docs-prism-text-neutral);
+  --docs-text-md-size: var(--docs-fs-base);
+  --docs-text-md-weight: var(--docs-fw-regular);
+  --docs-text-md-line-height: var(--docs-lh-body);
+  --docs-text-md-color: var(--docs-prism-text-strong-neutral);
+  --docs-text-sm-size: var(--docs-fs-md);
+  --docs-text-sm-weight: var(--docs-fw-regular);
+  --docs-text-sm-line-height: var(--docs-text-sm-line-height);
+  --docs-text-sm-color: var(--docs-prism-text-neutral);
+  --docs-text-xs-size: var(--docs-fs-xs);
+  --docs-text-xs-weight: var(--docs-fw-medium);
+  --docs-text-xs-line-height: var(--docs-lh-snug);
+  --docs-text-xs-color: var(--docs-prism-text-neutral);
+  --docs-label-size: var(--docs-fs-md);
+  --docs-label-weight: var(--docs-fw-medium);
+  --docs-label-line-height: var(--docs-lh-ui);
+  --docs-label-letter-spacing: var(--docs-ls-ui);
+  --docs-label-color: var(--docs-prism-text-strong-neutral);
+  --docs-caption-size: var(--docs-fs-sm);
+  --docs-caption-weight: var(--docs-fw-medium);
+  --docs-caption-line-height: var(--docs-lh-snug);
+  --docs-caption-letter-spacing: var(--docs-ls-label);
+  --docs-caption-color: var(--docs-prism-text-neutral);
+  --docs-table-first-column-width: 13rem;
+  --docs-table-first-column-max: 40%;
+  --docs-code-family: var(--prism-font-mono);
+  --docs-code-size: var(--docs-fs-sm);
+  --docs-code-weight: var(--docs-fw-semibold);
+  --docs-code-line-height: var(--docs-lh-snug);
+  --docs-code-color: var(--docs-prism-text-strong-neutral);
+  --docs-code-bg: var(--docs-prism-fill-subtle-neutral);
+  --docs-code-padding-y: 0.12em;
+  --docs-code-padding-x: 0.35em;
+  --docs-code-radius: var(--prism-radius-sm);
+  --docs-h1-size: var(--docs-fs-display);
+  --docs-h1-weight: var(--docs-fw-bold);
+  --docs-h1-line-height: 1.08;
+  --docs-h1-letter-spacing: var(--docs-ls-tighter);
+  --docs-h1-color: var(--docs-prism-text-stronger-neutral);
+  --docs-h2-size: 2.25rem;
+  --docs-h2-weight: var(--docs-fw-bold);
+  --docs-h2-line-height: 1.2;
+  --docs-h2-letter-spacing: var(--docs-ls-tight);
+  --docs-h2-color: var(--docs-prism-text-stronger-neutral);
+  --docs-h3-size: var(--docs-fs-2xl);
+  --docs-h3-weight: var(--docs-fw-semibold);
+  --docs-h3-line-height: var(--docs-lh-subheading);
+  --docs-h3-color: var(--docs-prism-text-stronger-neutral);
+  --docs-h4-size: 1.125rem;
+  --docs-h4-weight: var(--docs-fw-semibold);
+  --docs-h4-line-height: 1.35;
+  --docs-h4-color: var(--docs-prism-text-stronger-neutral);
+}
+
+body {
+  font-size: var(--docs-text-md-size);
+  font-weight: var(--docs-text-md-weight);
+  line-height: var(--docs-text-md-line-height);
+  color: var(--docs-text-md-color);
+}
+
+h1 {
+  margin: 0 0 var(--prism-space-md);
+  font-size: var(--docs-h1-size);
+  font-weight: var(--docs-h1-weight);
+  line-height: var(--docs-h1-line-height);
+  letter-spacing: var(--docs-h1-letter-spacing);
+  color: var(--docs-h1-color);
+}
+
+h2 {
+  margin: 0 0 var(--prism-space-md);
+  font-size: var(--docs-h2-size);
+  font-weight: var(--docs-h2-weight);
+  line-height: var(--docs-h2-line-height);
+  letter-spacing: var(--docs-h2-letter-spacing);
+  color: var(--docs-h2-color);
+}
+
+h3 {
+  margin: 0 0 var(--prism-space-sm);
+  font-size: var(--docs-h3-size);
+  font-weight: var(--docs-h3-weight);
+  line-height: var(--docs-h3-line-height);
+  color: var(--docs-h3-color);
+}
+
+h4 {
+  margin: 0 0 var(--prism-space-xs);
+  font-size: var(--docs-h4-size);
+  font-weight: var(--docs-h4-weight);
+  line-height: var(--docs-h4-line-height);
+  color: var(--docs-h4-color);
+}
+
+p,
+li,
+dd {
+  font-size: var(--docs-text-md-size);
+  font-weight: var(--docs-text-md-weight);
+  line-height: var(--docs-text-md-line-height);
+  color: var(--docs-text-md-color);
+}
+
+small {
+  font-size: var(--docs-fs-sm);
+  font-weight: var(--docs-fw-regular);
+  line-height: var(--docs-caption-line-height);
+  letter-spacing: var(--docs-caption-letter-spacing);
+  color: var(--docs-caption-color);
+}
+
+.caption,
+figcaption {
+  font-size: var(--docs-caption-size);
+  font-weight: var(--docs-caption-weight);
+  line-height: var(--docs-caption-line-height);
+  letter-spacing: var(--docs-caption-letter-spacing);
+  color: var(--docs-caption-color);
+}
+
+.intro,
+.doc-intro,
+.intro {
+  font-size: var(--docs-text-lg-size);
+  font-weight: var(--docs-text-lg-weight);
+  line-height: var(--docs-text-lg-line-height);
+  color: var(--docs-text-lg-color);
+}
+
+.section-nav-link {
+  font-size: var(--docs-label-size);
+  font-weight: var(--docs-label-weight);
+  line-height: var(--docs-label-line-height);
+  letter-spacing: var(--docs-label-letter-spacing);
+  color: var(--docs-label-color);
+}
+
+.doc-section-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--prism-space-xl);
+  min-width: 0;
+}
+
+.doc-section-stack > h2,
+.doc-section-stack > h3 {
+  margin: 0;
+}
+
+.doc-section-block {
+  margin-top: var(--docs-section-gap);
+}
+
+.doc-tabs__panel > .doc-section-block:first-child {
+  margin-top: 0;
+}
+
+/* Global subsection rhythm inside a section block (e.g. H3 groups like "Info button", "Do/Don't"). */
+.doc-section-block > h3 {
+  margin: var(--prism-space-2xl) 0 var(--prism-space-md);
+}
+
+.doc-section-block > h3:first-child,
+.doc-section-block > h3:first-of-type {
+  margin-top: 0;
+}
+
+.doc-section-block > h4 {
+  margin: var(--prism-space-2xl) 0 var(--prism-space-md);
+}
+
+.doc-section-block > h4:first-child,
+.doc-section-block > h4:first-of-type {
+  margin-top: 0;
+}
+
+.doc-section-group {
+  min-width: 0;
+}
+
+.doc-section-group > h3 {
+  margin: var(--prism-space-2xl) 0 var(--prism-space-md);
+}
+
+.doc-section-group > h3:first-child,
+.doc-section-group > h3:first-of-type {
+  margin-top: 0;
+}
+
+.doc-section-group > h4 {
+  margin: var(--prism-space-2xl) 0 var(--prism-space-md);
+}
+
+.doc-section-group > h4:first-child,
+.doc-section-group > h4:first-of-type {
+  margin-top: 0;
+}
+
+.doc-section-group > :first-child {
+  margin-top: 0;
+}
+
+.doc-section-group > :last-child {
+  margin-bottom: 0;
+}
+
+/* Shared tabbed-doc typography rhythm across component pages. */
+.doc-tabs__panel-copy {
+  margin: 0;
+  font-size: var(--docs-text-md-size);
+  font-weight: var(--docs-text-md-weight);
+  line-height: var(--docs-text-md-line-height);
+  color: var(--docs-text-md-color);
+}
+
+.doc-tabs .doc-tabs__h2 {
+  margin: 0 0 var(--prism-space-md);
+  color: var(--prism-color-text-primary);
+}
+
+/* Reusable numbered caption pattern for media figures (components, articles, foundations). */
+.docs-inline-caption {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0.65rem 1rem 0.8rem;
+  font-size: var(--docs-caption-size);
+  font-weight: var(--docs-caption-weight);
+  line-height: var(--docs-caption-line-height);
+  letter-spacing: var(--docs-caption-letter-spacing);
+  color: var(--docs-caption-color);
+  border-top: 1px solid color-mix(in srgb, var(--prism-color-border-subtle) 75%, transparent);
+  background: color-mix(in srgb, var(--prism-color-surface) 92%, var(--prism-color-border-subtle));
+}
+
+.docs-inline-caption--stack {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+  padding-block: 0.625rem 0.75rem;
+}
+
+.docs-inline-caption-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.docs-inline-caption__badge {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.625rem;
+  height: 1.625rem;
+  padding: 0;
+  border-radius: 50%;
+  background: #222325;
+  color: #ffffff;
+}
+
+.docs-inline-caption__badge-num {
+  display: block;
+  font-size: var(--docs-fs-xs);
+  font-weight: var(--docs-fw-semibold);
+  line-height: 1;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.docs-inline-caption__text {
+  min-width: 0;
+}
+
+.docs-inline-caption--token-new {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+}
+
+.docs-inline-caption--token-new .article-article__token-path {
+  min-width: 0;
+}
+
+/* Shared contained media+caption shell (matches article-style contained captions). */
+.docs-inline-figure-shell {
+  border: 1px solid var(--prism-color-border-subtle);
+  border-radius: var(--docs-media-radius);
+  overflow: hidden;
+  background: var(--prism-color-surface);
+}
+
+.docs-inline-figure-shell .doc-tabs__figure-media {
+  border: 0;
+  border-radius: 0;
+}
+
+/* Consistent breathing room when body copy is followed by a matrix table. */
+.doc-tabs__panel-copy + .doc-overview-matrix-shell {
+  margin-top: var(--prism-space-lg);
 }

@@ -7,12 +7,26 @@ import GetStartedLayout from "../../layouts/GetStartedLayout.astro";
   current="faq"
   description="Frequently asked questions about Prism, tokens, themes, and contributing."
 >
-  <header class="page-head">
-    <h1 data-i18n="getStarted.toc.faq">FAQs</h1>
-    <p class="intro" data-i18n="getStarted.faq.intro">
-      Common questions from designers, engineers, and partners onboarding to Prism.
-    </p>
-  </header>
+  <div slot="lead">
+    <header class="page-head">
+      <h1 data-i18n="getStarted.toc.faq">FAQs</h1>
+      <p class="intro" data-i18n="getStarted.faq.intro">
+        Common questions from designers, engineers, and partners onboarding to Prism.
+      </p>
+    </header>
+    <figure class="lang-intro-placeholder">
+      <img
+        class="lang-intro-placeholder__img"
+        src="/images/get-started/design-language-intro-placeholder.png"
+        width="640"
+        height="360"
+        loading="lazy"
+        decoding="async"
+        data-i18n-alt="getStarted.faq.introPlaceholderAlt"
+        alt="Neutral placeholder for a future FAQs illustration."
+      />
+    </figure>
+  </div>
 
   <section class="block">
     <div class="faq-list">

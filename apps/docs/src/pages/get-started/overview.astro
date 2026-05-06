@@ -7,13 +7,15 @@ import GetStartedLayout from "../../layouts/GetStartedLayout.astro";
   current="overview"
   description="How the Get started section is organized and where to go next."
 >
-  <header class="page-head">
-    <h1 data-i18n="getStarted.overview.h1">Get started</h1>
-    <p class="intro" data-i18n="getStarted.overview.intro">
-      This section explains why Prism exists, how we make design decisions, the vocabulary we use in files
-      and reviews, and answers to common onboarding questions.
-    </p>
-  </header>
+  <div slot="lead">
+    <header class="page-head">
+      <h1 data-i18n="getStarted.overview.h1">Get started</h1>
+      <p class="intro" data-i18n="getStarted.overview.intro">
+        This section explains why Prism exists, how we make design decisions, the vocabulary we use in files
+        and reviews, and answers to common onboarding questions.
+      </p>
+    </header>
+  </div>
 
   <nav class="block" aria-labelledby="get-started-overview-toc">
     <h2 class="sr-only" id="get-started-overview-toc" data-i18n="getStarted.overview.tocHeading">Pages in this section</h2>
@@ -65,7 +67,7 @@ import GetStartedLayout from "../../layouts/GetStartedLayout.astro";
   }
 
   .toc-list a {
-    font-weight: 600;
+    font-weight: var(--docs-fw-semibold);
     text-decoration: none;
     color: var(--prism-color-accent-strong);
   }

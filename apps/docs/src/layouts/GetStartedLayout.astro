@@ -10,9 +10,18 @@ interface Props {
   title: string;
   description?: string;
   current: GetStartedNavCurrent;
+  /** Third column: sticky in-page TOC (same breakpoint and chrome as Articles). */
+  showAnchorsAside?: boolean;
 }
 
-const { title, description = "Mission, design principles, design language, and FAQs for Prism.", current } = Astro.props;
+const {
+  title,
+  description = "Mission, design principles, design language, and FAQs for Prism.",
+  current,
+  showAnchorsAside = false,
+} = Astro.props;
+
+const hasLeadSlot = Astro.slots.has("lead");
 
 const navItems: { id: GetStartedNavCurrent; href: string; i18n: string; fallback: string }[] = [
   { id: "overview", href: "/get-started/overview", i18n: "getStarted.toc.overview", fallback: "Overview" },
@@ -34,7 +43,7 @@ const navItems: { id: GetStartedNavCurrent; href: string; i18n: string; fallback
 ---
 
 <BaseLayout title={title} description={description}>
-  <div class="get-started-layout">
+  <div class:list={["get-started-layout", { "get-started-layout--with-anchor-aside": showAnchorsAside }]}>
     <nav class="section-nav section-nav--page" data-i18n-aria="getStarted.sectionNav.aria" aria-label="Get started pages">
       <ul class="section-nav-list">
         {
@@ -53,9 +62,29 @@ const navItems: { id: GetStartedNavCurrent; href: string; i18n: string; fallback
         }
       </ul>
     </nav>
-    <article class="page">
-      <slot />
+    <article class="page get-started-page">
+      {
+        hasLeadSlot ? (
+          <div class="get-started-page__lead">
+            <slot name="lead" />
+          </div>
+        ) : null
+      }
+      <div class="get-started-page__measure">
+        <slot />
+      </div>
     </article>
+    {
+      showAnchorsAside ? (
+        <aside
+          class="article-anchor-aside"
+          data-i18n-aria="article.articleAnchors.asideAria"
+          aria-label="In this article"
+        >
+          <slot name="anchors" />
+        </aside>
+      ) : null
+    }
   </div>
 </BaseLayout>
 
@@ -82,11 +111,38 @@ const navItems: { id: GetStartedNavCurrent; href: string; i18n: string; fallback
 
   @media (min-width: 56rem) {
     .get-started-layout {
-      grid-template-columns: 12.5rem minmax(0, 48rem);
+      grid-template-columns: 12.5rem minmax(0, 1fr);
       column-gap: clamp(var(--prism-space-xl), 4vw, var(--prism-space-3xl));
     }
 
+    .get-started-layout--with-anchor-aside {
+      grid-template-columns: 12.5rem minmax(0, 1fr);
+    }
+
     .section-nav {
+      position: sticky;
+      top: calc(var(--site-header-sticky-anchor, 72px) + var(--prism-space-md));
+      max-height: calc(100vh - var(--site-header-sticky-anchor, 72px) - var(--prism-space-xl));
+      overflow-y: auto;
+      padding-top: calc(var(--docs-page-content-padding-top) + var(--prism-space-sm) + 4px);
+      padding-bottom: calc(var(--prism-space-md) + 4px);
+      padding-inline: 6px;
+    }
+  }
+
+  .article-anchor-aside {
+    display: none;
+    width: 100%;
+    min-width: 0;
+  }
+
+  @media (min-width: 72rem) {
+    .get-started-layout--with-anchor-aside {
+      grid-template-columns: 12.5rem minmax(0, 1fr) minmax(11.25rem, 14rem);
+    }
+
+    .get-started-layout--with-anchor-aside .article-anchor-aside {
+      display: block;
       position: sticky;
       top: calc(var(--site-header-sticky-anchor, 72px) + var(--prism-space-md));
       max-height: calc(100vh - var(--site-header-sticky-anchor, 72px) - var(--prism-space-xl));
@@ -119,10 +175,6 @@ const navItems: { id: GetStartedNavCurrent; href: string; i18n: string; fallback
     width: 100%;
     box-sizing: border-box;
     padding: var(--prism-space-md) var(--prism-space-lg);
-    font-size: 0.9375rem;
-    font-weight: 500;
-    letter-spacing: -0.015em;
-    line-height: 1.4;
     text-decoration: none;
     color: var(--prism-color-text-primary);
     border-radius: 12px;
@@ -149,10 +201,48 @@ const navItems: { id: GetStartedNavCurrent; href: string; i18n: string; fallback
 
   .page {
     width: 100%;
-    max-width: 48rem;
+    max-width: none;
     min-width: 0;
     padding-top: var(--docs-page-content-padding-top);
     padding-bottom: var(--prism-space-3xl);
+  }
+
+  .get-started-page {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* Full-width band: title, intro, hero (matches article head + figure outside `.article-article__body`). */
+  .get-started-page__lead {
+    width: 100%;
+    min-width: 0;
+    margin-bottom: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .page :global(.lang-intro-placeholder) {
+    margin: 0;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    border: 1px solid color-mix(in srgb, var(--prism-color-border-subtle) 85%, transparent);
+    background: color-mix(in srgb, var(--prism-color-border-subtle) 25%, var(--prism-color-surface));
+  }
+
+  .page :global(.lang-intro-placeholder__img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+  }
+
+  /* Narrow column for main intro (matches ~`.article-article__sections` at 50rem). */
+  .get-started-page__measure {
+    max-width: 50rem;
+    width: 100%;
+    margin-inline: auto;
+    box-sizing: border-box;
   }
 
   .page :global(.page-head) {
@@ -160,19 +250,8 @@ const navItems: { id: GetStartedNavCurrent; href: string; i18n: string; fallback
   }
 
   /* Slotted page markup lives in child .astro files, so scoped selectors need :global() (matches Foundations). */
-  .page :global(h1) {
-    margin: 0 0 var(--prism-space-md);
-    font-size: clamp(3rem, 8.5vw, 4.5rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.08;
-  }
-
   .page :global(.intro) {
     margin: 0;
-    color: var(--prism-color-text-secondary);
-    line-height: 1.65;
-    font-size: 1.0625rem;
   }
 
   .page :global(.block) {
@@ -181,23 +260,23 @@ const navItems: { id: GetStartedNavCurrent; href: string; i18n: string; fallback
 
   .page :global(.block h2) {
     margin: 0 0 var(--prism-space-md);
-    font-size: 1.25rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
+    font-size: var(--docs-fs-xl);
+    font-weight: var(--docs-fw-semibold);
+    letter-spacing: var(--docs-ls-heading-sm);
   }
 
-  .page :global(.prose) {
+  .page :global(.intro) {
     margin: 0 0 var(--prism-space-md);
     color: var(--prism-color-text-secondary);
-    line-height: 1.65;
+    line-height: var(--docs-lh-reading);
   }
 
-  .page :global(.prose:last-child) {
+  .page :global(.intro:last-child) {
     margin-bottom: 0;
   }
 
   .page :global(.lead) {
-    font-size: 1rem;
+    font-size: var(--docs-fs-base);
   }
 
   .page :global(.principles) {
@@ -226,8 +305,8 @@ const navItems: { id: GetStartedNavCurrent; href: string; i18n: string; fallback
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.8125rem;
-    font-weight: 700;
+    font-size: var(--docs-fs-xs);
+    font-weight: var(--docs-fw-bold);
     border-radius: var(--prism-radius-sm);
     background: color-mix(in srgb, var(--prism-color-accent) 18%, transparent);
     color: var(--prism-color-text-primary);
@@ -235,15 +314,15 @@ const navItems: { id: GetStartedNavCurrent; href: string; i18n: string; fallback
 
   .page :global(.principles h3) {
     margin: 0 0 var(--prism-space-sm);
-    font-size: 1.0625rem;
-    font-weight: 600;
+    font-size: var(--docs-fs-lg);
+    font-weight: var(--docs-fw-semibold);
   }
 
   .page :global(.principles p) {
     margin: 0;
     color: var(--prism-color-text-secondary);
-    line-height: 1.65;
-    font-size: 0.9375rem;
+    line-height: var(--docs-lh-reading);
+    font-size: var(--docs-fs-md);
   }
 
   .page :global(.lang-grid) {
@@ -270,14 +349,14 @@ const navItems: { id: GetStartedNavCurrent; href: string; i18n: string; fallback
   .page :global(.lang-card h2),
   .page :global(.lang-card h3) {
     margin: 0 0 var(--prism-space-sm);
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: var(--docs-fs-base);
+    font-weight: var(--docs-fw-semibold);
   }
 
   .page :global(.lang-card p) {
     margin: 0;
-    font-size: 0.9375rem;
-    line-height: 1.6;
+    font-size: var(--docs-fs-md);
+    line-height: var(--docs-lh-body);
     color: var(--prism-color-text-secondary);
   }
 
@@ -298,8 +377,8 @@ const navItems: { id: GetStartedNavCurrent; href: string; i18n: string; fallback
 
   .page :global(.faq-item summary) {
     cursor: pointer;
-    font-weight: 600;
-    font-size: 0.9375rem;
+    font-weight: var(--docs-fw-semibold);
+    font-size: var(--docs-fs-md);
     padding: var(--prism-space-md) 0;
     list-style: none;
   }
@@ -328,8 +407,8 @@ const navItems: { id: GetStartedNavCurrent; href: string; i18n: string; fallback
   .page :global(.faq-item p) {
     margin: 0 0 var(--prism-space-md);
     padding-top: 0;
-    font-size: 0.9375rem;
-    line-height: 1.65;
+    font-size: var(--docs-fs-md);
+    line-height: var(--docs-lh-reading);
     color: var(--prism-color-text-secondary);
   }
 
@@ -340,7 +419,7 @@ const navItems: { id: GetStartedNavCurrent; href: string; i18n: string; fallback
   }
 
   .page :global(.next-link) {
-    font-weight: 600;
+    font-weight: var(--docs-fw-semibold);
     text-decoration: none;
     color: var(--prism-color-accent-strong);
   }

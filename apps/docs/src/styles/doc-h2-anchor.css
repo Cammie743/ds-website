@@ -18,9 +18,9 @@
   margin-right: 0;
 }
 
-/* Section titles use DocH2WithAnchor (home, article listings, component docs, blog); optional `level={3}` / `level={4}` for nested headings. */
+/* Section titles use DocH2WithAnchor (home, article listings, component docs, article); optional `level={3}` / `level={4}` for nested headings. */
 .doc-h2-anchor-heading {
-  font-size: 36px;
+  font-size: var(--docs-h2-size);
 }
 
 .doc-h2-anchor-row--tabs .doc-h2-anchor-heading {

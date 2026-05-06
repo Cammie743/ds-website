@@ -11,6 +11,9 @@
     "tokens:check": "npm run check -w @prism/tokens",
     "dev": "npm run build -w @prism/tokens && npm run dev -w @prism/docs",
     "docs:dev": "npm run dev -w @prism/docs",
+    "docs:up": "bash ./scripts/docs-up.sh",
+    "docs:up:fixed": "STRICT_FIXED=1 bash ./scripts/docs-up.sh 4321",
+    "docs:stop": "bash ./scripts/docs-stop.sh",
     "docs:chrome": "open -b com.google.Chrome http://127.0.0.1:4321/",
     "build": "npm run tokens:build && npm run build --workspaces --if-present",
     "docs:preview": "npm run preview -w @prism/docs"

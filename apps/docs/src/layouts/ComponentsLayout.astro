@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import ComponentPageAnchors from "../components/ComponentPageAnchors.astro";
 
 export type ComponentsSection =
   "overview" | "accordion" | "anchor" | "avatars" | "buttons" | "dialog" | "input-fields";
@@ -40,6 +41,7 @@ interface Props {
 }
 
 const { title, description = "Prism UI components for web experiences.", current } = Astro.props;
+const showPageAnchors = current !== "overview";
 
 /** Open Avatars disclosure when viewing any Avatars page so nested links stay visible. */
 const avatarsNavDisclosureOpen =
@@ -86,7 +88,12 @@ const navItems: NavItem[] = [
 ---
 
 <BaseLayout title={title} description={description}>
-  <div class="components-layout">
+  <div
+    class:list={[
+      "components-layout",
+      { "components-layout--with-anchors": showPageAnchors, "components-layout--no-anchors": !showPageAnchors },
+    ]}
+  >
     <nav
       class="section-nav section-nav--page"
       data-i18n-aria="components.sectionNav.aria"
@@ -170,8 +177,207 @@ const navItems: NavItem[] = [
     <article class="page">
       <slot />
     </article>
+    {
+      showPageAnchors ? (
+        <aside class="components-anchor-aside" data-i18n-aria="components.pageAnchors.asideAria" aria-label="On this page">
+          <ComponentPageAnchors />
+        </aside>
+      ) : null
+    }
   </div>
 </BaseLayout>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+    var nav = document.querySelector("[data-component-anchor-nav]");
+    var list = nav && nav.querySelector("[data-component-anchor-list]");
+    var page = document.querySelector(".components-layout .page");
+    var aside = document.querySelector(".components-anchor-aside");
+    if (!nav || !list || !page || !aside) return;
+
+    function headingIsVisible(el) {
+      var cur = el;
+      while (cur && cur !== document.body) {
+        if (cur.hasAttribute && cur.hasAttribute("hidden")) return false;
+        cur = cur.parentElement;
+      }
+      return true;
+    }
+
+    function collectHeadings() {
+      var all = page.querySelectorAll(".doc-h2-anchor-heading[id]");
+      var out = [];
+      for (var i = 0; i < all.length; i++) {
+        var h = all[i];
+        if (!headingIsVisible(h)) continue;
+        if (h.tagName !== "H2") continue;
+        var id = h.getAttribute("id");
+        if (!id) continue;
+        var text = (h.textContent || "").trim();
+        if (!text) continue;
+        out.push({ id: id, text: text });
+      }
+      return out;
+    }
+
+    function collectTopAnchor() {
+      var h1 = page.querySelector("h1");
+      var text = h1 ? (h1.textContent || "").trim() : "";
+      if (!text) return null;
+      return { id: "__component_top__", text: text };
+    }
+
+    function rebuildAnchors() {
+      var topAnchor = collectTopAnchor();
+      var headings = collectHeadings();
+      list.innerHTML = "";
+      if (!topAnchor && !headings.length) {
+        aside.setAttribute("hidden", "");
+        return;
+      }
+      aside.removeAttribute("hidden");
+
+      if (topAnchor) {
+        var topLi = document.createElement("li");
+        var topA = document.createElement("a");
+        topA.className = "article-anchor-nav__link";
+        topA.setAttribute("href", "#" + topAnchor.id);
+        topA.setAttribute("data-component-top-anchor", "true");
+        topA.textContent = topAnchor.text;
+        topLi.appendChild(topA);
+        list.appendChild(topLi);
+      }
+
+      for (var i = 0; i < headings.length; i++) {
+        var item = headings[i];
+        var li = document.createElement("li");
+        var a = document.createElement("a");
+        a.className = "article-anchor-nav__link";
+        a.setAttribute("href", "#" + item.id);
+        a.textContent = item.text;
+        li.appendChild(a);
+        list.appendChild(li);
+      }
+
+      window.requestAnimationFrame(function () {
+        window.dispatchEvent(new Event("scroll"));
+        syncActiveAnchor();
+      });
+    }
+
+    function scrollSpyTriggerY() {
+      var fallback =
+        parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--site-header-sticky-anchor")) || 72;
+      return fallback + 24;
+    }
+
+    function syncActiveAnchor() {
+      var links = list.querySelectorAll('a.article-anchor-nav__link[href^="#"]');
+      if (!links.length) return;
+
+      var ids = [];
+      for (var i = 0; i < links.length; i++) {
+        var href = links[i].getAttribute("href");
+        if (!href || href.length < 2) continue;
+        ids.push(href.slice(1));
+      }
+      if (!ids.length) return;
+
+      var triggerY = scrollSpyTriggerY();
+      var activeId = ids[0];
+      for (var j = 0; j < ids.length; j++) {
+        var el = document.getElementById(ids[j]);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= triggerY) activeId = ids[j];
+      }
+
+      for (var k = 0; k < links.length; k++) {
+        var link = links[k];
+        var hid = link.getAttribute("href");
+        if (!hid || hid.length < 2) continue;
+        var id = hid.slice(1);
+        if (id === activeId) {
+          link.classList.add("is-active");
+          link.setAttribute("aria-current", "location");
+        } else {
+          link.classList.remove("is-active");
+          link.removeAttribute("aria-current");
+        }
+      }
+    }
+
+    rebuildAnchors();
+
+    function getStickyOffsetForTarget(targetEl) {
+      var headerOffset =
+        parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--site-header-sticky-anchor")) || 72;
+      var extraGap = 12;
+      var tabAnchorGap = 28;
+      var offset = headerOffset + extraGap;
+
+      var tabsList = page.querySelector(".doc-tabs__list");
+      if (tabsList && targetEl.closest(".doc-tabs__panel")) {
+        offset += tabsList.getBoundingClientRect().height + tabAnchorGap;
+      }
+      return offset;
+    }
+
+    list.addEventListener("click", function (e) {
+      var target = e.target;
+      if (!(target instanceof Element)) return;
+      var anchor = target.closest("a.article-anchor-nav__link");
+      if (!anchor) return;
+
+      var href = anchor.getAttribute("href") || "";
+      if (!href.startsWith("#")) return;
+
+      e.preventDefault();
+
+      if (anchor.hasAttribute("data-component-top-anchor")) {
+        history.replaceState(null, "", window.location.pathname + window.location.search);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+
+      var id = href.slice(1);
+      if (!id) return;
+      var section = document.getElementById(id);
+      if (!section) return;
+
+      history.replaceState(null, "", "#" + id);
+      var targetY = window.scrollY + section.getBoundingClientRect().top - getStickyOffsetForTarget(section);
+      window.scrollTo({ top: Math.max(0, targetY), behavior: "smooth" });
+      window.requestAnimationFrame(syncActiveAnchor);
+    });
+
+    document.querySelectorAll(".doc-tabs__tab").forEach(function (tab) {
+      tab.addEventListener("click", function () {
+        window.requestAnimationFrame(rebuildAnchors);
+      });
+      tab.addEventListener("keydown", function () {
+        window.requestAnimationFrame(rebuildAnchors);
+      });
+    });
+
+    window.addEventListener("hashchange", function () {
+      window.requestAnimationFrame(rebuildAnchors);
+    });
+
+    var ticking = false;
+    function onScrollOrResize() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        ticking = false;
+        syncActiveAnchor();
+      });
+    }
+
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
+    window.addEventListener("load", syncActiveAnchor);
+  });
+</script>
 
 <style>
   .components-layout {
@@ -184,6 +390,12 @@ const navItems: NavItem[] = [
   }
 
   .section-nav {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .components-anchor-aside {
+    display: none;
     width: 100%;
     min-width: 0;
   }
@@ -212,6 +424,27 @@ const navItems: NavItem[] = [
     }
   }
 
+  @media (min-width: 72rem) {
+    .components-layout--no-anchors {
+      grid-template-columns: 12.5rem minmax(0, 1fr);
+    }
+
+    .components-layout--with-anchors {
+      grid-template-columns: 12.5rem minmax(0, 1fr) minmax(11.25rem, 14rem);
+    }
+
+    .components-anchor-aside {
+      display: block;
+      position: sticky;
+      top: calc(var(--site-header-sticky-anchor, 72px) + var(--prism-space-md));
+      max-height: calc(100vh - var(--site-header-sticky-anchor, 72px) - var(--prism-space-xl));
+      overflow-y: auto;
+      padding-top: calc(var(--docs-page-content-padding-top) + var(--prism-space-sm) + 4px);
+      padding-bottom: calc(var(--prism-space-md) + 4px);
+      padding-inline: 6px;
+    }
+  }
+
   .section-nav-list {
     list-style: none;
     margin: 0;
@@ -234,10 +467,6 @@ const navItems: NavItem[] = [
     width: 100%;
     box-sizing: border-box;
     padding: var(--prism-space-md) var(--prism-space-lg);
-    font-size: 0.9375rem;
-    font-weight: 500;
-    letter-spacing: -0.015em;
-    line-height: 1.4;
     text-decoration: none;
     color: var(--prism-color-text-primary);
     border-radius: 12px;
@@ -389,9 +618,6 @@ const navItems: NavItem[] = [
 
   .section-nav-link--nested {
     padding: var(--prism-space-md) var(--prism-space-lg);
-    font-weight: 500;
-    letter-spacing: -0.015em;
-    line-height: 1.4;
   }
 
   .section-nav-link.is-active-branch:not(.is-current) {
@@ -410,18 +636,8 @@ const navItems: NavItem[] = [
     margin-bottom: var(--prism-space-xl);
   }
 
-  .page :global(h1) {
-    margin: 0 0 var(--prism-space-md);
-    font-size: clamp(3rem, 8.5vw, 4.5rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.08;
-  }
-
   .page :global(.intro) {
     margin: 0;
-    color: var(--prism-color-text-secondary);
-    line-height: 1.65;
-    font-size: 1.0625rem;
   }
+
 </style>

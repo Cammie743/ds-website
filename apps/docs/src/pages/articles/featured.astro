@@ -1,26 +1,26 @@
 ---
-import BlogLayout from "../../layouts/BlogLayout.astro";
-import BlogUpdateArticle from "../../components/blog/BlogUpdateArticle.astro";
-import BlogTeasersViewControls from "../../components/blog/BlogTeasersViewControls.astro";
+import ArticleLayout from "../../layouts/ArticleLayout.astro";
+import ArticleUpdateArticle from "../../components/article/ArticleUpdateArticle.astro";
+import ArticleTeasersViewControls from "../../components/article/ArticleTeasersViewControls.astro";
 ---
 
-<BlogLayout
+<ArticleLayout
   title="Featured"
   current="featured"
   description="Highlighted release notes and updates from the Prism team."
   pageVariant="teasers"
 >
   <header class="page-head">
-    <h1 data-i18n="blog.nav.featured">Featured</h1>
-    <div class="blog-teasers-head-row">
-      <p class="intro" data-i18n="blog.lede">
+    <h1 data-i18n="article.nav.featured">Featured</h1>
+    <div class="article-teasers-head-row">
+      <p class="intro" data-i18n="article.lede">
         Release notes, deep dives, and product updates from the Prism team.
       </p>
-      <BlogTeasersViewControls />
+      <ArticleTeasersViewControls />
     </div>
   </header>
-  <div class="blog-posts blog-posts--teasers">
-    <BlogUpdateArticle id="update-prism-skill-library" updateN={8} isFirstInPage teaserFromFeatured />
-    <BlogUpdateArticle id="update-home-navigation" updateN={2} teaserFromFeatured />
+  <div class="article-posts article-posts--teasers">
+    <ArticleUpdateArticle id="update-prism-skill-library" updateN={8} isFirstInPage teaserFromFeatured />
+    <ArticleUpdateArticle id="update-home-navigation" updateN={2} teaserFromFeatured />
   </div>
-</BlogLayout>
+</ArticleLayout>

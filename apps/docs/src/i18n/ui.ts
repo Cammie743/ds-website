@@ -1,3 +1,5 @@
+import { languageDocEn, languageDocZhPartial } from "./languageDocStrings";
+
 /** UI strings toggled via the translate control (English ↔ 简体中文). */
 export const uiStrings = {
   en: {
@@ -156,9 +158,12 @@ export const uiStrings = {
       "Prism connects design intent and shipped UI: a single place for tokens, reusable components, and written guidance so teams do not reinvent basics in every feature.",
     "getStarted.mission.p2":
       "We exist to make high-quality interfaces the default—faster handoffs, fewer one-off styles, and experiences that stay legible, inclusive, and calm as the product grows.",
+    "getStarted.mission.introPlaceholderAlt": "Neutral placeholder for a future mission page illustration.",
     "getStarted.principles.h2": "Design principles",
     "getStarted.principles.intro":
       "When two patterns both seem reasonable, principles describe what we protect first.",
+    "getStarted.principles.introPlaceholderAlt":
+      "Neutral placeholder for a future design principles illustration.",
     "getStarted.principles.items.clarity.title": "Clarity over cleverness",
     "getStarted.principles.items.clarity.body":
       "Interfaces should explain themselves. Favor obvious paths, predictable controls, and copy that states outcomes in plain language—especially for errors, permissions, and empty states.",
@@ -171,26 +176,10 @@ export const uiStrings = {
     "getStarted.principles.items.calm.title": "Calm craft under pressure",
     "getStarted.principles.items.calm.body":
       "Density should flex without breaking rhythm. Long labels, partial data, and narrow viewports are normal conditions, not edge cases—layouts and components need to hold up gracefully.",
-    "getStarted.language.h2": "Design language",
-    "getStarted.language.lede":
-      "The design language is the personality of the system: how Prism looks, reads, and moves together.",
-    "getStarted.language.voice.h3": "Voice and tone",
-    "getStarted.language.voice.body":
-      "Confident and human, never loud. Prefer verbs that describe action, nouns that name real things, and sentences short enough to scan. Celebrate progress without sounding like marketing fluff.",
-    "getStarted.language.form.h3": "Form and material",
-    "getStarted.language.form.body":
-      "Surfaces stack in a clear order: canvas, elevated panels, then interactive controls. Corners, borders, and shadow describe hierarchy—each layer should earn its depth.",
-    "getStarted.language.type.h3": "Typography and rhythm",
-    "getStarted.language.type.body":
-      "Type roles (display through caption) keep pages scannable. Vertical spacing uses a constrained scale so lists, forms, and dashboards share the same cadence even when content length varies.",
-    "getStarted.language.color.h3": "Color as information",
-    "getStarted.language.color.body":
-      "Color signals state before it expresses brand. Semantic roles—text, surface, border, accent, and feedback—stay stable across themes so meaning does not get lost when palettes change.",
-    "getStarted.language.motion.h3": "Motion with restraint",
-    "getStarted.language.motion.body":
-      "Animation confirms what happened and where attention should go. It avoids gratuitous loops, respects reduced-motion preferences, and keeps durations tight enough to feel instant on repeat.",
+    ...languageDocEn,
     "getStarted.faq.h2": "FAQ",
     "getStarted.faq.intro": "Common questions from designers, engineers, and partners onboarding to Prism.",
+    "getStarted.faq.introPlaceholderAlt": "Neutral placeholder for a future FAQs illustration.",
     "getStarted.faq.q1": "What is Prism?",
     "getStarted.faq.a1":
       "Prism is our design system for web: semantic tokens, documented UI patterns, and a component library that keeps design files and production code speaking the same language.",
@@ -276,126 +265,126 @@ export const uiStrings = {
     "foundations.hapticsSounds.h1": "Haptics & sounds",
     "foundations.hapticsSounds.intro":
       "When to reinforce actions with haptics or subtle audio, and how to respect system settings.",
-    "blog.title": "Articles",
-    "blog.lede": "Release notes, deep dives, and product updates from the Prism team.",
-    "blog.teasers.viewLayout": "Articles layout",
-    "blog.sectionNav.aria": "Articles",
-    "blog.nav.featured": "Featured",
-    "blog.nav.latest": "Latest updates",
-    "blog.nav.y2026": "2026",
-    "blog.nav.y2025": "2025",
-    "blog.backToUpdates": "Back to Latest updates",
-    "blog.backToFeatured": "Back to Featured",
-    "blog.articleNav.aria": "Adjacent updates",
-    "blog.articleNav.previous": "Previous",
-    "blog.articleNav.next": "Next",
-    "blog.articleAnchors.heading": "On this page",
-    "blog.articleAnchors.asideAria": "In this article",
-    "blog.update.postedBy": "Posted by",
-    "blog.update.1.contributors":
+    "article.title": "Articles",
+    "article.lede": "Release notes, deep dives, and product updates from the Prism team.",
+    "article.teasers.viewLayout": "Articles layout",
+    "article.sectionNav.aria": "Articles",
+    "article.nav.featured": "Featured",
+    "article.nav.latest": "Latest updates",
+    "article.nav.y2026": "2026",
+    "article.nav.y2025": "2025",
+    "article.backToUpdates": "Back to Latest updates",
+    "article.backToFeatured": "Back to Featured",
+    "article.articleNav.aria": "Adjacent updates",
+    "article.articleNav.previous": "Previous",
+    "article.articleNav.next": "Next",
+    "article.articleAnchors.heading": "On this page",
+    "article.articleAnchors.asideAria": "In this article",
+    "article.update.postedBy": "Posted by",
+    "article.update.1.contributors":
       "Contributors: Liz Chang and Yee Huang (UXD-12943 — media player).",
-    "blog.update.1.heroAlt":
+    "article.update.1.heroAlt":
       "Decorative hero: soft blue and teal gradient background with no text or UI.",
-    "blog.update.1.section.components": "Component updates",
-    "blog.update.1.section.icons": "Icon updates",
-    "blog.update.1.section.tokens": "Color updates",
-    "blog.update.1.p.comp.intro":
+    "article.update.1.section.components": "Component updates",
+    "article.update.1.section.icons": "Icon updates",
+    "article.update.1.section.tokens": "Color updates",
+    "article.update.1.p.comp.intro":
       "The following components have been updated in this month's weekly releases.",
-    "blog.update.1.comp.imgAlt.button":
+    "article.update.1.comp.imgAlt.button":
       "Matrix of primary, secondary, and tertiary buttons for default (blue), neutral (grey secondary), and destructive (red) treatments.",
-    "blog.update.1.comp.caption.button": "Secondary basic button - Neutral sentiment",
-    "blog.update.1.comp.caption.mediaPlayer":
+    "article.update.1.comp.caption.button": "Secondary basic button - Neutral sentiment",
+    "article.update.1.comp.caption.mediaPlayer":
       "Updated the media player control bar to improve disabled state visibility and overall legibility across different media backgrounds.",
-    "blog.update.1.comp.imgAlt.mediaPlayer":
+    "article.update.1.comp.imgAlt.mediaPlayer":
       "Media player control bars on split light/dark and light backgrounds, with callouts for disabled icon fill, 8px background blur, and container fill tokens.",
-    "blog.update.1.comp.paginationVideoAria":
+    "article.update.1.comp.paginationVideoAria":
       "Screen recording: Vue pagination moving between pages with the dot track.",
-    "blog.update.1.comp.paginationVideoToggleAria": "Play or pause the pagination demo video.",
-    "blog.update.1.sub.comp.button": "Secondary basic button",
-    "blog.update.1.sub.comp.mediaPlayer": "Media player",
-    "blog.update.1.sub.comp.pagination": "Pagination",
-    "blog.update.1.sub.tokens.spreadsheet": "Spreadsheet file type",
-    "blog.update.1.sub.tokens.newFileTypes": "New file types",
-    "blog.update.1.p.comp.button":
+    "article.update.1.comp.paginationVideoToggleAria": "Play or pause the pagination demo video.",
+    "article.update.1.sub.comp.button": "Secondary basic button",
+    "article.update.1.sub.comp.mediaPlayer": "Media player",
+    "article.update.1.sub.comp.pagination": "Pagination",
+    "article.update.1.sub.tokens.spreadsheet": "Spreadsheet file type",
+    "article.update.1.sub.tokens.newFileTypes": "New file types",
+    "article.update.1.p.comp.button":
       "We kept the current Secondary Default button light blue and introduced a new Secondary Neutral option as a half step down. This update gives teams a secondary button that better matches other grey secondary buttons when that is the better fit for the layout, while still preserving the blue Secondary Default button as a stronger alternative to the primary button.",
-    "blog.update.1.p.comp.mediaPlayer":
+    "article.update.1.p.comp.mediaPlayer":
       "Media player has been updated to improve visibility across light and dark media backgrounds. Disabled states could previously become hard to see on lighter content, so the control bar now uses a stronger transparent dark background with 8px blur, and disabled buttons use a more visible transparent fill treatment.",
-    "blog.update.1.p.comp.pagination":
+    "article.update.1.p.comp.pagination":
       "Improved pagination by fixing layout shifts from dynamic slots. Added an additional slot and locked the total slot count, keeping chevrons in a fixed position and reducing accidentally clicking the last page.",
-    "blog.update.1.sub.icons.office": "Office icons",
-    "blog.update.1.p.icons.office":
+    "article.update.1.sub.icons.office": "Office icons",
+    "article.update.1.p.icons.office":
       "We introduced a new set of icons for the new Zoom AI products and more.",
-    "blog.update.1.icons.office.imgAlt":
+    "article.update.1.icons.office.imgAlt":
       "Five rounded-square office file-type icons in a row on a light dotted grid: classic doc, AI docs, AI slides, AI sheets, and AI data tables.",
-    "blog.update.1.icons.office.caption.1": "Classic doc",
-    "blog.update.1.icons.office.caption.2": "AI docs",
-    "blog.update.1.icons.office.caption.3": "AI slides",
-    "blog.update.1.icons.office.caption.4": "AI sheets",
-    "blog.update.1.icons.office.caption.5": "AI data tables",
-    "blog.update.1.sub.icons.deprecated": "Deprecated icons",
-    "blog.update.1.p.icons.deprecated.intro": "The following icons have been deprecated and replaced:",
-    "blog.update.1.icons.deprecated.paper": "Paper → Classic doc",
-    "blog.update.1.icons.deprecated.docs": "Docs → AI docs",
-    "blog.update.1.icons.deprecated.present": "Present → AI slides",
-    "blog.update.1.icons.deprecated.sheet": "Sheet → AI sheets",
-    "blog.update.1.sub.icons.fileTypesUpdated": "Updated file type icons",
-    "blog.update.1.p.icons.fileTypesUpdated": "We refreshed the file type icons for XLS, PPT, and DOC.",
-    "blog.update.1.icons.fileTypesUpdated.imgAlt":
+    "article.update.1.icons.office.caption.1": "Classic doc",
+    "article.update.1.icons.office.caption.2": "AI docs",
+    "article.update.1.icons.office.caption.3": "AI slides",
+    "article.update.1.icons.office.caption.4": "AI sheets",
+    "article.update.1.icons.office.caption.5": "AI data tables",
+    "article.update.1.sub.icons.deprecated": "Deprecated icons",
+    "article.update.1.p.icons.deprecated.intro": "The following icons have been deprecated and replaced:",
+    "article.update.1.icons.deprecated.paper": "Paper → Classic doc",
+    "article.update.1.icons.deprecated.docs": "Docs → AI docs",
+    "article.update.1.icons.deprecated.present": "Present → AI slides",
+    "article.update.1.icons.deprecated.sheet": "Sheet → AI sheets",
+    "article.update.1.sub.icons.fileTypesUpdated": "Updated file type icons",
+    "article.update.1.p.icons.fileTypesUpdated": "We refreshed the file type icons for XLS, PPT, and DOC.",
+    "article.update.1.icons.fileTypesUpdated.imgAlt":
       "Three pairs of rounded file-type icons on a dotted grid: XLS, PPT, and DOC. Each pair shows the previous extension-label tile and the updated tile with a large initial plus a small chart or document glyph.",
-    "blog.update.1.p.tokens.lead": "We updated the ",
-    "blog.update.1.p.tokens.tail": " token to a brighter green.",
-    "blog.update.1.tokens.affectedIconsLabel": "These icons use the new updated color:",
-    "blog.update.1.tokens.affectedIcons.xls": "XLS",
-    "blog.update.1.tokens.affectedIcons.spreadsheet": "Spreadsheet",
-    "blog.update.1.tokens.affectedIcons.aiSheets": "AI sheets",
-    "blog.update.1.tokens.affectedIcons.aiDataTables": "AI data tables",
-    "blog.update.1.tokens.compareAria": "Original and updated library token tile",
-    "blog.update.1.tokens.imgAlt.original":
+    "article.update.1.p.tokens.lead": "We updated the ",
+    "article.update.1.p.tokens.tail": " token to a brighter green.",
+    "article.update.1.tokens.affectedIconsLabel": "These icons use the new updated color:",
+    "article.update.1.tokens.affectedIcons.xls": "XLS",
+    "article.update.1.tokens.affectedIcons.spreadsheet": "Spreadsheet",
+    "article.update.1.tokens.affectedIcons.aiSheets": "AI sheets",
+    "article.update.1.tokens.affectedIcons.aiDataTables": "AI data tables",
+    "article.update.1.tokens.compareAria": "Original and updated library token tile",
+    "article.update.1.tokens.imgAlt.original":
       "Original library token tile: teal SIM-style icon centered on a white background with a light grey dotted grid.",
-    "blog.update.1.tokens.imgAlt.updated":
+    "article.update.1.tokens.imgAlt.updated":
       "Updated library token tile: vibrant green SIM-style icon with white chip pads in a 2x2 grid, centered on white with a light grey dotted grid.",
-    "blog.update.1.tokens.caption.original": "Original",
-    "blog.update.1.tokens.caption.updated": "Updated",
-    "blog.update.1.tokens.newFile.captionLead": "New token:",
-    "blog.update.1.tokens.newFile.affectedIconsColon": "Affected icons:",
-    "blog.update.1.tokens.newFile.docsAffected.classicDoc": "Classic doc",
-    "blog.update.1.tokens.newFile.docsAffected.doc": "Doc",
-    "blog.update.1.tokens.newFile.slidesAffected.aiSlides": "AI Slides",
-    "blog.update.1.tokens.newFileTypesCompareAria": "New docs and slides library file-type tiles",
-    "blog.update.1.tokens.imgAlt.docs":
+    "article.update.1.tokens.caption.original": "Original",
+    "article.update.1.tokens.caption.updated": "Updated",
+    "article.update.1.tokens.newFile.captionLead": "New token:",
+    "article.update.1.tokens.newFile.affectedIconsColon": "Affected icons:",
+    "article.update.1.tokens.newFile.docsAffected.classicDoc": "Classic doc",
+    "article.update.1.tokens.newFile.docsAffected.doc": "Doc",
+    "article.update.1.tokens.newFile.slidesAffected.aiSlides": "AI Slides",
+    "article.update.1.tokens.newFileTypesCompareAria": "New docs and slides library file-type tiles",
+    "article.update.1.tokens.imgAlt.docs":
       "New library file-type tile for docs: blue rounded square with a white document and image glyph on a white dotted grid.",
-    "blog.update.1.tokens.imgAlt.slides":
+    "article.update.1.tokens.imgAlt.slides":
       "New library file-type tile for slides: magenta rounded square with a white pie chart on a light grey dotted grid.",
-    "blog.update.2.body":
+    "article.update.2.body":
       "We reorganized the home page and global navigation so teams can reach foundations, components, and bilingual guidance in fewer clicks. Sticky patterns and drawer behavior were tuned for small viewports, and the IA now mirrors how designers and engineers talk about the system day to day.",
-    "blog.update.3.body":
+    "article.update.3.body":
       "Prism ships semantic tokens first, so we added Bloom, Agave, and Rose as first-class theme previews across the docs. You can stress-test components against alternate palettes without leaving the site, which makes regressions in contrast and state color easier to catch before they reach production.",
-    "blog.update.4.body":
+    "article.update.4.body":
       "Foundations and components now follow a shared outline: overview pages, deep dives, and cross-links into Figma libraries. We also published a public checklist for contributors so new patterns land with consistent structure, metadata, and accessibility notes.",
-    "blog.update.5.body":
+    "article.update.5.body":
       "Search now spans the full public docs surface: foundations articles, component pages, and onboarding guides share one index with language-aware snippets. Keyboard shortcuts (including ⌘K / Ctrl+K) jump straight into search, and results are grouped by section so you can scan tokens, patterns, and code references without losing context.",
-    "blog.update.6.body":
+    "article.update.6.body":
       "Teams asked for a lightweight way to understand which Prism primitives ship in each product area. The new metrics spec describes anonymous, opt-in signals—version skew, bundle coverage of tokens, and component import graphs—that partners can wire up in CI. It deliberately avoids user-level tracking and focuses on design-system health checks for staff engineers.",
-    "blog.update.7.body":
+    "article.update.7.body":
       "Accessibility reviews now start from a shared checklist that ties each Prism component to WCAG 2.2 AA expectations: focus order, roles, live regions, and token-driven contrast floors. The doc links to Figma annotations and Storybook states so designers and QA can run the same pass before release.",
-    "blog.update.8.intro.eyebrow": "Introducing the first Prism skill",
-    "blog.update.8.intro.p1":
+    "article.update.8.intro.eyebrow": "Introducing the first Prism skill",
+    "article.update.8.intro.p1":
       "We’re excited to share the first Prism skill for product teams. This is a new way to help teams move faster with Prism by giving them guided support right when you need it.",
-    "blog.update.8.section.what": "What is the Prism library skill and what can it do?",
-    "blog.update.8.what.lede":
+    "article.update.8.section.what": "What is the Prism library skill and what can it do?",
+    "article.update.8.what.lede":
       "The Prism library skill is a centralized source for components, tokens, and guidance that helps teams design and build with more consistency. It makes it easier to reuse approved patterns, stay aligned to Prism standards, and connect design and development through a shared source of truth.",
-    "blog.update.8.what.listIntro": "It can help teams:",
-    "blog.update.8.what.bullet.better": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    "blog.update.8.what.bullet.explore": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    "blog.update.8.what.bullet.support": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    "blog.update.8.what.bullet.search": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    "blog.update.8.section.try": "Get started",
-    "blog.update.8.try.p1":
+    "article.update.8.what.listIntro": "It can help teams:",
+    "article.update.8.what.bullet.better": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "article.update.8.what.bullet.explore": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "article.update.8.what.bullet.support": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "article.update.8.what.bullet.search": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "article.update.8.section.try": "Get started",
+    "article.update.8.try.p1":
       "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-    "blog.update.8.try.linkMarketplace": "Zoom Skill Market",
-    "blog.update.8.try.linkSetup": "Prism library skill setup",
-    "blog.update.8.section.future": "This is just the beginning",
-    "blog.update.8.future.p1":
+    "article.update.8.try.linkMarketplace": "Zoom Skill Market",
+    "article.update.8.try.linkSetup": "Prism library skill setup",
+    "article.update.8.section.future": "This is just the beginning",
+    "article.update.8.future.p1":
       "We’re excited to learn from this launch and keep making Prism easier to use.",
     "resources.title": "Resources",
     "resources.lede": "Additional guides and references will live here.",
@@ -433,6 +422,8 @@ export const uiStrings = {
     "components.notePrefix": "Run",
     "components.noteSuffix": "to open the interactive gallery locally (default port 4322).",
     "components.sectionNav.aria": "Components pages",
+    "components.pageAnchors.heading": "On this page",
+    "components.pageAnchors.asideAria": "On this page",
     "components.toc.overview": "Overview",
     "components.overview.h1": "Components",
     "components.overview.figureAltFallback": "Component preview: {name}",
@@ -458,9 +449,9 @@ export const uiStrings = {
     "components.toc.dialog": "Dialog",
     "components.toc.inputFields": "Input fields",
     "components.accordion.h1": "Accordion",
-    "components.accordion.version": "v2.5",
+    "components.accordion.version": "v1.0",
     "components.accordion.intro":
-      "Disclosure groups, keyboard interaction, and motion for stacked panels will be documented here.",
+      "Accordion helps users reveal and hide related content without leaving the current context. It is best for grouped information that users may want to scan first and open selectively.",
     "components.accordion.previewAlt": "Component preview: Accordion",
     "components.accordion.tabs.aria": "Accordion usage sections",
     "components.accordion.tabs.overview": "Overview",
@@ -471,17 +462,54 @@ export const uiStrings = {
     "components.accordion.overview.colType": "Type",
     "components.accordion.overview.colResource": "Resource",
     "components.accordion.overview.colStatus": "Status",
-    "components.accordion.overview.resourceRowFigma": "Desktop & Web (Figma)",
+    "components.accordion.overview.desktopWebH3": "Desktop client & Web browser",
+    "components.accordion.overview.mobileAppH3": "Mobile app",
+    "components.accordion.overview.mobileAppUnavailable": "Unavailable",
+    "components.accordion.overview.aiSkillsH3": "AI skills",
+    "components.accordion.overview.aiSkills.tableAria": "Accordion AI skills availability",
+    "components.accordion.overview.aiSkills.guidanceType": "Guidance",
+    "components.accordion.overview.aiSkills.guidanceResource": "Accordion guidelines Markdown file",
+    "components.accordion.design.whenToUseH2": "✅ When to use",
+    "components.accordion.design.whenToUseBody":
+      "Use accordion when content fits clear, labeled sections and all details do not need to be visible at once. It is useful for settings groups, FAQs, filters, permissions, and grouped informational blocks.",
+    "components.accordion.design.whenNotToUseH2": "🚫 When not to use",
+    "components.accordion.design.whenNotToUseBody":
+      "Avoid accordion for critical content that should always stay visible, for one or two short items, or when users need to compare all sections side by side.",
+    "components.accordion.overview.relatedComponentsH2": "Related components",
+    "components.accordion.overview.relatedComponents.tableAria": "Accordion related components",
+    "components.accordion.overview.relatedComponents.colComponent": "Component",
+    "components.accordion.overview.relatedComponents.colWhen": "Use it when",
+    "components.accordion.overview.relatedComponents.tabs.component": "Tabs",
+    "components.accordion.overview.relatedComponents.tabs.when":
+      "Users need to switch between peer views rather than reveal and hide content on the same page.",
+    "components.accordion.overview.relatedComponents.sideNavigation.component": "Side navigation",
+    "components.accordion.overview.relatedComponents.sideNavigation.when":
+      "Users need persistent movement between product areas or major sections.",
+    "components.accordion.overview.relatedComponents.breadcrumb.component": "Breadcrumb",
+    "components.accordion.overview.relatedComponents.breadcrumb.when":
+      "Users need orientation in a hierarchy rather than collapsible content.",
+    "components.accordion.overview.relatedComponents.disclosure.component": "Disclosure or Show more pattern",
+    "components.accordion.overview.relatedComponents.disclosure.when":
+      "A single piece of optional content needs to expand without a full accordion set.",
+    "components.accordion.overview.relatedComponents.tooltip.component": "Tooltip or Popover",
+    "components.accordion.overview.relatedComponents.tooltip.when":
+      "Users need brief supplemental explanation without changing page layout.",
+    "components.accordion.overview.resourceRowFigma": "Desktop & Web Figma library",
     "components.accordion.overview.resourceRowMobileFigma": "Mobile",
-    "components.accordion.overview.resourceRowVue": "Vue (Desktop & Web)",
-    "components.accordion.overview.resourceRowReact": "React (Desktop & Web)",
+    "components.accordion.overview.resourceRowVue": "Vue",
+    "components.accordion.overview.resourceRowReact": "React",
+    "components.accordion.overview.resourceRowMacos": "macOS",
+    "components.accordion.overview.resourceRowWindows": "Windows",
+    "components.accordion.overview.resourceRowLinux": "Linux",
     "components.accordion.overview.resourceRowCursor": "Cursor",
     "components.accordion.overview.resourceRowClaude": "Claude (Anthropic)",
     "components.accordion.overview.statusAvailable": "Available",
+    "components.accordion.overview.statusVerify": "Verify",
     "components.accordion.overview.statusNotAvailable": "Not available",
     "components.accordion.overview.statusPlanned": "Planned",
     "components.accordion.overview.statusBeta": "Beta",
     "components.accordion.tabs.design": "Guidelines",
+    "components.accordion.tabs.content": "Content",
     "components.accordion.tabs.accessibility": "Accessibility",
     "components.accordion.design.variantsH2": "Variants",
     "docs.copySectionLinkAria": "Copy link",
@@ -508,17 +536,123 @@ export const uiStrings = {
     "components.accordion.design.demoBody4":
       "Contact support for order changes, damaged shipments, or account questions.",
     "components.accordion.design.variantsBody":
-      "There are 2 variants available for accordion - Leading and trailing chevron.",
+      "There are 2 variants: leading chevron and trailing chevron.",
     "components.accordion.design.variantGuidance.tableAria": "Leading and trailing chevron usage",
     "components.accordion.design.variantGuidance.colVariant": "Variant",
-    "components.accordion.design.variantGuidance.colWhen": "When to use",
-    "components.accordion.design.variantGuidance.leadingBody":
-      "Used in narrow-width instances, when the accordion content area takes over less than 50% of an interface's width.",
-    "components.accordion.design.variantGuidance.trailingBody":
-      "Used when the accordion content area takes over 50% or more of an interface's width.",
+    "components.accordion.design.variantGuidance.colDescription": "Description",
+    "components.accordion.design.variantGuidance.colUseCase": "Use case",
+    "components.accordion.design.variantGuidance.leadingDescription":
+      "Places the chevron before the label to emphasize the disclosure control at the start of the row.",
+    "components.accordion.design.variantGuidance.leadingUseCase":
+      "Use when left-aligned scanning is important, such as in dense settings lists or structured navigation patterns.",
+    "components.accordion.design.variantGuidance.trailingDescription":
+      "Places the chevron after the label to keep the label as the primary reading entry point.",
+    "components.accordion.design.variantGuidance.trailingUseCase":
+      "Use when content readability should be prioritized first, such as in cards, detail panels, or content-heavy lists.",
     "components.accordion.design.configurationsH2": "Configurations",
+    "components.accordion.design.propertiesH2": "Properties",
     "components.accordion.design.configurationsBody":
-      "There are 4 options available for accordion - Info button, secondary text, leading icon, and no bottom divider.",
+      "Common properties include info button, secondary text, leading icon, and optional divider behavior.",
+    "components.accordion.design.properties.tableAria": "Accordion properties",
+    "components.accordion.design.properties.colProperty": "Property",
+    "components.accordion.design.properties.colDescription": "Description",
+    "components.accordion.design.properties.label.property": "Label",
+    "components.accordion.design.properties.label.description": "Defines the primary text for the accordion row.",
+    "components.accordion.design.properties.expand.property": "Expand",
+    "components.accordion.design.properties.expand.description":
+      "Controls whether the associated content area is shown or hidden.",
+    "components.accordion.design.properties.infoButton.property": "Info button",
+    "components.accordion.design.properties.infoButton.description":
+      "Adds supporting help affordance for supplemental explanation.",
+    "components.accordion.design.properties.secondaryText.property": "Secondary text",
+    "components.accordion.design.properties.secondaryText.description":
+      "Adds supplemental context, status, or supporting information next to the primary label.",
+    "components.accordion.design.properties.divider.property": "Divider",
+    "components.accordion.design.properties.divider.description": "Shows the bottom rule for stacked layouts.",
+    "components.accordion.design.properties.leadingIcon.property": "Leading icon",
+    "components.accordion.design.properties.leadingIcon.description": "Adds an icon at the start when supported.",
+    "components.accordion.design.coreAnatomyH2": "Core anatomy",
+    "components.accordion.design.coreAnatomy.tableAria": "Accordion core anatomy",
+    "components.accordion.design.coreAnatomy.colElement": "Element",
+    "components.accordion.design.coreAnatomy.colRequirement": "Requirement",
+    "components.accordion.design.coreAnatomy.colDescription": "Description",
+    "components.accordion.design.coreAnatomy.chevron.element": "Chevron",
+    "components.accordion.design.coreAnatomy.chevron.requirement": "Required",
+    "components.accordion.design.coreAnatomy.chevron.description":
+      "Indicates expanded or collapsed state and signals disclosure interaction.",
+    "components.accordion.design.coreAnatomy.label.element": "Label",
+    "components.accordion.design.coreAnatomy.label.requirement": "Required",
+    "components.accordion.design.coreAnatomy.label.description":
+      "Primary text that identifies the content associated with each accordion row.",
+    "components.accordion.design.coreAnatomy.expandableContentArea.element": "Expandable content area",
+    "components.accordion.design.coreAnatomy.expandableContentArea.requirement": "Required",
+    "components.accordion.design.coreAnatomy.expandableContentArea.description":
+      "Container that reveals or hides supporting content when expanded.",
+    "components.accordion.design.coreAnatomy.divider.element": "Divider",
+    "components.accordion.design.coreAnatomy.divider.requirement": "Optional",
+    "components.accordion.design.coreAnatomy.divider.description": "Visual separator for stacked accordion rows.",
+    "components.accordion.design.usageH2": "Usage",
+    "components.accordion.design.bestPracticesH3": "Best practices",
+    "components.accordion.design.doH3": "✅ Do",
+    "components.accordion.design.do1": "Use accordion for grouped, optional, or progressive content.",
+    "components.accordion.design.do2": "Write labels that help users predict what expands.",
+    "components.accordion.design.do3": "Keep chevron placement consistent within the same set.",
+    "components.accordion.design.do4":
+      "Start rows collapsed by default unless expanded content is immediately required.",
+    "components.accordion.design.do5": "Use dividers and spacing consistently in stacked groups.",
+    "components.accordion.design.do6":
+      "When using leading icons, apply them consistently across all rows in the same set.",
+    "components.accordion.design.dontH3": "🚫 Don't",
+    "components.accordion.design.dont1": "Hide critical information users need immediately.",
+    "components.accordion.design.dont2": "Mix leading and trailing chevrons in one set without a strong reason.",
+    "components.accordion.design.dont3": "Use vague labels such as \"More\" or \"Details\" without context.",
+    "components.accordion.design.dont4": "Overload a single row with too many optional elements.",
+    "components.accordion.design.dont5": "Let expanded content feel disconnected from its triggering row.",
+    "components.accordion.design.behaviorH2": "Behavior",
+    "components.accordion.design.behavior.tableAria": "Accordion behavior guidance",
+    "components.accordion.design.behavior.colBehavior": "Behavior",
+    "components.accordion.design.behavior.colGuidance": "Guidance",
+    "components.accordion.design.behavior.expandCollapse.behavior": "Expand and collapse",
+    "components.accordion.design.behavior.expandCollapse.guidance":
+      "Activating a row reveals or hides its associated content area.",
+    "components.accordion.design.behavior.defaultState.behavior": "Default state",
+    "components.accordion.design.behavior.defaultState.guidance":
+      "Start collapsed unless immediate visibility is required.",
+    "components.accordion.design.behavior.expansionModel.behavior": "Single or multiple expansion",
+    "components.accordion.design.behavior.expansionModel.guidance":
+      "Use either single or multiple expansion consistently within one set.",
+    "components.accordion.design.behavior.stateClarity.behavior": "State clarity",
+    "components.accordion.design.behavior.stateClarity.guidance":
+      "Make expanded and collapsed states clear through the chevron, row treatment, and programmatic state.",
+    "components.accordion.design.behavior.disabledRows.behavior": "Disabled rows",
+    "components.accordion.design.behavior.disabledRows.guidance":
+      "Disabled rows should not appear interactive and should communicate unavailable state clearly.",
+    "components.accordion.design.behavior.contentRelationship.behavior": "Content relationship",
+    "components.accordion.design.behavior.contentRelationship.guidance":
+      "Keep expanded content visually and semantically connected to the triggering row.",
+    "components.accordion.design.responsiveH2": "Responsive design",
+    "components.accordion.design.responsive.tableAria": "Accordion responsive guidance",
+    "components.accordion.design.responsive.colProperty": "Property",
+    "components.accordion.design.responsive.colDescription": "Description",
+    "components.accordion.design.responsive.textWrapping.property": "Text wrapping",
+    "components.accordion.design.responsive.textWrapping.description":
+      "Labels and supporting text should wrap when horizontal space is limited.",
+    "components.accordion.design.responsive.width.property": "Width",
+    "components.accordion.design.responsive.width.description":
+      "Adapts to the width of the parent container or layout context.",
+    "components.accordion.design.responsive.height.property": "Height",
+    "components.accordion.design.responsive.height.description":
+      "Row height should grow as needed to accommodate wrapped text or expanded content.",
+    "components.accordion.design.responsive.constrainedLayouts.property": "Constrained layouts",
+    "components.accordion.design.responsive.constrainedLayouts.description":
+      "Can be used in cards, panels, tables, or sidebars where width is constrained by the container.",
+    "components.accordion.design.contentGuidelinesH2": "Content guidelines",
+    "components.accordion.design.contentGuidelinesBody1":
+      "Use short, descriptive labels that make sense when scanned in a list. Use sentence case for accordion labels. Avoid punctuation in labels unless it is part of a required title or proper noun.",
+    "components.accordion.design.contentGuidelinesBody2":
+      "Secondary text should add useful context, not repeat the label. Use info buttons only for supporting explanation, not essential content. If labels wrap, make sure the row still feels readable and tappable.",
+    "components.accordion.design.contentGuidelinesBody3":
+      "When expanded and collapsed state text is exposed accessibly, make the action specific to the content, such as Expand billing details or Collapse permissions section.",
     "components.accordion.design.configInfoTitle": "Info button",
     "components.accordion.design.configInfoDescription":
       "Use this when brief clarification is needed without adding persistent visual weight to the row.",
@@ -527,7 +661,42 @@ export const uiStrings = {
     "components.accordion.design.configInfoPopover":
       "This is an example of an info button and info popover.",
     "components.accordion.tabs.accessibilityBody":
-      "Keyboard support, ARIA roles, and screen reader guidance will be documented here.",
+      "Keep labels clear and readable, use visible focus, and expose expanded/collapsed state programmatically.",
+    "components.accordion.accessibility.overviewH2": "Accessibility",
+    "components.accordion.accessibility.overviewBody":
+      "Accordion labels should remain clear and readable at all supported widths. Focus state must be visible and distinct. Expanded and collapsed states should be easy to distinguish. Disabled rows should not appear interactive. Avoid relying only on chevron direction to communicate state; the overall row treatment should support it.",
+    "components.accordion.accessibility.keyboardH2": "Keyboard interactions",
+    "components.accordion.accessibility.keyboard.tableAria": "Accordion keyboard interactions",
+    "components.accordion.accessibility.keyboard.colAction": "Action",
+    "components.accordion.accessibility.keyboard.colBehavior": "Behavior",
+    "components.accordion.accessibility.keyboard.tabBehavior":
+      "Move focus to the next or previous interactive element.",
+    "components.accordion.accessibility.keyboard.enterSpaceBehavior": "Activate the focused accordion trigger.",
+    "components.accordion.accessibility.keyboard.arrowBehavior":
+      "Move focus between related triggers when supported.",
+    "components.accordion.accessibility.keyboard.homeEndBehavior":
+      "Move to the first or last trigger in the set when supported.",
+    "components.accordion.accessibility.keyboard.escBehavior":
+      "Dismisses or exits the current interaction when supported.",
+    "components.accordion.accessibility.screenReaderH2": "Screen reader guidance",
+    "components.accordion.accessibility.screenReader.tableAria": "Accordion screen reader guidance",
+    "components.accordion.accessibility.screenReader.colRequirement": "Requirement",
+    "components.accordion.accessibility.screenReader.colGuidance": "Guidance",
+    "components.accordion.accessibility.screenReader.expandedState.requirement": "Expanded state",
+    "components.accordion.accessibility.screenReader.expandedState.guidance":
+      "Programmatically communicate expanded and collapsed state for each trigger.",
+    "components.accordion.accessibility.screenReader.triggerRelationship.requirement": "Trigger relationship",
+    "components.accordion.accessibility.screenReader.triggerRelationship.guidance":
+      "Associate each trigger with the content region it controls.",
+    "components.accordion.accessibility.screenReader.labels.requirement": "Labels",
+    "components.accordion.accessibility.screenReader.labels.guidance":
+      "Use descriptive labels that help users predict content before expanding.",
+    "components.accordion.accessibility.screenReader.grouping.requirement": "Grouping",
+    "components.accordion.accessibility.screenReader.grouping.guidance":
+      "Use appropriate heading or group structure when accordion rows represent sections of content.",
+    "components.accordion.accessibility.screenReader.disabledState.requirement": "Disabled state",
+    "components.accordion.accessibility.screenReader.disabledState.guidance":
+      "Communicate unavailable rows clearly when a section cannot be expanded.",
     "components.anchor.h1": "Anchor",
     "components.anchor.intro":
       "Hash navigation, focus management, and offset for fixed headers will be documented here.",
@@ -700,8 +869,10 @@ export const uiStrings = {
       "Prism 连接设计意图与上线界面：集中管理令牌、可复用组件与文字指引，避免每个功能都从零重做基础件。",
     "getStarted.mission.p2":
       "我们致力于让高质量界面成为默认路径——协作更快、一次性样式更少，并在产品成长时保持可读、包容与克制。",
+    "getStarted.mission.introPlaceholderAlt": "使命页插图占位（中性灰块）。",
     "getStarted.principles.h2": "设计原则",
     "getStarted.principles.intro": "当两种模式都说得通时，原则说明我们优先守护什么。",
+    "getStarted.principles.introPlaceholderAlt": "设计原则页插图占位（中性灰块）。",
     "getStarted.principles.items.clarity.title": "清晰胜于炫技",
     "getStarted.principles.items.clarity.body":
       "界面应能自我说明。优先选择直白的路径、可预期的控件，以及用平实语言描述结果的文案——尤其在错误、权限与空状态场景。",
@@ -714,25 +885,10 @@ export const uiStrings = {
     "getStarted.principles.items.calm.title": "压力下的冷静工艺",
     "getStarted.principles.items.calm.body":
       "密度可以伸缩，但节奏不应崩坏。长标签、不完整的数据与窄视口是常态而非例外——布局与组件需要体面地支撑这些情况。",
-    "getStarted.language.h2": "设计语言",
-    "getStarted.language.lede": "设计语言是系统的气质：Prism 如何一起看、读与动。",
-    "getStarted.language.voice.h3": "语气与文案",
-    "getStarted.language.voice.body":
-      "自信而有人味，但不喧哗。多用描述动作的动词、指称真实事物的名词，以及短到可扫读的句子。为进展喝彩，但避免营销腔。",
-    "getStarted.language.form.h3": "形态与材质",
-    "getStarted.language.form.body":
-      "表面按清晰顺序堆叠：画布、抬升面板，再到可交互控件。圆角、描边与阴影描述层级——每一层深度都应有理由。",
-    "getStarted.language.type.h3": "字体与节奏",
-    "getStarted.language.type.body":
-      "字体角色（从展示到说明）让页面易于扫读。纵向间距使用受控的刻度，使列表、表单与仪表板在内容长度变化时仍保持相同节拍。",
-    "getStarted.language.color.h3": "色彩即信息",
-    "getStarted.language.color.body":
-      "颜色先传达状态，再表达品牌。语义角色（文本、表面、边框、强调与反馈）在主题切换时保持稳定，以免含义随调色板漂移。",
-    "getStarted.language.motion.h3": "克制的动效",
-    "getStarted.language.motion.body":
-      "动画用于确认发生了什么以及注意力应落在哪里。避免无意义的循环，尊重减少动效设置，并把时长控制在重复操作时仍显利落的范围。",
+    ...languageDocZhPartial,
     "getStarted.faq.h2": "常见问题",
     "getStarted.faq.intro": "来自设计师、工程师与合作伙伴在接入 Prism 时的常见疑问。",
+    "getStarted.faq.introPlaceholderAlt": "常见问题页插图占位（中性灰块）。",
     "getStarted.faq.q1": "Prism 是什么？",
     "getStarted.faq.a1":
       "Prism 是我们面向 Web 的设计系统：语义令牌、已文档化的 UI 模式，以及让设计稿与生产代码说同一种语言的组件库。",
@@ -809,122 +965,122 @@ export const uiStrings = {
     "foundations.gestures.intro": "滑动、下拉等原生端常用手势将在此说明。",
     "foundations.hapticsSounds.h1": "触觉与声音",
     "foundations.hapticsSounds.intro": "何时用触觉或轻量音效强化操作，以及如何尊重系统设置。",
-    "blog.title": "文章",
-    "blog.lede": "发布说明、深度文章与 Prism 团队的产品更新。",
-    "blog.teasers.viewLayout": "文章列表布局",
-    "blog.sectionNav.aria": "文章分区",
-    "blog.nav.featured": "精选",
-    "blog.nav.latest": "最新更新",
-    "blog.nav.y2026": "2026",
-    "blog.nav.y2025": "2025",
-    "blog.backToUpdates": "返回最新更新",
-    "blog.backToFeatured": "返回精选",
-    "blog.articleNav.aria": "相邻更新",
-    "blog.articleNav.previous": "较新一篇",
-    "blog.articleNav.next": "较早一篇",
-    "blog.articleAnchors.heading": "本页目录",
-    "blog.articleAnchors.asideAria": "本文目录",
-    "blog.update.postedBy": "发布者",
-    "blog.update.1.contributors": "贡献者：Liz Chang、Yee Huang（UXD-12943，媒体播放器）。",
-    "blog.update.1.heroAlt": "装饰性头图：柔和的蓝绿色渐变背景，无文字或界面元素。",
-    "blog.update.1.section.components": "组件更新",
-    "blog.update.1.section.icons": "图标更新",
-    "blog.update.1.section.tokens": "颜色更新",
-    "blog.update.1.p.comp.intro":
+    "article.title": "文章",
+    "article.lede": "发布说明、深度文章与 Prism 团队的产品更新。",
+    "article.teasers.viewLayout": "文章列表布局",
+    "article.sectionNav.aria": "文章分区",
+    "article.nav.featured": "精选",
+    "article.nav.latest": "最新更新",
+    "article.nav.y2026": "2026",
+    "article.nav.y2025": "2025",
+    "article.backToUpdates": "返回最新更新",
+    "article.backToFeatured": "返回精选",
+    "article.articleNav.aria": "相邻更新",
+    "article.articleNav.previous": "较新一篇",
+    "article.articleNav.next": "较早一篇",
+    "article.articleAnchors.heading": "本页目录",
+    "article.articleAnchors.asideAria": "本文目录",
+    "article.update.postedBy": "发布者",
+    "article.update.1.contributors": "贡献者：Liz Chang、Yee Huang（UXD-12943，媒体播放器）。",
+    "article.update.1.heroAlt": "装饰性头图：柔和的蓝绿色渐变背景，无文字或界面元素。",
+    "article.update.1.section.components": "组件更新",
+    "article.update.1.section.icons": "图标更新",
+    "article.update.1.section.tokens": "颜色更新",
+    "article.update.1.p.comp.intro":
       "以下组件已在当月的每周发布中更新。下文逐项说明变更内容。",
-    "blog.update.1.comp.imgAlt.button":
+    "article.update.1.comp.imgAlt.button":
       "主/次/第三档按钮在默认（蓝）、中性（灰次要）与破坏性（红）三种处理下的矩阵示意。",
-    "blog.update.1.comp.caption.button": "次要基础按钮 - 中性基调",
-    "blog.update.1.comp.caption.mediaPlayer":
+    "article.update.1.comp.caption.button": "次要基础按钮 - 中性基调",
+    "article.update.1.comp.caption.mediaPlayer":
       "已更新媒体播放器控制条，以提升禁用态可见性，并在不同媒体背景下整体更易辨认。",
-    "blog.update.1.comp.imgAlt.mediaPlayer":
+    "article.update.1.comp.imgAlt.mediaPlayer":
       "媒体播放器控制条在左右分屏亮/暗底与浅灰底上的示意，并标注禁用图标填充、8px 背景模糊与容器填充等令牌说明。",
-    "blog.update.1.comp.paginationVideoAria": "屏幕录制：Vue 分页在页面间切换，以及圆点轨道示意。",
-    "blog.update.1.comp.paginationVideoToggleAria": "播放或暂停分页演示视频。",
-    "blog.update.1.sub.comp.button": "次要基础按钮",
-    "blog.update.1.sub.comp.mediaPlayer": "媒体播放器",
-    "blog.update.1.sub.comp.pagination": "分页",
-    "blog.update.1.sub.tokens.spreadsheet": "电子表格文件类型",
-    "blog.update.1.sub.tokens.newFileTypes": "新文件类型",
-    "blog.update.1.p.comp.button":
+    "article.update.1.comp.paginationVideoAria": "屏幕录制：Vue 分页在页面间切换，以及圆点轨道示意。",
+    "article.update.1.comp.paginationVideoToggleAria": "播放或暂停分页演示视频。",
+    "article.update.1.sub.comp.button": "次要基础按钮",
+    "article.update.1.sub.comp.mediaPlayer": "媒体播放器",
+    "article.update.1.sub.comp.pagination": "分页",
+    "article.update.1.sub.tokens.spreadsheet": "电子表格文件类型",
+    "article.update.1.sub.tokens.newFileTypes": "新文件类型",
+    "article.update.1.p.comp.button":
       "我们保留当前的次要默认（Secondary Default）按钮为浅蓝色，并新增次要中性（Secondary Neutral）作为降半档的选择。此次更新让团队在更适合的布局里能使用与其他灰色次要按钮更一致的次要按钮，同时仍保留蓝色的次要默认按钮，作为相对主按钮更强的一档。",
-    "blog.update.1.p.comp.mediaPlayer":
+    "article.update.1.p.comp.mediaPlayer":
       "媒体播放器已更新，以在亮暗媒体背景下都更易辨认。此前在偏亮内容上禁用态不易看清，因此控制条现采用更强的透明深色背景并配合 8px 模糊，禁用按钮也改为更醒目的透明填充处理。",
-    "blog.update.1.p.comp.pagination":
+    "article.update.1.p.comp.pagination":
       "分页体验改进：修复动态插槽带来的布局跳动；新增一个插槽并锁定插槽总数，使左右箭头位置保持稳定，并降低误点最后一页的概率。",
-    "blog.update.1.sub.icons.office": "办公图标",
-    "blog.update.1.p.icons.office": "我们为全新的 Zoom AI 等产品引入了一套新图标。",
-    "blog.update.1.icons.office.imgAlt":
+    "article.update.1.sub.icons.office": "办公图标",
+    "article.update.1.p.icons.office": "我们为全新的 Zoom AI 等产品引入了一套新图标。",
+    "article.update.1.icons.office.imgAlt":
       "浅灰色点阵背景上横向排列的五个圆角方块办公文件类型图标：经典文档、AI 文档、AI 幻灯片、AI 表格与 AI 数据表。",
-    "blog.update.1.icons.office.caption.1": "经典文档",
-    "blog.update.1.icons.office.caption.2": "AI 文档",
-    "blog.update.1.icons.office.caption.3": "AI 幻灯片",
-    "blog.update.1.icons.office.caption.4": "AI 表格",
-    "blog.update.1.icons.office.caption.5": "AI 数据表",
-    "blog.update.1.sub.icons.deprecated": "已弃用图标",
-    "blog.update.1.p.icons.deprecated.intro": "下列图标已弃用，并由以下新图标替代：",
-    "blog.update.1.icons.deprecated.paper": "纸张 → 经典文档",
-    "blog.update.1.icons.deprecated.docs": "文档 → AI 文档",
-    "blog.update.1.icons.deprecated.present": "演示 → AI 幻灯片",
-    "blog.update.1.icons.deprecated.sheet": "表格 → AI 表格",
-    "blog.update.1.sub.icons.fileTypesUpdated": "已更新的文件类型图标",
-    "blog.update.1.p.icons.fileTypesUpdated": "我们刷新了 XLS、PPT 与 DOC 的文件类型图标。",
-    "blog.update.1.icons.fileTypesUpdated.imgAlt":
+    "article.update.1.icons.office.caption.1": "经典文档",
+    "article.update.1.icons.office.caption.2": "AI 文档",
+    "article.update.1.icons.office.caption.3": "AI 幻灯片",
+    "article.update.1.icons.office.caption.4": "AI 表格",
+    "article.update.1.icons.office.caption.5": "AI 数据表",
+    "article.update.1.sub.icons.deprecated": "已弃用图标",
+    "article.update.1.p.icons.deprecated.intro": "下列图标已弃用，并由以下新图标替代：",
+    "article.update.1.icons.deprecated.paper": "纸张 → 经典文档",
+    "article.update.1.icons.deprecated.docs": "文档 → AI 文档",
+    "article.update.1.icons.deprecated.present": "演示 → AI 幻灯片",
+    "article.update.1.icons.deprecated.sheet": "表格 → AI 表格",
+    "article.update.1.sub.icons.fileTypesUpdated": "已更新的文件类型图标",
+    "article.update.1.p.icons.fileTypesUpdated": "我们刷新了 XLS、PPT 与 DOC 的文件类型图标。",
+    "article.update.1.icons.fileTypesUpdated.imgAlt":
       "浅灰色点阵背景上的三对圆角文件类型图标：XLS、PPT 与 DOC。每对依次为带扩展名标签的旧版图块，以及带大号首字母与小号图表或文档符号的新版图块。",
-    "blog.update.1.p.tokens.lead": "已将",
-    "blog.update.1.p.tokens.tail": " 令牌更新为更鲜亮的绿色。",
-    "blog.update.1.tokens.affectedIconsLabel": "这些图标使用更新后的新颜色：",
-    "blog.update.1.tokens.affectedIcons.xls": "XLS",
-    "blog.update.1.tokens.affectedIcons.spreadsheet": "电子表格",
-    "blog.update.1.tokens.affectedIcons.aiSheets": "AI 表格",
-    "blog.update.1.tokens.affectedIcons.aiDataTables": "AI 数据表",
-    "blog.update.1.tokens.compareAria": "原始与更新后的库令牌图块",
-    "blog.update.1.tokens.imgAlt.original":
+    "article.update.1.p.tokens.lead": "已将",
+    "article.update.1.p.tokens.tail": " 令牌更新为更鲜亮的绿色。",
+    "article.update.1.tokens.affectedIconsLabel": "这些图标使用更新后的新颜色：",
+    "article.update.1.tokens.affectedIcons.xls": "XLS",
+    "article.update.1.tokens.affectedIcons.spreadsheet": "电子表格",
+    "article.update.1.tokens.affectedIcons.aiSheets": "AI 表格",
+    "article.update.1.tokens.affectedIcons.aiDataTables": "AI 数据表",
+    "article.update.1.tokens.compareAria": "原始与更新后的库令牌图块",
+    "article.update.1.tokens.imgAlt.original":
       "原始库令牌图块：青绿色 SIM 风格图标居中，置于白色底与浅灰色点阵上。",
-    "blog.update.1.tokens.imgAlt.updated":
+    "article.update.1.tokens.imgAlt.updated":
       "更新后的库令牌图块：鲜绿色 SIM 风格图标，中央为白色 2×2 触点图案，置于白色底与浅灰色点阵上。",
-    "blog.update.1.tokens.caption.original": "原始",
-    "blog.update.1.tokens.caption.updated": "更新后",
-    "blog.update.1.tokens.newFile.captionLead": "新令牌：",
-    "blog.update.1.tokens.newFile.affectedIconsColon": "受影响的图标：",
-    "blog.update.1.tokens.newFile.docsAffected.classicDoc": "经典文档",
-    "blog.update.1.tokens.newFile.docsAffected.doc": "文档",
-    "blog.update.1.tokens.newFile.slidesAffected.aiSlides": "AI 幻灯片",
-    "blog.update.1.tokens.newFileTypesCompareAria": "新增的文档与幻灯片库文件类型图块",
-    "blog.update.1.tokens.imgAlt.docs":
+    "article.update.1.tokens.caption.original": "原始",
+    "article.update.1.tokens.caption.updated": "更新后",
+    "article.update.1.tokens.newFile.captionLead": "新令牌：",
+    "article.update.1.tokens.newFile.affectedIconsColon": "受影响的图标：",
+    "article.update.1.tokens.newFile.docsAffected.classicDoc": "经典文档",
+    "article.update.1.tokens.newFile.docsAffected.doc": "文档",
+    "article.update.1.tokens.newFile.slidesAffected.aiSlides": "AI 幻灯片",
+    "article.update.1.tokens.newFileTypesCompareAria": "新增的文档与幻灯片库文件类型图块",
+    "article.update.1.tokens.imgAlt.docs":
       "新增的文档库文件类型图块：蓝色圆角方块，白色文档与图片符号，置于白色点阵背景上。",
-    "blog.update.1.tokens.imgAlt.slides":
+    "article.update.1.tokens.imgAlt.slides":
       "新增的幻灯片库文件类型图块：洋红色圆角方块，白色饼图，置于浅灰色点阵背景上。",
-    "blog.update.2.body":
+    "article.update.2.body":
       "我们重新梳理首页与全局导航，让团队更快找到基础、组件与双语文档。针对小屏优化了吸顶与抽屉交互，信息架构也与设计与工程师的日常表述更一致。",
-    "blog.update.3.body":
+    "article.update.3.body":
       "Prism 以语义令牌为先，我们在文档站加入 Bloom、Agave、Rose 等主题预览。无需离开站点即可在替代色板下检视组件，更容易在上线前发现对比度与状态色问题。",
-    "blog.update.4.body":
+    "article.update.4.body":
       "基础与组件采用统一的页面结构：概览、深入内容以及指向 Figma 库的交叉链接。我们还发布了贡献者公开清单，帮助新模式以一致的结构、元数据与无障碍说明落地。",
-    "blog.update.5.body":
+    "article.update.5.body":
       "搜索现已覆盖全部公开文档：基础文章、组件页面与入门指南共用一套索引，并按语言展示摘要。快捷键（含 ⌘K / Ctrl+K）可直接打开搜索，结果按章节分组，便于在令牌、模式与代码参考之间快速浏览。",
-    "blog.update.6.body":
+    "article.update.6.body":
       "许多团队希望了解各产品域中落地了哪些 Prism 原语。新的指标规范描述可选、匿名的信号——版本差异、令牌的打包覆盖，以及组件依赖图——合作伙伴可在 CI 中接入。它刻意避免用户级追踪，面向内部工程视角的设计系统健康度检查。",
-    "blog.update.7.body":
+    "article.update.7.body":
       "无障碍评审现从统一清单出发，将各 Prism 组件对应到 WCAG 2.2 AA 预期：焦点顺序、角色、实时区域，以及由令牌约束的对比度底线。文档链接到 Figma 标注与 Storybook 状态，设计与 QA 可在发布前按同一套步骤自检。",
-    "blog.update.8.intro.eyebrow": "介绍首个 Prism 技能",
-    "blog.update.8.intro.p1":
+    "article.update.8.intro.eyebrow": "介绍首个 Prism 技能",
+    "article.update.8.intro.p1":
       "我们很高兴与产品团队分享首个 Prism 技能。这是一种全新方式，帮助团队更快用好 Prism，并在你需要时提供引导式支持。",
-    "blog.update.8.section.what": "什么是 Prism 库技能，它能做什么？",
-    "blog.update.8.what.lede":
+    "article.update.8.section.what": "什么是 Prism 库技能，它能做什么？",
+    "article.update.8.what.lede":
       "Prism 库技能是组件、令牌与指南的集中来源，帮助团队在设计与构建时保持更高的一致性。它让复用已获批模式、对齐 Prism 标准，以及通过统一的真实来源衔接设计与开发变得更加简单。",
-    "blog.update.8.what.listIntro": "它可以帮助团队：",
-    "blog.update.8.what.bullet.better": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    "blog.update.8.what.bullet.explore": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    "blog.update.8.what.bullet.support": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    "blog.update.8.what.bullet.search": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    "blog.update.8.section.try": "开始使用",
-    "blog.update.8.try.p1":
+    "article.update.8.what.listIntro": "它可以帮助团队：",
+    "article.update.8.what.bullet.better": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "article.update.8.what.bullet.explore": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "article.update.8.what.bullet.support": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "article.update.8.what.bullet.search": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "article.update.8.section.try": "开始使用",
+    "article.update.8.try.p1":
       "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
-    "blog.update.8.try.linkMarketplace": "Zoom 技能市场",
-    "blog.update.8.try.linkSetup": "Prism 库技能配置说明",
-    "blog.update.8.section.future": "这只是一个开始",
-    "blog.update.8.future.p1":
+    "article.update.8.try.linkMarketplace": "Zoom 技能市场",
+    "article.update.8.try.linkSetup": "Prism 库技能配置说明",
+    "article.update.8.section.future": "这只是一个开始",
+    "article.update.8.future.p1":
       "我们很高兴从本次发布中学习，并持续让 Prism 更易用。",
     "resources.title": "资源",
     "resources.lede": "更多指南与参考将整理于此。",
@@ -962,6 +1118,8 @@ export const uiStrings = {
     "components.notePrefix": "运行",
     "components.noteSuffix": "在本地打开交互式组件库（默认端口 4322）。",
     "components.sectionNav.aria": "组件页面",
+    "components.pageAnchors.heading": "本页锚点",
+    "components.pageAnchors.asideAria": "本页锚点",
     "components.toc.overview": "概览",
     "components.overview.h1": "组件",
     "components.overview.figureAltFallback": "组件预览：{name}",
@@ -987,8 +1145,8 @@ export const uiStrings = {
     "components.toc.dialog": "对话框",
     "components.toc.inputFields": "输入框",
     "components.accordion.h1": "手风琴",
-    "components.accordion.version": "v2.5",
-    "components.accordion.intro": "可折叠面板的分组、键盘操作与动效将在此文档化。",
+    "components.accordion.version": "v1.0",
+    "components.accordion.intro": "手风琴帮助用户在不离开当前上下文的情况下展开和收起相关内容。它最适合用于分组信息，让用户先快速浏览再按需展开查看。",
     "components.accordion.previewAlt": "组件预览：手风琴",
     "components.accordion.tabs.aria": "手风琴用法分区",
     "components.accordion.tabs.overview": "概览",
@@ -999,17 +1157,54 @@ export const uiStrings = {
     "components.accordion.overview.colType": "类型",
     "components.accordion.overview.colResource": "资源",
     "components.accordion.overview.colStatus": "状态",
-    "components.accordion.overview.resourceRowFigma": "桌面与 Web（Figma）",
+    "components.accordion.overview.desktopWebH3": "桌面客户端与 Web 浏览器",
+    "components.accordion.overview.mobileAppH3": "移动端应用",
+    "components.accordion.overview.mobileAppUnavailable": "不可用",
+    "components.accordion.overview.aiSkillsH3": "AI 技能",
+    "components.accordion.overview.aiSkills.tableAria": "手风琴 AI 技能可用性",
+    "components.accordion.overview.aiSkills.guidanceType": "指引",
+    "components.accordion.overview.aiSkills.guidanceResource": "手风琴指南 Markdown 文件",
+    "components.accordion.design.whenToUseH2": "✅ 何时使用",
+    "components.accordion.design.whenToUseBody":
+      "当内容可以按清晰标签分组，且无需一次性全部展示时，使用手风琴最合适。常见于设置分组、常见问题、筛选条件、权限配置和成组信息块。",
+    "components.accordion.design.whenNotToUseH2": "🚫 何时不使用",
+    "components.accordion.design.whenNotToUseBody":
+      "对于必须始终可见的关键信息、仅有一两条短内容，或需要并排比较所有分组的场景，不应使用手风琴。",
+    "components.accordion.overview.relatedComponentsH2": "相关组件",
+    "components.accordion.overview.relatedComponents.tableAria": "手风琴相关组件",
+    "components.accordion.overview.relatedComponents.colComponent": "组件",
+    "components.accordion.overview.relatedComponents.colWhen": "适用场景",
+    "components.accordion.overview.relatedComponents.tabs.component": "选项卡",
+    "components.accordion.overview.relatedComponents.tabs.when":
+      "当用户需要在同级视图间切换，而不是在同一页面展开/收起内容时使用。",
+    "components.accordion.overview.relatedComponents.sideNavigation.component": "侧边导航",
+    "components.accordion.overview.relatedComponents.sideNavigation.when":
+      "当用户需要在产品区域或主要章节间进行持续导航时使用。",
+    "components.accordion.overview.relatedComponents.breadcrumb.component": "面包屑",
+    "components.accordion.overview.relatedComponents.breadcrumb.when":
+      "当用户需要层级定位信息，而不是可折叠内容时使用。",
+    "components.accordion.overview.relatedComponents.disclosure.component": "Disclosure 或“显示更多”模式",
+    "components.accordion.overview.relatedComponents.disclosure.when":
+      "当只有一段可选内容需要展开，不需要完整手风琴集合时使用。",
+    "components.accordion.overview.relatedComponents.tooltip.component": "Tooltip 或 Popover",
+    "components.accordion.overview.relatedComponents.tooltip.when":
+      "当用户只需要简短补充说明，且不希望改变页面布局时使用。",
+    "components.accordion.overview.resourceRowFigma": "桌面与 Web Figma 组件库",
     "components.accordion.overview.resourceRowMobileFigma": "移动",
-    "components.accordion.overview.resourceRowVue": "Vue（桌面与 Web）",
-    "components.accordion.overview.resourceRowReact": "React（桌面与 Web）",
+    "components.accordion.overview.resourceRowVue": "Vue",
+    "components.accordion.overview.resourceRowReact": "React",
+    "components.accordion.overview.resourceRowMacos": "macOS",
+    "components.accordion.overview.resourceRowWindows": "Windows",
+    "components.accordion.overview.resourceRowLinux": "Linux",
     "components.accordion.overview.resourceRowCursor": "Cursor",
     "components.accordion.overview.resourceRowClaude": "Claude（Anthropic）",
     "components.accordion.overview.statusAvailable": "可用",
+    "components.accordion.overview.statusVerify": "待验证",
     "components.accordion.overview.statusNotAvailable": "不可用",
     "components.accordion.overview.statusPlanned": "计划中",
     "components.accordion.overview.statusBeta": "公测",
     "components.accordion.tabs.design": "指南",
+    "components.accordion.tabs.content": "内容",
     "components.accordion.tabs.accessibility": "无障碍",
     "components.accordion.design.variantsH2": "变体",
     "docs.copySectionLinkAria": "复制链接",
@@ -1037,21 +1232,145 @@ export const uiStrings = {
       "手风琴有 2 种变体，含前导式与尾随式下箭头。",
     "components.accordion.design.variantGuidance.tableAria": "前导式与尾随式下箭头的使用说明",
     "components.accordion.design.variantGuidance.colVariant": "变体",
-    "components.accordion.design.variantGuidance.colWhen": "使用时机",
-    "components.accordion.design.variantGuidance.leadingBody":
-      "用于窄宽度场景：当手风琴内容区域占界面宽度不足 50% 时。",
-    "components.accordion.design.variantGuidance.trailingBody":
-      "当手风琴内容区域占界面宽度达到或超过 50% 时使用。",
+    "components.accordion.design.variantGuidance.colDescription": "说明",
+    "components.accordion.design.variantGuidance.colUseCase": "使用场景",
+    "components.accordion.design.variantGuidance.leadingDescription":
+      "将下箭头放在标签之前，强调行起始处的展开/收起控制。",
+    "components.accordion.design.variantGuidance.leadingUseCase":
+      "适用于左对齐扫读较重要的场景，例如密集设置列表或结构化导航模式。",
+    "components.accordion.design.variantGuidance.trailingDescription":
+      "将下箭头放在标签之后，使标签保持为主要阅读入口。",
+    "components.accordion.design.variantGuidance.trailingUseCase":
+      "适用于应优先保证内容可读性的场景，例如卡片、详情面板或内容密集型列表。",
     "components.accordion.design.configurationsH2": "配置",
+    "components.accordion.design.propertiesH2": "属性",
     "components.accordion.design.configurationsBody":
-      "手风琴有 4 项可选配置：信息按钮、次要说明文字、前导图标，以及无底部分隔线。",
+      "常见属性包括信息按钮、次要说明文字、前导图标，以及可选的分隔线处理。",
+    "components.accordion.design.properties.tableAria": "手风琴属性",
+    "components.accordion.design.properties.colProperty": "属性",
+    "components.accordion.design.properties.colDescription": "说明",
+    "components.accordion.design.properties.label.property": "标签",
+    "components.accordion.design.properties.label.description": "定义手风琴行的主文本。",
+    "components.accordion.design.properties.expand.property": "展开",
+    "components.accordion.design.properties.expand.description": "控制关联内容区域是显示还是隐藏。",
+    "components.accordion.design.properties.infoButton.property": "信息按钮",
+    "components.accordion.design.properties.infoButton.description": "为补充说明提供辅助帮助入口。",
+    "components.accordion.design.properties.secondaryText.property": "次要文本",
+    "components.accordion.design.properties.secondaryText.description":
+      "在主标签旁补充上下文、状态或辅助信息。",
+    "components.accordion.design.properties.divider.property": "分隔线",
+    "components.accordion.design.properties.divider.description": "用于显示堆叠布局中的底部分隔线。",
+    "components.accordion.design.properties.leadingIcon.property": "前导图标",
+    "components.accordion.design.properties.leadingIcon.description": "在支持时于起始位置添加图标。",
+    "components.accordion.design.coreAnatomyH2": "核心结构",
+    "components.accordion.design.coreAnatomy.tableAria": "手风琴核心结构",
+    "components.accordion.design.coreAnatomy.colElement": "元素",
+    "components.accordion.design.coreAnatomy.colRequirement": "要求",
+    "components.accordion.design.coreAnatomy.colDescription": "说明",
+    "components.accordion.design.coreAnatomy.chevron.element": "箭头",
+    "components.accordion.design.coreAnatomy.chevron.requirement": "必需",
+    "components.accordion.design.coreAnatomy.chevron.description": "用于表示展开/收起状态，并提示该行可进行展开交互。",
+    "components.accordion.design.coreAnatomy.label.element": "标签",
+    "components.accordion.design.coreAnatomy.label.requirement": "必需",
+    "components.accordion.design.coreAnatomy.label.description": "用于标识该手风琴条目对应内容的主文本。",
+    "components.accordion.design.coreAnatomy.expandableContentArea.element": "可展开内容区域",
+    "components.accordion.design.coreAnatomy.expandableContentArea.requirement": "必需",
+    "components.accordion.design.coreAnatomy.expandableContentArea.description": "条目展开后显示、收起后隐藏的内容容器。",
+    "components.accordion.design.coreAnatomy.divider.element": "分隔线",
+    "components.accordion.design.coreAnatomy.divider.requirement": "可选",
+    "components.accordion.design.coreAnatomy.divider.description": "用于区分堆叠手风琴条目的视觉分隔。",
+    "components.accordion.design.usageH2": "用法",
+    "components.accordion.design.bestPracticesH3": "最佳实践",
+    "components.accordion.design.doH3": "✅ 推荐",
+    "components.accordion.design.do1": "将手风琴用于分组、可选或渐进披露的内容。",
+    "components.accordion.design.do2": "使用可预测的标签文案，让用户先理解再展开。",
+    "components.accordion.design.do3": "在同一组内保持箭头位置一致。",
+    "components.accordion.design.do4": "默认保持收起，除非任务需要立即显示内容。",
+    "components.accordion.design.do5": "在堆叠分组中保持分隔线与间距一致。",
+    "components.accordion.design.do6": "使用前导图标时，在同一组的所有行中保持一致。",
+    "components.accordion.design.dontH3": "🚫 避免",
+    "components.accordion.design.dont1": "不要隐藏用户必须立即看到的关键信息。",
+    "components.accordion.design.dont2": "不要在同一组中随意混用前导与尾随箭头。",
+    "components.accordion.design.dont3": "避免使用“更多”“详情”等无上下文的模糊标签。",
+    "components.accordion.design.dont4": "不要在单个条目中堆叠过多可选元素。",
+    "components.accordion.design.dont5": "不要让展开内容在视觉或语义上与触发行脱节。",
+    "components.accordion.design.behaviorH2": "行为",
+    "components.accordion.design.behavior.tableAria": "手风琴行为说明",
+    "components.accordion.design.behavior.colBehavior": "行为",
+    "components.accordion.design.behavior.colGuidance": "指引",
+    "components.accordion.design.behavior.expandCollapse.behavior": "展开与收起",
+    "components.accordion.design.behavior.expandCollapse.guidance": "激活条目后显示或隐藏其对应内容区域。",
+    "components.accordion.design.behavior.defaultState.behavior": "默认状态",
+    "components.accordion.design.behavior.defaultState.guidance": "除非必须立即可见，否则默认收起。",
+    "components.accordion.design.behavior.expansionModel.behavior": "单项或多项展开",
+    "components.accordion.design.behavior.expansionModel.guidance": "在同一组内统一使用“单项展开”或“多项展开”。",
+    "components.accordion.design.behavior.stateClarity.behavior": "状态清晰度",
+    "components.accordion.design.behavior.stateClarity.guidance":
+      "通过箭头、行样式与可编程状态清晰表达展开与收起状态。",
+    "components.accordion.design.behavior.disabledRows.behavior": "禁用条目",
+    "components.accordion.design.behavior.disabledRows.guidance": "禁用状态不应看起来可交互，并需清晰表达不可用。",
+    "components.accordion.design.behavior.contentRelationship.behavior": "内容关联",
+    "components.accordion.design.behavior.contentRelationship.guidance":
+      "让展开内容在视觉和语义上都与其触发行保持关联。",
+    "components.accordion.design.responsiveH2": "响应式设计",
+    "components.accordion.design.responsive.tableAria": "手风琴响应式指引",
+    "components.accordion.design.responsive.colProperty": "属性",
+    "components.accordion.design.responsive.colDescription": "说明",
+    "components.accordion.design.responsive.textWrapping.property": "文本换行",
+    "components.accordion.design.responsive.textWrapping.description":
+      "当横向空间受限时，标签和辅助文本应支持换行。",
+    "components.accordion.design.responsive.width.property": "宽度",
+    "components.accordion.design.responsive.width.description": "应适配父容器或布局上下文的宽度。",
+    "components.accordion.design.responsive.height.property": "高度",
+    "components.accordion.design.responsive.height.description": "行高应随换行文本或展开内容按需增长。",
+    "components.accordion.design.responsive.constrainedLayouts.property": "受限布局",
+    "components.accordion.design.responsive.constrainedLayouts.description":
+      "可用于卡片、面板、表格或侧栏等受容器宽度限制的场景。",
+    "components.accordion.design.contentGuidelinesH2": "内容指南",
+    "components.accordion.design.contentGuidelinesBody1":
+      "使用简短且可扫描的描述性标签。手风琴标签使用句式大小写。除非是正式标题或专有名词，避免在标签中使用标点。",
+    "components.accordion.design.contentGuidelinesBody2":
+      "次要文本应补充有效上下文，不要重复标签。信息按钮仅用于补充说明，不应承载核心内容。若标签换行，确保整行仍可读且可点击。",
+    "components.accordion.design.contentGuidelinesBody3":
+      "当无障碍文本暴露展开/收起状态时，动作描述应指向具体内容，例如“展开账单明细”或“收起权限分区”。",
     "components.accordion.design.configInfoTitle": "信息按钮",
     "components.accordion.design.configInfoDescription":
       "在需要简短说明、又不想给整行增加持续视觉负担时使用。",
     "components.accordion.design.configInfoAria": "带尾随下箭头与信息按钮的手风琴示例",
     "components.accordion.design.configInfoButtonAria": "更多信息",
     "components.accordion.design.configInfoPopover": "这是信息按钮与信息浮层（Popover）的示例。",
-    "components.accordion.tabs.accessibilityBody": "键盘支持、ARIA 角色与读屏指引将在此文档化。",
+    "components.accordion.tabs.accessibilityBody": "保持标签清晰可读，提供可见焦点，并以可编程方式暴露展开/收起状态。",
+    "components.accordion.accessibility.overviewH2": "无障碍",
+    "components.accordion.accessibility.overviewBody":
+      "在所有支持宽度下保持标签清晰可读。焦点样式必须可见且明显。展开与收起状态应易于区分。禁用条目不应看起来可交互。避免仅靠箭头方向表达状态，整体行样式也应提供辅助提示。",
+    "components.accordion.accessibility.keyboardH2": "键盘交互",
+    "components.accordion.accessibility.keyboard.tableAria": "手风琴键盘交互",
+    "components.accordion.accessibility.keyboard.colAction": "操作",
+    "components.accordion.accessibility.keyboard.colBehavior": "行为",
+    "components.accordion.accessibility.keyboard.tabBehavior": "将焦点移动到下一个或上一个可交互元素。",
+    "components.accordion.accessibility.keyboard.enterSpaceBehavior": "激活当前聚焦的手风琴触发器。",
+    "components.accordion.accessibility.keyboard.arrowBehavior": "在支持的场景下，在相关触发器之间移动焦点。",
+    "components.accordion.accessibility.keyboard.homeEndBehavior":
+      "在支持的场景下，跳转到该组中的第一个或最后一个触发器。",
+    "components.accordion.accessibility.keyboard.escBehavior": "在支持的场景下，关闭或退出当前交互。",
+    "components.accordion.accessibility.screenReaderH2": "读屏指引",
+    "components.accordion.accessibility.screenReader.tableAria": "手风琴读屏指引",
+    "components.accordion.accessibility.screenReader.colRequirement": "要求",
+    "components.accordion.accessibility.screenReader.colGuidance": "指引",
+    "components.accordion.accessibility.screenReader.expandedState.requirement": "展开状态",
+    "components.accordion.accessibility.screenReader.expandedState.guidance":
+      "以可编程方式表达每个触发器的展开与收起状态。",
+    "components.accordion.accessibility.screenReader.triggerRelationship.requirement": "触发器关联",
+    "components.accordion.accessibility.screenReader.triggerRelationship.guidance":
+      "将每个触发器与其控制的内容区域建立关联。",
+    "components.accordion.accessibility.screenReader.labels.requirement": "标签",
+    "components.accordion.accessibility.screenReader.labels.guidance":
+      "使用可预测内容的描述性标签，帮助用户在展开前理解内容。",
+    "components.accordion.accessibility.screenReader.grouping.requirement": "分组结构",
+    "components.accordion.accessibility.screenReader.grouping.guidance":
+      "当手风琴行代表内容分区时，使用合适的标题或分组结构。",
+    "components.accordion.accessibility.screenReader.disabledState.requirement": "禁用状态",
+    "components.accordion.accessibility.screenReader.disabledState.guidance": "当条目不可展开时，清晰传达其不可用状态。",
     "components.anchor.h1": "锚点",
     "components.anchor.intro": "哈希导航、焦点管理与固定顶栏偏移将在此文档化。",
     "components.avatars.h1": "头像",

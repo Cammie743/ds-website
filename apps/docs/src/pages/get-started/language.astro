@@ -6,56 +6,773 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
 <GetStartedLayout
   title="Design language"
   current="language"
-  description="Voice, form, typography, color, and motion—the vocabulary of Prism interfaces."
+  showAnchorsAside
+  description="Design intent, perceptual principles, visual dials, core behaviors, and how the system implements this language."
 >
-  <header class="page-head">
-    <h1 data-i18n="getStarted.language.h2">Design language</h1>
-    <p class="intro" data-i18n="getStarted.language.lede">
-      The design language is the personality of the system: how Prism looks, reads, and moves together.
-    </p>
-  </header>
+  <div slot="lead">
+    <header class="page-head">
+      <h1 data-i18n="getStarted.language.h2">Design language</h1>
+      <p class="intro" data-i18n="getStarted.language.lede">
+        The design language is the personality of the system: how Prism looks, reads, and moves together. Intent,
+        perceptual principles, visual dials, and behaviors that keep collaboration calm, clear, and trustworthy.
+      </p>
+    </header>
+    <figure class="lang-intro-placeholder">
+      <img
+        class="lang-intro-placeholder__img"
+        src="/images/get-started/design-language-intro-placeholder.png"
+        width="640"
+        height="360"
+        loading="lazy"
+        decoding="async"
+        data-i18n-alt="getStarted.language.introPlaceholderAlt"
+        alt="Neutral placeholder for a future design language illustration."
+      />
+    </figure>
+  </div>
 
-  <section class="block">
-    <div class="lang-grid">
-      <section class="lang-card" aria-labelledby="lang-voice">
-        <DocH2WithAnchor id="lang-voice" data-i18n="getStarted.language.voice.h3">Voice and tone</DocH2WithAnchor>
-        <p data-i18n="getStarted.language.voice.body">
-          Confident and human, never loud. Prefer verbs that describe action, nouns that name real things,
-          and sentences short enough to scan. Celebrate progress without sounding like marketing fluff.
+  <div class="lang-article-sections">
+  <section class="lang-section lang-doc" aria-labelledby="lang-s0">
+    <DocH2WithAnchor
+      class="doc-tabs__h2 article-article__section-title"
+      rowClass="doc-h2-anchor-row--tabs"
+      id="lang-s0" data-i18n="getStarted.language.doc.s0.h2">Eric's Design Principles</DocH2WithAnchor>
+    <ul class="lang-list">
+      <li data-i18n="getStarted.language.doc.s0.li1">Less UI elements</li>
+      <li data-i18n="getStarted.language.doc.s0.li2">Fewer clicks</li>
+      <li data-i18n="getStarted.language.doc.s0.li3">No hidden logic</li>
+      <li data-i18n="getStarted.language.doc.s0.li4">Don't make users think</li>
+    </ul>
+  </section>
+
+  <section class="lang-section lang-doc" aria-labelledby="lang-s1">
+    <DocH2WithAnchor
+      class="doc-tabs__h2 article-article__section-title"
+      rowClass="doc-h2-anchor-row--tabs"
+      id="lang-s1" data-i18n="getStarted.language.doc.s1.h2">Design Intent</DocH2WithAnchor>
+    <p class="intro" data-i18n="getStarted.language.doc.s1.p1">
+      Our design language expresses calm confidence in moments that matter.
+    </p>
+    <p class="intro" data-i18n="getStarted.language.doc.s1.p2">
+      It balances precision and warmth so people feel in control, understood, and focused while collaborating in high-stakes meetings.
+    </p>
+    <p class="intro" data-i18n="getStarted.language.doc.s1.p3">
+      Meetings are often stressful, time-sensitive, and socially complex. Our visual language should reduce cognitive load, signal trust, and quietly support human connection — without drawing attention to itself.
+    </p>
+  </section>
+
+  <section class="lang-section lang-doc" aria-labelledby="lang-s2">
+    <DocH2WithAnchor
+      class="doc-tabs__h2 article-article__section-title"
+      rowClass="doc-h2-anchor-row--tabs"
+      id="lang-s2" data-i18n="getStarted.language.doc.s2.h2">Perceptual Principles</DocH2WithAnchor>
+    <p class="intro" data-i18n="getStarted.language.doc.s2.intro">
+      These principles define how the product should feel, not what it looks like.
+    </p>
+
+    <div class="lang-perceptual">
+      <section class="lang-perceptual-block" aria-labelledby="lang-s2-calm">
+        <DocH2WithAnchor
+      class="doc-tabs__h2 article-article__section-title"
+      rowClass="doc-h2-anchor-row--tabs"
+      id="lang-s2-calm" level={3} data-i18n="getStarted.language.doc.s2.calm.h3">Calm Authority</DocH2WithAnchor>
+        <p class="intro lead" data-i18n="getStarted.language.doc.s2.calm.lead">
+          The product should feel reliable and steady, even under pressure.
         </p>
+        <div class="lang-pair-grid">
+          <div>
+            <p class="lang-pair-label" data-i18n="getStarted.language.doc.isLabel">Is</p>
+            <ul class="lang-list lang-list--tight lang-list--pair-affirm">
+              <li data-i18n="getStarted.language.doc.s2.calm.is1">Clear hierarchy</li>
+              <li data-i18n="getStarted.language.doc.s2.calm.is2">Predictable behavior</li>
+              <li data-i18n="getStarted.language.doc.s2.calm.is3">Visual stability</li>
+            </ul>
+          </div>
+          <div>
+            <p class="lang-pair-label" data-i18n="getStarted.language.doc.isNotLabel">Is not</p>
+            <ul class="lang-list lang-list--tight lang-list--pair-negate">
+              <li data-i18n="getStarted.language.doc.s2.calm.not1">Loud, attention-seeking UI</li>
+              <li data-i18n="getStarted.language.doc.s2.calm.not2">Overly playful aesthetics</li>
+              <li data-i18n="getStarted.language.doc.s2.calm.not3">Frequent visual surprises</li>
+            </ul>
+          </div>
+        </div>
       </section>
-      <section class="lang-card" aria-labelledby="lang-form">
-        <DocH2WithAnchor id="lang-form" data-i18n="getStarted.language.form.h3">Form and material</DocH2WithAnchor>
-        <p data-i18n="getStarted.language.form.body">
-          Surfaces stack in a clear order: canvas, elevated panels, then interactive controls. Corners,
-          borders, and shadow describe hierarchy—each layer should earn its depth.
+
+      <section class="lang-perceptual-block" aria-labelledby="lang-s2-human">
+        <DocH2WithAnchor
+      class="doc-tabs__h2 article-article__section-title"
+      rowClass="doc-h2-anchor-row--tabs"
+      id="lang-s2-human" level={3} data-i18n="getStarted.language.doc.s2.human.h3">Human, Not Casual</DocH2WithAnchor>
+        <p class="intro lead" data-i18n="getStarted.language.doc.s2.human.lead">
+          We support real people in real work without being flippant.
         </p>
+        <div class="lang-pair-grid">
+          <div>
+            <p class="lang-pair-label" data-i18n="getStarted.language.doc.isLabel">Is</p>
+            <ul class="lang-list lang-list--tight lang-list--pair-affirm">
+              <li data-i18n="getStarted.language.doc.s2.human.is1">Warm, respectful tone</li>
+              <li data-i18n="getStarted.language.doc.s2.human.is2">Subtle personality</li>
+              <li data-i18n="getStarted.language.doc.s2.human.is3">Considered use of friendliness</li>
+            </ul>
+          </div>
+          <div>
+            <p class="lang-pair-label" data-i18n="getStarted.language.doc.isNotLabel">Is not</p>
+            <ul class="lang-list lang-list--tight lang-list--pair-negate">
+              <li data-i18n="getStarted.language.doc.s2.human.not1">Cute</li>
+              <li data-i18n="getStarted.language.doc.s2.human.not2">Ironic</li>
+              <li data-i18n="getStarted.language.doc.s2.human.not3">Informal to the point of undermining trust</li>
+            </ul>
+          </div>
+        </div>
       </section>
-      <section class="lang-card" aria-labelledby="lang-type">
-        <DocH2WithAnchor id="lang-type" data-i18n="getStarted.language.type.h3">Typography and rhythm</DocH2WithAnchor>
-        <p data-i18n="getStarted.language.type.body">
-          Type roles (display through caption) keep pages scannable. Vertical spacing uses a constrained
-          scale so lists, forms, and dashboards share the same cadence even when content length varies.
+
+      <section class="lang-perceptual-block" aria-labelledby="lang-s2-focus">
+        <DocH2WithAnchor
+      class="doc-tabs__h2 article-article__section-title"
+      rowClass="doc-h2-anchor-row--tabs"
+      id="lang-s2-focus" level={3} data-i18n="getStarted.language.doc.s2.focus.h3">Effortless Focus</DocH2WithAnchor>
+        <p class="intro lead" data-i18n="getStarted.language.doc.s2.focus.lead">
+          The interface fades away so the meeting can take center stage.
         </p>
+        <div class="lang-pair-grid">
+          <div>
+            <p class="lang-pair-label" data-i18n="getStarted.language.doc.isLabel">Is</p>
+            <ul class="lang-list lang-list--tight lang-list--pair-affirm">
+              <li data-i18n="getStarted.language.doc.s2.focus.is1">Purposeful minimalism</li>
+              <li data-i18n="getStarted.language.doc.s2.focus.is2">Strong defaults</li>
+              <li data-i18n="getStarted.language.doc.s2.focus.is3">Reduced decision-making</li>
+            </ul>
+          </div>
+          <div>
+            <p class="lang-pair-label" data-i18n="getStarted.language.doc.isNotLabel">Is not</p>
+            <ul class="lang-list lang-list--tight lang-list--pair-negate">
+              <li data-i18n="getStarted.language.doc.s2.focus.not1">Feature-heavy surfaces</li>
+              <li data-i18n="getStarted.language.doc.s2.focus.not2">Competing visual elements</li>
+              <li data-i18n="getStarted.language.doc.s2.focus.not3">Decorative UI without function</li>
+            </ul>
+          </div>
+        </div>
       </section>
-      <section class="lang-card" aria-labelledby="lang-color">
-        <DocH2WithAnchor id="lang-color" data-i18n="getStarted.language.color.h3">Color as information</DocH2WithAnchor>
-        <p data-i18n="getStarted.language.color.body">
-          Color signals state before it expresses brand. Semantic roles—text, surface, border, accent, and
-          feedback—stay stable across themes so meaning does not get lost when palettes change.
+
+      <section class="lang-perceptual-block" aria-labelledby="lang-s2-pmotion">
+        <DocH2WithAnchor
+      class="doc-tabs__h2 article-article__section-title"
+      rowClass="doc-h2-anchor-row--tabs"
+      id="lang-s2-pmotion" level={3} data-i18n="getStarted.language.doc.s2.pmotion.h3">Purposeful Motion</DocH2WithAnchor>
+        <p class="intro lead" data-i18n="getStarted.language.doc.s2.pmotion.lead">
+          Motion explains cause and effect and reinforces understanding.
         </p>
-      </section>
-      <section class="lang-card" aria-labelledby="lang-motion">
-        <DocH2WithAnchor id="lang-motion" data-i18n="getStarted.language.motion.h3">Motion with restraint</DocH2WithAnchor>
-        <p data-i18n="getStarted.language.motion.body">
-          Animation confirms what happened and where attention should go. It avoids gratuitous loops,
-          respects reduced-motion preferences, and keeps durations tight enough to feel instant on repeat.
-        </p>
+        <div class="lang-pair-grid">
+          <div>
+            <p class="lang-pair-label" data-i18n="getStarted.language.doc.isLabel">Is</p>
+            <ul class="lang-list lang-list--tight lang-list--pair-affirm">
+              <li data-i18n="getStarted.language.doc.s2.pmotion.is1">Intentional</li>
+              <li data-i18n="getStarted.language.doc.s2.pmotion.is2">Subtle</li>
+              <li data-i18n="getStarted.language.doc.s2.pmotion.is3">Functional</li>
+            </ul>
+          </div>
+          <div>
+            <p class="lang-pair-label" data-i18n="getStarted.language.doc.isNotLabel">Is not</p>
+            <ul class="lang-list lang-list--tight lang-list--pair-negate">
+              <li data-i18n="getStarted.language.doc.s2.pmotion.not1">Decorative</li>
+              <li data-i18n="getStarted.language.doc.s2.pmotion.not2">Fast for the sake of speed</li>
+              <li data-i18n="getStarted.language.doc.s2.pmotion.not3">Distracting during conversation</li>
+            </ul>
+          </div>
+        </div>
       </section>
     </div>
   </section>
 
+  <section class="lang-section lang-doc" aria-labelledby="lang-s3">
+    <DocH2WithAnchor
+      class="doc-tabs__h2 article-article__section-title"
+      rowClass="doc-h2-anchor-row--tabs"
+      id="lang-s3" data-i18n="getStarted.language.doc.s3.h2">Visual Dial Settings</DocH2WithAnchor>
+    <p class="intro" data-i18n="getStarted.language.doc.s3.p1">
+      Our design language lives on a spectrum. These settings guide future decisions.
+    </p>
+    <div class="lang-table-wrap">
+      <table class="lang-table">
+        <thead>
+          <tr>
+            <th scope="col" data-i18n="getStarted.language.doc.s3.thDial">Dial</th>
+            <th scope="col" data-i18n="getStarted.language.doc.s3.thPosition">Position</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-i18n="getStarted.language.doc.s3.r1dial">Expressive ←→ Restrained</td>
+            <td data-i18n="getStarted.language.doc.s3.r1pos">Restrained</td>
+          </tr>
+          <tr>
+            <td data-i18n="getStarted.language.doc.s3.r2dial">Friendly ←→ Formal</td>
+            <td data-i18n="getStarted.language.doc.s3.r2pos">Balanced, slightly formal</td>
+          </tr>
+          <tr>
+            <td data-i18n="getStarted.language.doc.s3.r3dial">Light ←→ Dense</td>
+            <td data-i18n="getStarted.language.doc.s3.r3pos">Moderately light</td>
+          </tr>
+          <tr>
+            <td data-i18n="getStarted.language.doc.s3.r4dial">Neutral ←→ Opinionated</td>
+            <td data-i18n="getStarted.language.doc.s3.r4pos">Quietly opinionated</td>
+          </tr>
+          <tr>
+            <td data-i18n="getStarted.language.doc.s3.r5dial">Static ←→ Dynamic</td>
+            <td data-i18n="getStarted.language.doc.s3.r5pos">Mostly static, selectively dynamic</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <figure class="lang-spectrum-figure">
+      <figcaption class="lang-spectrum-caption">
+        <span data-i18n="getStarted.language.doc.s3.spectrumTitle">Spectrum</span>
+        ·
+        <span data-i18n="getStarted.language.doc.s3.spectrumColPos">Position</span>
+      </figcaption>
+      <div class="lang-spectrum-rows">
+        <div class="lang-spectrum-row">
+          <pre class="lang-spectrum-pre" aria-hidden="true">{`Expressive
+←─────────────────────────────⭐️→
+Restrained`}</pre>
+          <p class="lang-spectrum-pos" data-i18n="getStarted.language.doc.s3.r1pos">Restrained</p>
+        </div>
+        <div class="lang-spectrum-row">
+          <pre class="lang-spectrum-pre" aria-hidden="true">{`Friendly
+←────────────────────⭐️─────────→
+Formal`}</pre>
+          <p class="lang-spectrum-pos" data-i18n="getStarted.language.doc.s3.r2pos">Balanced, slightly formal</p>
+        </div>
+        <div class="lang-spectrum-row">
+          <pre class="lang-spectrum-pre" aria-hidden="true">{`Light
+←───────────⭐️──────────────────→
+Dense`}</pre>
+          <p class="lang-spectrum-pos" data-i18n="getStarted.language.doc.s3.r3pos">Moderately light</p>
+        </div>
+        <div class="lang-spectrum-row">
+          <pre class="lang-spectrum-pre" aria-hidden="true">{`Neutral
+←─────────────────────────⭐️────→
+Opinionated`}</pre>
+          <p class="lang-spectrum-pos" data-i18n="getStarted.language.doc.s3.r4pos">Quietly opinionated</p>
+        </div>
+        <div class="lang-spectrum-row">
+          <pre class="lang-spectrum-pre" aria-hidden="true">{`Static
+←─────⭐️──────────────────────────→
+Dynamic`}</pre>
+          <p class="lang-spectrum-pos" data-i18n="getStarted.language.doc.s3.r5pos">Mostly static, selectively dynamic</p>
+        </div>
+      </div>
+    </figure>
+
+    <p class="intro" data-i18n="getStarted.language.doc.s3.note">
+      These dials should be revisited annually, not per project.
+    </p>
+  </section>
+
+  <section class="lang-section lang-doc" aria-labelledby="lang-s4">
+    <DocH2WithAnchor
+      class="doc-tabs__h2 article-article__section-title"
+      rowClass="doc-h2-anchor-row--tabs"
+      id="lang-s4" data-i18n="getStarted.language.doc.s4.h2">Core Visual Behaviors</DocH2WithAnchor>
+
+    <section class="lang-subsection" aria-labelledby="lang-s4-layout">
+      <DocH2WithAnchor
+      class="doc-tabs__h2 article-article__section-title"
+      rowClass="doc-h2-anchor-row--tabs"
+      id="lang-s4-layout" level={3} data-i18n="getStarted.language.doc.s4.layout.h3">Layout & Space</DocH2WithAnchor>
+      <ul class="lang-list">
+        <li data-i18n="getStarted.language.doc.s4.layout.p1">Layouts prioritize stability over novelty</li>
+        <li data-i18n="getStarted.language.doc.s4.layout.p2">Primary actions are visually anchored and predictable</li>
+        <li data-i18n="getStarted.language.doc.s4.layout.p3">Whitespace is used to create calm and separation, not luxury</li>
+        <li data-i18n="getStarted.language.doc.s4.layout.p4">
+          Density scales intentionally for enterprise power users without overwhelming new users
+        </li>
+      </ul>
+      <p class="intro" data-i18n="getStarted.language.doc.s4.layout.guide">
+        Guiding idea: If everything is emphasized, nothing is.
+      </p>
+    </section>
+
+    <section class="lang-subsection" aria-labelledby="lang-s4-color">
+      <DocH2WithAnchor
+      class="doc-tabs__h2 article-article__section-title"
+      rowClass="doc-h2-anchor-row--tabs"
+      id="lang-s4-color" level={3} data-i18n="getStarted.language.doc.s4.color.h3">Color</DocH2WithAnchor>
+      <ul class="lang-list">
+        <li data-i18n="getStarted.language.doc.s4.color.p1">Color is functional first, expressive second</li>
+        <li data-i18n="getStarted.language.doc.s4.color.p2">Primary brand color signals focus and action</li>
+        <li data-i18n="getStarted.language.doc.s4.color.p3">Neutral surfaces dominate to support long-duration use</li>
+        <li data-i18n="getStarted.language.doc.s4.color.p4">Accent colors are used sparingly to convey status, not decoration</li>
+      </ul>
+      <p class="intro" data-i18n="getStarted.language.doc.s4.color.rule">
+        🎨 Color should never compete with 👩‍🏫 people's faces or 📃 shared content.
+      </p>
+    </section>
+
+    <section class="lang-subsection" aria-labelledby="lang-s4-type">
+      <DocH2WithAnchor
+      class="doc-tabs__h2 article-article__section-title"
+      rowClass="doc-h2-anchor-row--tabs"
+      id="lang-s4-type" level={3} data-i18n="getStarted.language.doc.s4.type.h3">Typography</DocH2WithAnchor>
+      <ul class="lang-list">
+        <li data-i18n="getStarted.language.doc.s4.type.p1">Typography communicates confidence through clarity</li>
+        <li data-i18n="getStarted.language.doc.s4.type.p2">Hierarchy is obvious at a glance</li>
+        <li data-i18n="getStarted.language.doc.s4.type.p3">Text supports scanning and quick comprehension</li>
+        <li data-i18n="getStarted.language.doc.s4.type.p4">Type should feel contemporary, not trendy</li>
+      </ul>
+      <p class="intro" data-i18n="getStarted.language.doc.s4.type.rule">
+        Typography should never feel decorative or experimental in core meeting flows.
+      </p>
+    </section>
+
+    <section class="lang-subsection" aria-labelledby="lang-s4-motion">
+      <DocH2WithAnchor
+      class="doc-tabs__h2 article-article__section-title"
+      rowClass="doc-h2-anchor-row--tabs"
+      id="lang-s4-motion" level={3} data-i18n="getStarted.language.doc.s4.motion.h3">Motion</DocH2WithAnchor>
+      <ul class="lang-list">
+        <li data-i18n="getStarted.language.doc.s4.motion.p1">Motion reinforces system feedback and spatial relationships</li>
+        <li data-i18n="getStarted.language.doc.s4.motion.p2">Transitions are short, smooth, and predictable</li>
+        <li data-i18n="getStarted.language.doc.s4.motion.p3">Motion is reduced or removed during active meetings</li>
+      </ul>
+      <p class="intro">
+        <strong data-i18n="getStarted.language.doc.s4.motion.ruleLabel">Rule of thumb:</strong>{" "}
+        <span data-i18n="getStarted.language.doc.s4.motion.rule">
+          If motion distracts during conversation, it does not belong in the meeting experience.
+        </span>
+      </p>
+    </section>
+  </section>
+
+  <section class="lang-section lang-doc" aria-labelledby="lang-s5">
+    <DocH2WithAnchor
+      class="doc-tabs__h2 article-article__section-title"
+      rowClass="doc-h2-anchor-row--tabs"
+      id="lang-s5" data-i18n="getStarted.language.doc.s5.h2">Iconography</DocH2WithAnchor>
+    <ul class="lang-list">
+      <li data-i18n="getStarted.language.doc.s5.p1">Icons are simple, recognizable, and consistent in metaphor</li>
+      <li data-i18n="getStarted.language.doc.s5.p2">
+        Filled vs outlined styles are used intentionally, not mixed arbitrarily (outline first)
+      </li>
+      <li data-i18n="getStarted.language.doc.s5.p3">Icons should read clearly at small sizes and low attention</li>
+      <li data-i18n="getStarted.language.doc.s5.p4">Icons explain actions, not brand personality.</li>
+    </ul>
+  </section>
+
+  <section class="lang-section lang-doc" aria-labelledby="lang-s6">
+    <DocH2WithAnchor
+      class="doc-tabs__h2 article-article__section-title"
+      rowClass="doc-h2-anchor-row--tabs"
+      id="lang-s6" data-i18n="getStarted.language.doc.s6.h2">Illustration & Graphic Language (Empty States, Education)</DocH2WithAnchor>
+    <p class="intro" data-i18n="getStarted.language.doc.s6.p1">
+      Illustrations support understanding, reassurance, and guidance — especially when something is missing or incomplete.
+    </p>
+    <p class="lang-mini-h" data-i18n="getStarted.language.doc.s6.purpose">Purpose</p>
+    <ul class="lang-list">
+      <li data-i18n="getStarted.language.doc.s6.purpose1">Explain system states</li>
+      <li data-i18n="getStarted.language.doc.s6.purpose2">Reduce anxiety during errors or empty states</li>
+      <li data-i18n="getStarted.language.doc.s6.purpose3">Guide users toward next actions</li>
+    </ul>
+    <p class="lang-mini-h" data-i18n="getStarted.language.doc.s6.style">Style</p>
+    <ul class="lang-list">
+      <li data-i18n="getStarted.language.doc.s6.style1">Abstracted, not literal</li>
+      <li data-i18n="getStarted.language.doc.s6.style2">Minimal detail</li>
+      <li data-i18n="getStarted.language.doc.s6.style3">Subtle depth</li>
+      <li data-i18n="getStarted.language.doc.s6.style4">Neutral perspective</li>
+    </ul>
+    <p class="lang-mini-h" data-i18n="getStarted.language.doc.s6.tone">Tone</p>
+    <ul class="lang-list">
+      <li data-i18n="getStarted.language.doc.s6.tone1">Supportive</li>
+      <li data-i18n="getStarted.language.doc.s6.tone2">Intelligent</li>
+      <li data-i18n="getStarted.language.doc.s6.tone3">Calm</li>
+    </ul>
+    <p class="intro" data-i18n="getStarted.language.doc.s6.close1">Illustrations are not decorative art.</p>
+    <p class="intro" data-i18n="getStarted.language.doc.s6.close2">
+      If the UI communicates clearly without one, an illustration is not required.
+    </p>
+  </section>
+
+  <section class="lang-section lang-doc" aria-labelledby="lang-s7">
+    <DocH2WithAnchor
+      class="doc-tabs__h2 article-article__section-title"
+      rowClass="doc-h2-anchor-row--tabs"
+      id="lang-s7" data-i18n="getStarted.language.doc.s7.h2">Content & Voice Alignment</DocH2WithAnchor>
+    <ul class="lang-list">
+      <li data-i18n="getStarted.language.doc.s7.p1">Language is clear, concise, and respectful</li>
+      <li data-i18n="getStarted.language.doc.s7.p2">Avoid jokes, slang, or cultural references</li>
+      <li data-i18n="getStarted.language.doc.s7.p3">Error messages explain what happened and what to do next</li>
+      <li data-i18n="getStarted.language.doc.s7.p4">The system speaks as a helpful professional, not a mascot</li>
+    </ul>
+  </section>
+
+  <section class="lang-section lang-doc" aria-labelledby="lang-s8">
+    <DocH2WithAnchor
+      class="doc-tabs__h2 article-article__section-title"
+      rowClass="doc-h2-anchor-row--tabs"
+      id="lang-s8" data-i18n="getStarted.language.doc.s8.h2">Decision Filters</DocH2WithAnchor>
+    <p class="intro" data-i18n="getStarted.language.doc.s8.intro">All design work should pass these checks:</p>
+    <ol class="lang-checklist">
+      <li data-i18n="getStarted.language.doc.s8.q1">Does this increase clarity in a high-pressure moment?</li>
+      <li data-i18n="getStarted.language.doc.s8.q2">Does this reduce cognitive load or add to it?</li>
+      <li data-i18n="getStarted.language.doc.s8.q3">Would this feel appropriate in a serious enterprise setting?</li>
+      <li data-i18n="getStarted.language.doc.s8.q4">Does this reinforce calm and control?</li>
+      <li data-i18n="getStarted.language.doc.s8.q5">Is this solving a real user problem — or decorating it?</li>
+    </ol>
+    <p class="intro" data-i18n="getStarted.language.doc.s8.close">
+      If a design fails two or more filters, it needs revision.
+    </p>
+  </section>
+
+  <section class="lang-section lang-doc" aria-labelledby="lang-s9">
+    <DocH2WithAnchor
+      class="doc-tabs__h2 article-article__section-title"
+      rowClass="doc-h2-anchor-row--tabs"
+      id="lang-s9" data-i18n="getStarted.language.doc.s9.h2">Relationship to the Design System</DocH2WithAnchor>
+    <ul class="lang-list">
+      <li data-i18n="getStarted.language.doc.s9.p1">The design system is the mechanical implementation of this language.</li>
+      <li data-i18n="getStarted.language.doc.s9.p2">Tokens express our visual decisions</li>
+      <li data-i18n="getStarted.language.doc.s9.p3">Components embody our principles</li>
+      <li data-i18n="getStarted.language.doc.s9.p4">Patterns reinforce consistency and predictability</li>
+      <li data-i18n="getStarted.language.doc.s9.p5">
+        Components may evolve, but they must always reinforce the perceptual principles defined here.
+      </li>
+    </ul>
+  </section>
+
+  <section class="lang-section lang-doc" aria-labelledby="lang-s10">
+    <DocH2WithAnchor
+      class="doc-tabs__h2 article-article__section-title"
+      rowClass="doc-h2-anchor-row--tabs"
+      id="lang-s10" data-i18n="getStarted.language.doc.s10.h2">Personas / User types</DocH2WithAnchor>
+    <p class="intro" data-i18n="getStarted.language.doc.s10.intro">
+      We plan for user buckets from inclusive first-time use through expert efficiency. Levels describe breadth of need, not value.
+    </p>
+    <section class="lang-persona" aria-labelledby="lang-s10-l1">
+      <DocH2WithAnchor
+      class="doc-tabs__h2 article-article__section-title"
+      rowClass="doc-h2-anchor-row--tabs"
+      id="lang-s10-l1" level={3} data-i18n="getStarted.language.doc.s10.l1h">
+        Level 1 — Broad reach (about 8 to 80)
+      </DocH2WithAnchor>
+      <p class="intro" data-i18n="getStarted.language.doc.s10.l1b">
+        Core flows stay legible and forgiving for a wide age range; grandparents (and others less familiar with software) should be able to complete primary tasks without jargon or mystery mechanics.
+      </p>
+    </section>
+    <section class="lang-persona" aria-labelledby="lang-s10-l2">
+      <DocH2WithAnchor
+      class="doc-tabs__h2 article-article__section-title"
+      rowClass="doc-h2-anchor-row--tabs"
+      id="lang-s10-l2" level={3} data-i18n="getStarted.language.doc.s10.l2h">
+        Level 2 — People in between
+      </DocH2WithAnchor>
+      <p class="intro" data-i18n="getStarted.language.doc.s10.l2b">
+        The majority of collaborators: comfortable with common patterns, balancing speed with clarity. Defaults and hierarchy do most of the teaching.
+      </p>
+    </section>
+    <section class="lang-persona" aria-labelledby="lang-s10-l3">
+      <DocH2WithAnchor
+      class="doc-tabs__h2 article-article__section-title"
+      rowClass="doc-h2-anchor-row--tabs"
+      id="lang-s10-l3" level={3} data-i18n="getStarted.language.doc.s10.l3h">
+        Level 3 — Advanced collaborators
+      </DocH2WithAnchor>
+      <p class="intro" data-i18n="getStarted.language.doc.s10.l3b">
+        Frequent enterprise users who need density, shortcuts, and predictable muscle memory — without sacrificing calm or trust on shared surfaces.
+      </p>
+    </section>
+    <section class="lang-persona" aria-labelledby="lang-s10-l4">
+      <DocH2WithAnchor
+      class="doc-tabs__h2 article-article__section-title"
+      rowClass="doc-h2-anchor-row--tabs"
+      id="lang-s10-l4" level={3} data-i18n="getStarted.language.doc.s10.l4h">
+        Level 4 — Superusers
+      </DocH2WithAnchor>
+      <p class="intro" data-i18n="getStarted.language.doc.s10.l4b">
+        Keyboard-first workflows, customization, and maximum throughput where appropriate; power features must not hijack the baseline experience for Levels 1–2.
+      </p>
+    </section>
+  </section>
+  </div>
+
   <p class="next">
     <a class="next-link" href="/get-started/faq" data-i18n="getStarted.nextFaq">FAQs</a>
   </p>
+
+  <nav slot="anchors" class="article-anchor-nav" aria-labelledby="article-anchor-nav-label-lang">
+    <h2 id="article-anchor-nav-label-lang" class="article-anchor-nav__label" data-i18n="article.articleAnchors.heading">
+      On this page
+    </h2>
+    <ul class="article-anchor-nav__list">
+      <li>
+        <a class="article-anchor-nav__link" href="#lang-s0" data-i18n="getStarted.language.toc.s0">Eric's Design Principles</a>
+      </li>
+      <li>
+        <a class="article-anchor-nav__link" href="#lang-s1" data-i18n="getStarted.language.toc.s1">Design Intent</a>
+      </li>
+      <li>
+        <a class="article-anchor-nav__link" href="#lang-s2" data-i18n="getStarted.language.toc.s2">Perceptual Principles</a>
+      </li>
+      <li>
+        <a class="article-anchor-nav__link" href="#lang-s3" data-i18n="getStarted.language.toc.s3">Visual Dial Settings</a>
+      </li>
+      <li>
+        <a class="article-anchor-nav__link" href="#lang-s4" data-i18n="getStarted.language.toc.s4">Core Visual Behaviors</a>
+      </li>
+      <li>
+        <a class="article-anchor-nav__link" href="#lang-s5" data-i18n="getStarted.language.toc.s5">Iconography</a>
+      </li>
+      <li>
+        <a class="article-anchor-nav__link" href="#lang-s6" data-i18n="getStarted.language.toc.s6">Illustration & Graphic Language</a>
+      </li>
+      <li>
+        <a class="article-anchor-nav__link" href="#lang-s7" data-i18n="getStarted.language.toc.s7">Content & Voice Alignment</a>
+      </li>
+      <li>
+        <a class="article-anchor-nav__link" href="#lang-s8" data-i18n="getStarted.language.toc.s8">Decision Filters</a>
+      </li>
+      <li>
+        <a class="article-anchor-nav__link" href="#lang-s9" data-i18n="getStarted.language.toc.s9">Relationship to the Design System</a>
+      </li>
+      <li>
+        <a class="article-anchor-nav__link" href="#lang-s10" data-i18n="getStarted.language.toc.s10">Personas / User types</a>
+      </li>
+    </ul>
+  </nav>
 </GetStartedLayout>
+
+<style>
+  /* Match Articles: in-page TOC lives in layout aside; section heading chrome (`ArticleLayout` article body). */
+  .lang-section {
+    margin-bottom: var(--prism-space-3xl);
+  }
+
+  .lang-article-sections :global(.doc-h2-anchor-row--tabs) {
+    margin: 0;
+    padding-inline-start: 0;
+    overflow: visible;
+  }
+
+  .lang-article-sections :global(.doc-h2-anchor-row .doc-tabs__h2.article-article__section-title) {
+    margin: 0;
+    font-weight: var(--docs-fw-bold);
+    letter-spacing: var(--docs-ls-tight);
+    line-height: 1.2;
+    color: var(--prism-color-text-primary);
+  }
+
+  .lang-article-sections :global(.doc-h2-anchor-row h3.doc-h2-anchor-heading.article-article__section-title) {
+    font-size: var(--docs-fs-2xl-fluid);
+    letter-spacing: var(--docs-ls-fluid);
+    line-height: var(--docs-lh-subheading);
+    font-weight: var(--docs-fw-bold);
+  }
+
+  .lang-article-sections :global(.doc-h2-anchor-heading.article-article__section-title) {
+    scroll-margin-top: calc(var(--site-header-sticky-anchor, 72px) + var(--docs-page-content-padding-top, 2rem) + 0.5rem);
+  }
+
+  .lang-article-sections :global(.lang-section > .doc-h2-anchor-row:first-child),
+  .lang-article-sections :global(.lang-perceptual-block > .doc-h2-anchor-row:first-child) {
+    margin-top: 0;
+  }
+
+  .lang-article-sections :global(.doc-h2-anchor-row + .intro) {
+    margin-top: 1rem;
+  }
+
+  .lang-list {
+    margin: var(--prism-space-md) 0 0;
+    padding-left: 1.25rem;
+    color: var(--prism-color-text-secondary);
+    line-height: var(--docs-lh-reading);
+    font-size: var(--docs-fs-md);
+  }
+
+  .lang-list--tight {
+    margin-top: var(--prism-space-xs);
+  }
+
+  /* Pair columns: badge + row gap match Articles inline figcaption (ArticleLayout). */
+  .lang-list--pair-affirm,
+  .lang-list--pair-negate {
+    padding-left: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    /* Same as `.article-article__inline-caption--stack` row spacing */
+    gap: 0.5rem;
+  }
+
+  .lang-list--pair-affirm > li,
+  .lang-list--pair-negate > li {
+    display: flex;
+    gap: 0.65rem;
+    align-items: center;
+  }
+
+  .lang-list--pair-affirm > li::before,
+  .lang-list--pair-negate > li::before {
+    content: "";
+    flex-shrink: 0;
+    box-sizing: border-box;
+    width: 1.625rem;
+    height: 1.625rem;
+    border-radius: 50%;
+    background-color: #222325;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .lang-list--pair-affirm > li::before {
+    background-size: 58% 58%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2.5 6.25 4.85 8.6 9.5 3.45' stroke='%23ffffff' stroke-width='1.65' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+
+  .lang-list--pair-negate > li::before {
+    background-size: 50% 50%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M3.25 3.25 8.75 8.75M8.75 3.25 3.25 8.75' stroke='%23ffffff' stroke-width='1.65' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+
+  .lang-list:not(.lang-list--pair-affirm):not(.lang-list--pair-negate) > li + li {
+    margin-top: var(--prism-space-xs);
+  }
+
+  .lang-perceptual {
+    display: flex;
+    flex-direction: column;
+    gap: var(--prism-space-2xl);
+    margin-top: var(--prism-space-lg);
+  }
+
+  .lang-pair-grid {
+    display: grid;
+    gap: var(--prism-space-lg);
+    margin-top: var(--prism-space-md);
+  }
+
+  @media (min-width: 36rem) {
+    .lang-pair-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .lang-pair-label {
+    margin: 0 0 var(--prism-space-xs);
+    font-size: var(--docs-fs-xs);
+    font-weight: var(--docs-fw-bold);
+    letter-spacing: var(--docs-ls-label);
+    color: var(--prism-color-text-primary);
+  }
+
+  .lang-table-wrap {
+    margin-top: var(--prism-space-lg);
+    overflow-x: auto;
+    border-radius: var(--prism-radius-md);
+    border: 1px solid var(--prism-color-border-subtle);
+    background: color-mix(in srgb, var(--prism-color-surface) 92%, transparent);
+  }
+
+  .lang-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--docs-fs-md);
+  }
+
+  .lang-table th,
+  .lang-table td {
+    padding: var(--prism-space-md) var(--prism-space-lg);
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid var(--prism-color-border-subtle);
+  }
+
+  .lang-table th {
+    font-weight: var(--docs-fw-semibold);
+    color: var(--prism-color-text-primary);
+    background: var(--prism-color-surface-muted);
+  }
+
+  .lang-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .lang-table td {
+    color: var(--prism-color-text-secondary);
+    line-height: var(--docs-text-sm-line-height);
+  }
+
+  .lang-spectrum-figure {
+    margin: var(--prism-space-xl) 0 0;
+    padding: 0;
+  }
+
+  .lang-spectrum-caption {
+    font-size: var(--docs-fs-sm);
+    font-weight: var(--docs-fw-semibold);
+    color: var(--prism-color-text-primary);
+    margin-bottom: var(--prism-space-md);
+  }
+
+  .lang-spectrum-rows {
+    display: flex;
+    flex-direction: column;
+    gap: var(--prism-space-lg);
+  }
+
+  .lang-spectrum-pre {
+    margin: 0;
+    padding: var(--prism-space-md);
+    font-size: var(--docs-fs-2xs);
+    line-height: var(--docs-lh-snug);
+    border-radius: var(--prism-radius-sm);
+    background: color-mix(in srgb, var(--prism-color-surface-muted) 85%, transparent);
+    border: 1px solid var(--prism-color-border-subtle);
+    overflow-x: auto;
+    color: var(--prism-color-text-primary);
+  }
+
+  .lang-spectrum-pos {
+    margin: var(--prism-space-sm) 0 0;
+    font-size: var(--docs-fs-md);
+    font-weight: var(--docs-fw-semibold);
+    color: var(--prism-color-text-secondary);
+  }
+
+  .lang-subsection {
+    margin-top: var(--prism-space-xl);
+  }
+
+  .lang-subsection:first-of-type {
+    margin-top: var(--prism-space-md);
+  }
+
+  .lang-mini-h {
+    margin: var(--prism-space-lg) 0 var(--prism-space-xs);
+    font-size: var(--docs-fs-xs);
+    font-weight: var(--docs-fw-bold);
+    letter-spacing: var(--docs-ls-label);
+    color: var(--prism-color-text-primary);
+  }
+
+  .lang-mini-h:first-of-type {
+    margin-top: var(--prism-space-md);
+  }
+
+  .lang-checklist {
+    margin: var(--prism-space-md) 0 0;
+    padding-left: 1.35rem;
+    color: var(--prism-color-text-secondary);
+    line-height: var(--docs-lh-reading);
+    font-size: var(--docs-fs-md);
+  }
+
+  .lang-checklist li + li {
+    margin-top: var(--prism-space-sm);
+  }
+
+  .lang-persona {
+    margin-top: var(--prism-space-lg);
+  }
+</style>

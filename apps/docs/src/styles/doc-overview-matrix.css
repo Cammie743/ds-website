@@ -20,9 +20,9 @@
 
 .doc-overview-matrix thead th {
   background-color: var(--prism-color-surface-muted);
-  color: var(--prism-color-text-primary);
-  font-weight: 600;
-  font-size: 0.9375rem;
+  color: var(--docs-prism-text-stronger-neutral);
+  font-weight: var(--docs-fw-semibold);
+  font-size: var(--docs-fs-sm);
 }
 
 .doc-overview-matrix thead th:last-child {
@@ -37,8 +37,8 @@
 .doc-tabs__table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 1rem;
-  line-height: 1.5;
+  font-size: var(--docs-fs-sm);
+  line-height: var(--docs-caption-line-height);
 }
 
 .doc-tabs__table th,
@@ -60,6 +60,11 @@
   border-top-width: 0;
 }
 
+.doc-tabs__table.doc-overview-matrix thead th:first-child {
+  width: var(--docs-table-first-column-width);
+  max-width: var(--docs-table-first-column-max);
+}
+
 .doc-tabs__table.doc-overview-matrix tr > :first-child {
   border-left-width: 0;
 }
@@ -75,14 +80,14 @@
 
 .doc-tabs__table thead th {
   background-color: var(--prism-color-surface-muted);
-  color: var(--prism-color-text-primary);
-  font-weight: 600;
+  color: var(--docs-prism-text-stronger-neutral);
+  font-weight: var(--docs-fw-semibold);
 }
 
 .doc-tabs__table tbody th {
   background-color: color-mix(in srgb, var(--prism-color-text-primary) 3%, var(--prism-color-surface));
-  color: var(--prism-color-text-primary);
-  font-weight: 600;
+  color: var(--docs-prism-text-stronger-neutral);
+  font-weight: var(--docs-fw-semibold);
 }
 
 .doc-tabs__table tbody td {
@@ -90,13 +95,13 @@
 }
 
 .doc-tabs__table.doc-overview-matrix tbody th.doc-overview-matrix__type {
-  width: 10.5rem;
-  max-width: 34%;
+  width: var(--docs-table-first-column-width);
+  max-width: var(--docs-table-first-column-max);
   background-color: var(--prism-color-surface);
-  color: var(--prism-color-text-secondary);
-  font-weight: 400;
-  font-size: 0.9375rem;
-  line-height: 1.35;
+  color: var(--docs-prism-text-neutral);
+  font-weight: var(--docs-fw-regular);
+  font-size: var(--docs-fs-sm);
+  line-height: var(--docs-caption-line-height);
   vertical-align: middle;
 }
 

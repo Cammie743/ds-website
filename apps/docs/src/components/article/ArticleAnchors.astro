@@ -1,0 +1,142 @@
+---
+/** In-page anchors: long-form sections for updates 1 and 8, title-only for other posts. */
+import type { ArticleUpdateN } from "../../data/articleUpdates";
+
+interface Props {
+  id: string;
+  updateN: ArticleUpdateN;
+}
+
+const { id, updateN } = Astro.props;
+
+const titleId = `${id}-heading`;
+const introSubtitleId = `${id}-intro-subtitle`;
+const section = (suffix: string) => `${id}-section-${suffix}`;
+const sub = (suffix: string) => `${id}-sub-${suffix}`;
+---
+
+<nav class="article-anchor-nav" aria-labelledby="article-anchor-nav-label">
+  <h2 id="article-anchor-nav-label" class="article-anchor-nav__label" data-i18n="article.articleAnchors.heading">
+    On this page
+  </h2>
+  {
+    updateN === 1 ? (
+      <ul class="article-anchor-nav__list">
+        <li>
+          <a class="article-anchor-nav__link" href={`#${titleId}`} data-i18n="home.updates.1.title">
+            April release: Figma library updates for v2.5
+          </a>
+        </li>
+        <li>
+          <a class="article-anchor-nav__link" href={`#${section("components")}`} data-i18n="article.update.1.section.components">
+            Component updates
+          </a>
+          <ul class="article-anchor-nav__sublist">
+            <li>
+              <a class="article-anchor-nav__link article-anchor-nav__link--nested" href={`#${sub("comp-button")}`} data-i18n="article.update.1.sub.comp.button">
+                Secondary basic button
+              </a>
+            </li>
+            <li>
+              <a class="article-anchor-nav__link article-anchor-nav__link--nested" href={`#${sub("comp-media-player")}`} data-i18n="article.update.1.sub.comp.mediaPlayer">
+                Media player
+              </a>
+            </li>
+            <li>
+              <a class="article-anchor-nav__link article-anchor-nav__link--nested" href={`#${sub("comp-pagination")}`} data-i18n="article.update.1.sub.comp.pagination">
+                Pagination
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="article-anchor-nav__link" href={`#${section("icons")}`} data-i18n="article.update.1.section.icons">
+            Icon updates
+          </a>
+          <ul class="article-anchor-nav__sublist">
+            <li>
+              <a class="article-anchor-nav__link article-anchor-nav__link--nested" href={`#${sub("icons-office")}`} data-i18n="article.update.1.sub.icons.office">
+                Office icons
+              </a>
+            </li>
+            <li>
+              <a class="article-anchor-nav__link article-anchor-nav__link--nested" href={`#${sub("icons-deprecated")}`} data-i18n="article.update.1.sub.icons.deprecated">
+                Deprecated icons
+              </a>
+            </li>
+            <li>
+              <a
+                class="article-anchor-nav__link article-anchor-nav__link--nested"
+                href={`#${sub("icons-file-types-updated")}`}
+                data-i18n="article.update.1.sub.icons.fileTypesUpdated"
+              >
+                Updated file type icons
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="article-anchor-nav__link" href={`#${section("tokens")}`} data-i18n="article.update.1.section.tokens">
+            Color updates
+          </a>
+          <ul class="article-anchor-nav__sublist">
+            <li>
+              <a
+                class="article-anchor-nav__link article-anchor-nav__link--nested"
+                href={`#${sub("tokens-spreadsheet")}`}
+                data-i18n="article.update.1.sub.tokens.spreadsheet"
+              >
+                Spreadsheet file type
+              </a>
+            </li>
+            <li>
+              <a
+                class="article-anchor-nav__link article-anchor-nav__link--nested"
+                href={`#${sub("tokens-new-file-types")}`}
+                data-i18n="article.update.1.sub.tokens.newFileTypes"
+              >
+                New file types
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    ) : updateN === 8 ? (
+      <ul class="article-anchor-nav__list">
+        <li>
+          <a class="article-anchor-nav__link" href={`#${titleId}`} data-i18n="home.updates.8.title">
+            Prism Library Skill for product teams
+          </a>
+        </li>
+        <li>
+          <a class="article-anchor-nav__link" href={`#${introSubtitleId}`} data-i18n="article.update.8.intro.eyebrow">
+            Introducing the first Prism skill
+          </a>
+        </li>
+        <li>
+          <a class="article-anchor-nav__link" href={`#${section("what")}`} data-i18n="article.update.8.section.what">
+            What is the Prism library skill and what can it do?
+          </a>
+        </li>
+        <li>
+          <a class="article-anchor-nav__link" href={`#${section("try")}`} data-i18n="article.update.8.section.try">
+            Get started
+          </a>
+        </li>
+        <li>
+          <a class="article-anchor-nav__link" href={`#${section("future")}`} data-i18n="article.update.8.section.future">
+            This is just the beginning
+          </a>
+        </li>
+      </ul>
+    ) : (
+      <ul class="article-anchor-nav__list">
+        <li>
+          <a class="article-anchor-nav__link" href={`#${titleId}`} data-i18n={`home.updates.${updateN}.title`}>
+            Title
+          </a>
+        </li>
+      </ul>
+    )
+  }
+</nav>

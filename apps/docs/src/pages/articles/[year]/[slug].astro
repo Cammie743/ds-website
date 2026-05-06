@@ -1,21 +1,21 @@
 ---
-import BlogLayout from "../../../layouts/BlogLayout.astro";
-import BlogUpdateArticle from "../../../components/blog/BlogUpdateArticle.astro";
-import BlogArticleAnchors from "../../../components/blog/BlogArticleAnchors.astro";
+import ArticleLayout from "../../../layouts/ArticleLayout.astro";
+import ArticleUpdateArticle from "../../../components/article/ArticleUpdateArticle.astro";
+import ArticleAnchors from "../../../components/article/ArticleAnchors.astro";
 import { uiStrings } from "../../../i18n/ui";
 import {
   BLOG_UPDATE_PUBLISHED_YEAR_BY_N,
   BLOG_UPDATE_SLUG_BY_N,
-  getBlogUpdatePostPath,
-  getBlogUpdateUrlSlug,
-  type BlogUpdateN,
-} from "../../../data/blogUpdates";
+  getArticleUpdatePostPath,
+  getArticleUpdateUrlSlug,
+  type ArticleUpdateN,
+} from "../../../data/articleUpdates";
 
 export function getStaticPaths() {
   return (Object.entries(BLOG_UPDATE_SLUG_BY_N) as [string, string][]).map(([k, id]) => {
-    const updateN = Number(k) as BlogUpdateN;
+    const updateN = Number(k) as ArticleUpdateN;
     const year = BLOG_UPDATE_PUBLISHED_YEAR_BY_N[updateN];
-    const slug = getBlogUpdateUrlSlug(updateN);
+    const slug = getArticleUpdateUrlSlug(updateN);
     return { params: { year, slug }, props: { id, updateN } };
   });
 }
@@ -23,11 +23,11 @@ export function getStaticPaths() {
 const { id, updateN } = Astro.props;
 const { year, slug } = Astro.params;
 
-if (year !== BLOG_UPDATE_PUBLISHED_YEAR_BY_N[updateN] || slug !== getBlogUpdateUrlSlug(updateN)) {
-  return Astro.redirect(getBlogUpdatePostPath(updateN), 301);
+if (year !== BLOG_UPDATE_PUBLISHED_YEAR_BY_N[updateN] || slug !== getArticleUpdateUrlSlug(updateN)) {
+  return Astro.redirect(getArticleUpdatePostPath(updateN), 301);
 }
 
-function listingTitle(n: BlogUpdateN): string {
+function listingTitle(n: ArticleUpdateN): string {
   switch (n) {
     case 1:
       return uiStrings.en["home.updates.1.title"];
@@ -46,23 +46,23 @@ function listingTitle(n: BlogUpdateN): string {
     case 8:
       return uiStrings.en["home.updates.8.title"];
     default:
-      return uiStrings.en["blog.nav.latest"];
+      return uiStrings.en["article.nav.latest"];
   }
 }
 ---
 
-<BlogLayout
+<ArticleLayout
   title={listingTitle(updateN)}
   current="latest"
-  description={uiStrings.en["blog.lede"]}
+  description={uiStrings.en["article.lede"]}
   pageVariant="article"
 >
-  <p class="blog-update-back">
-    <a class="blog-update-back__link" href="/articles/latest">
-      <span class="blog-update-back__arrow" aria-hidden="true">←</span>
-      <span class="blog-update-back__label" data-i18n="blog.backToUpdates">Back to Latest updates</span>
+  <p class="article-update-back">
+    <a class="article-update-back__link" href="/articles/latest">
+      <span class="article-update-back__arrow" aria-hidden="true">←</span>
+      <span class="article-update-back__label" data-i18n="article.backToUpdates">Back to Latest updates</span>
     </a>
   </p>
-  <BlogUpdateArticle id={id} updateN={updateN} mode="full" isFirstInPage />
-  <BlogArticleAnchors slot="anchors" id={id} updateN={updateN} />
-</BlogLayout>
+  <ArticleUpdateArticle id={id} updateN={updateN} mode="full" isFirstInPage />
+  <ArticleAnchors slot="anchors" id={id} updateN={updateN} />
+</ArticleLayout>

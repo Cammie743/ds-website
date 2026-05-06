@@ -1,6 +1,8 @@
 ---
 import "../styles/global.css";
 import "../styles/doc-h2-anchor.css";
+import "../styles/doc-overview-matrix.css";
+import "../styles/article-anchor-nav.css";
 import { uiStrings } from "../i18n/ui";
 
 interface Props {
@@ -51,15 +53,15 @@ const pageShell = normPath === "/" ? "home" : "inner";
     <title>{fullTitle}</title>
     <script is:inline>
       (function () {
-        var allowed = { dark: 1, bloom: 1, agave: 1, rose: 1 };
+        var allowed = { dark: 1, light: 1 };
         var t = localStorage.getItem("prism-theme");
-        if (t && !allowed[t] && t !== "light") {
+        if (t && !allowed[t]) {
           try {
             localStorage.removeItem("prism-theme");
           } catch (e) {}
           t = null;
         }
-        if (t && allowed[t]) document.documentElement.setAttribute("data-theme", t);
+        if (t === "dark") document.documentElement.setAttribute("data-theme", t);
         else document.documentElement.removeAttribute("data-theme");
       })();
     </script>
@@ -268,11 +270,7 @@ const pageShell = normPath === "/" ? "home" : "inner";
                   <li>
                     <a
                       href="/foundations/color"
-                      aria-current={
-                        normPath === "/foundations/color" || normPath === "/foundations/colors"
-                          ? "page"
-                          : undefined
-                      }
+                      aria-current={normPath === "/foundations/color" ? "page" : undefined}
                       data-i18n="foundations.toc.color">Color</a>
                   </li>
                   <li>
@@ -461,32 +459,32 @@ const pageShell = normPath === "/" ? "home" : "inner";
                   id="nav-drawer-sub-article"
                   class="nav-drawer-subnav-list"
                   hidden
-                  data-i18n-aria="blog.sectionNav.aria"
+                  data-i18n-aria="article.sectionNav.aria"
                   aria-label="Articles"
                 >
                   <li>
                     <a
                       href="/articles/featured"
                       aria-current={normPath === "/articles/featured" ? "page" : undefined}
-                      data-i18n="blog.nav.featured">Featured</a>
+                      data-i18n="article.nav.featured">Featured</a>
                   </li>
                   <li>
                     <a
                       href="/articles/latest"
                       aria-current={normPath === "/articles/latest" ? "page" : undefined}
-                      data-i18n="blog.nav.latest">Latest updates</a>
+                      data-i18n="article.nav.latest">Latest updates</a>
                   </li>
                   <li>
                     <a
                       href="/articles/2026"
                       aria-current={normPath === "/articles/2026" ? "page" : undefined}
-                      data-i18n="blog.nav.y2026">2026</a>
+                      data-i18n="article.nav.y2026">2026</a>
                   </li>
                   <li>
                     <a
                       href="/articles/2025"
                       aria-current={normPath === "/articles/2025" ? "page" : undefined}
-                      data-i18n="blog.nav.y2025">2025</a>
+                      data-i18n="article.nav.y2025">2025</a>
                   </li>
                 </ul>
               </div>
@@ -545,16 +543,33 @@ const pageShell = normPath === "/" ? "home" : "inner";
               </svg>
             </button>
             <div class="theme-select-wrap">
-              <label class="theme-select-label">
-                <span class="theme-select-label-text" data-i18n="theme.aria">Color theme</span>
-                <select id="theme-select" class="theme-select" autocomplete="off">
-                  <option value="light" data-i18n="theme.light">Light</option>
-                  <option value="dark" data-i18n="theme.dark">Dark</option>
-                  <option value="bloom" data-i18n="theme.bloom">Bloom</option>
-                  <option value="agave" data-i18n="theme.agave">Agave</option>
-                  <option value="rose" data-i18n="theme.rose">Rose</option>
-                </select>
-              </label>
+              <button
+                type="button"
+                class="icon-btn"
+                id="theme-toggle"
+                aria-pressed="false"
+                aria-label="Switch to dark mode"
+                data-tooltip="Switch to dark mode"
+              >
+                <span class="theme-toggle-icon theme-toggle-icon--light" aria-hidden="true">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2"></path>
+                    <path d="M12 20v2"></path>
+                    <path d="m4.93 4.93 1.41 1.41"></path>
+                    <path d="m17.66 17.66 1.41 1.41"></path>
+                    <path d="M2 12h2"></path>
+                    <path d="M20 12h2"></path>
+                    <path d="m6.34 17.66-1.41 1.41"></path>
+                    <path d="m19.07 4.93-1.41 1.41"></path>
+                  </svg>
+                </span>
+                <span class="theme-toggle-icon theme-toggle-icon--dark" aria-hidden="true" hidden>
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"></path>
+                  </svg>
+                </span>
+              </button>
             </div>
           </div>
         </div>
@@ -849,7 +864,7 @@ const pageShell = normPath === "/" ? "home" : "inner";
             el.setAttribute("alt", t(key));
           });
           syncLangToggle();
-          syncThemeSelect();
+          syncThemeToggle();
           syncNavToggle();
           var siteNav = document.getElementById("site-nav");
           var drillTitle = document.getElementById("nav-drawer-section-title");
@@ -1055,10 +1070,18 @@ const pageShell = normPath === "/" ? "home" : "inner";
           var a = root.getAttribute("data-theme");
           return a || "light";
         }
-        function syncThemeSelect() {
-          var sel = document.getElementById("theme-select");
-          if (!sel) return;
-          sel.value = getThemeId();
+        function syncThemeToggle() {
+          var btn = document.getElementById("theme-toggle");
+          if (!btn) return;
+          var isDark = getThemeId() === "dark";
+          var lightIcon = btn.querySelector(".theme-toggle-icon--light");
+          var darkIcon = btn.querySelector(".theme-toggle-icon--dark");
+          if (lightIcon) lightIcon.hidden = isDark;
+          if (darkIcon) darkIcon.hidden = !isDark;
+          btn.setAttribute("aria-pressed", isDark ? "true" : "false");
+          var actionLabel = isDark ? "Switch to light mode" : "Switch to dark mode";
+          btn.setAttribute("aria-label", actionLabel);
+          btn.setAttribute("data-tooltip", actionLabel);
         }
         function applyStoredLocale() {
           var stored = localStorage.getItem("prism-locale");
@@ -1138,14 +1161,14 @@ const pageShell = normPath === "/" ? "home" : "inner";
           e.stopPropagation();
           setSearchOpen(!drawer?.classList?.contains("is-open"));
         });
-        (function syncBlogArticleFromFeaturedQuery() {
+        (function syncArticleFromFeaturedQuery() {
           try {
             if (new URLSearchParams(window.location.search).get("from") !== "featured") return;
-            var back = document.querySelector(".blog-update-back__link");
+            var back = document.querySelector(".article-update-back__link");
             if (back) {
               back.setAttribute("href", "/articles/featured");
-              var backLabel = back.querySelector(".blog-update-back__label");
-              if (backLabel) backLabel.setAttribute("data-i18n", "blog.backToFeatured");
+              var backLabel = back.querySelector(".article-update-back__label");
+              if (backLabel) backLabel.setAttribute("data-i18n", "article.backToFeatured");
             }
             var featuredNav = document.querySelector('a.section-nav-link[href="/articles/featured"]');
             var latestNav = document.querySelector('a.section-nav-link[href="/articles/latest"]');
@@ -1290,15 +1313,15 @@ const pageShell = normPath === "/" ? "home" : "inner";
           });
         })();
 
-        document.getElementById("theme-select")?.addEventListener("change", function (e) {
-          var sel = e.target;
-          if (!sel || sel.id !== "theme-select") return;
-          var v = sel.value;
-          if (v === "light") root.removeAttribute("data-theme");
-          else root.setAttribute("data-theme", v);
+        document.getElementById("theme-toggle")?.addEventListener("click", function () {
+          var cur = getThemeId();
+          var next = cur === "dark" ? "light" : "dark";
+          if (next === "dark") root.setAttribute("data-theme", "dark");
+          else root.removeAttribute("data-theme");
           try {
-            localStorage.setItem("prism-theme", v);
+            localStorage.setItem("prism-theme", next);
           } catch (err) {}
+          syncThemeToggle();
         });
         document.getElementById("lang-toggle")?.addEventListener("click", function () {
           var cur = root.dataset.uiLang || "en";
@@ -1481,6 +1504,93 @@ const pageShell = normPath === "/" ? "home" : "inner";
         window.addEventListener("scroll", syncHeaderScrollState, { passive: true });
       })();
     </script>
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", function () {
+        function scrollSpyTriggerY() {
+          var article = document.querySelector(".article-article--full");
+          var probe =
+            article &&
+            (article.querySelector(".article-article__title") ||
+              article.querySelector(".article-article__section-title") ||
+              article.querySelector(".article-article__subsection-title"));
+          if (!probe) {
+            probe =
+              document.querySelector(".lang-article-sections .doc-h2-anchor-heading.article-article__section-title") ||
+              document.querySelector(".lang-article-sections .doc-h2-anchor-heading");
+          }
+          var fallback =
+            parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--site-header-sticky-anchor")) ||
+            72;
+          fallback += 24;
+          if (!probe) return fallback;
+          var sm = parseFloat(getComputedStyle(probe).scrollMarginTop);
+          return (isNaN(sm) ? fallback : sm) + 2;
+        }
+
+        function makeSyncForNav(nav) {
+          var links = nav.querySelectorAll('a.article-anchor-nav__link[href^="#"]');
+          if (!links.length) return null;
+
+          var ids = [];
+          for (var i = 0; i < links.length; i++) {
+            var href = links[i].getAttribute("href");
+            if (!href || href.length < 2) continue;
+            ids.push(href.slice(1));
+          }
+          if (!ids.length) return null;
+
+          return function syncActive() {
+            var triggerY = scrollSpyTriggerY();
+            var activeId = ids[0];
+            for (var j = 0; j < ids.length; j++) {
+              var el = document.getElementById(ids[j]);
+              if (!el) continue;
+              if (el.getBoundingClientRect().top <= triggerY) activeId = ids[j];
+            }
+            for (var k = 0; k < links.length; k++) {
+              var link = links[k];
+              var hid = link.getAttribute("href");
+              if (!hid || hid.length < 2) continue;
+              var id = hid.slice(1);
+              if (id === activeId) {
+                link.classList.add("is-active");
+                link.setAttribute("aria-current", "location");
+              } else {
+                link.classList.remove("is-active");
+                link.removeAttribute("aria-current");
+              }
+            }
+          };
+        }
+
+        var syncFns = [];
+        document.querySelectorAll(".article-anchor-nav").forEach(function (nav) {
+          var fn = makeSyncForNav(nav);
+          if (fn) syncFns.push(fn);
+        });
+        if (!syncFns.length) return;
+
+        function syncAll() {
+          for (var s = 0; s < syncFns.length; s++) syncFns[s]();
+        }
+
+        var ticking = false;
+        function onScrollOrResize() {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(function () {
+            ticking = false;
+            syncAll();
+          });
+        }
+
+        syncAll();
+        window.addEventListener("scroll", onScrollOrResize, { passive: true });
+        window.addEventListener("resize", onScrollOrResize);
+        window.addEventListener("hashchange", syncAll);
+        window.addEventListener("load", syncAll);
+      });
+    </script>
   </body>
 </html>
 
@@ -1645,10 +1755,10 @@ const pageShell = normPath === "/" ? "home" : "inner";
 
   .brand-name,
   .search-drawer-title {
-    font-weight: 700;
-    font-size: clamp(1.125rem, 3.2vw, 1.5rem);
-    letter-spacing: -0.02em;
-    line-height: 1.15;
+    font-weight: var(--docs-fw-bold);
+    font-size: var(--docs-fs-brand-fluid);
+    letter-spacing: var(--docs-ls-heading-sm);
+    line-height: var(--docs-lh-heading-tight);
   }
 
   .nav-toggle {
@@ -1860,8 +1970,8 @@ const pageShell = normPath === "/" ? "home" : "inner";
     position: relative;
     display: inline-flex;
     align-items: center;
-    font-weight: 500;
-    font-size: 0.9375rem;
+    font-weight: var(--docs-fw-medium);
+    font-size: var(--docs-fs-md);
     line-height: 1.2;
     color: var(--prism-color-text-primary);
     text-decoration: none;
@@ -2235,8 +2345,8 @@ const pageShell = normPath === "/" ? "home" : "inner";
 
     .nav a {
       padding: var(--prism-space-md) var(--prism-space-lg);
-      font-size: 1.25rem;
-      line-height: 1.4;
+      font-size: var(--docs-fs-xl);
+      line-height: var(--docs-lh-ui);
       border-radius: var(--prism-radius-md);
       background-color: transparent;
       transition:
@@ -2276,8 +2386,8 @@ const pageShell = normPath === "/" ? "home" : "inner";
     }
 
     .nav-drawer-subnav-list a {
-      font-size: 1rem;
-      line-height: 1.45;
+      font-size: var(--docs-fs-base);
+      line-height: var(--docs-lh-ui-loose);
     }
 
     .nav a.nav-link--has-nested {
@@ -2338,9 +2448,9 @@ const pageShell = normPath === "/" ? "home" : "inner";
       background-color: transparent;
       color: var(--prism-color-text-primary);
       font: inherit;
-      font-size: 1.25rem;
-      line-height: 1.4;
-      letter-spacing: -0.02em;
+      font-size: var(--docs-fs-xl);
+      line-height: var(--docs-lh-ui);
+      letter-spacing: var(--docs-ls-heading-sm);
       cursor: pointer;
       text-align: start;
       transition: color 0.2s ease;
@@ -2374,7 +2484,7 @@ const pageShell = normPath === "/" ? "home" : "inner";
     .nav-drawer-section-title {
       grid-column: 2;
       min-width: 0;
-      font-weight: 600;
+      font-weight: var(--docs-fw-semibold);
       text-align: start;
       white-space: nowrap;
       overflow: hidden;
@@ -2858,7 +2968,7 @@ const pageShell = normPath === "/" ? "home" : "inner";
     border: 1px solid var(--prism-color-border-subtle);
     border-radius: 9999px;
     font: inherit;
-    font-size: 0.875rem;
+    font-size: var(--docs-fs-sm);
     line-height: 1.2;
     background: var(--prism-color-surface);
     color: var(--prism-color-text-primary);
@@ -2966,74 +3076,14 @@ const pageShell = normPath === "/" ? "home" : "inner";
     flex: 0 0 auto;
   }
 
-  .theme-select-label {
-    display: flex;
+  .theme-toggle-icon {
+    display: inline-flex;
     align-items: center;
-    margin: 0;
-    cursor: pointer;
+    justify-content: center;
   }
 
-  .theme-select-label-text {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-
-  .theme-select {
-    box-sizing: border-box;
-    min-width: 6.5rem;
-    max-width: 10rem;
-    height: 2.375rem;
-    padding: 0 2.5rem 0 var(--prism-space-lg);
-    margin: 0;
-    font: inherit;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    line-height: 1.25;
-    color: var(--prism-color-text-primary);
-    background-color: var(--prism-color-surface);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23556070' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 0.75rem center;
-    background-size: 0.875rem;
-    border: 1px solid var(--prism-color-border-subtle);
-    border-radius: 9999px;
-    box-shadow: var(--prism-shadow-sm);
-    cursor: pointer;
-    appearance: none;
-    -webkit-appearance: none;
-  }
-
-  .theme-select:hover {
-    border-color: var(--prism-color-border-strong);
-  }
-
-  .theme-select:focus {
-    outline: 2px solid color-mix(in srgb, var(--prism-color-accent-strong) 45%, transparent);
-    outline-offset: 2px;
-  }
-
-  [data-theme="dark"] .theme-select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23b4bac8' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  }
-
-  @media (max-width: 68rem) {
-    .nav > .top-tools-drawer-util .theme-select {
-      min-width: 0;
-      width: 100%;
-      max-width: none;
-      height: 3.25rem;
-      padding: 0 3rem 0 var(--prism-space-lg);
-      font-size: 0.9375rem;
-      background-position: right 1rem center;
-      background-size: 1rem;
-    }
+  .theme-toggle-icon[hidden] {
+    display: none !important;
   }
 
   :global(.icon-btn[data-tooltip]:not([data-tooltip=""])::after),
@@ -3045,10 +3095,10 @@ const pageShell = normPath === "/" ? "home" : "inner";
     top: calc(100% + var(--docs-tooltip-gap));
     z-index: 100;
     padding: 0.35rem 0.65rem;
-    font-size: 0.6875rem;
-    font-weight: 500;
-    line-height: 1.25;
-    letter-spacing: 0.01em;
+    font-size: var(--docs-fs-3xs);
+    font-weight: var(--docs-fw-medium);
+    line-height: var(--docs-lh-tight);
+    letter-spacing: var(--docs-ls-wide);
     color: var(--prism-color-text-inverse);
     background: var(--prism-color-text-primary);
     border-radius: 6px;
@@ -3162,7 +3212,7 @@ const pageShell = normPath === "/" ? "home" : "inner";
     box-sizing: border-box;
     padding: var(--prism-space-2xl) var(--site-page-pad-x) var(--prism-space-3xl);
     border-top: 1px solid color-mix(in srgb, var(--prism-color-border-subtle) 85%, transparent);
-    font-size: 0.875rem;
+    font-size: var(--docs-fs-sm);
     color: var(--prism-color-text-secondary);
   }
 
