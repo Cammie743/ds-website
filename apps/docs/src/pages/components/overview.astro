@@ -161,20 +161,28 @@ let items: OverviewItem[] = [];
 let categoryGroups: CategoryGroup[] = [];
 
 try {
-  const names = fs
-    .readdirSync(componentsImgDir)
-    .filter((f) => !f.startsWith(".") && /\.(png|jpe?g|webp|gif|svg)$/i.test(f))
+  const dirs = fs
+    .readdirSync(componentsImgDir, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory() && !entry.name.startsWith("."))
+    .map((entry) => entry.name)
     .sort((a, b) =>
       displayTitle(a).localeCompare(displayTitle(b), undefined, { sensitivity: "base" })
     );
 
-  items = names.map((file) => {
-    const stem = compactStem(file);
+  items = dirs.flatMap((dir) => {
+    const dirPath = path.join(componentsImgDir, dir);
+    const previews = fs
+      .readdirSync(dirPath)
+      .filter((name) => /^preview\.(png|jpe?g|webp|gif|svg)$/i.test(name))
+      .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base" }));
+    if (previews.length === 0) return [];
+    const file = previews[0];
+    const stem = compactStem(dir);
     return {
-      src: `/images/components/${encodeURIComponent(file)}`,
+      src: `/images/components/${encodeURIComponent(dir)}/${encodeURIComponent(file)}`,
       file,
-      title: displayTitle(file),
-      htmlAlt: altForFile(file),
+      title: displayTitle(dir),
+      htmlAlt: altForFile(dir),
       href: HREF_BY_STEM.get(stem) ?? null,
       categoryId: categoryIdForStem(stem),
     };
