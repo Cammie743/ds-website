@@ -490,7 +490,7 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
         </div>
         <div class="doc-overview-matrix-shell">
           <table
-            class="doc-tabs__table doc-overview-matrix"
+            class="doc-tabs__table doc-overview-matrix doc-overview-matrix--guidelines"
             aria-label="Leading and trailing chevron usage"
             data-i18n-aria="components.accordion.design.variantGuidance.tableAria"
           >
@@ -573,7 +573,7 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
           </DocH2WithAnchor>
           <div class="doc-overview-matrix-shell">
             <table
-              class="doc-tabs__table doc-overview-matrix"
+              class="doc-tabs__table doc-overview-matrix doc-overview-matrix--guidelines"
               aria-label="Accordion properties"
               data-i18n-aria="components.accordion.design.properties.tableAria"
             >
@@ -971,7 +971,7 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
           </DocH2WithAnchor>
           <div class="doc-overview-matrix-shell">
             <table
-              class="doc-tabs__table doc-overview-matrix"
+              class="doc-tabs__table doc-overview-matrix doc-overview-matrix--guidelines"
               aria-label="Accordion behavior guidance"
               data-i18n-aria="components.accordion.design.behavior.tableAria"
             >
@@ -1048,7 +1048,7 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
           </DocH2WithAnchor>
           <div class="doc-overview-matrix-shell">
             <table
-              class="doc-tabs__table doc-overview-matrix"
+              class="doc-tabs__table doc-overview-matrix doc-overview-matrix--guidelines"
               aria-label="Accordion responsive guidance"
               data-i18n-aria="components.accordion.design.responsive.tableAria"
             >
@@ -2133,6 +2133,26 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
   }
 
   @media (max-width: 640px) {
+    .doc-tabs__table.doc-overview-matrix--guidelines {
+      table-layout: fixed;
+    }
+
+    .doc-tabs__table.doc-overview-matrix--guidelines th,
+    .doc-tabs__table.doc-overview-matrix--guidelines td {
+      padding-inline: var(--prism-space-sm);
+    }
+
+    .doc-tabs__table.doc-overview-matrix--guidelines thead th:first-child,
+    .doc-tabs__table.doc-overview-matrix--guidelines tbody th.doc-overview-matrix__type {
+      width: 40%;
+      max-width: none;
+    }
+
+    .doc-tabs__table.doc-overview-matrix--guidelines thead th:last-child,
+    .doc-tabs__table.doc-overview-matrix--guidelines td.doc-overview-matrix__resource-cell {
+      width: 60%;
+    }
+
     .doc-tabs__table.doc-overview-matrix--resources {
       table-layout: fixed;
     }
