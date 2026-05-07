@@ -1,11 +1,8 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import { foundationsNavItems as navItems, type FoundationsNavCurrent } from "../data/navigation";
 
-export type FoundationsSection =
-  "colors" | "typography" | "iconography" | "space" | "size" | "effects" | "motion" | "gestures" | "haptics-sounds";
-
-/** Current page in the foundations section nav (includes top-level Overview). */
-export type FoundationsNavCurrent = "overview" | FoundationsSection;
+export type { FoundationsNavCurrent, FoundationsSection } from "../data/navigation";
 
 interface Props {
   title: string;
@@ -19,33 +16,6 @@ const {
   current,
 } = Astro.props;
 
-const navItems: { id: FoundationsNavCurrent; href: string; i18n: string; fallback: string }[] = [
-  { id: "overview", href: "/foundations/overview", i18n: "foundations.toc.overview", fallback: "Overview" },
-  { id: "colors", href: "/foundations/color", i18n: "foundations.toc.color", fallback: "Color" },
-  { id: "typography", href: "/foundations/typography", i18n: "foundations.toc.typography", fallback: "Typography" },
-  {
-    id: "iconography",
-    href: "/foundations/iconography",
-    i18n: "foundations.toc.iconography",
-    fallback: "Iconography",
-  },
-  { id: "space", href: "/foundations/space", i18n: "foundations.toc.space", fallback: "Space" },
-  { id: "size", href: "/foundations/size", i18n: "foundations.toc.size", fallback: "Size" },
-  { id: "effects", href: "/foundations/effects", i18n: "foundations.toc.effects", fallback: "Effects" },
-  { id: "motion", href: "/foundations/motion", i18n: "foundations.toc.motion", fallback: "Motion" },
-  {
-    id: "gestures",
-    href: "/foundations/gestures",
-    i18n: "foundations.toc.gestures",
-    fallback: "Gestures",
-  },
-  {
-    id: "haptics-sounds",
-    href: "/foundations/haptics-sounds",
-    i18n: "foundations.toc.hapticsSounds",
-    fallback: "Haptics & sounds",
-  },
-];
 ---
 
 <BaseLayout title={title} description={description}>

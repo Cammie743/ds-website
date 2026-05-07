@@ -1,0 +1,75 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--prism-font-sans);
+  background: var(--prism-color-canvas);
+  color: var(--prism-color-text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+  /* Keeps layout width stable when modals use overflow: hidden (e.g. search) — avoids pill/main jumping */
+  scrollbar-gutter: stable;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+img {
+  border-radius: 12px;
+}
+
+/* Keep image placeholder/media shells consistent even when image files are missing. */
+.doc-preview__media,
+.comp-card__media,
+.overview-figure__media {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Global docs media/card radius: one source of truth across all pages. */
+:root {
+  --docs-media-radius: 12px;
+}
+
+img,
+.doc-preview__media,
+.comp-card__media,
+.overview-figure__media,
+.article-article__figure,
+.article-article__inline-figure {
+  border-radius: var(--docs-media-radius);
+}
+
+a {
+  color: var(--prism-color-accent-strong);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--prism-color-accent);
+}
+
+code {
+  font-family: var(--docs-code-family);
+  font-size: var(--docs-code-size);
+  font-weight: var(--docs-code-weight);
+  line-height: var(--docs-code-line-height);
+  color: var(--docs-code-color);
+  background: var(--docs-code-bg);
+  padding: var(--docs-code-padding-y) var(--docs-code-padding-x);
+  border-radius: var(--docs-code-radius);
+}

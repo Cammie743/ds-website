@@ -1,10 +1,8 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import { resourcesNavItems as navItems, type ResourcesNavCurrent } from "../data/navigation";
 
-export type ResourcesSection =
-  "overview" | "ai-skills" | "figma" | "development" | "learning-videos" | "fonts" | "templates";
-
-export type ResourcesNavCurrent = ResourcesSection;
+export type { ResourcesNavCurrent, ResourcesSection } from "../data/navigation";
 
 interface Props {
   title: string;
@@ -18,30 +16,6 @@ const {
   current,
 } = Astro.props;
 
-const navItems: { id: ResourcesNavCurrent; href: string; i18n: string; fallback: string }[] = [
-  { id: "overview", href: "/resources/overview", i18n: "resources.toc.overview", fallback: "Overview" },
-  { id: "ai-skills", href: "/resources/ai-skills", i18n: "resources.toc.aiSkills", fallback: "AI skills" },
-  { id: "figma", href: "/resources/figma", i18n: "resources.toc.figma", fallback: "Figma" },
-  {
-    id: "development",
-    href: "/resources/development",
-    i18n: "resources.toc.development",
-    fallback: "Development",
-  },
-  {
-    id: "learning-videos",
-    href: "/resources/learning-videos",
-    i18n: "resources.toc.learningVideos",
-    fallback: "Learning videos",
-  },
-  { id: "fonts", href: "/resources/fonts", i18n: "resources.toc.fonts", fallback: "Fonts" },
-  {
-    id: "templates",
-    href: "/resources/templates",
-    i18n: "resources.toc.templates",
-    fallback: "Templates",
-  },
-];
 ---
 
 <BaseLayout title={title} description={description}>

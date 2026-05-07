@@ -1,10 +1,8 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import { getStartedNavItems as navItems, type GetStartedNavCurrent } from "../data/navigation";
 
-export type GetStartedSection = "mission" | "principles" | "language" | "faq";
-
-/** Current page in the Get started section nav (includes top-level Overview). */
-export type GetStartedNavCurrent = "overview" | GetStartedSection;
+export type { GetStartedNavCurrent, GetStartedSection } from "../data/navigation";
 
 interface Props {
   title: string;
@@ -23,23 +21,6 @@ const {
 
 const hasLeadSlot = Astro.slots.has("lead");
 
-const navItems: { id: GetStartedNavCurrent; href: string; i18n: string; fallback: string }[] = [
-  { id: "overview", href: "/get-started/overview", i18n: "getStarted.toc.overview", fallback: "Overview" },
-  { id: "mission", href: "/get-started/mission", i18n: "getStarted.toc.mission", fallback: "Mission" },
-  {
-    id: "principles",
-    href: "/get-started/principles",
-    i18n: "getStarted.toc.principles",
-    fallback: "Design principles",
-  },
-  {
-    id: "language",
-    href: "/get-started/language",
-    i18n: "getStarted.toc.language",
-    fallback: "Design language",
-  },
-  { id: "faq", href: "/get-started/faq", i18n: "getStarted.toc.faq", fallback: "FAQs" },
-];
 ---
 
 <BaseLayout title={title} description={description}>

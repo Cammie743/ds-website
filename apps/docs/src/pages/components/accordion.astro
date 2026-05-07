@@ -106,7 +106,7 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
           <div class="doc-section-group">
             <h4 data-i18n="components.accordion.overview.desktopWebH3">Desktop client &amp; Web browser</h4>
             <div class="doc-overview-matrix-shell">
-              <table class="doc-tabs__table doc-overview-matrix" aria-labelledby="accordion-overview-resources-h2">
+              <table class="doc-tabs__table doc-overview-matrix doc-overview-matrix--resources" aria-labelledby="accordion-overview-resources-h2">
                 <thead>
                   <tr>
                     <th scope="col" data-i18n="components.accordion.overview.colType">Type</th>
@@ -172,7 +172,7 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
           <div class="doc-section-group">
             <h4 data-i18n="components.accordion.overview.aiSkillsH3">AI skills</h4>
             <div class="doc-overview-matrix-shell">
-              <table class="doc-tabs__table doc-overview-matrix" data-i18n-aria="components.accordion.overview.aiSkills.tableAria">
+              <table class="doc-tabs__table doc-overview-matrix doc-overview-matrix--resources" data-i18n-aria="components.accordion.overview.aiSkills.tableAria">
                 <thead>
                   <tr>
                     <th scope="col" data-i18n="components.accordion.overview.colType">Type</th>
@@ -1466,9 +1466,9 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
 
   .doc-tabs__list {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: flex-end;
-    gap: 40px;
+    gap: clamp(24px, 5vw, 40px);
     position: sticky;
     top: calc(var(--site-header-sticky-anchor, 72px) + var(--prism-space-sm));
     z-index: 40;
@@ -1478,9 +1478,19 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
     border: 0;
     border-bottom: 1px solid
       var(--prism-color-border-subtle, color-mix(in srgb, var(--prism-color-text-primary) 12%, transparent));
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .doc-tabs__list::-webkit-scrollbar {
+    display: none;
   }
 
   .doc-tabs__tab {
+    flex: 0 0 auto;
     margin: 0 0 -1px;
     cursor: pointer;
     border: none;
@@ -1494,6 +1504,7 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
     color: var(--prism-color-text-secondary);
     background-color: transparent;
     border-bottom: 2px solid transparent;
+    white-space: nowrap;
     transition:
       color 0.2s ease,
       border-color 0.2s ease;
@@ -1513,6 +1524,12 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
     color: var(--prism-color-text-primary);
     font-weight: var(--docs-fw-semibold);
     border-bottom-color: var(--prism-color-accent-strong);
+  }
+
+  @media (max-width: 640px) {
+    .doc-tabs__list {
+      gap: 20px;
+    }
   }
 
   .doc-tabs__panels {
@@ -2113,6 +2130,33 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
     font-size: var(--docs-fs-md);
     line-height: var(--docs-lh-snug);
     vertical-align: middle;
+  }
+
+  @media (max-width: 640px) {
+    .doc-tabs__table.doc-overview-matrix--resources {
+      table-layout: fixed;
+    }
+
+    .doc-tabs__table.doc-overview-matrix--resources th,
+    .doc-tabs__table.doc-overview-matrix--resources td {
+      padding-inline: var(--prism-space-md);
+    }
+
+    .doc-tabs__table.doc-overview-matrix--resources thead th:first-child,
+    .doc-tabs__table.doc-overview-matrix--resources tbody th.doc-overview-matrix__type {
+      width: 32%;
+      max-width: none;
+    }
+
+    .doc-tabs__table.doc-overview-matrix--resources thead th:nth-child(2),
+    .doc-tabs__table.doc-overview-matrix--resources td.doc-overview-matrix__resource-cell {
+      width: 38%;
+    }
+
+    .doc-tabs__table.doc-overview-matrix--resources thead th:last-child,
+    .doc-tabs__table.doc-overview-matrix--resources td.doc-overview-matrix__status-cell {
+      width: 30%;
+    }
   }
 
   .doc-tabs__table.doc-overview-matrix td.doc-overview-matrix__type-spacer {

@@ -1,0 +1,167 @@
+.doc-section-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--prism-space-xl);
+  min-width: 0;
+}
+
+.doc-section-stack > h2,
+.doc-section-stack > h3 {
+  margin: 0;
+}
+
+.doc-section-block {
+  margin-top: var(--docs-section-gap);
+}
+
+.doc-tabs__panel > .doc-section-block:first-child {
+  margin-top: 0;
+}
+
+/* Global subsection rhythm inside a section block (e.g. H3 groups like "Info button", "Do/Don't"). */
+.doc-section-block > h3 {
+  margin: var(--prism-space-2xl) 0 var(--prism-space-md);
+}
+
+.doc-section-block > h3:first-child,
+.doc-section-block > h3:first-of-type {
+  margin-top: 0;
+}
+
+.doc-section-block > h4 {
+  margin: var(--prism-space-2xl) 0 var(--prism-space-md);
+}
+
+.doc-section-block > h4:first-child,
+.doc-section-block > h4:first-of-type {
+  margin-top: 0;
+}
+
+.doc-section-group {
+  min-width: 0;
+}
+
+.doc-section-group > h3 {
+  margin: var(--prism-space-2xl) 0 var(--prism-space-md);
+}
+
+.doc-section-group > h3:first-child,
+.doc-section-group > h3:first-of-type {
+  margin-top: 0;
+}
+
+.doc-section-group > h4 {
+  margin: var(--prism-space-2xl) 0 var(--prism-space-md);
+}
+
+.doc-section-group > h4:first-child,
+.doc-section-group > h4:first-of-type {
+  margin-top: 0;
+}
+
+.doc-section-group > :first-child {
+  margin-top: 0;
+}
+
+.doc-section-group > :last-child {
+  margin-bottom: 0;
+}
+
+/* Shared tabbed-doc typography rhythm across component pages. */
+.doc-tabs__panel-copy {
+  margin: 0;
+  font-size: var(--docs-text-md-size);
+  font-weight: var(--docs-text-md-weight);
+  line-height: var(--docs-text-md-line-height);
+  color: var(--docs-text-md-color);
+}
+
+.doc-tabs .doc-tabs__h2 {
+  margin: 0 0 var(--prism-space-md);
+  color: var(--prism-color-text-primary);
+}
+
+/* Reusable numbered caption pattern for media figures (components, articles, foundations). */
+.docs-inline-caption {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0.65rem 1rem 0.8rem;
+  font-size: var(--docs-caption-size);
+  font-weight: var(--docs-caption-weight);
+  line-height: var(--docs-caption-line-height);
+  letter-spacing: var(--docs-caption-letter-spacing);
+  color: var(--docs-caption-color);
+  border-top: 1px solid color-mix(in srgb, var(--prism-color-border-subtle) 75%, transparent);
+  background: color-mix(in srgb, var(--prism-color-surface) 92%, var(--prism-color-border-subtle));
+}
+
+.docs-inline-caption--stack {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+  padding-block: 0.625rem 0.75rem;
+}
+
+.docs-inline-caption-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.docs-inline-caption__badge {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.625rem;
+  height: 1.625rem;
+  padding: 0;
+  border-radius: 50%;
+  background: #222325;
+  color: #ffffff;
+}
+
+.docs-inline-caption__badge-num {
+  display: block;
+  font-size: var(--docs-fs-xs);
+  font-weight: var(--docs-fw-semibold);
+  line-height: 1;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.docs-inline-caption__text {
+  min-width: 0;
+}
+
+.docs-inline-caption--token-new {
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+}
+
+.docs-inline-caption--token-new .article-article__token-path {
+  min-width: 0;
+}
+
+/* Shared contained media+caption shell (matches article-style contained captions). */
+.docs-inline-figure-shell {
+  border: 1px solid var(--prism-color-border-subtle);
+  border-radius: var(--docs-media-radius);
+  overflow: hidden;
+  background: var(--prism-color-surface);
+}
+
+.docs-inline-figure-shell .doc-tabs__figure-media {
+  border: 0;
+  border-radius: 0;
+}
+
+/* Consistent breathing room when body copy is followed by a matrix table. */
+.doc-tabs__panel-copy + .doc-overview-matrix-shell {
+  margin-top: var(--prism-space-lg);
+}

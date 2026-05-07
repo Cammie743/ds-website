@@ -105,6 +105,33 @@
   vertical-align: middle;
 }
 
+@media (max-width: 640px) {
+  .doc-tabs__table.doc-overview-matrix--resources {
+    table-layout: fixed;
+  }
+
+  .doc-tabs__table.doc-overview-matrix--resources th,
+  .doc-tabs__table.doc-overview-matrix--resources td {
+    padding-inline: var(--prism-space-md);
+  }
+
+  .doc-tabs__table.doc-overview-matrix--resources thead th:first-child,
+  .doc-tabs__table.doc-overview-matrix--resources tbody th.doc-overview-matrix__type {
+    width: 32%;
+    max-width: none;
+  }
+
+  .doc-tabs__table.doc-overview-matrix--resources thead th:nth-child(2),
+  .doc-tabs__table.doc-overview-matrix--resources td.doc-overview-matrix__resource-cell {
+    width: 38%;
+  }
+
+  .doc-tabs__table.doc-overview-matrix--resources thead th:last-child,
+  .doc-tabs__table.doc-overview-matrix--resources td.doc-overview-matrix__status-cell {
+    width: 30%;
+  }
+}
+
 .doc-tabs__table.doc-overview-matrix td.doc-overview-matrix__type-spacer {
   vertical-align: middle;
   background-color: var(--prism-color-surface);

@@ -1,0 +1,192 @@
+/* Shared docs section rhythm across the site (avoid page-specific spacing rules). */
+:root {
+  --docs-fs-2xs: 0.75rem;
+  --docs-fs-3xs: 0.6875rem;
+  --docs-fs-xs: 0.8125rem;
+  --docs-fs-sm: 0.875rem;
+  --docs-fs-md: 0.9375rem;
+  --docs-fs-base: 1rem;
+  --docs-fs-lg: 1.0625rem;
+  --docs-fs-xl: 1.25rem;
+  --docs-fs-xl-plus: 1.35rem;
+  --docs-fs-2xl: 1.5rem;
+  --docs-fs-2xl-fluid: clamp(1.375rem, 2.4vw, 1.625rem);
+  --docs-fs-xl-fluid: clamp(1rem, 0.35vw + 0.92rem, 1.1875rem);
+  --docs-fs-brand-fluid: clamp(1.125rem, 3.2vw, 1.5rem);
+  --docs-fs-hero-display: clamp(2.75rem, 9.5vw, 4.5rem);
+  --docs-fs-hero-subtitle: clamp(1.0625rem, 2.1vw, 1.3125rem);
+  --docs-fs-display: clamp(3rem, 8.5vw, 4.5rem);
+  --docs-fw-regular: 400;
+  --docs-fw-medium: 500;
+  --docs-fw-semibold: 600;
+  --docs-fw-bold: 700;
+  --docs-fw-light: 300;
+  --docs-lh-display: 0.98;
+  --docs-lh-heading: 1.1;
+  --docs-lh-heading-tight: 1.15;
+  --docs-lh-subheading: 1.28;
+  --docs-lh-ui-loose: 1.45;
+  --docs-lh-tight: 1.25;
+  --docs-lh-snug: 1.35;
+  --docs-lh-ui: 1.4;
+  --docs-lh-body: 1.6;
+  --docs-lh-reading: 1.65;
+  --docs-lh-relaxed: 1.7;
+  --docs-ls-tightest: -0.035em;
+  --docs-ls-display-max: -0.045em;
+  --docs-ls-display: -0.04em;
+  --docs-ls-tighter: -0.03em;
+  --docs-ls-tight: -0.025em;
+  --docs-ls-fluid: -0.022em;
+  --docs-ls-subtle: -0.012em;
+  --docs-ls-ui: -0.015em;
+  --docs-ls-label: -0.01em;
+  --docs-ls-wide: 0.01em;
+  --docs-ls-wider: 0.03em;
+  --docs-ls-heading-sm: -0.02em;
+  --docs-section-gap: var(--prism-space-3xl);
+  /* Prism semantic text color roles */
+  --docs-prism-text-stronger-neutral: var(--prism-color-text-primary);
+  --docs-prism-text-strong-neutral: var(--prism-color-text-primary);
+  --docs-prism-text-neutral: var(--prism-color-text-secondary);
+  --docs-prism-fill-subtle-neutral: var(--prism-color-fill-subtle-neutral, var(--prism-color-surface-muted));
+  --docs-text-lg-size: var(--docs-h4-size);
+  --docs-text-lg-weight: var(--docs-fw-regular);
+  --docs-text-lg-line-height: var(--docs-lh-reading);
+  --docs-text-lg-color: var(--docs-prism-text-neutral);
+  --docs-text-md-size: var(--docs-fs-base);
+  --docs-text-md-weight: var(--docs-fw-regular);
+  --docs-text-md-line-height: var(--docs-lh-body);
+  --docs-text-md-color: var(--docs-prism-text-strong-neutral);
+  --docs-text-sm-size: var(--docs-fs-md);
+  --docs-text-sm-weight: var(--docs-fw-regular);
+  --docs-text-sm-line-height: var(--docs-text-sm-line-height);
+  --docs-text-sm-color: var(--docs-prism-text-neutral);
+  --docs-text-xs-size: var(--docs-fs-xs);
+  --docs-text-xs-weight: var(--docs-fw-medium);
+  --docs-text-xs-line-height: var(--docs-lh-snug);
+  --docs-text-xs-color: var(--docs-prism-text-neutral);
+  --docs-label-size: var(--docs-fs-md);
+  --docs-label-weight: var(--docs-fw-medium);
+  --docs-label-line-height: var(--docs-lh-ui);
+  --docs-label-letter-spacing: var(--docs-ls-ui);
+  --docs-label-color: var(--docs-prism-text-strong-neutral);
+  --docs-caption-size: var(--docs-fs-sm);
+  --docs-caption-weight: var(--docs-fw-medium);
+  --docs-caption-line-height: var(--docs-lh-snug);
+  --docs-caption-letter-spacing: var(--docs-ls-label);
+  --docs-caption-color: var(--docs-prism-text-neutral);
+  --docs-table-first-column-width: 13rem;
+  --docs-table-first-column-max: 40%;
+  --docs-code-family: var(--prism-font-mono);
+  --docs-code-size: var(--docs-fs-sm);
+  --docs-code-weight: var(--docs-fw-semibold);
+  --docs-code-line-height: var(--docs-lh-snug);
+  --docs-code-color: var(--docs-prism-text-strong-neutral);
+  --docs-code-bg: var(--docs-prism-fill-subtle-neutral);
+  --docs-code-padding-y: 0.12em;
+  --docs-code-padding-x: 0.35em;
+  --docs-code-radius: var(--prism-radius-sm);
+  --docs-h1-size: var(--docs-fs-display);
+  --docs-h1-weight: var(--docs-fw-bold);
+  --docs-h1-line-height: 1.08;
+  --docs-h1-letter-spacing: var(--docs-ls-tighter);
+  --docs-h1-color: var(--docs-prism-text-stronger-neutral);
+  --docs-h2-size: 2.25rem;
+  --docs-h2-weight: var(--docs-fw-bold);
+  --docs-h2-line-height: 1.2;
+  --docs-h2-letter-spacing: var(--docs-ls-tight);
+  --docs-h2-color: var(--docs-prism-text-stronger-neutral);
+  --docs-h3-size: var(--docs-fs-2xl);
+  --docs-h3-weight: var(--docs-fw-semibold);
+  --docs-h3-line-height: var(--docs-lh-subheading);
+  --docs-h3-color: var(--docs-prism-text-stronger-neutral);
+  --docs-h4-size: 1.125rem;
+  --docs-h4-weight: var(--docs-fw-semibold);
+  --docs-h4-line-height: 1.35;
+  --docs-h4-color: var(--docs-prism-text-stronger-neutral);
+}
+
+body {
+  font-size: var(--docs-text-md-size);
+  font-weight: var(--docs-text-md-weight);
+  line-height: var(--docs-text-md-line-height);
+  color: var(--docs-text-md-color);
+}
+
+h1 {
+  margin: 0 0 var(--prism-space-md);
+  font-size: var(--docs-h1-size);
+  font-weight: var(--docs-h1-weight);
+  line-height: var(--docs-h1-line-height);
+  letter-spacing: var(--docs-h1-letter-spacing);
+  color: var(--docs-h1-color);
+}
+
+h2 {
+  margin: 0 0 var(--prism-space-md);
+  font-size: var(--docs-h2-size);
+  font-weight: var(--docs-h2-weight);
+  line-height: var(--docs-h2-line-height);
+  letter-spacing: var(--docs-h2-letter-spacing);
+  color: var(--docs-h2-color);
+}
+
+h3 {
+  margin: 0 0 var(--prism-space-sm);
+  font-size: var(--docs-h3-size);
+  font-weight: var(--docs-h3-weight);
+  line-height: var(--docs-h3-line-height);
+  color: var(--docs-h3-color);
+}
+
+h4 {
+  margin: 0 0 var(--prism-space-xs);
+  font-size: var(--docs-h4-size);
+  font-weight: var(--docs-h4-weight);
+  line-height: var(--docs-h4-line-height);
+  color: var(--docs-h4-color);
+}
+
+p,
+li,
+dd {
+  font-size: var(--docs-text-md-size);
+  font-weight: var(--docs-text-md-weight);
+  line-height: var(--docs-text-md-line-height);
+  color: var(--docs-text-md-color);
+}
+
+small {
+  font-size: var(--docs-fs-sm);
+  font-weight: var(--docs-fw-regular);
+  line-height: var(--docs-caption-line-height);
+  letter-spacing: var(--docs-caption-letter-spacing);
+  color: var(--docs-caption-color);
+}
+
+.caption,
+figcaption {
+  font-size: var(--docs-caption-size);
+  font-weight: var(--docs-caption-weight);
+  line-height: var(--docs-caption-line-height);
+  letter-spacing: var(--docs-caption-letter-spacing);
+  color: var(--docs-caption-color);
+}
+
+.intro,
+.doc-intro,
+.intro {
+  font-size: var(--docs-text-lg-size);
+  font-weight: var(--docs-text-lg-weight);
+  line-height: var(--docs-text-lg-line-height);
+  color: var(--docs-text-lg-color);
+}
+
+.section-nav-link {
+  font-size: var(--docs-label-size);
+  font-weight: var(--docs-label-weight);
+  line-height: var(--docs-label-line-height);
+  letter-spacing: var(--docs-label-letter-spacing);
+  color: var(--docs-label-color);
+}

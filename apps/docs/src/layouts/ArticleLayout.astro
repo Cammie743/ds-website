@@ -1,7 +1,8 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import { articleNavItems as navItems, type ArticleNavCurrent } from "../data/navigation";
 
-export type ArticleNavCurrent = "featured" | "latest" | "y2026" | "y2025";
+export type { ArticleNavCurrent } from "../data/navigation";
 
 interface Props {
   title: string;
@@ -14,12 +15,6 @@ interface Props {
 const { title, description = "Updates and articles from the Prism team.", current, pageVariant = "default" } =
   Astro.props;
 
-const navItems: { id: ArticleNavCurrent; href: string; i18n: string; fallback: string }[] = [
-  { id: "featured", href: "/articles/featured", i18n: "article.nav.featured", fallback: "Featured" },
-  { id: "latest", href: "/articles/latest", i18n: "article.nav.latest", fallback: "Latest updates" },
-  { id: "y2026", href: "/articles/2026", i18n: "article.nav.y2026", fallback: "2026" },
-  { id: "y2025", href: "/articles/2025", i18n: "article.nav.y2025", fallback: "2025" },
-];
 ---
 
 <BaseLayout title={title} description={description}>
