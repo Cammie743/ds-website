@@ -4,6 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "figma:sync": "node ./scripts/sync-figma-images.mjs",
+    "figma:webhook:create": "node ./scripts/create-figma-webhook.mjs",
+    "prebuild": "npm run figma:sync",
     "dev": "astro dev --port 4321",
     "build": "astro build",
     "preview": "astro preview"

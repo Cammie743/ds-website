@@ -15,6 +15,8 @@
     "docs:up:fixed": "STRICT_FIXED=1 bash ./scripts/docs-up.sh 4321",
     "docs:stop": "bash ./scripts/docs-stop.sh",
     "docs:chrome": "open -b com.google.Chrome http://127.0.0.1:4321/",
+    "figma:sync": "npm run figma:sync -w @prism/docs",
+    "figma:webhook:create": "npm run figma:webhook:create -w @prism/docs",
     "build": "npm run tokens:build && npm run build --workspaces --if-present",
     "docs:preview": "npm run preview -w @prism/docs"
   },

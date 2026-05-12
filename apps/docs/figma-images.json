@@ -1,0 +1,14 @@
+{
+  "assets": [
+    {
+      "id": "accordion-core-anatomy",
+      "description": "Accordion core anatomy guideline image",
+      "fileKey": "QLF4juvNzgiujkBhlX5MqT",
+      "nodeId": "2590:4616",
+      "format": "png",
+      "scale": 2,
+      "output": "public/images/components/accordion/core-anatomy.png",
+      "sourceUrl": "https://www.figma.com/design/QLF4juvNzgiujkBhlX5MqT/Dayone---Usage-Guidelines-v2.5?node-id=2590-4616"
+    }
+  ]
+}
