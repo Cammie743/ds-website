@@ -655,13 +655,6 @@ export const uiStrings = {
       "Secondary text should add useful context, not repeat the label. Use info buttons only for supporting explanation, not essential content. If labels wrap, make sure the row still feels readable and tappable.",
     "components.accordion.design.contentGuidelinesBody3":
       "When expanded and collapsed state text is exposed accessibly, make the action specific to the content, such as Expand billing details or Collapse permissions section.",
-    "components.accordion.design.configInfoTitle": "Info button",
-    "components.accordion.design.configInfoDescription":
-      "Use this when brief clarification is needed without adding persistent visual weight to the row.",
-    "components.accordion.design.configInfoAria": "Accordion with trailing chevron and info button example",
-    "components.accordion.design.configInfoButtonAria": "More information",
-    "components.accordion.design.configInfoPopover":
-      "This is an example of an info button and info popover.",
     "components.accordion.tabs.accessibilityBody":
       "Keep labels clear and readable, use visible focus, and expose expanded/collapsed state programmatically.",
     "components.accordion.accessibility.overviewH2": "Accessibility",
@@ -1337,12 +1330,6 @@ export const uiStrings = {
       "次要文本应补充有效上下文，不要重复标签。信息按钮仅用于补充说明，不应承载核心内容。若标签换行，确保整行仍可读且可点击。",
     "components.accordion.design.contentGuidelinesBody3":
       "当无障碍文本暴露展开/收起状态时，动作描述应指向具体内容，例如“展开账单明细”或“收起权限分区”。",
-    "components.accordion.design.configInfoTitle": "信息按钮",
-    "components.accordion.design.configInfoDescription":
-      "在需要简短说明、又不想给整行增加持续视觉负担时使用。",
-    "components.accordion.design.configInfoAria": "带尾随下箭头与信息按钮的手风琴示例",
-    "components.accordion.design.configInfoButtonAria": "更多信息",
-    "components.accordion.design.configInfoPopover": "这是信息按钮与信息浮层（Popover）的示例。",
     "components.accordion.tabs.accessibilityBody": "保持标签清晰可读，提供可见焦点，并以可编程方式暴露展开/收起状态。",
     "components.accordion.accessibility.overviewH2": "无障碍",
     "components.accordion.accessibility.overviewBody":
