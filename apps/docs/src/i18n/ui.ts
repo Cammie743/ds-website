@@ -537,16 +537,8 @@ export const uiStrings = {
       "Contact support for order changes, damaged shipments, or account questions.",
     "components.accordion.design.variantsBody":
       "There are 2 variants: leading chevron and trailing chevron.",
-    "components.accordion.design.variantGuidance.tableAria": "Leading and trailing chevron usage",
-    "components.accordion.design.variantGuidance.colVariant": "Variant",
-    "components.accordion.design.variantGuidance.colDescription": "Description",
-    "components.accordion.design.variantGuidance.colUseCase": "Use case",
-    "components.accordion.design.variantGuidance.leadingDescription":
-      "Places the chevron before the label to emphasize the disclosure control at the start of the row.",
     "components.accordion.design.variantGuidance.leadingUseCase":
       "Use when left-aligned scanning is important, such as in dense settings lists or structured navigation patterns.",
-    "components.accordion.design.variantGuidance.trailingDescription":
-      "Places the chevron after the label to keep the label as the primary reading entry point.",
     "components.accordion.design.variantGuidance.trailingUseCase":
       "Use when content readability should be prioritized first, such as in cards, detail panels, or content-heavy lists.",
     "components.accordion.design.configurationsH2": "Configurations",
@@ -1230,16 +1222,8 @@ export const uiStrings = {
       "如需改单、破损包裹或账户问题，请联系客服。",
     "components.accordion.design.variantsBody":
       "手风琴有 2 种变体，含前导式与尾随式下箭头。",
-    "components.accordion.design.variantGuidance.tableAria": "前导式与尾随式下箭头的使用说明",
-    "components.accordion.design.variantGuidance.colVariant": "变体",
-    "components.accordion.design.variantGuidance.colDescription": "说明",
-    "components.accordion.design.variantGuidance.colUseCase": "使用场景",
-    "components.accordion.design.variantGuidance.leadingDescription":
-      "将下箭头放在标签之前，强调行起始处的展开/收起控制。",
     "components.accordion.design.variantGuidance.leadingUseCase":
       "适用于左对齐扫读较重要的场景，例如密集设置列表或结构化导航模式。",
-    "components.accordion.design.variantGuidance.trailingDescription":
-      "将下箭头放在标签之后，使标签保持为主要阅读入口。",
     "components.accordion.design.variantGuidance.trailingUseCase":
       "适用于应优先保证内容可读性的场景，例如卡片、详情面板或内容密集型列表。",
     "components.accordion.design.configurationsH2": "配置",

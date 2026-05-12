@@ -243,8 +243,12 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
             data-i18n-aria="components.accordion.design.demoAria"
           >
             <div class="accordion-variant-column">
-              <p class="accordion-variant-demo__example-caption" data-i18n="components.accordion.design.demoLeadingTitle">
+              <h3 class="accordion-variant-demo__example-caption" data-i18n="components.accordion.design.demoLeadingTitle">
                 Leading chevron
+              </h3>
+              <p class="accordion-variant-demo__example-desc" data-i18n="components.accordion.design.variantGuidance.leadingUseCase">
+                Use when left-aligned scanning is important, such as in dense settings lists or structured navigation
+                patterns.
               </p>
               <div
                 class="doc-tabs__figure-media accordion-variant-box"
@@ -365,8 +369,12 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
             </div>
             </div>
             <div class="accordion-variant-column">
-              <p class="accordion-variant-demo__example-caption" data-i18n="components.accordion.design.demoTrailingTitle">
+              <h3 class="accordion-variant-demo__example-caption" data-i18n="components.accordion.design.demoTrailingTitle">
                 Trailing chevron
+              </h3>
+              <p class="accordion-variant-demo__example-desc" data-i18n="components.accordion.design.variantGuidance.trailingUseCase">
+                Use when content readability should be prioritized first, such as in cards, detail panels, or
+                content-heavy lists.
               </p>
               <div
                 class="doc-tabs__figure-media accordion-variant-box"
@@ -487,40 +495,6 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
             </div>
             </div>
           </div>
-        </div>
-        <div class="doc-overview-matrix-shell">
-          <table
-            class="doc-tabs__table doc-overview-matrix doc-overview-matrix--guidelines"
-            aria-label="Leading and trailing chevron usage"
-            data-i18n-aria="components.accordion.design.variantGuidance.tableAria"
-          >
-            <thead>
-              <tr>
-                <th scope="col" data-i18n="components.accordion.design.variantGuidance.colVariant">Variant</th>
-                <th scope="col" data-i18n="components.accordion.design.variantGuidance.colUseCase">Use case</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row" class="doc-overview-matrix__type" data-i18n="components.accordion.design.demoLeadingTitle">
-                  Leading chevron
-                </th>
-                <td class="doc-overview-matrix__resource-cell" data-i18n="components.accordion.design.variantGuidance.leadingUseCase">
-                  Use when left-aligned scanning is important, such as in dense settings lists or structured navigation
-                  patterns.
-                </td>
-              </tr>
-              <tr>
-                <th scope="row" class="doc-overview-matrix__type" data-i18n="components.accordion.design.demoTrailingTitle">
-                  Trailing chevron
-                </th>
-                <td class="doc-overview-matrix__resource-cell" data-i18n="components.accordion.design.variantGuidance.trailingUseCase">
-                  Use when content readability should be prioritized first, such as in cards, detail panels, or
-                  content-heavy lists.
-                </td>
-              </tr>
-            </tbody>
-          </table>
         </div>
         </section>
         <section class="doc-section-block">
@@ -1571,10 +1545,11 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
 
   .accordion-variant-demo__example-caption {
     margin: 0;
-    font-size: var(--docs-text-md-size);
-    font-weight: var(--docs-text-md-weight);
-    line-height: var(--docs-text-md-line-height);
-    color: var(--docs-text-md-color);
+    font-size: var(--docs-fs-xl);
+    font-weight: var(--docs-fw-semibold);
+    line-height: var(--docs-lh-snug);
+    letter-spacing: var(--docs-ls-heading-sm);
+    color: var(--prism-color-text-primary);
   }
 
   .accordion-variant-demo__example-desc {
