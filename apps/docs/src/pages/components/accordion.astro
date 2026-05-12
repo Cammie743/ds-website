@@ -2081,12 +2081,13 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
     display: grid;
     grid-template-columns: minmax(0, 0.78fr) minmax(18rem, 1fr);
     gap: var(--prism-space-xl);
-    align-items: center;
+    align-items: start;
     margin-top: var(--prism-space-lg);
   }
 
   .accordion-property-detail__copy {
     min-width: 0;
+    padding-top: var(--prism-space-xl);
   }
 
   .accordion-property-detail__copy > h3 {
@@ -2106,6 +2107,10 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
     .accordion-property-detail {
       grid-template-columns: 1fr;
       align-items: start;
+    }
+
+    .accordion-property-detail__copy {
+      padding-top: 0;
     }
   }
 
