@@ -164,7 +164,7 @@
 /* Shared subsection detail pattern: text + supporting image on desktop, image above text on mobile. */
 .doc-subsection-detail {
   display: grid;
-  grid-template-columns: minmax(0, 0.78fr) minmax(18rem, 1fr);
+  grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
   gap: var(--prism-space-xl);
   align-items: start;
   margin-top: var(--prism-space-lg);
@@ -186,6 +186,7 @@
 
 .doc-subsection-detail .doc-tabs__figure.doc-subsection-detail__figure {
   margin: 0;
+  min-width: 0;
 }
 
 .doc-subsection-detail + .doc-overview-matrix-shell {
