@@ -73,7 +73,7 @@
   font-size: var(--docs-text-md-size);
   font-weight: var(--docs-text-md-weight);
   line-height: var(--docs-text-md-line-height);
-  color: var(--docs-text-md-color);
+  color: var(--docs-text-lg-color);
 }
 
 .doc-tabs .doc-tabs__h2 {
