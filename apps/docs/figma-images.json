@@ -31,6 +31,16 @@
       "sourceUrl": "https://www.figma.com/design/QLF4juvNzgiujkBhlX5MqT/Dayone---Usage-Guidelines-v2.5?node-id=2615-1389"
     },
     {
+      "id": "accordion-property-label-dark",
+      "description": "Accordion label property guideline image for dark mode",
+      "fileKey": "QLF4juvNzgiujkBhlX5MqT",
+      "nodeId": "2617:1423",
+      "format": "png",
+      "scale": 2,
+      "output": "public/images/components/accordion/properties-label-dark.png",
+      "sourceUrl": "https://www.figma.com/design/QLF4juvNzgiujkBhlX5MqT/Dayone---Usage-Guidelines-v2.5?node-id=2617-1423"
+    },
+    {
       "id": "accordion-property-label-content",
       "description": "Accordion label content guideline image",
       "fileKey": "QLF4juvNzgiujkBhlX5MqT",
@@ -39,6 +49,16 @@
       "scale": 2,
       "output": "public/images/components/accordion/properties-label-content.png",
       "sourceUrl": "https://www.figma.com/design/QLF4juvNzgiujkBhlX5MqT/Dayone---Usage-Guidelines-v2.5?node-id=2619-2319"
+    },
+    {
+      "id": "accordion-property-label-content-dark",
+      "description": "Accordion label content guideline image for dark mode",
+      "fileKey": "QLF4juvNzgiujkBhlX5MqT",
+      "nodeId": "2619:2360",
+      "format": "png",
+      "scale": 2,
+      "output": "public/images/components/accordion/properties-label-content-dark.png",
+      "sourceUrl": "https://www.figma.com/design/QLF4juvNzgiujkBhlX5MqT/Dayone---Usage-Guidelines-v2.5?node-id=2619-2360"
     },
     {
       "id": "accordion-property-info-button",
@@ -51,6 +71,16 @@
       "sourceUrl": "https://www.figma.com/design/QLF4juvNzgiujkBhlX5MqT/Dayone---Usage-Guidelines-v2.5?node-id=2618-1484"
     },
     {
+      "id": "accordion-property-info-button-dark",
+      "description": "Accordion info button property guideline image for dark mode",
+      "fileKey": "QLF4juvNzgiujkBhlX5MqT",
+      "nodeId": "2619:1925",
+      "format": "png",
+      "scale": 2,
+      "output": "public/images/components/accordion/properties-info-button-dark.png",
+      "sourceUrl": "https://www.figma.com/design/QLF4juvNzgiujkBhlX5MqT/Dayone---Usage-Guidelines-v2.5?node-id=2619-1925"
+    },
+    {
       "id": "accordion-property-leading-icon",
       "description": "Accordion leading icon property guideline image",
       "fileKey": "QLF4juvNzgiujkBhlX5MqT",
@@ -59,6 +89,16 @@
       "scale": 2,
       "output": "public/images/components/accordion/properties-leading-icon.png",
       "sourceUrl": "https://www.figma.com/design/QLF4juvNzgiujkBhlX5MqT/Dayone---Usage-Guidelines-v2.5?node-id=2619-1869"
+    },
+    {
+      "id": "accordion-property-leading-icon-dark",
+      "description": "Accordion leading icon property guideline image for dark mode",
+      "fileKey": "QLF4juvNzgiujkBhlX5MqT",
+      "nodeId": "2619:2273",
+      "format": "png",
+      "scale": 2,
+      "output": "public/images/components/accordion/properties-leading-icon-dark.png",
+      "sourceUrl": "https://www.figma.com/design/QLF4juvNzgiujkBhlX5MqT/Dayone---Usage-Guidelines-v2.5?node-id=2619-2273"
     }
   ]
 }
