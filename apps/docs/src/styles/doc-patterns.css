@@ -171,7 +171,7 @@
 }
 
 .doc-subsection-detail + .doc-subsection-detail {
-  margin-top: 64px;
+  margin-top: var(--prism-space-3xl);
 }
 
 .doc-subsection-detail__copy {
