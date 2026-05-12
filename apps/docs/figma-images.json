@@ -19,6 +19,16 @@
       "scale": 2,
       "output": "public/images/components/accordion/properties-label.png",
       "sourceUrl": "https://www.figma.com/design/QLF4juvNzgiujkBhlX5MqT/Dayone---Usage-Guidelines-v2.5?node-id=2615-1389"
+    },
+    {
+      "id": "accordion-property-info-button",
+      "description": "Accordion info button property guideline image",
+      "fileKey": "QLF4juvNzgiujkBhlX5MqT",
+      "nodeId": "2618:1484",
+      "format": "png",
+      "scale": 2,
+      "output": "public/images/components/accordion/properties-info-button.png",
+      "sourceUrl": "https://www.figma.com/design/QLF4juvNzgiujkBhlX5MqT/Dayone---Usage-Guidelines-v2.5?node-id=2618-1484"
     }
   ]
 }

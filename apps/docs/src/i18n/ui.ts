@@ -565,6 +565,7 @@ export const uiStrings = {
     "components.accordion.design.properties.infoButton.property": "Info button",
     "components.accordion.design.properties.infoButton.description":
       "Adds supporting help affordance for supplemental explanation.",
+    "components.accordion.design.properties.infoButton.imageAlt": "Accordion info button property visual",
     "components.accordion.design.properties.secondaryText.property": "Secondary text",
     "components.accordion.design.properties.secondaryText.description":
       "Adds supplemental context, status, or supporting information next to the primary label.",
@@ -1257,6 +1258,7 @@ export const uiStrings = {
     "components.accordion.design.properties.expand.description": "控制关联内容区域是显示还是隐藏。",
     "components.accordion.design.properties.infoButton.property": "信息按钮",
     "components.accordion.design.properties.infoButton.description": "为补充说明提供辅助帮助入口。",
+    "components.accordion.design.properties.infoButton.imageAlt": "手风琴信息按钮属性示意图",
     "components.accordion.design.properties.secondaryText.property": "次要文本",
     "components.accordion.design.properties.secondaryText.description":
       "在主标签旁补充上下文、状态或辅助信息。",
