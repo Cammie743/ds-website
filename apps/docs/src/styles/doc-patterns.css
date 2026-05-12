@@ -161,6 +161,53 @@
   border-radius: 0;
 }
 
+/* Shared property detail pattern: text + supporting image on desktop, image above text on mobile. */
+.doc-property-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(18rem, 1fr);
+  gap: var(--prism-space-xl);
+  align-items: start;
+  margin-top: var(--prism-space-lg);
+}
+
+.doc-property-detail + .doc-property-detail {
+  margin-top: 64px;
+}
+
+.doc-property-detail__copy {
+  min-width: 0;
+  padding-top: var(--prism-space-xl);
+}
+
+.doc-property-detail__copy > h3 {
+  margin: 0 0 var(--prism-space-sm);
+  color: var(--prism-color-text-primary);
+}
+
+.doc-property-detail .doc-tabs__figure.doc-property-detail__figure {
+  margin: 0;
+}
+
+.doc-property-detail + .doc-overview-matrix-shell {
+  margin-top: var(--prism-space-xl);
+}
+
+@media (max-width: 48rem) {
+  .doc-property-detail {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .doc-property-detail__copy {
+    order: 2;
+    padding-top: 0;
+  }
+
+  .doc-property-detail__figure {
+    order: 1;
+  }
+}
+
 /* Consistent breathing room when body copy is followed by a matrix table. */
 .doc-tabs__panel-copy + .doc-overview-matrix-shell {
   margin-top: var(--prism-space-lg);
