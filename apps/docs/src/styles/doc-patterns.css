@@ -125,6 +125,11 @@
   color: #ffffff;
 }
 
+html[data-theme="dark"] .docs-inline-caption__badge {
+  background: #ffffff;
+  color: #222325;
+}
+
 .docs-inline-caption__badge-num {
   display: block;
   font-size: var(--docs-fs-xs);
