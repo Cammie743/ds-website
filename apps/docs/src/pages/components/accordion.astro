@@ -509,8 +509,15 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
           <figure class="doc-tabs__figure docs-inline-figure-shell">
             <div class="doc-tabs__figure-media">
               <img
-                class="doc-preview__img"
+                class="doc-preview__img doc-theme-image doc-theme-image--light"
                 src="/images/components/accordion/core-anatomy.png"
+                alt="Accordion core anatomy visual with numbered callouts"
+                loading="lazy"
+                decoding="async"
+              />
+              <img
+                class="doc-preview__img doc-theme-image doc-theme-image--dark"
+                src="/images/components/accordion/core-anatomy-dark.png"
                 alt="Accordion core anatomy visual with numbered callouts"
                 loading="lazy"
                 decoding="async"
@@ -1266,6 +1273,18 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
     height: auto;
     vertical-align: middle;
     border-radius: 12px;
+  }
+
+  .doc-theme-image--dark {
+    display: none;
+  }
+
+  :global(html[data-theme="dark"]) .doc-theme-image--light {
+    display: none;
+  }
+
+  :global(html[data-theme="dark"]) .doc-theme-image--dark {
+    display: block;
   }
 
   .doc-tabs {

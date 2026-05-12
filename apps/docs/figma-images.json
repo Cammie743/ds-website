@@ -11,6 +11,16 @@
       "sourceUrl": "https://www.figma.com/design/QLF4juvNzgiujkBhlX5MqT/Dayone---Usage-Guidelines-v2.5?node-id=2590-4616"
     },
     {
+      "id": "accordion-core-anatomy-dark",
+      "description": "Accordion core anatomy guideline image for dark mode",
+      "fileKey": "QLF4juvNzgiujkBhlX5MqT",
+      "nodeId": "2605:8452",
+      "format": "png",
+      "scale": 2,
+      "output": "public/images/components/accordion/core-anatomy-dark.png",
+      "sourceUrl": "https://www.figma.com/design/QLF4juvNzgiujkBhlX5MqT/Dayone---Usage-Guidelines-v2.5?node-id=2605-8452"
+    },
+    {
       "id": "accordion-property-label",
       "description": "Accordion label property guideline image",
       "fileKey": "QLF4juvNzgiujkBhlX5MqT",
