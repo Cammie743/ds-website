@@ -571,6 +571,28 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
           >
             Properties
           </DocH2WithAnchor>
+          <section class="accordion-property-detail" aria-labelledby="accordion-design-property-label">
+            <div class="accordion-property-detail__copy">
+              <h3 id="accordion-design-property-label" data-i18n="components.accordion.design.properties.label.property">
+                Label
+              </h3>
+              <p class="doc-tabs__panel-copy" data-i18n="components.accordion.design.properties.label.description">
+                Defines the primary text for the accordion row.
+              </p>
+            </div>
+            <figure class="doc-tabs__figure docs-inline-figure-shell accordion-property-detail__figure">
+              <div class="doc-tabs__figure-media">
+                <img
+                  class="doc-preview__img"
+                  src="/images/components/accordion/properties-label.png"
+                  alt="Accordion label property visual"
+                  data-i18n-alt="components.accordion.design.properties.label.imageAlt"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </figure>
+          </section>
           <div class="doc-overview-matrix-shell">
             <table
               class="doc-tabs__table doc-overview-matrix doc-overview-matrix--guidelines"
@@ -2053,6 +2075,38 @@ import DocH2WithAnchor from "../../components/DocH2WithAnchor.astro";
 
   .doc-tabs__figure + .doc-overview-matrix-shell {
     margin-top: var(--prism-space-xl);
+  }
+
+  .accordion-property-detail {
+    display: grid;
+    grid-template-columns: minmax(0, 0.78fr) minmax(18rem, 1fr);
+    gap: var(--prism-space-xl);
+    align-items: center;
+    margin-top: var(--prism-space-lg);
+  }
+
+  .accordion-property-detail__copy {
+    min-width: 0;
+  }
+
+  .accordion-property-detail__copy > h3 {
+    margin: 0 0 var(--prism-space-sm);
+    color: var(--prism-color-text-primary);
+  }
+
+  .accordion-property-detail__figure {
+    margin: 0;
+  }
+
+  .accordion-property-detail + .doc-overview-matrix-shell {
+    margin-top: var(--prism-space-xl);
+  }
+
+  @media (max-width: 48rem) {
+    .accordion-property-detail {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
   }
 
   .doc-tabs__table {
