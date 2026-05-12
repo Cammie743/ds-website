@@ -179,7 +179,7 @@
   padding-top: var(--prism-space-xl);
 }
 
-.doc-subsection-detail__copy > h3 {
+.doc-subsection-detail__copy > :is(h3, h4) {
   margin: 0 0 var(--prism-space-sm);
   color: var(--prism-color-text-primary);
 }

@@ -559,6 +559,8 @@ export const uiStrings = {
     "components.accordion.design.properties.label.property": "Label",
     "components.accordion.design.properties.label.description": "Defines the primary text for the accordion row.",
     "components.accordion.design.properties.label.imageAlt": "Accordion label property visual",
+    "components.accordion.design.properties.label.content.property": "Content",
+    "components.accordion.design.properties.label.content.imageAlt": "Accordion label content visual",
     "components.accordion.design.properties.expand.property": "Expand",
     "components.accordion.design.properties.expand.description":
       "Controls whether the associated content area is shown or hidden.",
@@ -1248,6 +1250,8 @@ export const uiStrings = {
     "components.accordion.design.properties.label.property": "标签",
     "components.accordion.design.properties.label.description": "定义手风琴行的主文本。",
     "components.accordion.design.properties.label.imageAlt": "手风琴标签属性示意图",
+    "components.accordion.design.properties.label.content.property": "内容",
+    "components.accordion.design.properties.label.content.imageAlt": "手风琴标签内容示意图",
     "components.accordion.design.properties.expand.property": "展开",
     "components.accordion.design.properties.expand.description": "控制关联内容区域是显示还是隐藏。",
     "components.accordion.design.properties.infoButton.property": "信息按钮",
