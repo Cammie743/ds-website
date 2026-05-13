@@ -297,11 +297,16 @@ export const uiStrings = {
       "Updated the media player control bar to improve disabled state visibility and overall legibility across different media backgrounds.",
     "article.update.1.comp.imgAlt.mediaPlayer":
       "Media player control bars on split light/dark and light backgrounds, with callouts for disabled icon fill, 8px background blur, and container fill tokens.",
+    "article.update.1.comp.imgAlt.inputFields.labelPlacement":
+      "General input fields showing labels placed above and beside text inputs.",
+    "article.update.1.comp.imgAlt.inputFields.preFormatting":
+      "General input fields showing pre-formatting in text inputs.",
     "article.update.1.comp.paginationVideoAria":
       "Screen recording: Vue pagination moving between pages with the dot track.",
     "article.update.1.comp.paginationVideoToggleAria": "Play or pause the pagination demo video.",
     "article.update.1.sub.comp.button": "Secondary basic button",
     "article.update.1.sub.comp.mediaPlayer": "Media player",
+    "article.update.1.sub.comp.inputFields": "General input fields",
     "article.update.1.sub.comp.pagination": "Pagination",
     "article.update.1.sub.tokens.spreadsheet": "Spreadsheet file type",
     "article.update.1.sub.tokens.newFileTypes": "New file types",
@@ -309,6 +314,10 @@ export const uiStrings = {
       "We kept the current Secondary Default button light blue and introduced a new Secondary Neutral option as a half step down. This update gives teams a secondary button that better matches other grey secondary buttons when that is the better fit for the layout, while still preserving the blue Secondary Default button as a stronger alternative to the primary button.",
     "article.update.1.p.comp.mediaPlayer":
       "Media player has been updated to improve visibility across light and dark media backgrounds. Disabled states could previously become hard to see on lighter content, so the control bar now uses a stronger transparent dark background with 8px blur, and disabled buttons use a more visible transparent fill treatment.",
+    "article.update.1.p.comp.inputFields.labelPlacement":
+      "General input fields now support labels placed either above the control or beside it. This gives teams more flexibility when choosing between stacked forms and denser horizontal layouts.",
+    "article.update.1.p.comp.inputFields.preFormatting":
+      "Text inputs now also offer pre-formatting, so common structured values can show their expected format directly inside the field.",
     "article.update.1.p.comp.pagination":
       "Improved pagination by fixing layout shifts from dynamic slots. Added an additional slot and locked the total slot count, keeping chevrons in a fixed position and reducing accidentally clicking the last page.",
     "article.update.1.sub.icons.office": "Office icons",
@@ -987,10 +996,15 @@ export const uiStrings = {
       "已更新媒体播放器控制条，以提升禁用态可见性，并在不同媒体背景下整体更易辨认。",
     "article.update.1.comp.imgAlt.mediaPlayer":
       "媒体播放器控制条在左右分屏亮/暗底与浅灰底上的示意，并标注禁用图标填充、8px 背景模糊与容器填充等令牌说明。",
+    "article.update.1.comp.imgAlt.inputFields.labelPlacement":
+      "通用输入字段示意图，展示标签位于文本输入框上方与侧边两种方式。",
+    "article.update.1.comp.imgAlt.inputFields.preFormatting":
+      "通用输入字段示意图，展示文本输入框中的预格式化处理。",
     "article.update.1.comp.paginationVideoAria": "屏幕录制：Vue 分页在页面间切换，以及圆点轨道示意。",
     "article.update.1.comp.paginationVideoToggleAria": "播放或暂停分页演示视频。",
     "article.update.1.sub.comp.button": "次要基础按钮",
     "article.update.1.sub.comp.mediaPlayer": "媒体播放器",
+    "article.update.1.sub.comp.inputFields": "通用输入字段",
     "article.update.1.sub.comp.pagination": "分页",
     "article.update.1.sub.tokens.spreadsheet": "电子表格文件类型",
     "article.update.1.sub.tokens.newFileTypes": "新文件类型",
@@ -998,6 +1012,10 @@ export const uiStrings = {
       "我们保留当前的次要默认（Secondary Default）按钮为浅蓝色，并新增次要中性（Secondary Neutral）作为降半档的选择。此次更新让团队在更适合的布局里能使用与其他灰色次要按钮更一致的次要按钮，同时仍保留蓝色的次要默认按钮，作为相对主按钮更强的一档。",
     "article.update.1.p.comp.mediaPlayer":
       "媒体播放器已更新，以在亮暗媒体背景下都更易辨认。此前在偏亮内容上禁用态不易看清，因此控制条现采用更强的透明深色背景并配合 8px 模糊，禁用按钮也改为更醒目的透明填充处理。",
+    "article.update.1.p.comp.inputFields.labelPlacement":
+      "通用输入字段现在支持将标签放在控件上方或侧边。团队可以在标准堆叠表单与更紧凑的横向布局之间更灵活地选择。",
+    "article.update.1.p.comp.inputFields.preFormatting":
+      "文本输入框现在也支持预格式化，让常见结构化值可以直接在字段内展示预期格式。",
     "article.update.1.p.comp.pagination":
       "分页体验改进：修复动态插槽带来的布局跳动；新增一个插槽并锁定插槽总数，使左右箭头位置保持稳定，并降低误点最后一页的概率。",
     "article.update.1.sub.icons.office": "办公图标",

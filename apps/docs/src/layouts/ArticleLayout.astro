@@ -638,6 +638,10 @@ const { title, description = "Updates and articles from the Prism team.", curren
     margin-top: 0.75rem;
   }
 
+  .page :global(.article-article__body .article-article__subsection > .article-article__inline-figure + .article-article__inline-figure) {
+    margin-top: 0.75rem;
+  }
+
   .page :global(.article-article__body p + .article-article__compare-row) {
     margin-top: 0.75rem;
   }
@@ -669,7 +673,7 @@ const { title, description = "Updates and articles from the Prism team.", curren
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.75rem;
-    align-items: stretch;
+    align-items: start;
   }
 
   @media (max-width: 560px) {
@@ -684,7 +688,6 @@ const { title, description = "Updates and articles from the Prism team.", curren
     flex-direction: column;
     align-items: stretch;
     min-width: 0;
-    height: 100%;
   }
 
   .page :global(.article-article__compare-cell > .article-article__inline-figure + .article-article__affected-icons-label) {
@@ -708,6 +711,8 @@ const { title, description = "Updates and articles from the Prism team.", curren
     display: block;
     width: 100%;
     height: auto;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
     vertical-align: middle;
   }
 
